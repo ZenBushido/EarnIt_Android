@@ -1,3 +1,3 @@
-# Referenced at /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/build/intermediates/manifests/full/debug/AndroidManifest.xml:49
+# Referenced at /Users/mac/Desktop/EarnIt_Android/app/build/intermediates/manifests/full/debug/AndroidManifest.xml:49
 -keep class com.mobiledi.earnit.MyApplication { <init>(...); }
 

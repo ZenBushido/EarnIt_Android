@@ -1,8 +1,19 @@
 {
     "logs": [
         {
-            "outputFile": "/Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
+            "outputFile": "/Users/mac/Desktop/EarnIt_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
             "map": [
+                {
+                    "source": "/Users/mac/Desktop/EarnIt_Android/materialcalendarview/build/intermediates/bundles/debug/res/values-v11/values-v11.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "187"
+                    }
+                },
                 {
                     "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/materialize-0.8.8.aar/8c04f31b7d1826fa447622194f961ea9/res/values-v11/values-v11.xml",
                     "from": {
@@ -20,17 +31,6 @@
                         "endLines": "88,92,97,103,107,116,121,125,129,133",
                         "endColumns": "12,12,12,12,12,12,12,12,12,12",
                         "endOffsets": "6047,6331,6631,6931,7227,7649,7961,8137,8325,8537"
-                    }
-                },
-                {
-                    "source": "/Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/materialcalendarview/build/intermediates/bundles/debug/res/values-v11/values-v11.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "187"
                     }
                 },
                 {

@@ -1,4 +1,4 @@
-#Wed Mar 07 10:37:47 IST 2018
-base.0=/Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/build/intermediates/transforms/dexMerger/debug/20
+#Wed Mar 07 12:37:04 IST 2018
+base.0=/Users/mac/Desktop/EarnIt_Android/app/build/intermediates/transforms/dexMerger/debug/1
 path.0=classes.dex
 renamed.0=classes.dex

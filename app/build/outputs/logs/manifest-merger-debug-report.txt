@@ -1,15 +1,15 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
 MERGED from [com.android.databinding:adapters:1.3.1] /Users/mac/.gradle/caches/transforms-1/files-1.1/adapters-1.3.1.aar/1f5ebd3763db538ce0bbeabd42cf5a20/AndroidManifest.xml:17:1-26:12
 MERGED from [com.android.databinding:library:1.3.1] /Users/mac/.gradle/caches/transforms-1/files-1.1/library-1.3.1.aar/048f6c2437ab795a4416b50110e7ae26/AndroidManifest.xml:17:1-26:12
 MERGED from [com.google.firebase:firebase-core:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-core-9.6.0.aar/6bf17c69f4387c6d85ba786728d08bd5/AndroidManifest.xml:2:1-6:12
 MERGED from [com.android.support:multidex:1.0.2] /Users/mac/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/ca6f62a8390eeab3de1c02a3864b87c8/AndroidManifest.xml:17:1-22:12
 MERGED from [com.mikepenz:materialdrawer:5.2.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/materialdrawer-5.2.0.aar/fda675b888a5c53034c24978b11e1e97/AndroidManifest.xml:2:1-12:12
-MERGED from [:materialcalendarview] /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-13:12
+MERGED from [:materialcalendarview] /Users/mac/Desktop/EarnIt_Android/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-13:12
 MERGED from [com.github.arcadefire:nice-spinner:1.2] /Users/mac/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/eb23ba41b1d317417b4eb68ed4787204/AndroidManifest.xml:2:1-13:12
 MERGED from [fr.tvbarthel.blurdialogfragment:lib:2.2.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/lib-2.2.0.aar/482dfe5e8931ca0d3505443da502e482/AndroidManifest.xml:2:1-12:12
 MERGED from [com.mikepenz:fastadapter:1.4.1] /Users/mac/.gradle/caches/transforms-1/files-1.1/fastadapter-1.4.1.aar/dc7989feb95be7a382f0d24214a3cfd6/AndroidManifest.xml:2:1-12:12
@@ -52,27 +52,27 @@ MERGED from [com.android.support:support-media-compat:26.1.0] /Users/mac/.gradle
 MERGED from [com.android.support:support-core-utils:26.1.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/25269bd929abe38934dbc7b80b5734ef/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/aac5ca05067c49717e60877bd4c5dc5c/AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c132a46fa880f18e1048345bad6e4ee9/AndroidManifest.xml:17:1-30:12
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
 	package
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:4:5-34
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:4:5-34
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:3:5-51
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:1-255:12
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:1-255:12
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:6:5-67
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:6:5-67
 MERGED from [com.google.firebase:firebase-crash:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-crash-9.6.0.aar/ba25fe4b438421ffc5ad96f540c6cea1/AndroidManifest.xml:18:5-66
 MERGED from [com.google.firebase:firebase-crash:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-crash-9.6.0.aar/ba25fe4b438421ffc5ad96f540c6cea1/AndroidManifest.xml:18:5-66
 MERGED from [com.rollbar:rollbar-android:1.0.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/rollbar-android-1.0.0.aar/93e3b6e78fc12381431815473622dbb6/AndroidManifest.xml:11:5-67
@@ -84,13 +84,13 @@ MERGED from [com.google.firebase:firebase-analytics-impl:9.6.0] /Users/mac/.grad
 MERGED from [com.google.firebase:firebase-iid:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-iid-9.6.0.aar/922f40ff8cdfb556f35892a16cd25d09/AndroidManifest.xml:20:5-66
 MERGED from [com.google.firebase:firebase-iid:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-iid-9.6.0.aar/922f40ff8cdfb556f35892a16cd25d09/AndroidManifest.xml:20:5-66
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:6:22-64
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:6:22-64
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:7:5-76
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:7:5-76
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:7:22-73
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:7:22-73
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:8:5-79
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:8:5-79
 MERGED from [com.google.firebase:firebase-analytics:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-analytics-9.6.0.aar/ce2f77fa67994ac5e0cb4221eafcf6fb/AndroidManifest.xml:21:5-78
 MERGED from [com.google.firebase:firebase-analytics:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-analytics-9.6.0.aar/ce2f77fa67994ac5e0cb4221eafcf6fb/AndroidManifest.xml:21:5-78
 MERGED from [com.google.firebase:firebase-analytics-impl:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-9.6.0.aar/264dcfce4a35286f2635a36f3b24fa1b/AndroidManifest.xml:21:5-78
@@ -98,63 +98,63 @@ MERGED from [com.google.firebase:firebase-analytics-impl:9.6.0] /Users/mac/.grad
 MERGED from [com.google.firebase:firebase-iid:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-iid-9.6.0.aar/922f40ff8cdfb556f35892a16cd25d09/AndroidManifest.xml:19:5-78
 MERGED from [com.google.firebase:firebase-iid:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-iid-9.6.0.aar/922f40ff8cdfb556f35892a16cd25d09/AndroidManifest.xml:19:5-78
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:8:22-76
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:8:22-76
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:9:5-80
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:9:5-80
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:9:22-77
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:9:22-77
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:10:5-81
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:10:5-81
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:10:22-78
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:10:22-78
 uses-permission#android.permission.CAMERA
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:11:5-65
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:11:5-65
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:11:22-62
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:11:22-62
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:12:5-81
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:12:5-81
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:12:22-78
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:12:22-78
 uses-permission#android.permission.PACKAGE_USAGE_STATS
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:18:5-20:47
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:18:5-20:47
 	tools:ignore
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:20:9-44
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:20:9-44
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:19:9-62
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:19:9-62
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:21:5-78
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:21:5-78
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:21:22-75
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:21:22-75
 uses-permission#android.permission.INTERNAL_SYSTEM_WINDOW
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:22:5-24:47
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:22:5-24:47
 	tools:ignore
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:24:9-44
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:23:9-65
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:23:9-65
 uses-permission#android.permission.RESTART_PACKAGES
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:25:5-75
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:25:5-75
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:25:22-72
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:25:22-72
 uses-permission#android.permission.GET_TASKS
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:26:5-68
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:26:5-68
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:26:22-65
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:26:22-65
 uses-feature#android.hardware.camera
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:28:5-30:35
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:28:5-30:35
 	android:required
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:30:9-32
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:30:9-32
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:29:9-47
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:29:9-47
 uses-feature#android.hardware.camera.autofocus
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:31:5-70
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:31:5-70
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:31:19-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:31:19-67
 application
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:33:5-253:19
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:33:5-253:19
 MERGED from [com.google.firebase:firebase-core:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-core-9.6.0.aar/6bf17c69f4387c6d85ba786728d08bd5/AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-core:9.6.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-core-9.6.0.aar/6bf17c69f4387c6d85ba786728d08bd5/AndroidManifest.xml:5:5-20
-MERGED from [:materialcalendarview] /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:11:5-47
-MERGED from [:materialcalendarview] /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:11:5-47
+MERGED from [:materialcalendarview] /Users/mac/Desktop/EarnIt_Android/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:11:5-47
+MERGED from [:materialcalendarview] /Users/mac/Desktop/EarnIt_Android/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:11:5-47
 MERGED from [com.github.arcadefire:nice-spinner:1.2] /Users/mac/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/eb23ba41b1d317417b4eb68ed4787204/AndroidManifest.xml:11:5-47
 MERGED from [com.github.arcadefire:nice-spinner:1.2] /Users/mac/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/eb23ba41b1d317417b4eb68ed4787204/AndroidManifest.xml:11:5-47
 MERGED from [fr.tvbarthel.blurdialogfragment:lib:2.2.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/lib-2.2.0.aar/482dfe5e8931ca0d3505443da502e482/AndroidManifest.xml:10:5-20
@@ -212,429 +212,429 @@ MERGED from [com.android.support:support-compat:26.1.0] /Users/mac/.gradle/cache
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c132a46fa880f18e1048345bad6e4ee9/AndroidManifest.xml:24:5-28:19
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c132a46fa880f18e1048345bad6e4ee9/AndroidManifest.xml:24:5-28:19
 	android:supportsRtl
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:43:9-35
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:43:9-35
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:39:9-41
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:39:9-41
 	android:hardwareAccelerated
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:37:9-44
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:37:9-44
 	android:manageSpaceActivity
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:41:9-76
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:41:9-76
 	tools:ignore
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:45:9-60
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:45:9-60
 	android:roundIcon
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:42:9-54
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:42:9-54
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:36:9-55
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:36:9-55
 	android:largeHeap
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:40:9-33
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:40:9-33
 	android:icon
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:38:9-42
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:38:9-42
 	android:allowBackup
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:35:9-35
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:35:9-35
 	android:theme
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:44:9-40
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:44:9-40
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:34:9-38
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:34:9-38
 activity#com.mobiledi.earnit.activity.LoginScreen
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:46:9-55:20
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:46:9-55:20
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:48:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:48:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:49:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:49:13-67
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:47:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:47:13-49
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:50:13-54:29
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:50:13-54:29
 action#android.intent.action.MAIN
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:51:17-69
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:51:17-69
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:51:25-66
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:51:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:53:17-77
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:53:17-77
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:53:27-74
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:53:27-74
 activity#com.mobiledi.earnit.activity.ParentDashboard
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:56:9-58:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:56:9-58:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:58:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:58:13-49
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:57:13-53
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:57:13-53
 activity#com.mobiledi.earnit.activity.SignUp
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:59:9-62:70
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:59:9-62:70
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:61:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:61:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:62:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:62:13-67
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:60:13-44
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:60:13-44
 activity#com.mobiledi.earnit.activity.AddTask
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:63:9-66:70
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:63:9-66:70
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:65:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:65:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:66:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:66:13-67
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:64:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:64:13-45
 activity#com.mobiledi.earnit.activity.EditTask
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:67:9-70:70
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:67:9-70:70
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:69:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:69:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:70:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:70:13-67
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:68:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:68:13-46
 activity#com.mobiledi.earnit.activity.ParentProfile
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:71:9-75:70
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:71:9-75:70
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:74:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:74:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:75:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:75:13-67
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:73:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:73:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:72:13-51
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:72:13-51
 activity#com.mobiledi.earnit.dialogfragment.UploadTaskImageFragment
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:76:9-80:70
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:76:9-80:70
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:79:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:79:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:80:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:80:13-67
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:78:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:78:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:77:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:77:13-67
 activity#com.mobiledi.earnit.activity.AddChild
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:81:9-85:70
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:81:9-85:70
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:84:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:84:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:85:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:85:13-67
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:83:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:83:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:82:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:82:13-46
 activity#com.mobiledi.earnit.activity.ChildDashboard
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:86:9-91:47
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:86:9-91:47
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:90:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:90:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:89:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:89:13-67
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:88:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:88:13-59
 	android:theme
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:91:13-44
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:91:13-44
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:87:13-52
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:87:13-52
 activity#com.mobiledi.earnit.activity.ParentCheckInChildDashboard
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:92:9-74
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:92:9-74
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:92:19-71
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:92:19-71
 activity#com.mobiledi.earnit.activity.GoalActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:93:9-97:67
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:93:9-97:67
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:96:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:96:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:97:13-64
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:97:13-64
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:95:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:95:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:94:13-50
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:94:13-50
 activity#com.mobiledi.earnit.activity.EditGoalActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:98:9-102:67
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:98:9-102:67
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:101:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:101:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:102:13-64
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:102:13-64
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:100:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:100:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:99:13-54
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:99:13-54
 activity#com.mobiledi.earnit.activity.ChildRequestTaskApproval
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:103:9-107:70
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:103:9-107:70
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:106:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:106:13-49
 	android:windowSoftInputMode
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:107:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:107:13-67
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:105:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:105:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:104:13-62
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:104:13-62
 activity#com.mobiledi.earnit.activity.ChildMessage
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:108:9-111:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:108:9-111:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:111:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:111:13-49
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:110:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:110:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:109:13-50
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:109:13-50
 activity#com.mobiledi.earnit.activity.BalanceAdjustment
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:112:9-115:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:112:9-115:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:115:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:115:13-49
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:114:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:114:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:113:13-55
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:113:13-55
 activity#com.mobiledi.earnit.activity.BalanceActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:116:9-119:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:116:9-119:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:119:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:119:13-49
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:118:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:118:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:117:13-53
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:117:13-53
 activity#com.mobiledi.earnit.activity.InitialParentProfile
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:120:9-123:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:120:9-123:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:123:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:123:13-49
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:122:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:122:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:121:13-58
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:121:13-58
 activity#com.mobiledi.earnit.activity.ParentTaskApproval
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:124:9-127:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:124:9-127:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:127:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:127:13-49
 	android:configChanges
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:126:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:126:13-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:125:13-56
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:125:13-56
 activity#com.mobiledi.earnit.activity.PasswordReminder
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:128:9-130:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:128:9-130:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:130:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:130:13-49
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:129:13-54
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:129:13-54
 activity#com.mobiledi.earnit.activity.ParentCalendarActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:131:9-133:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:131:9-133:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:133:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:133:13-49
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:132:13-60
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:132:13-60
 activity#com.mobiledi.earnit.activity.ChildCalendarActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:134:9-136:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:134:9-136:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:136:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:136:13-49
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:135:13-59
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:135:13-59
 activity#com.mobiledi.earnit.activity.ScreenRules
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:137:9-139:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:137:9-139:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:139:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:139:13-49
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:138:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:138:13-49
 service#com.mobiledi.earnit.service.CustomFirebaseMessagingService
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:142:9-148:19
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:142:9-148:19
 	android:permission
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:144:13-43
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:144:13-43
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:143:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:143:13-67
 intent-filter#com.google.firebase.MESSAGING_EVENT
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:145:13-147:29
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:145:13-147:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:146:17-78
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:146:17-78
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:146:25-75
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:146:25-75
 service#com.mobiledi.earnit.service.CustomFirebaseInstanceIDService
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:151:9-157:19
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:151:9-157:19
 	android:exported
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:153:13-37
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:153:13-37
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:152:13-68
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:152:13-68
 intent-filter#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:154:13-156:29
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:154:13-156:29
 action#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:155:17-80
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:155:17-80
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:155:25-77
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:155:25-77
 service#com.mobiledi.earnit.service.FCMJobService
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:159:9-165:19
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:159:9-165:19
 	android:exported
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:161:13-37
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:161:13-37
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:160:13-50
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:160:13-50
 intent-filter#com.firebase.jobdispatcher.ACTION_EXECUTE
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:162:13-164:29
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:162:13-164:29
 action#com.firebase.jobdispatcher.ACTION_EXECUTE
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:163:17-84
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:163:17-84
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:163:25-81
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:163:25-81
 service#com.mobiledi.earnit.service.UpdateFcmToken
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:166:9-59
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:166:9-59
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:166:18-56
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:166:18-56
 service#com.mobiledi.earnit.service.SendMessageService
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:167:9-63
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:167:9-63
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:167:18-60
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:167:18-60
 provider#android.support.v4.content.FileProvider
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:169:9-177:20
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:169:9-177:20
 	android:grantUriPermissions
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:173:13-47
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:173:13-47
 	android:authorities
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:171:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:171:13-67
 	android:exported
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:172:13-37
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:172:13-37
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:170:13-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:170:13-67
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:174:13-176:54
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:174:13-176:54
 	android:resource
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:176:17-51
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:176:17-51
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:175:17-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:175:17-67
 service#com.mobiledi.earnit.service.applock_service.AppCheckServices
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:179:9-181:40
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:179:9-181:40
 	android:exported
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:181:13-37
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:181:13-37
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:180:13-69
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:180:13-69
 receiver#com.mobiledi.earnit.receiver.NewAppInstalledReceiver
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:183:9-191:20
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:183:9-191:20
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:183:19-67
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:183:19-67
 intent-filter#android.intent.action.PACKAGE_ADDED+android.intent.action.PACKAGE_REMOVED+android.intent.action.PACKAGE_REPLACED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:184:13-190:29
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:184:13-190:29
 	android:priority
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:184:28-50
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:184:28-50
 action#android.intent.action.PACKAGE_ADDED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:185:17-78
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:185:17-78
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:185:25-75
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:185:25-75
 action#android.intent.action.PACKAGE_REMOVED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:186:17-80
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:186:17-80
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:186:25-77
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:186:25-77
 action#android.intent.action.PACKAGE_REPLACED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:187:17-81
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:187:17-81
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:187:25-78
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:187:25-78
 data
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:189:17-50
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:189:17-50
 	android:scheme
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:189:23-47
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:189:23-47
 receiver#com.mobiledi.earnit.receiver.BootComplete
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:192:9-201:20
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:192:9-201:20
 	android:exported
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:194:13-36
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:194:13-36
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:193:13-50
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:193:13-50
 intent-filter#android.intent.action.BOOT_COMPLETED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:195:13-197:29
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:195:13-197:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:196:17-79
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:196:17-79
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:196:25-76
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:196:25-76
 intent-filter#android.intent.action.PACKAGE_RESTARTED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:198:13-200:29
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:198:13-200:29
 action#android.intent.action.PACKAGE_RESTARTED
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:199:17-82
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:199:17-82
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:199:25-79
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:199:25-79
 receiver#com.mobiledi.earnit.receiver.ConnectivityReceiver
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:202:9-208:20
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:202:9-208:20
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:202:19-64
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:202:19-64
 intent-filter#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:203:13-207:29
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:203:13-207:29
 action#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:204:17-206:50
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:204:17-206:50
 	tools:ignore
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:206:21-47
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:206:21-47
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:205:21-72
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:205:21-72
 receiver#com.mobiledi.earnit.receiver.AlarmReceiver
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:209:9-60
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:209:9-60
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:209:19-57
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:209:19-57
 activity#com.mobiledi.earnit.activity.applock.SplashActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:211:9-215:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:211:9-215:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:215:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:215:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:214:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:214:13-45
 	android:excludeFromRecents
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:213:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:213:13-46
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:212:13-60
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:212:13-60
 activity#com.mobiledi.earnit.activity.applock.MainActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:216:9-220:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:216:9-220:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:220:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:220:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:219:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:219:13-45
 	android:excludeFromRecents
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:218:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:218:13-46
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:217:13-58
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:217:13-58
 activity#com.mobiledi.earnit.activity.applock.PasswordActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:221:9-225:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:221:9-225:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:225:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:225:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:224:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:224:13-45
 	android:excludeFromRecents
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:223:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:223:13-46
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:222:13-62
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:222:13-62
 activity#com.mobiledi.earnit.activity.applock.PasswordSetActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:226:9-230:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:226:9-230:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:230:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:230:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:229:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:229:13-45
 	android:excludeFromRecents
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:228:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:228:13-46
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:227:13-65
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:227:13-65
 activity#com.mobiledi.earnit.activity.applock.PasswordRecoveryActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:231:9-235:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:231:9-235:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:235:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:235:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:234:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:234:13-45
 	android:excludeFromRecents
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:233:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:233:13-46
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:232:13-70
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:232:13-70
 activity#com.mobiledi.earnit.activity.applock.PasswordRecoverSetActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:236:9-240:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:236:9-240:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:240:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:240:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:239:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:239:13-45
 	android:excludeFromRecents
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:238:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:238:13-46
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:237:13-72
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:237:13-72
 activity#com.mobiledi.earnit.activity.applock.ManageSpaceActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:241:9-245:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:241:9-245:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:245:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:245:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:244:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:244:13-45
 	android:excludeFromRecents
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:243:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:243:13-46
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:242:13-65
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:242:13-65
 activity#com.mobiledi.earnit.activity.applock.LoadingActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:246:9-250:52
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:246:9-250:52
 	android:screenOrientation
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:250:13-49
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:250:13-49
 	android:label
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:249:13-45
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:249:13-45
 	android:excludeFromRecents
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:248:13-46
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:248:13-46
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:247:13-61
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:247:13-61
 activity#com.mobiledi.earnit.activity.usageStats.AppUsageStatisticsActivity
-ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:252:9-83
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:252:9-83
 	android:name
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml:252:19-81
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:252:19-81
 uses-sdk
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
 MERGED from [com.android.databinding:adapters:1.3.1] /Users/mac/.gradle/caches/transforms-1/files-1.1/adapters-1.3.1.aar/1f5ebd3763db538ce0bbeabd42cf5a20/AndroidManifest.xml:22:5-24:41
 MERGED from [com.android.databinding:adapters:1.3.1] /Users/mac/.gradle/caches/transforms-1/files-1.1/adapters-1.3.1.aar/1f5ebd3763db538ce0bbeabd42cf5a20/AndroidManifest.xml:22:5-24:41
 MERGED from [com.android.databinding:library:1.3.1] /Users/mac/.gradle/caches/transforms-1/files-1.1/library-1.3.1.aar/048f6c2437ab795a4416b50110e7ae26/AndroidManifest.xml:22:5-24:41
@@ -645,8 +645,8 @@ MERGED from [com.android.support:multidex:1.0.2] /Users/mac/.gradle/caches/trans
 MERGED from [com.android.support:multidex:1.0.2] /Users/mac/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/ca6f62a8390eeab3de1c02a3864b87c8/AndroidManifest.xml:20:5-43
 MERGED from [com.mikepenz:materialdrawer:5.2.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/materialdrawer-5.2.0.aar/fda675b888a5c53034c24978b11e1e97/AndroidManifest.xml:8:5-10:41
 MERGED from [com.mikepenz:materialdrawer:5.2.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/materialdrawer-5.2.0.aar/fda675b888a5c53034c24978b11e1e97/AndroidManifest.xml:8:5-10:41
-MERGED from [:materialcalendarview] /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
-MERGED from [:materialcalendarview] /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:materialcalendarview] /Users/mac/Desktop/EarnIt_Android/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:materialcalendarview] /Users/mac/Desktop/EarnIt_Android/materialcalendarview/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.arcadefire:nice-spinner:1.2] /Users/mac/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/eb23ba41b1d317417b4eb68ed4787204/AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.arcadefire:nice-spinner:1.2] /Users/mac/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/eb23ba41b1d317417b4eb68ed4787204/AndroidManifest.xml:7:5-9:41
 MERGED from [fr.tvbarthel.blurdialogfragment:lib:2.2.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/lib-2.2.0.aar/482dfe5e8931ca0d3505443da502e482/AndroidManifest.xml:6:5-8:41
@@ -731,18 +731,18 @@ MERGED from [com.android.support:support-compat:26.1.0] /Users/mac/.gradle/cache
 MERGED from [com.android.support:support-compat:26.1.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/aac5ca05067c49717e60877bd4c5dc5c/AndroidManifest.xml:21:5-23:58
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c132a46fa880f18e1048345bad6e4ee9/AndroidManifest.xml:20:5-22:41
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c132a46fa880f18e1048345bad6e4ee9/AndroidManifest.xml:20:5-22:41
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
 	tools:overrideLibrary
 		ADDED from [com.android.support:design:26.1.0] /Users/mac/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/8dcbbb6263fe4c7fee99aa964fe9e6df/AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-		ADDED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
-		INJECTED from /Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.VIBRATE
 ADDED from [com.wdullaer:materialdatetimepicker:3.2.2] /Users/mac/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.2.2.aar/86f634d3f806175bd4a29ab0559f9c8e/AndroidManifest.xml:26:5-66
 	android:name
