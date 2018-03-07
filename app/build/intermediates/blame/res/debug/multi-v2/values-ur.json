@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ur/values-ur.xml",
+            "outputFile": "/Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ur/values-ur.xml",
             "map": [
                 {
                     "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.6.0.aar/b63e926dca4b8082b3f5a19b977d552c/res/values-ur/values.xml",

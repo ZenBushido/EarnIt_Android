@@ -33,7 +33,6 @@ import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;

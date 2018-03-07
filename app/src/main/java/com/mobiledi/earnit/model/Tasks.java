@@ -25,6 +25,15 @@ public class Tasks implements Serializable, Parcelable {
     private String name;
     private ArrayList<TaskComment> taskComments;
 
+    // goal
+    private Goal goal;
+
+    // repetition
+
+    private RepititionSchedule repititionSchedule;
+
+
+
     protected Tasks(Parcel in) {
         id = in.readInt();
         childId = in.readInt();
@@ -67,7 +76,7 @@ public class Tasks implements Serializable, Parcelable {
         this.goal = goal;
     }
 
-    private Goal goal;
+
 
     public String getDetails() {
         return Utils.checkIsNUll(details);
@@ -90,7 +99,7 @@ public class Tasks implements Serializable, Parcelable {
         this.repititionSchedule = repititionSchedule;
     }
 
-    private RepititionSchedule repititionSchedule;
+
 
     public Tasks() {
     }

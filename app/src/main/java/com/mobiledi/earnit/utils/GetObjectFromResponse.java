@@ -14,6 +14,8 @@ import com.mobiledi.earnit.model.TaskWithTag;
 import com.mobiledi.earnit.model.Tasks;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -130,9 +132,15 @@ public class GetObjectFromResponse {
                 task.setPictureRequired(false);
 
             if (taskObject.has(AppConstant.GOAL)) {
+
+                if(!taskObject.isNull(AppConstant.GOAL))
+                {
+
                     JSONObject goalObject = taskObject.getJSONObject(AppConstant.GOAL);
                     Goal goal = getGoalObject(goalObject);
                     task.setGoal(goal);
+                }
+
             }
 
             if (taskObject.has(AppConstant.REPITITION_SCHEDULE)) {
@@ -210,7 +218,12 @@ public class GetObjectFromResponse {
 
             childAccount.setId(account.getInt(AppConstant.ID));
             childAccount.setAccountCode(account.getString(AppConstant.ACCOUNT_CODE));
-            childAccount.setCreateDate(account.getLong(AppConstant.CREATE_DATE));
+            //Feb 8, 2018 10:10:50 AM
+            // MMM d, yyyy hh:mm:ss a
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM d, yyyy hh:mm:ss a");
+            DateTime dt = formatter.parseDateTime(account.getString(AppConstant.CREATE_DATE));
+            long milliseconds = dt.getMillis();
+            childAccount.setCreateDate(milliseconds);
         } catch (JSONException e) {
             e.printStackTrace();
         }

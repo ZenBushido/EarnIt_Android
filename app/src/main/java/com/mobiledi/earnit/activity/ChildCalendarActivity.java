@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -51,7 +52,7 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
     TextView textView, bottom_2;
     Integer taskCOunter=0;
     List<Tasks> tasksList= new ArrayList<>();
-     DrawerLayout drawer;
+     RelativeLayout drawer;
     CalendarView calendarView;
     Button backlisttask;
     ImageButton headerbackBtn, backarrow, forwardarrow;
@@ -64,13 +65,15 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
     RelativeLayout progressBar;
     private String finalDate;
 
+    String TAG = ChildCalendarActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.childcalendar);
 
         childCalendarActivity = this;
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (RelativeLayout) findViewById(R.id.drawer_layout);
         calendarView = (CalendarView) findViewById(R.id.calendar_view);
         backlisttask = (Button) findViewById(R.id.back_to_tasklist);
         backarrow = (ImageButton) findViewById(R.id.childcalendar_backarrow);
@@ -88,6 +91,7 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
 
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
+        Log.e(TAG, "URL= "+"https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/"+childObject.getAvatar());
 
         try {
             Picasso.with(childCalendarActivity).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
@@ -186,14 +190,14 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.childcalendar_forward_arrow:
                         if (taskCOunter < tasksList.size()) {
-                            bottom_2.setText("Goal name:"+tasksList.get(taskCOunter).getName());
+                            bottom_2.setText("Goal name:"+tasksList.get(taskCOunter).getGoal().getGoalName());
                             taskCOunter++;
                         }
                 break;
             case R.id.childcalendar_backarrow:
                 if (taskCOunter > 1) {
                     --taskCOunter;
-                    bottom_2.setText("Goal name:"+tasksList.get(taskCOunter).getName());
+                    bottom_2.setText("Goal name:"+tasksList.get(taskCOunter).getGoal().getGoalName());
                 }
                 break;
             case R.id.add_task_avatar:

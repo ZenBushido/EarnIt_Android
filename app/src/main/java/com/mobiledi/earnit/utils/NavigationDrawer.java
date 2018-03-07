@@ -229,7 +229,7 @@ public class NavigationDrawer {
     }
 
     public void logoutParent(final Parent parent) {
-        new  AsyncTask<Void, Void, Void>() {
+        new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 {

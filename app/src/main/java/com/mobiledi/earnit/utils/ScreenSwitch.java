@@ -3,7 +3,6 @@ package com.mobiledi.earnit.utils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -20,12 +19,12 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.activity.AddChild;
 import com.mobiledi.earnit.activity.AddTask;
-import com.mobiledi.earnit.activity.Balance;
-import com.mobiledi.earnit.activity.BalanceChild;
+import com.mobiledi.earnit.activity.BalanceAdjustment;
+import com.mobiledi.earnit.activity.BalanceActivity;
 import com.mobiledi.earnit.activity.ChildCalendarActivity;
 import com.mobiledi.earnit.activity.ChildDashboard;
 import com.mobiledi.earnit.activity.ChildMessage;
-import com.mobiledi.earnit.activity.ChildRequestTaskApproval;
+
 import com.mobiledi.earnit.activity.EditTask;
 import com.mobiledi.earnit.activity.GoalActivity;
 import com.mobiledi.earnit.activity.InitialParentProfile;
@@ -35,6 +34,7 @@ import com.mobiledi.earnit.activity.ParentCheckInChildDashboard;
 import com.mobiledi.earnit.activity.ParentDashboard;
 import com.mobiledi.earnit.activity.ParentProfile;
 import com.mobiledi.earnit.activity.ParentTaskApproval;
+import com.mobiledi.earnit.activity.usageStats.AppUsageStatisticsActivity;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
@@ -262,7 +262,7 @@ goals.add(goal);
     }
 
     public void moveToBalance(Child child, Child otherChild, Parent parent, String fromScreen, Tasks tasks, List<Goal> goal, String userType) {
-        Intent moveToBalance = new Intent(activity, Balance.class);
+        Intent moveToBalance = new Intent(activity, BalanceAdjustment.class);
         moveToBalance.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         moveToBalance.putExtra(AppConstant.CHILD_OBJECT, child);
         moveToBalance.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
@@ -275,7 +275,7 @@ goals.add(goal);
     }
 
     public void moveToBalanceScreen(Child child, Child otherChild, Parent parent, String fromScreen, Tasks tasks, List<Goal> goal, String userType) {
-        Intent moveToBalance = new Intent(activity, BalanceChild.class);
+        Intent moveToBalance = new Intent(activity, BalanceActivity.class);
         moveToBalance.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         moveToBalance.putExtra(AppConstant.CHILD_OBJECT, child);
         moveToBalance.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
@@ -398,4 +398,17 @@ goals.add(goal);
     }
 
 
+    public void usageStats(Parent parent, String fromScreen) {
+
+        //activity.startActivity(new Intent(activity, AppUsageStatisticsActivity.class));
+
+        Intent moveToTaskApproval = new Intent(activity, AppUsageStatisticsActivity.class);
+        // moveToTaskApproval.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+
+        moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parent);
+        moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, fromScreen);
+
+        activity.startActivity(moveToTaskApproval);
+    }
 }

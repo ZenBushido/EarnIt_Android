@@ -84,6 +84,8 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
 
         Intent intent = getIntent();
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
+
+
         screenSwitch = new ScreenSwitch( this);
 
         //Initialize FontAwesome
@@ -100,6 +102,8 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
         getSupportActionBar().setTitle(null);
 
         switchFrom = getIntent().getStringExtra(AppConstant.SCREEN);
+
+
 
         if(switchFrom == null)
             switchFrom = AppConstant.PARENT_DASHBOARD;
@@ -122,7 +126,8 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
         NavigationDrawer navigationDrawer = new NavigationDrawer(parentDashboard, parentObject, toolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
         if (isDeviceOnline()){
             getDashBoardData();
-        callApi();}
+       // callApi();
+        }
 
         navigationDrawer.setOnDrawerToggeled(this);
 
@@ -136,16 +141,18 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
 
     private void getDashBoardData() {
 
+        Log.e(TAG, "Getting Dashboard Data");
         AsyncHttpClient client = new AsyncHttpClient();
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.setMaxRetriesAndTimeout(3, 3000);
-        Utils.logDebug(TAG, "Child response request: " + AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getId());
+        Utils.logDebug(TAG, "Child response request: " +
+                AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getAccount().getId());
         client.get(AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getAccount().getId(), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Utils.logDebug(TAG, "Child Success response: " + response.toString());
 
-                Log.d("Child Respo", AppConstant.BASE_URL + AppConstant.CHILDREN_API);
+                Log.e(TAG, "Child Respo: " + AppConstant.BASE_URL + AppConstant.CHILDREN_API);
 
                 childList.clear();
                 childApprovalList.clear();
@@ -265,6 +272,7 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
 
     @Override
     protected void onDestroy() {
+        if (handler!=null)
         handler.removeCallbacks(runnable);
         super.onDestroy();
     }

@@ -4,12 +4,8 @@ import android.text.TextUtils;
 
 import com.mobiledi.earnit.utils.AppConstant;
 
-import java.io.IOException;
 import okhttp3.Credentials;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,9 +22,7 @@ public class ServiceGenerator {
 
     private static Retrofit retrofit = builder.build();
 
-    public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null, null);
-    }
+
 
     public static <S> S createService(
             Class<S> serviceClass, String username, String password) {

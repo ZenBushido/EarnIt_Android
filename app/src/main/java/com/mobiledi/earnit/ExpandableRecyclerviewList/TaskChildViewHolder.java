@@ -38,6 +38,8 @@ public class TaskChildViewHolder extends ChildViewHolder {
     LinearLayout task_details_layout, task_description_layout;
     public Tasks task;
 
+    String TAG = TaskChildViewHolder.class.getSimpleName();
+
     public TaskChildViewHolder(View item) {
         super(item);
         childTaskDetail = (TextView) item.findViewById(R.id.child_task_detail);
@@ -50,8 +52,8 @@ public class TaskChildViewHolder extends ChildViewHolder {
         task_description_layout = (LinearLayout) item.findViewById(R.id.task_description_layout);
     }
 
-    public void onBind(final Tasks currentTask, String title, final Parent parent, final Child child, final String string) {
-        //Log.e("Task = ", currentTask.getGoal().getGoalName());
+    public void onBind(final Tasks currentTask, String title, final Parent parent, final Child child, final String isParentChild) {
+
         task = currentTask;
         childTaskDetail.setText(currentTask.getName());
         DateTime dt = new DateTime(currentTask.getDueDate());
@@ -65,7 +67,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
             @Override
             public void onClick(View view) {
 
-                if (string.equals("Parent") && !currentTask.getStatus().equals(AppConstant.COMPLETED)) {
+                if (isParentChild.equals("Parent") && !currentTask.getStatus().equals(AppConstant.COMPLETED)) {
 
                     Intent addTask = new Intent(itemView.getContext(), EditTask.class);
                     addTask.putExtra("title", "" + task.getName());
@@ -76,7 +78,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     addTask.putExtra(AppConstant.TO_EDIT, (Serializable) task);
                     addTask.putExtra(AppConstant.TASK_STATUS, AppConstant.EDIT);
                     itemView.getContext().startActivity(addTask);
-                } else if (string.equals("Parent") && currentTask.getStatus().equals(AppConstant.COMPLETED)) {
+                } else if (isParentChild.equals("Parent") && currentTask.getStatus().equals(AppConstant.COMPLETED)) {
 
                     Intent moveToTaskApproval = new Intent(itemView.getContext(), ParentTaskApproval.class);
                     // moveToTaskApproval.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -92,21 +94,27 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     Intent requestTaskApproval = new Intent(itemView.getContext(), ChildRequestTaskApproval.class);
                     requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
                     requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
+                    //requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT,  task.getGoal());
 
-
+                    Log.e(TAG, "Child Object: " + child.getFirstName());
+                    Log.e(TAG, "Task Object: " + task.getName());
+                    Log.e(TAG, "Goal= " + task.getGoal().getId());
+                    Log.e(TAG, "Goal= " + task.getGoal().getGoalName());
+                    //Log.e(TAG, "Task Object: "+task.getGoal().getGoalName());
                     itemView.getContext().startActivity(requestTaskApproval);
 
                 } else {
                     Toast.makeText(task_description_layout.getContext(), "Requested already", Toast.LENGTH_LONG).show();
 
                 }
-            }});
+            }
+        });
         //   if (userType.equals(AppConstant.CHILD)) {
         //     mViewHolder.childTaskCheckbox.setVisibility(View.GONE);
         //   mViewHolder.thumbUp.setVisibility(View.GONE);
         //   } else {
         childTaskCheckbox.setVisibility(View.GONE);
-                thumbUp.setBackground(new IconDrawable(itemView.getContext(), FontAwesomeIcons.fa_eye)
+        thumbUp.setBackground(new IconDrawable(itemView.getContext(), FontAwesomeIcons.fa_eye)
                 .colorRes(R.color.main_font)
                 .actionBarSize());
         right_arrow.setVisibility(View.INVISIBLE);

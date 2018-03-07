@@ -1,8 +1,10 @@
 package com.mobiledi.earnit.activity;
 
+import android.annotation.SuppressLint;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,9 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
@@ -34,6 +40,7 @@ import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.screenruletimepicker.TimeSelectUtilsForCallendar;
 import com.mobiledi.earnit.stickyEvent.MessageEvent;
 import com.mobiledi.earnit.utils.AppConstant;
+import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.NavigationDrawer;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
@@ -51,8 +58,26 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import io.blackbox_vision.materialcalendarview.view.CalendarView;
+
+import android.app.AlertDialog;
+import android.app.TimePickerDialog;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.app.Fragment;
+
+import android.text.format.DateFormat;
+import android.view.Gravity;
+
+
+import android.widget.TextView;
+import android.app.DialogFragment;
+import android.app.Dialog;
+import java.util.Calendar;
+import android.widget.TimePicker;
 
 /**
  * Created by GreenLose on 12/8/2017.
@@ -66,14 +91,16 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     private static final String MONTH_TEMPLATE = "MMMM yyyy";
     ParentCalendarActivity parentCalendarActivity;
     public Parent parentObject;
-    ImageButton helpIcon, goback;
-    Button saveBtn, cancelBtn;
+    @BindView(R.id.addtask_helpicon) ImageButton helpIcon;
+    ImageButton goback;
+    @BindView(R.id.save) Button saveBtn;
+    @BindView(R.id.cancel) Button cancelBtn;
     CircularImageView childAvatar;
     TextView childName;
     public Child childObject, otherChild;
     Intent intent;
     public List<String> monthList;
-    RelativeLayout progressBar;
+    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
     Tasks currentTask;
     String screen_name;
     boolean IS_EDITING_TASK = false;
@@ -84,19 +111,19 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     ArrayList<String> list;
     String NONE = "None";
     Map<Integer, String> childs;
-    private Toolbar goalToolbar;
+    @BindView(R.id.toolbar_add) Toolbar goalToolbar;
 
     private final String TAG = "ParentCalendarActivity";
     ScreenSwitch screenSwitch;
     TextView repeatTask;
     private BottomSheetDialog mBottomSheetDialog;
     private String repeat;
-    DrawerLayout drawer;
-    CalendarView calendarView;
-    ImageButton headerBack;
+    @BindView(R.id.drawer_layout) RelativeLayout drawer;
+    @BindView(R.id.calendar_view) CalendarView calendarView;
+    @BindView(R.id.addtask_back_arrow) ImageButton headerBack;
     public static Boolean buttonClicked;
     List<String> weeklist = new ArrayList<>();
-    TextView startTimer;
+    @BindView(R.id.rule_apply_from) TextView startTimer;
     String dayOfWeek;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/DD/yyyy");
     String finalDate = simpleDateFormat.format(new Date());
@@ -104,35 +131,37 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parent_calendar);
+        ButterKnife.bind(this);
         buttonClicked = false;
         parentCalendarActivity = this;
         screenSwitch = new ScreenSwitch(parentCalendarActivity);
-        goalToolbar = (Toolbar) findViewById(R.id.toolbar_add);
+
         setSupportActionBar(goalToolbar);
         getSupportActionBar().setTitle(null);
-        helpIcon = (ImageButton) findViewById(R.id.addtask_helpicon);
-        saveBtn = (Button) findViewById(R.id.save);
-        cancelBtn = (Button) findViewById(R.id.cancel);
-        progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        calendarView = (CalendarView) findViewById(R.id.calendar_view);
-        headerBack = (ImageButton) findViewById(R.id.addtask_back_arrow);
+
+
         presenter.addCalendarView();
         presenter.animate();
-        startTimer = (TextView) findViewById(R.id.rule_apply_from);
+
         startTimer.setText("8:30:00 AM");
         drawer.measure(View.MeasureSpec.EXACTLY, View.MeasureSpec.EXACTLY);
 
         startTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimeSelectUtilsForCallendar timeSelectUtils = new TimeSelectUtilsForCallendar(ParentCalendarActivity.this, null, startTimer, new TimeSelectUtilsForCallendar.GetSubmitTime() {
+
+                DialogFragment newFragment = new TimePickerFragment();
+                newFragment.show(getFragmentManager(),"TimePicker");
+
+                /*TimeSelectUtilsForCallendar timeSelectUtils = new TimeSelectUtilsForCallendar(ParentCalendarActivity.this, null, startTimer, new TimeSelectUtilsForCallendar.GetSubmitTime() {
                     @Override
                     public void selectTime(String startDate) {
                         startTimer.setText(startDate.toString());
+
+
                     }
                 });
-                timeSelectUtils.dateTimePicKDialog();
+                timeSelectUtils.dateTimePicKDialog();*/
             }
         });
 
@@ -152,8 +181,8 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         childName = (TextView) findViewById(R.id.add_task_header);
-       if(childObject!=null)
-        childName.setText(childObject.getFirstName());
+        if(childObject!=null)
+            childName.setText(childObject.getFirstName());
         list = new ArrayList<>();
         list.add(NONE);
         repeatList = new ArrayList<>();
@@ -223,7 +252,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             case R.id.save:
                 Date date = new Date();
 
-          //      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d, yyyy  hh:mm:ss a");
+                //      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d, yyyy  hh:mm:ss a");
 
                 Log.e("testing final date", "" + finalDate);
                 //  AppConstant.addTaskModel.setDueDate(finalDate);
@@ -239,7 +268,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     response.startTime =sdf.format(new Date()) ;
                     response.repeat = "daily";
                     if(dayOfWeek!=null)
-                    response.setEveryNday(Integer.parseInt(dayOfWeek));
+                        response.setEveryNday(Integer.parseInt(dayOfWeek));
                     else
                         response.setEveryNday(0);
 
@@ -264,7 +293,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     response.setSpecificDays(weeklist);
                     response.setDate(finalDate);
                     if(dayOfWeek!=null)
-                    response.setEveryNday(Integer.parseInt(dayOfWeek));
+                        response.setEveryNday(Integer.parseInt(dayOfWeek));
                     else
                         response.setEveryNday(0);
 
@@ -285,7 +314,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     response.repeat = "monthly";
                     response.setDate(finalDate);
                     if(dayOfWeek!=null)
-                    response.setEveryNday(Integer.parseInt(dayOfWeek));
+                        response.setEveryNday(Integer.parseInt(dayOfWeek));
                     else
                         response.setEveryNday(0);
                     response.setSpecificDays(monthList);
@@ -295,7 +324,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     finish();
 
                 }
-else{
+                else{
 
                     AddTaskModel.repititionSchedule response = new AddTaskModel.repititionSchedule();
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
@@ -320,6 +349,9 @@ else{
                 onBackPressed();
                 break;
             case R.id.add_task_avatar:
+
+                new FloatingMenu(this).fetchAvatarDimension(childAvatar, childObject, otherChild, parentObject, AppConstant.PARENT_CALENDAR_SCREEN, progressBar, currentTask);
+
                 break;
             case R.id.parentrepeat_frequency:
                 showBottomSheetDialog(repeatList, repeatTask, AppConstant.REPEAT);
@@ -349,7 +381,7 @@ else{
                     case 1: {
 
                         checkValue = "daily";
-dayOfWeek=null;
+                        dayOfWeek=null;
                         MyDialogFragment dialogFrag = new MyDialogFragment();
                         FragmentManager fm = getFragmentManager();
                         dialogFrag.show(fm, getString(R.string.dialog_tag));
@@ -478,5 +510,53 @@ dayOfWeek=null;
     public void updateResult(String inputText,String s) {
         days = inputText;
         dayOfWeek=s;
+    }
+
+    @SuppressLint("ValidFragment")
+    public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
+        private int mNumberPickerInputId = 0;
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState){
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+
+            TimePickerDialog tpd = new TimePickerDialog(getActivity(), R.style.TimePickerTheme
+                    ,this, hour, minute, false);
+            LinearLayout linearLayout = new LinearLayout(getActivity());
+            linearLayout.setMinimumWidth(0);
+            linearLayout.setMinimumHeight(0);
+            tpd.setCustomTitle(linearLayout);
+
+
+
+
+            return tpd;
+        }
+
+
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute){
+            String aMpM = "AM";
+            if(hourOfDay >11)
+            {
+                aMpM = "PM";
+            }
+
+            int currentHour;
+            if(hourOfDay>11)
+            {
+                currentHour = hourOfDay - 12;
+            }
+            else
+            {
+                currentHour = hourOfDay;
+            }
+
+
+            startTimer.setText(String.valueOf(currentHour)
+                    + ":" + String.valueOf(minute) + ":"+"00"+" "+ aMpM );
+
+        }
+
     }
 }

@@ -25,11 +25,11 @@
             <TextView
                 android:id="@+id/fb_add_task"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:padding="@dimen/feb_list_padding"
+                android:padding="10dp"
+
+
                 android:text="@string/add_task"
                 android:textColor="@color/pink"
                 android:textSize="@dimen/floating_menu_list_size" />
@@ -37,11 +37,11 @@
             <TextView
                 android:id="@+id/fb_a11_task"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:padding="@dimen/feb_list_padding"
+
+                android:padding="10dp"
+
                 android:text="@string/all_task"
                 android:textColor="@color/pink"
                 android:textSize="@dimen/floating_menu_list_size" />
@@ -49,10 +49,8 @@
             <TextView
                 android:id="@+id/fb_approve_task"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
-                android:layout_weight="1"
-                android:gravity="bottom"
                 android:padding="@dimen/feb_list_padding"
                 android:text="@string/approve_task"
                 android:textColor="@color/pink"
@@ -61,10 +59,8 @@
             <TextView
                 android:id="@+id/fb_balance"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center|left"
-                android:layout_weight="1"
-                android:gravity="bottom"
+                android:layout_height="wrap_content"
+
                 android:padding="@dimen/feb_list_padding"
                 android:text="@string/balance"
                 android:textColor="@color/pink"
@@ -73,10 +69,7 @@
             <TextView
                 android:id="@+id/fb_goal"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center|left"
-                android:layout_weight="1"
-                android:gravity="bottom"
+                android:layout_height="wrap_content"
                 android:padding="@dimen/feb_list_padding"
                 android:text="@string/goal"
                 android:textColor="@color/pink"
@@ -85,12 +78,19 @@
             <TextView
                 android:id="@+id/fb_message"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center|left"
-                android:layout_weight="1"
-                android:gravity="bottom"
+                android:layout_height="wrap_content"
                 android:padding="@dimen/feb_list_padding"
                 android:text="@string/message"
+                android:textColor="@color/pink"
+                android:textSize="@dimen/floating_menu_list_size" />
+
+        <TextView
+                android:id="@+id/app_monitor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:padding="@dimen/feb_list_padding"
+                android:text="@string/app_monitor"
                 android:textColor="@color/pink"
                 android:textSize="@dimen/floating_menu_list_size" />
 

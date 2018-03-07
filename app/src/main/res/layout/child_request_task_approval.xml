@@ -188,13 +188,14 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:id="@+id/tv_applies_to"
                                 android:paddingLeft="@dimen/task_due_Date_left_padding"
                                 android:textAlignment="textStart"
                                 android:textAllCaps="false"
                                 android:textColor="@color/main_font"
                                 android:textSize="@dimen/check_in_text_size"
                                 android:maxLines="1"
-                                android:text="@string/trip_to"
+                                android:text=""
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
 
@@ -244,13 +245,13 @@
                             android:padding="2dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Optional Comments:"
+                            android:text="@string/comments"
                             android:textAlignment="textStart"
                             android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
+                            android:textSize="14sp" />
 
                         <TextView
-                            android:textSize="@dimen/check_in_text_size"
+                            android:textSize="14sp"
                             android:textColor="@color/check_in"
                             android:padding="2dp"
                             android:layout_alignParentRight="true"

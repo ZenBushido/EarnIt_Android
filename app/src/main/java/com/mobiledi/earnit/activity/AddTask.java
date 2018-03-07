@@ -1,15 +1,10 @@
 package com.mobiledi.earnit.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.FragmentManager;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +15,6 @@ import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.EventLog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -34,7 +28,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
@@ -42,15 +35,12 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.mobiledi.earnit.R;
-import com.mobiledi.earnit.adapter.ChildListAdapter;
 import com.mobiledi.earnit.adapter.ItemAdapter;
-import com.mobiledi.earnit.dialogfragment.UploadTaskImageFragment;
 import com.mobiledi.earnit.model.AddTaskModel;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Item;
 import com.mobiledi.earnit.model.Parent;
-import com.mobiledi.earnit.model.TaskV2Model;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.stickyEvent.MessageEvent;
 import com.mobiledi.earnit.utils.AppConstant;
@@ -60,10 +50,8 @@ import com.mobiledi.earnit.utils.NavigationDrawer;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
 import com.squareup.picasso.Picasso;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -72,8 +60,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,21 +71,13 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
-import retrofit.GetTaskFromChildInterface;
-import retrofit.ServiceGenerator;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-import static com.mobiledi.earnit.R.id.parent;
 import static com.mobiledi.earnit.R.id.task_name;
-import static com.mobiledi.earnit.activity.ParentDashboard.parentObject;
 
 
 public class AddTask extends BaseActivity implements View.OnClickListener, NavigationDrawer.OnDrawerToggeled {
@@ -159,7 +137,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         drawerToggle = (ImageButton) findViewById(R.id.drawerBtn);
         progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
         setSupportActionBar(goalToolbar);
-        getSupportActionBar().setTitle(null);
+        //getSupportActionBar().setTitle(null);
         screenlockBtn = (Button) findViewById(R.id.newtask_screenlockcheck);
         back = (ImageButton) findViewById(R.id.addtask_back_arrow);
 
@@ -368,6 +346,11 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
                     Intent parentCalendarAcitivity = new Intent(AddTask.this, ParentCalendarActivity.class);
 
+                    parentCalendarAcitivity.putExtra(AppConstant.PARENT_OBJECT, parentObject);
+                    parentCalendarAcitivity.putExtra(AppConstant.FROM_SCREEN, screen_name);
+                    parentCalendarAcitivity.putExtra(AppConstant.CHILD_OBJECT, childObject);
+                    parentCalendarAcitivity.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
+
                     parentCalendarAcitivity.putExtra("title", taskName.getText().toString());
                     parentCalendarAcitivity.putExtra("title2", childName.getText().toString());
 
@@ -467,26 +450,29 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     private void saveTask() {
 
-        JSONObject signInJson = new JSONObject();
+        JSONObject addTaskJson = new JSONObject();
         try {
 
-            signInJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, childID));
+            addTaskJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, childID));
             if (fetchGoalId > 0)
-                signInJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, fetchGoalId));
-            signInJson.put(AppConstant.ALLOWANCE, Double.parseDouble(amountTxt.getText().toString()));
+                addTaskJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, fetchGoalId));
+            addTaskJson.put(AppConstant.ALLOWANCE, Double.parseDouble(amountTxt.getText().toString()));
+            Log.e(TAG, "Goal= "+addTaskJson);
 
-            signInJson.put(AppConstant.NAME, taskName.getText().toString().trim());
-            signInJson.put(AppConstant.DESCRIPTION, taskDetails.getText().toString());
-            signInJson.put(AppConstant.PICTURE_REQUIRED, checkboxStatus);
+            addTaskJson.put(AppConstant.NAME, taskName.getText().toString().trim());
+            addTaskJson.put(AppConstant.DESCRIPTION, taskDetails.getText().toString());
+            addTaskJson.put(AppConstant.PICTURE_REQUIRED, checkboxStatus);
 
             DateTime due = new DateTime();
             DateTimeZone tz = DateTimeZone.getDefault();
             Long instant = DateTime.now().getMillis();
 
             long offsetInMilliseconds = tz.getOffset(instant);
-            signInJson.put(AppConstant.UPDATE_DATE, due.getMillis() + offsetInMilliseconds);
-            signInJson.put(AppConstant.TASK_COMMENTS, new JSONArray());
-            signInJson.put("shouldLockAppsIfTaskOverdue", checkboxStatusLock);
+            addTaskJson.put(AppConstant.UPDATE_DATE, due.getMillis() + offsetInMilliseconds);
+            addTaskJson.put(AppConstant.TASK_COMMENTS, new JSONArray());
+            addTaskJson.put("shouldLockAppsIfTaskOverdue", checkboxStatusLock);
+
+            Log.e(TAG, "Task full= "+addTaskJson);
 
             JSONObject repSchedule = new JSONObject();
             MessageEvent m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
@@ -500,7 +486,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
                 Date date = (Date) simpleDateFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
                 DateTime dateTime = new DateTime(date);
-                signInJson.put(AppConstant.DUE_DATE, dateTime.getMillis() + offsetInMilliseconds);
+                addTaskJson.put(AppConstant.DUE_DATE, dateTime.getMillis() + offsetInMilliseconds);
 
             }
 
@@ -511,7 +497,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 repSchedule.put("everyNRepeat", repititionSchedule.getEveryNday());
                 for (int i = 0; i < goalList.size(); i++)
                     if (goalList.get(i).getGoalName().equals(goalName))
-                        signInJson.put(AppConstant.GOAL, goalList.get(i).getId());
+                        addTaskJson.put(AppConstant.GOAL, goalList.get(i).getId());
 
 
                 if (Objects.equals(repititionSchedule.getRepeat(), "weekly")) {
@@ -521,11 +507,11 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                     for (int i = 0; i < repititionSchedule.getSpecificDays().size(); i++)
                         array.put(repititionSchedule.getSpecificDays().get(i));
                     repSchedule.put(AppConstant.SPECIFIC_DAYS, array);
-                    signInJson.put(AppConstant.REPITITION_SCHEDULE, repSchedule);
+                    addTaskJson.put(AppConstant.REPITITION_SCHEDULE, repSchedule);
 
 
                 } else if (Objects.equals(repititionSchedule.getRepeat(), "daily")) {
-                    signInJson.put(AppConstant.REPITITION_SCHEDULE, repSchedule);
+                    addTaskJson.put(AppConstant.REPITITION_SCHEDULE, repSchedule);
 
                 } else if (Objects.equals(repititionSchedule.getRepeat(), "monthly")) {
 
@@ -534,14 +520,14 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                         array.put(repititionSchedule.getSpecificDays().get(i));
                     repSchedule.put(AppConstant.SPECIFIC_DAYS, array);
 
-                    signInJson.put(AppConstant.REPITITION_SCHEDULE, repSchedule);
+                    addTaskJson.put(AppConstant.REPITITION_SCHEDULE, repSchedule);
 
                 }
 
+                Log.e(TAG, "Add Task Value= : "+addTaskJson);
+                Utils.logDebug(TAG, "add_task_json :" + String.valueOf(addTaskJson));
 
-                Utils.logDebug(TAG, "add_task_json :" + String.valueOf(signInJson));
-
-                StringEntity entity = new StringEntity(signInJson.toString());
+                StringEntity entity = new StringEntity(addTaskJson.toString());
                 entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
                 AsyncHttpClient httpClient = new AsyncHttpClient();
                 httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
@@ -697,6 +683,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
+                    Log.e(TAG, "Goal Response= "+response);
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject object = response.getJSONObject(i);
@@ -787,7 +774,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
         mBottomSheetDialog = new BottomSheetDialog(this);
         final View view = getLayoutInflater().inflate(R.layout.sheet, null);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView =  view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

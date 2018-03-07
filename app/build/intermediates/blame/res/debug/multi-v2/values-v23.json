@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
+            "outputFile": "/Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/materialize-0.8.8.aar/8c04f31b7d1826fa447622194f961ea9/res/values-v23/values-v23.xml",

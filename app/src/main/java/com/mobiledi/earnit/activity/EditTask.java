@@ -80,6 +80,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TimeZone;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
@@ -93,18 +96,24 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
     public Parent parentObject;
     public Child childObject, otherChild;
-    Button save, cancel, checkbox, screenlockBtn;
-    EditText taskName, taskDetails, amountTxt;
+    @BindView(R.id.save)Button save;
+    @BindView(R.id.cancel) Button cancel;
+    @BindView(R.id.newtask_requirephoto) Button checkbox;
+    @BindView(R.id.newtask_screenlockcheck) Button screenlockBtn;
+    @BindView(R.id.task_name) EditText taskName;
+    @BindView(R.id.task_detail) EditText taskDetails;
+    @BindView(R.id.task_amount) EditText amountTxt;
 
     int childID;
 
     //    EditText amount;
-    TextView date_time_textview;
-    TextView childName, assignTo;
-    CircularImageView childAvatar;
+    @BindView(R.id.date_time_textview) TextView date_time_textview;
+    @BindView(R.id.add_task_header) TextView childName;
+    @BindView(R.id.assign_to_id) TextView assignTo;
+    @BindView(R.id.add_task_avatar) CircularImageView childAvatar;
     int childsCounter = 0;
 
-    ImageView dueDate;
+
     //    String actionBarText = "New Task for ";
     String NONE = "None";
     EditTask addTask;
@@ -119,8 +128,9 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     boolean checkboxStatus = false;
     boolean IS_EDITING_TASK = false;
     private final String TAG = "EditTask";
-    TextView repeatSpinner, assignSpinner;
-    RelativeLayout progressBar;
+    @BindView(R.id.apply_to_goal_spinner) TextView repeatSpinner;
+   // @BindView(R.id.assign_to_id) TextView assignSpinner;
+    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
     String screen_name;
     private String goalName;
     private String repeat;
@@ -132,51 +142,45 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     ArrayList<Item> repeatList, goalsList;
     private BottomSheetDialog mBottomSheetDialog;
     int fetchGoalId = 0;
-    private Toolbar goalToolbar;
-    private ImageButton drawerToggle;
+    @BindView(R.id.toolbar_add) Toolbar goalToolbar;
+    @BindView(R.id.drawerBtn) ImageButton drawerToggle;
     List<Child> childList = new ArrayList<>();
 
-    ImageButton back, addTask_help;
+
+    @BindView(R.id.addtask_helpicon) ImageButton  addTask_help;
+    @BindView(R.id.addtask_back_arrow) ImageButton back;
+    @BindView(R.id.btnDelete)
     Button deleteButton;
     private String currentTaskStatus;
     int fetchCHildId = 0;
+    @BindView(R.id.btnApprove)
     ImageButton approveButton;
+    @BindView(R.id.add_task_header2)
+    TextView textView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_task_layout);
-        TextView textView = (TextView) findViewById(R.id.add_task_header2);
+        ButterKnife.bind(this);
         Intent intent = getIntent();
         textView.setText(intent.getStringExtra("title"));
-        approveButton = (ImageButton) findViewById(R.id.btnApprove);
 
-        deleteButton = (Button) findViewById(R.id.btnDelete);
-        addTask_help = (ImageButton) findViewById(R.id.addtask_helpicon);
-        goalToolbar = (Toolbar) findViewById(R.id.toolbar_add);
-        drawerToggle = (ImageButton) findViewById(R.id.drawerBtn);
-        progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
-        amountTxt = (EditText) findViewById(R.id.task_amount);
 
         setSupportActionBar(goalToolbar);
         getSupportActionBar().setTitle(null);
-        screenlockBtn = (Button) findViewById(R.id.newtask_screenlockcheck);
-        back = (ImageButton) findViewById(R.id.addtask_back_arrow);
+
         addTask = this;
         screenSwitch = new ScreenSwitch(addTask);
-        save = (Button) findViewById(R.id.save);
-        cancel = (Button) findViewById(R.id.cancel);
-        taskDetails = (EditText) findViewById(R.id.task_detail);
-        taskName = (EditText) findViewById(R.id.task_name);
-        date_time_textview = (TextView) findViewById(R.id.date_time_textview);
 
         this.currentTaskStatus = intent.getStringExtra(AppConstant.TASK_STATUS);
 
+        //---------- Intent Get Extra
         screen_name = intent.getStringExtra(AppConstant.FROM_SCREEN);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
-
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
+
         fetchCHildId = childObject.getId();
         NavigationDrawer navigationDrawer = new NavigationDrawer(addTask, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
         navigationDrawer.setOnDrawerToggeled(this);
@@ -189,14 +193,11 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         goalsList = new ArrayList<>();
         goalsList.add(new Item(0, NONE));
 
-if(isDeviceOnline())
+        if(isDeviceOnline())
         callGoalService(parentObject.getEmail(), parentObject.getPassword(), childID);
 
-        childName = (TextView) findViewById(R.id.add_task_header);
-        childAvatar = (CircularImageView) findViewById(R.id.add_task_avatar);
-        dueDate = (ImageView) findViewById(R.id.due_date);
-        checkbox = (Button) findViewById(R.id.newtask_requirephoto);
-        assignTo = (TextView) findViewById(R.id.assign_to_id);
+
+
         try {
             Picasso.with(addTask).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
         } catch (Exception e) {
@@ -204,14 +205,12 @@ if(isDeviceOnline())
             e.printStackTrace();
         }
 
-        repeatSpinner = (TextView) findViewById(R.id.apply_to_goal_spinner);
-        assignSpinner = (TextView) findViewById(R.id.assign_to_id);
         childs = (Map<Integer, String>) intent.getSerializableExtra(AppConstant.CHILD_MAP);
         assignChild = new LinkedList<>(Arrays.asList(childObject.getFirstName()));
         assignTo.setText(childObject.getFirstName());
         save.setOnClickListener(addTask);
         cancel.setOnClickListener(addTask);
-        dueDate.setOnClickListener(addTask);
+
         checkbox.setOnClickListener(addTask);
         childAvatar.setOnClickListener(addTask);
         assignTo.setOnClickListener(addTask);
@@ -310,14 +309,26 @@ if(isDeviceOnline())
 
     }
 
+    /*-------------------------TODO ----- OnClick Methods-----------*/
+
+    @OnClick(R.id.due_date)
+    void dueDate()
+    {
+        Intent parentCalendarAcitivity = new Intent(EditTask.this, ParentCalendarActivity.class);
+        parentCalendarAcitivity.putExtra(AppConstant.PARENT_OBJECT, parentObject);
+        parentCalendarAcitivity.putExtra(AppConstant.FROM_SCREEN, screen_name);
+        parentCalendarAcitivity.putExtra(AppConstant.CHILD_OBJECT, childObject);
+        parentCalendarAcitivity.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
+        parentCalendarAcitivity.putExtra("title", taskName.getText().toString());
+        parentCalendarAcitivity.putExtra("title2", childName.getText().toString());
+        parentCalendarAcitivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(parentCalendarAcitivity);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.due_date:
-                Intent parentCalendarAcitivity = new Intent(EditTask.this, ParentCalendarActivity.class);
-                parentCalendarAcitivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(parentCalendarAcitivity);
-                break;
+
             case R.id.cancel:
                 onCancelAndBack(childObject, otherChild);
                 break;
@@ -343,7 +354,7 @@ if(isDeviceOnline())
 //                ft.commit();
                 break;
             case R.id.assign_to_id:
-                showBottomSheetAssignDialog(repeatList, assignSpinner, AppConstant.CHILD);
+                showBottomSheetAssignDialog(repeatList, assignTo, AppConstant.CHILD);
 
                 break;
             case R.id.save:

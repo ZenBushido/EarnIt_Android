@@ -2,7 +2,6 @@ package com.mobiledi.earnit.activity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,12 +37,14 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
+import com.mobiledi.earnit.AppLockConstants;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.interfaces.ImageSelection;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.ScalingUtilities;
 import com.mobiledi.earnit.utils.Utils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -58,9 +59,9 @@ import java.util.UUID;
  * Created by mobile-di on 12/8/17.
  */
 
-public class UploadRuntimePermission extends Activity implements ImageSelection {
+public class UploadRuntimePermission extends Activity {
     Button selectButton;
-public String UrlOfImage;
+    public String UrlOfImage;
 
     private static final String MY_PICTURE_BUCKET = "mybucket";
     SparseIntArray sparseIntArray;
@@ -77,7 +78,7 @@ public String UrlOfImage;
     Intent CropIntent;
     public final int CROP_IMAGE = 3;
     public static UploadRuntimePermission runtimePermission;
-    public ImageView uploadView;
+    ImageView uploadView;
     public UploadRuntimePermission getRuntimePermission;
 
     @Override
@@ -203,7 +204,6 @@ public String UrlOfImage;
 
     }
 
-    @Override
     public void fromCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File f = new File(android.os.Environment.getExternalStorageDirectory(), "newTest.jpg");
@@ -211,7 +211,7 @@ public String UrlOfImage;
         startActivityForResult(intent, 1);
     }
 
-    @Override
+
     public void fromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -233,12 +233,20 @@ public String UrlOfImage;
                     }
                 }
                 try {
-                    Bitmap bitmap;
-                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                    Bitmap bitmap = null;
 
-                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                            bitmapOptions);
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                    try {
+                        bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
+                        Log.e(TAG, "Bitmap: "+bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        Log.e(TAG, e.getLocalizedMessage());
+                    }
 
+                   // AppConstant.bitmap = bitmap;
+                  //  AppConstant.isImageCaptured = true;
                     uploadView.setImageBitmap(bitmap);
 
                     File path = Environment
@@ -280,6 +288,7 @@ public String UrlOfImage;
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.e(TAG, "Error: "+e.getLocalizedMessage());
                 }
             } else if (requestCode == 2) {
 
@@ -418,7 +427,7 @@ public String UrlOfImage;
 
             clientConfig.setSocketTimeout(60000);
 
-            BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAJ2SPSF2LAX74EUCQ", "ccWHKsv2OCTjnrvkGyEvz3hHhvj07ghx0o7d1/pg");
+            BasicAWSCredentials credentials = new BasicAWSCredentials(AppConstant.ACCESS_KEY_KEY, AppConstant.SECRET_ACCESS_KEY);
 
             s3Client = new AmazonS3Client(credentials, clientConfig);
 
@@ -433,7 +442,7 @@ public String UrlOfImage;
 
             ObjectMetadata objectMetadata = new ObjectMetadata();
 
-            Log.d("messge", "converting to bytes");
+            Log.e("messge", "converting to bytes");
 
             objectMetadata.setContentLength(file.length());
 
@@ -441,7 +450,7 @@ public String UrlOfImage;
 
             String extenstion = s[s.length - 1];
 
-            Log.d("messge", "set content length : " + file.length() + "sss" + extenstion);
+            Log.e("messge", "set content length : " + file.length() + "sss" + extenstion);
 
             String fileName = UUID.randomUUID().toString();
 
@@ -449,7 +458,7 @@ public String UrlOfImage;
 
                     .withCannedAcl(CannedAccessControlList.PublicRead);
 // above line is  making the request to the aws  server for the specific place to upload the image were aws_bucket is the main folder  name and inside that is the profiles folder and there the file will be get uploaded
-            UrlOfImage= fileName+"."+extenstion;
+            UrlOfImage = fileName + "." + extenstion;
 
             PutObjectResult result = s3Client.putObject(putObjectRequest);
 

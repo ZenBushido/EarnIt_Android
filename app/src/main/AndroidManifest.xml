@@ -14,13 +14,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
-    <!--These permission belong to App Lock and Track other App what they use.-->
+    <!-- These permission belong to App Lock and Track other App what they use. -->
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.INTERNAL_SYSTEM_WINDOW"
+    <uses-permission
+        android:name="android.permission.INTERNAL_SYSTEM_WINDOW"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -33,14 +33,15 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:configChanges="orientation|screenSize"
         android:hardwareAccelerated="false"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:manageSpaceActivity=".activity.applock.ManageSpaceActivity"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:manageSpaceActivity=".activity.applock.ManageSpaceActivity"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".activity.LoginScreen"
@@ -58,59 +59,71 @@
         <activity
             android:name=".activity.SignUp"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.AddTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.EditTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.ParentProfile"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".dialogfragment.UploadTaskImageFragment"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.AddChild"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.ChildDashboard"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_child_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity android:name=".activity.ParentCheckInChildDashboard" />
         <activity
             android:name=".activity.GoalActivity"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".activity.EditGoalActivity"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".activity.ChildRequestTaskApproval"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.ChildMessage"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Balance"
+            android:name=".activity.BalanceAdjustment"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.BalanceChild"
+            android:name=".activity.BalanceActivity"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.InitialParentProfile"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ParentTaskApproval"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.PasswordReminder"
@@ -176,7 +189,6 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".receiver.BootComplete"
             android:exported="true">
@@ -187,64 +199,57 @@
                 <action android:name="android.intent.action.PACKAGE_RESTARTED" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".receiver.ConnectivityReceiver">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                <action
+                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
                     tools:ignore="BatteryLife" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name=".receiver.AlarmReceiver"/>
+        <receiver android:name=".receiver.AlarmReceiver" />
 
         <activity
             android:name=".activity.applock.SplashActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.applock.MainActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.applock.PasswordActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.applock.PasswordSetActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.applock.PasswordRecoveryActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.applock.PasswordRecoverSetActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.applock.ManageSpaceActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.applock.LoadingActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
+        <activity android:name=".activity.usageStats.AppUsageStatisticsActivity"/>
     </application>
 
 </manifest>

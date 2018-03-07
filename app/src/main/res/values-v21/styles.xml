@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+
+        <item name="colorAccent">@color/background</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="android:selectableItemBackgroundBorderless" tools:ignore="NewApi">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">#d50000</item>
+
+        <item name="colorControlNormal">#d50000</item>
+        <item name="colorSwitchThumbNormal">#d50000</item>
+
+
+        <!--  <item name="colorAccent">@color/background</item>
+
+          <item name="colorControlActivated">@color/aquamarine</item>
+
+          <item name="android:textColor">@color/aquamarine</item>-->
+
+
+        <!--  <item name="android:textColorPrimary">#43a047</item>
+          <item name="android:textColor">@color/aquamarine</item>
+          <item name="android:textColorSecondary">#FFFFFF</item>-->
+
+        <item name="android:timePickerDialogTheme" tools:ignore="NewApi">@style/myTimePickerStyle</item>
+    </style>
+
+    <style name="myTimePickerStyle" parent="@android:style/Widget.Material.Light.TimePicker" tools:targetApi="lollipop">
+        <item name="android:numbersTextColor">@color/check_in</item>
+        <item name="android:numbersBackgroundColor">@color/check_in</item>
+        <item name="android:numbersSelectorColor">@color/check_in</item>
+        <item name="android:headerBackground">@color/check_in</item>
+    </style>
+
+</resources>

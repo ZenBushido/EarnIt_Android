@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -15,7 +13,7 @@
         android:background="@color/background"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        tools:context="com.mobiledi.earnit.activity.Balance">
+        tools:context="com.mobiledi.earnit.activity.BalanceAdjustment">
 
         <include
             layout="@layout/action_bar_view_goal"
@@ -29,6 +27,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:visibility="invisible"
                 android:id="@+id/add_task_header1"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -44,6 +43,7 @@
                 android:textSize="25sp" />
 
             <TextView
+                android:visibility="invisible"
                 android:id="@+id/add_task_header3"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -54,111 +54,112 @@
 
         <LinearLayout
 
-            android:layout_marginBottom="@dimen/_size10"
-            android:weightSum="2"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_size10"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="1.2"
                 android:layout_width="0dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_marginTop="@dimen/_size10"
-                    android:textSize="@dimen/task_layout_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:textColor="@color/main_font"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/_size10"
                     android:text="@string/cash"
-                    android:layout_marginRight="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
 
                 <TextView
-
-                    android:textSize="@dimen/task_layout_text_size"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:textColor="@color/main_font"
+                    android:layout_marginRight="5dp"
                     android:text="@string/allowance"
-                    android:layout_marginRight="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
 
                 <TextView
-                    android:textSize="@dimen/task_layout_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:textColor="@color/main_font"
+                    android:layout_marginRight="5dp"
                     android:text="@string/goals"
-                    android:layout_marginRight="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
 
                 <TextView
 
 
-                    android:ellipsize="marquee"
-                    android:layout_marginTop="@dimen/_size10"
-                    android:textSize="@dimen/task_layout_text_size"
-                    android:layout_gravity="right"
-                    android:textColor="@color/main_font"
-                    android:text="@string/total_balance"
-                    android:layout_marginRight="5dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/_size10"
+                    android:ellipsize="marquee"
+                    android:text="@string/total_balance"
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="0.8"
                 android:layout_width="0dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
 
                 <TextView
-                    android:textSize="@dimen/task_layout_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_size10"
-                    android:textColor="@color/main_font"
                     android:text="$0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
 
-                    android:textSize="@dimen/task_layout_text_size"
-                    android:textColor="@color/main_font"
-                    android:text="$0"
+                <TextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="$0"
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
 
                 <TextView
 
                     android:id="@+id/tv_goal_amount"
-                    android:textSize="@dimen/task_layout_text_size"
-                    android:textColor="@color/main_font"
-                    android:text="$0"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="$0"
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
 
                 <TextView
 
                     android:id="@+id/totalbalance"
-                    android:textSize="@dimen/task_layout_text_size"
-                    android:layout_marginTop="@dimen/_size10"
-                    android:textColor="@color/main_font"
-
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_size10"
+
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
 
             </LinearLayout>
 
         </LinearLayout>
 
         <View
-            android:background="@color/light_gray"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:background="@color/light_gray" />
 
         <android.support.v7.widget.RecyclerView
 
@@ -168,25 +169,29 @@
 
 
         <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
 
             <Button
-                android:background="@drawable/sign_in_round"
-                android:text="@string/adjust"
+                android:id="@+id/btn_adjust"
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
+                android:background="@drawable/sign_in_round"
+                android:text="@string/adjust"
                 android:textAllCaps="false"
                 android:textColor="@color/main_font"
-                android:textSize="@dimen/check_in_text_size" />
+                android:textSize="@dimen/check_in_text_size"
+                android:visibility="gone" />
 
             <View
+                android:visibility="gone"
+                android:id="@+id/view"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <Button
                 android:id="@+id/save"
@@ -199,25 +204,21 @@
                 android:textSize="@dimen/check_in_text_size" />
 
 
-
-
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.2"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:visibility="gone">
 
 
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
-
 
 
             </LinearLayout>

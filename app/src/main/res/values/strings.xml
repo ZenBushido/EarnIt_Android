@@ -144,5 +144,22 @@
     <string name="goals">Goal/s:</string>
     <string name="total_balance">Total Account Balance:</string>
     <string name="adjust">Adjust</string>
+    <string name="comments">Comments:</string>
+    <string name="app_monitor">App Monitor</string>
+    <string name="open_app_usage_setting">Usage access settings</string>
+    <string name="time_span">Time span:</string>
+
+    <string-array name="action_list">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+    <string name="explanation_access_to_appusage_is_not_enabled">Failed to retrieve app usage
+        statistics. You may need to enable access
+        for this app through Settings > Security > Apps with usage access
+    </string>
+    <string name="daily_usage">Daily Usage</string>
+
 
 </resources>

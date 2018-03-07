@@ -7,33 +7,36 @@
     android:background="@drawable/feb_menu_bg"
     android:orientation="vertical">
 
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center">
 
         <LinearLayout
+            android:layout_marginLeft="@dimen/_size10"
+            android:layout_marginBottom="@dimen/_size10"
             android:id="@+id/login_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+
             android:fitsSystemWindows="true"
             android:orientation="vertical">
 
             <TextView
+                android:padding="2dp"
                 android:id="@+id/child_fb_view_task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="5dp"
+                android:paddingTop="5dp"
                 android:text="@string/view_task"
                 android:textColor="@color/pink"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
+                android:padding="2dp"
                 android:id="@+id/child_fb_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,21 +44,20 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/balance"
-                android:padding="5dp"
                 android:textColor="@color/pink"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
+                android:padding="2dp"
                 android:id="@+id/child_fb_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="5dp"
                 android:text="@string/calendar"
                 android:textColor="@color/pink"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <!-- <TextView
                  android:layout_width="wrap_content"
@@ -66,7 +68,6 @@
                  android:id="@+id/child_fb_calendar"
                  android:padding="@dimen/feb_list_padding"
                  android:text=" Calendar" />
-
              <TextView
                  android:layout_width="wrap_content"
                  android:layout_height="match_parent"
@@ -78,16 +79,16 @@
                  android:text=" Profile" />-->
 
             <TextView
-                android:padding="5dp"
+                android:padding="2dp"
                 android:id="@+id/child_fb_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:gravity="bottom"
+                android:gravity="center"
                 android:text="@string/child_logout"
                 android:textColor="@color/pink"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -98,6 +99,7 @@
             android:layout_gravity="right"
             android:layout_margin="3dp"
             android:visibility="visible">
+
 
         </RelativeLayout>
 

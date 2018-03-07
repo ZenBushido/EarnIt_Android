@@ -238,11 +238,11 @@ public class AppCheckServices extends Service {
                     runningTask.put(usageStats.getLastTimeUsed(), usageStats);
                 }
                 if (runningTask.isEmpty()) {
-                    Log.d(TAG, "isEmpty Yes");
+                   // Log.d(TAG, "isEmpty Yes");
                     mpackageName = "";
                 } else {
                     mpackageName = runningTask.get(runningTask.lastKey()).getPackageName();
-                    Log.d(TAG, "isEmpty No : " + mpackageName);
+                   // Log.d(TAG, "isEmpty No : " + mpackageName);
                 }
             }
 

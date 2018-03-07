@@ -23,15 +23,15 @@ public final class R {
         public static final int siTriangleHeight = 0x7f04017e;
     }
     public static final class id {
-        public static final int bevel = 0x7f090048;
-        public static final int butt = 0x7f09004f;
-        public static final int fill = 0x7f0900e7;
-        public static final int left = 0x7f090111;
-        public static final int miter = 0x7f090178;
-        public static final int right = 0x7f0901d2;
-        public static final int round = 0x7f0901d6;
-        public static final int square = 0x7f090210;
-        public static final int stroke = 0x7f090216;
+        public static final int bevel = 0x7f090049;
+        public static final int butt = 0x7f090051;
+        public static final int fill = 0x7f0900ea;
+        public static final int left = 0x7f090115;
+        public static final int miter = 0x7f09017c;
+        public static final int right = 0x7f0901d7;
+        public static final int round = 0x7f0901dc;
+        public static final int square = 0x7f090217;
+        public static final int stroke = 0x7f09021d;
     }
     public static final class raw {
         public static final int imgview_diamond = 0x7f0e0000;

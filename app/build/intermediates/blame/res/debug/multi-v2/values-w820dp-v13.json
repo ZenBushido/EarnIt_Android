@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml",
+            "outputFile": "/Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml",
             "map": [
                 {
-                    "source": "/Volumes/disk 2/work/AA Android/earnit 3/app/src/main/res/values-w820dp/dimens.xml",
+                    "source": "/Volumes/disk 2/work/Android EarnIt Clone/earnitAndroidNew/app/src/main/res/values-w820dp/dimens.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",

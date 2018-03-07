@@ -46,4 +46,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="_size30">30dp</dimen>
     <dimen name="_size10">10dp</dimen>
+    <dimen name="_40size">40dp</dimen>
+
+
+    <dimen name="usage_row_height">72dp</dimen>
 </resources>

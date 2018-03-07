@@ -80,7 +80,7 @@ public class GoalActivity extends BaseActivity implements View.OnClickListener, 
     RelativeLayout progressBar;
     Goal goal;
     String goalMode, fromScreen;
-    private final String TAG = "GoalActivity";
+    private final String TAG = GoalActivity.class.getSimpleName();
     ScreenSwitch screenSwitch;
     private Toolbar goalToolbar;
     private ImageButton drawerToggle;

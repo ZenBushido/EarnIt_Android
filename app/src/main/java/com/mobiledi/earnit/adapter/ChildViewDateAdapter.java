@@ -1,6 +1,7 @@
 package com.mobiledi.earnit.adapter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupViewHolder, TaskChildViewHolder> {
@@ -28,13 +30,19 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
     Child child;
     private String screenName;
     private String datedue;
+    String TAG = ChildViewDateAdapter.class.getSimpleName();
+    List<Tasks> tasksList = new ArrayList<>();
+    public List<ChildsTaskObject> groups;
 
     public ChildViewDateAdapter(@NonNull List<? extends ParentListItem>  groups, Parent parent, Child child, String name) {
 
         super(groups);
+
         this.parent = parent;
         this.child = child;
         screenName = name;
+
+
     }
 
 
@@ -78,8 +86,9 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
     }
 
     @Override
-    public void onBindChildViewHolder(TaskChildViewHolder childViewHolder, int position, Object childListItem) {
+    public void onBindChildViewHolder(TaskChildViewHolder taskChildViewHolder, int position, Object childListItem) {
+
         Tasks childTask = (Tasks) childListItem;
-        childViewHolder.onBind(childTask, datedue, parent, child, screenName);
+        taskChildViewHolder.onBind(childTask, datedue, parent, child, screenName);
     }
 }

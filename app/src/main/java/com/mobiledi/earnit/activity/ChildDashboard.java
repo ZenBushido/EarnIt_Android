@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.TaskV2Model;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.service.UpdateFcmToken;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
@@ -50,6 +53,7 @@ import java.util.TimeZone;
 
 import cz.msebera.android.httpclient.Header;
 import retrofit.ServiceGenerator;
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -68,12 +72,14 @@ public class ChildDashboard extends BaseActivity {
     Handler handler;
     Runnable runnable;
     private Parent parentObject;
-
+    String TAG = ChildDashboard.class.getSimpleName();
+    ArrayList<Tasks> taskList ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_dashboard);
         childDashboard = this;
+        taskList = new ArrayList<>();
         //SERIALIZE OBJECT FROM INTENT OBJECT
         Intent intent = getIntent();
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
@@ -88,28 +94,32 @@ public class ChildDashboard extends BaseActivity {
             e.printStackTrace();
             Picasso.with(childDashboard.getApplicationContext()).load(R.drawable.default_avatar).into(childImage);
         }
+
+       // callRetrofit();
         progress = (RelativeLayout) findViewById(R.id.loadingPanel);
         childTaskDateList = (RecyclerView) findViewById(R.id.child_task_date_list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         childTaskDateList.setLayoutManager(mLayoutManager);
         childTaskDateList.setItemAnimator(new DefaultItemAnimator());
-
         final AsyncHttpClient client = new AsyncHttpClient();
         client.setBasicAuth(childObject.getEmail(), childObject.getPassword());
         client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                ArrayList<Tasks> taskList = new ArrayList<>();
+
 
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);
+
+
                         //TASKS
                         Tasks task = new GetObjectFromResponse().getTaskObject(object, childObject.getId());
                         taskList.add(task);
 
 
                     } catch (Exception e) {
+                        Log.e(TAG, "Error: "+e.getLocalizedMessage());
 
                     }
                     childObject.setTasksArrayList(taskList);
@@ -117,6 +127,7 @@ public class ChildDashboard extends BaseActivity {
             }
         });
         List<ChildsTaskObject> childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.CHILD, AppConstant.CHECKED_IN_SCREEN);
+
         if (childTaskObjects.size() > 0) {
             childViewDateAdapter = new ChildViewDateAdapter(childTaskObjects,parentObject,childObject,"child");
             childTaskDateList.setAdapter(childViewDateAdapter);
@@ -130,7 +141,6 @@ public class ChildDashboard extends BaseActivity {
         callApi();
 
     }
-
 
 
 
@@ -176,5 +186,32 @@ public class ChildDashboard extends BaseActivity {
         handler.removeCallbacks(runnable);
         super.onDestroy();
     }
+
+    /*private void callRetrofit() {
+
+        RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
+        Call<GetTaskResponse> responseCall = retroInterface.getTasks();
+
+        responseCall.enqueue(new Callback<GetTaskResponse>() {
+            @Override
+            public void onResponse(Call<GetTaskResponse> call, Response<GetTaskResponse> response) {
+                Log.e(TAG, "Success");
+                Log.e(TAG, "Response= "+response.message());
+                Log.e(TAG, "Response= "+response.code());
+                Log.e(TAG, "Response= "+response.body().getEmbedded().getDayTaskStatuses().get(0).getCreatedDateTime());
+                Log.e(TAG, "Response= "+response.body().getEmbedded().getDayTaskStatuses().get(0).getStatus());
+
+            }
+
+            @Override
+            public void onFailure(Call<GetTaskResponse> call, Throwable t) {
+                Log.e(TAG, "Failure");
+
+            }
+        });
+
+
+    }*/
+
 
 }

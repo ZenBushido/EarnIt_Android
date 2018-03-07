@@ -167,9 +167,16 @@ public final class AppConstant {
     //app content refresh time
     public final static int REFRESH_INTERVAL = 600000; //10 mins
 
+    //AKIAJUTCQ6DO36I6BXUQ,eUzP3oQrdL9SyH9mvvrdz5cvymacmrKHok25havH
+
+    /*public  static final String ACCESS_KEY_KEY = "AKIAJIN35A42G33VAWQA";
+    public static final String SECRET_ACCESS_KEY = "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";*/
+
+
+
     //AWS CREDENTIALS
-    public static final String ACCESS_KEY_KEY = "AKIAJIN35A42G33VAWQA";
-    public static final String SECRET_ACCESS_KEY = "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";
+    public static final String ACCESS_KEY_KEY = "AKIAJUTCQ6DO36I6BXUQ";
+    public static final String SECRET_ACCESS_KEY = "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";
     public static final String BUCKET_NAME_PROD = "earnitapp";
     public static final String BUCKET_NAME_QA = "earnitapp-dev";
    // public static final String BUCKET_NAME = BuildConfig.DEBUG ? BUCKET_NAME_QA : BUCKET_NAME_PROD;

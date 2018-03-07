@@ -29,6 +29,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
+import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.RestCall;
@@ -45,6 +46,8 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
@@ -57,29 +60,47 @@ import id.zelory.compressor.Compressor;
 
 public class ChildRequestTaskApproval extends UploadRuntimePermission implements View.OnClickListener {
     final int PERMISSIONS_REQUEST = 12;
-    public  Intent in = null;
-    TextView taskName, taskDetails, uploadImageTextHeader, taskDueDate,   repeats;
-    EditText taskComments;
-    CircularImageView childAvatar;
-    ImageButton backArrow;
-    ImageView uploadImage;
-    Button submit;
+    public Intent in = null;
+    @BindView(R.id.task_name) TextView taskName;
+    @BindView(R.id.task_description) TextView taskDetails;
+    @BindView(R.id.upload_task_image_text) TextView uploadImageTextHeader;
+    @BindView(R.id.task_due_date) TextView taskDueDate;
+    @BindView(R.id.task_repeat) TextView repeats;
+    @BindView(R.id.comment_box) EditText taskComments;
+    @BindView(R.id.child_avatar) CircularImageView childAvatar;
+    @BindView(R.id.back_arrow) ImageButton backArrow;
+    @BindView(R.id.upload_task_image) ImageView uploadImage;
+    @BindView(R.id.request_approval) Button submit;
     final String TAG = "ChildReqTaskApproval";
     ChildRequestTaskApproval requestTaskApproval;
     Child child;
     Tasks task;
-    RelativeLayout progress;
+    Goal goal;
+    @BindView(R.id.loadingPanel) RelativeLayout progress;
 
+    @BindView(R.id.tv_applies_to)
+    TextView tv_applies_to;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.child_request_task_approval);
+        ButterKnife.bind(this);
+        Log.e(TAG, "Activity Created");
         requestTaskApproval = this;
         setViewIds();
         Intent intent = getIntent();
         child = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
-        task = (Tasks) intent.getParcelableExtra(AppConstant.TASK_OBJECT);
+        task = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
+        goal = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
+
+        Log.e(TAG, "Task: "+ task.getName());
+
+//        Log.e(TAG, "Task: "+ goal.getGoalName());
+  //      Log.e(TAG, "Task: "+ goal.getId());
+
+        Log.e(TAG, "Child: "+ child.getFirstName() );
+
         setViewData();
         requestRequiredApplicationPermission(new String[]{Manifest.permission.CAMERA,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -89,10 +110,14 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     private void setViewData() {
         taskName.setText(task.getName());
         taskDetails.setText(task.getDetails());
-
-
         taskDueDate.setText(DateTimeFormat.forPattern(AppConstant.DATE_FORMAT).print(new DateTime(task.getDueDate())));
-        //taskAmount.setText("$ " + String.valueOf(Utils.roundOff(task.getAllowance(), 2)));
+        if(goal!=null)
+        {
+            Log.e(TAG, "Goal is not null");
+            tv_applies_to.setText(goal.getGoalName());
+        }
+        // tv_applies_to.setText(goal.getGoalName());
+        // taskAmount.setText("$ " + String.valueOf(Utils.roundOff(task.getAllowance(), 2)));
         if (task.getPictureRequired()) {
             uploadImageTextHeader.setVisibility(View.VISIBLE);
             uploadImage.setVisibility(View.VISIBLE);
@@ -115,20 +140,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         }
     }
 
-    public void setViewIds(){
-        taskName = (TextView) findViewById(R.id.task_name);
-        taskDetails = (TextView) findViewById(R.id.task_description);
-        taskDueDate = (TextView) findViewById(R.id.task_due_date);
-       // taskAmount = (TextView) findViewById(R.id.task_amount);
-     //   requiredPhoto = (TextView) findViewById(R.id.task_required_photo);
-        repeats = (TextView) findViewById(R.id.task_repeat);
-        uploadImageTextHeader = (TextView) findViewById(R.id.upload_task_image_text);
-        taskComments = (EditText) findViewById(R.id.comment_box);
-        backArrow = (ImageButton) findViewById(R.id.back_arrow);
-        uploadImage = (ImageView) findViewById(R.id.upload_task_image);
-        childAvatar = (CircularImageView) findViewById(R.id.child_avatar);
-        submit = (Button) findViewById(R.id.request_approval);
-        progress = (RelativeLayout) findViewById(R.id.loadingPanel);
+    public void setViewIds() {
+
         submit.setOnClickListener(requestTaskApproval);
         backArrow.setOnClickListener(requestTaskApproval);
         uploadImage.setOnClickListener(requestTaskApproval);
@@ -141,25 +154,23 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.back_arrow:
-                new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(),null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+                new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
                 break;
 
             case R.id.request_approval:
-                if(task.getPictureRequired()){
-                    if (UrlOfImage != null){
+                if (task.getPictureRequired()) {
+                    if (UrlOfImage != null) {
                         progress.setVisibility(View.VISIBLE);
                         new ProfileAsyncTask().execute(gFileName);
-                    }else{
+                    } else {
                         showToast(getResources().getString(R.string.please_upload_picture));
                     }
-                }else
-                if(taskComments.getText().toString().equals(""))
+                } else if (taskComments.getText().toString().equals(""))
                     showToast("Write  comment !");
-                else
-                {                    updateTaskStatus(task, null);
-
+                else {
+                    updateTaskStatus(task, null);
 
 
                 }
@@ -167,8 +178,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 break;
             case R.id.upload_task_image:
                 vRuntimePermission(uploadImage);
-                if(progress.getVisibility() == View.GONE)
-                      selectImage();
+                if (progress.getVisibility() == View.GONE)
+                    selectImage();
                 break;
         }
 
@@ -176,7 +187,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
 
     @Override
     public void onBackPressed() {
-        new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(),null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+        new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
     }
 
     private void updateTaskStatus(Tasks selectedTask, String uploadedPicture) {
@@ -200,17 +211,17 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
 
             if (selectedTask.getRepititionSchedule() == null)
                 Utils.logDebug(TAG, "repeat is none");
-            else{
+            else {
                 JSONObject repeatSchedule = new JSONObject();
-                 repeatSchedule.put(AppConstant.ID, selectedTask.getRepititionSchedule().getId());
-                 repeatSchedule.put(AppConstant.REPEAT, selectedTask.getRepititionSchedule().getRepeat());
+                repeatSchedule.put(AppConstant.ID, selectedTask.getRepititionSchedule().getId());
+                repeatSchedule.put(AppConstant.REPEAT, selectedTask.getRepititionSchedule().getRepeat());
                 taskJson.put(AppConstant.REPITITION_SCHEDULE, repeatSchedule);
 
             }
 
             if (selectedTask.getPictureRequired())
                 taskJson.put(AppConstant.PICTURE_REQUIRED, selectedTask.getPictureRequired());
-            else{
+            else {
                 taskJson.put(AppConstant.PICTURE_REQUIRED, 0);
                 Utils.logDebug(TAG, "picture required not checked");
             }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.telecom.Call;
@@ -79,6 +80,26 @@ public class FloatingMenu {
         screenSwitch = new ScreenSwitch(activity);
     }
 
+    public static Rect locateView(View v)
+    {
+        int[] loc_int = new int[2];
+        if (v == null) return null;
+        try
+        {
+            v.getLocationOnScreen(loc_int);
+        } catch (NullPointerException npe)
+        {
+            //Happens when the view doesn't exist on screen anymore.
+            return null;
+        }
+        Rect location = new Rect();
+        location.left = loc_int[0];
+        location.top = loc_int[1];
+        location.right = location.left + v.getWidth();
+        location.bottom = location.top + v.getHeight();
+        return location;
+    }
+
     public void fetchAvatarDimension(CircularImageView view, Child child, Child childWithAllTask, Parent parent, String fromScreen, RelativeLayout progressBar, Tasks tasks) {
 
         int[] location = new int[2];
@@ -87,7 +108,156 @@ public class FloatingMenu {
         p.x = location[0];
         p.y = location[1] - 25;
         showPopup(activity, p, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
+        //Rect loation = locateView(view);
+        //popupShow(activity, loation, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
     }
+
+   /* public void popupShow(Activity view, Rect location, final Child child, final Child childWithAllTask, Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks)
+    {
+
+        // Inflate the popup_layout.xml
+        LinearLayout viewGroup = (LinearLayout) view.findViewById(R.id.feb_menu_layout);
+        LayoutInflater layoutInflater = (LayoutInflater) view.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = layoutInflater.inflate(R.layout.feb_menu_layout, viewGroup);
+
+        checkDeviceResolution(fromScreen);
+        // Creating the PopupWindow
+        final PopupWindow popup = new PopupWindow(view);
+        popup.setContentView(layout);
+        popup.setWidth(popupWidth);
+        popup.setHeight(popupHeight);
+        popup.setFocusable(true);
+
+        // Clear the default translucent background
+        popup.setBackgroundDrawable(new BitmapDrawable());
+
+        // Displaying the popup at the specified location, + offsets.
+       // popup.showAtLocation(layout, Gravity.NO_GRAVITY, p.x - 6 + OFFSET_X, p.y - 6 + OFFSET_Y);
+        popup.showAtLocation(layout, Gravity.TOP|Gravity.LEFT, location.left, location.centerY());
+
+        TextView addTask = (TextView) layout.findViewById(R.id.fb_add_task);
+        TextView allTask = (TextView) layout.findViewById(R.id.fb_a11_task);
+        TextView approvalTask = (TextView) layout.findViewById(R.id.fb_approve_task);
+        TextView balance = (TextView) layout.findViewById(R.id.fb_balance);
+        TextView goal = (TextView) layout.findViewById(R.id.fb_goal);
+        TextView message = (TextView) layout.findViewById(R.id.fb_message);
+        addTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_plus_circle)
+                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
+        allTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_file_text_o)
+                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
+        approvalTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_eye)
+                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
+        balance.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_usd)
+                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
+        goal.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_star)
+                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
+        message.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_comment)
+                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
+
+
+        int i = 0;
+
+        for (Tasks tasks1 : childWithAllTask.getTasksArrayList()) {
+
+            if (tasks1.getStatus().equalsIgnoreCase("Completed")) {
+
+                i = i + 1;
+            }
+
+
+        }
+        approvalTask.setText(" Approval Pending (" + i + ")");
+
+
+        // try {
+        //   Picasso.with(activity).load(child.getAvatar()).error(R.drawable.default_avatar).into(febIcon);
+        //  } catch (Exception e) {
+        //    e.printStackTrace();
+        //  }
+        addTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                screenSwitch.moveToAddTask(child, childWithAllTask, FloatingMenu.this.parent, fromScreen, null);
+                popup.dismiss();
+            }
+        });
+        allTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final AsyncHttpClient client = new AsyncHttpClient();
+                client.setBasicAuth(FloatingMenu.this.parent.getEmail(), FloatingMenu.this.parent.getPassword());
+                client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId(), null, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        ArrayList<Tasks> taskList = new ArrayList<>();
+
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject object = response.getJSONObject(i);
+                                //TASKS
+                                Tasks task = new GetObjectFromResponse().getTaskObject(object, child.getId());
+                                taskList.add(task);
+
+
+                            } catch (Exception e) {
+
+                            }
+                            child.setTasksArrayList(taskList);
+                            screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
+                        }
+                    }
+                });
+            }
+        });
+
+        approvalTask.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View v){
+                if (child.getTasksArrayList().size() > 0)
+                    screenSwitch.moveToTaskApproval(child, childWithAllTask, FloatingMenu.this.parent, fromScreen, tasks);
+                else
+                    Utils.showToast(FloatingMenu.this.activity, FloatingMenu.this.activity.getResources().getString(R.string.no_task_for_approval));
+                popup.dismiss();
+            }
+        });
+        balance.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View v){
+                //screenSwitch.moveToBalance(child, childWithAllTask, parent, fromScreen, tasks, null, AppConstant.PARENT);
+                screenSwitch.moveToBalanceScreen(child, childWithAllTask, FloatingMenu.this.parent, fromScreen, tasks, null, AppConstant.PARENT);
+                popup.dismiss();
+            }
+        });
+        goal.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View v){
+                screenSwitch.isGoalExists(child, childWithAllTask, FloatingMenu.this.parent, progressBar, fromScreen, tasks);
+                popup.dismiss();
+            }
+        });
+        message.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View v){
+                screenSwitch.sendMessage(v, childWithAllTask);
+                popup.dismiss();
+            }
+        });
+        //   febIcon.setOnClickListener(new View.OnClickListener() {
+        //     @Override
+        //   public void onClick(View v) {
+        //     popup.dismiss();
+        //      }
+        //    });
+    }*/
 
     private void showPopup(Activity view, Point p, final Child child, final Child childWithAllTask, final Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks) {
 
@@ -116,6 +286,7 @@ public class FloatingMenu {
         TextView balance = (TextView) layout.findViewById(R.id.fb_balance);
         TextView goal = (TextView) layout.findViewById(R.id.fb_goal);
         TextView message = (TextView) layout.findViewById(R.id.fb_message);
+        TextView app_monitor = (TextView) layout.findViewById(R.id.app_monitor);
         addTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_plus_circle)
                 .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
         allTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_file_text_o)
@@ -127,6 +298,8 @@ public class FloatingMenu {
         goal.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_star)
                 .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
         message.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_comment)
+                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
+        app_monitor.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_eye)
                 .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
 
 
@@ -203,7 +376,8 @@ public class FloatingMenu {
     {
         @Override
         public void onClick (View v){
-        screenSwitch.moveToBalance(child, childWithAllTask, parent, fromScreen, tasks, null, AppConstant.PARENT);
+        //screenSwitch.moveToBalance(child, childWithAllTask, parent, fromScreen, tasks, null, AppConstant.PARENT);
+            screenSwitch.moveToBalanceScreen(child, childWithAllTask, parent, fromScreen, tasks, null, AppConstant.PARENT);
         popup.dismiss();
     }
     });
@@ -225,6 +399,14 @@ public class FloatingMenu {
         popup.dismiss();
     }
     });
+
+        app_monitor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                screenSwitch.usageStats( parent,   AppConstant.PARENT);
+                popup.dismiss();
+            }
+        });
     //   febIcon.setOnClickListener(new View.OnClickListener() {
     //     @Override
     //   public void onClick(View v) {
@@ -442,7 +624,7 @@ public class FloatingMenu {
             case DisplayMetrics.DENSITY_XXHIGH:
                 Utils.logDebug(TAG, "dpi : xxhdpi");
                 popupWidth = 600;
-                popupHeight = 670;
+                popupHeight = 790;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -370;
                     OFFSET_Y = -20;
