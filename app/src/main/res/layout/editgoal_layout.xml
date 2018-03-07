@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context="com.mobiledi.earnit.activity.GoalActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:orientation="vertical">
+
+            <include
+                layout="@layout/action_bar_view_goal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/child_view_layput_bg"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/passwordreminder1_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:gravity="center_horizontal" />
+
+                <TextView
+                    android:id="@+id/passwordreminder_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top|center"
+                    android:text="Edit Goal"
+                    android:textColor="@color/check_in"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/passwordreminder2_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:gravity="center_horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/views_height"
+                android:layout_marginLeft="@dimen/add_task_left_margin"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".8"
+                    android:text="Goal Name:"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
+
+                <EditText
+                    android:id="@+id/goal_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/add_task_textview_left_margin"
+                    android:layout_marginRight="@dimen/add_task_textview_left_margin"
+                    android:layout_weight="1.2"
+                    android:background="@drawable/amount_edittext_border"
+                    android:hint="Goal Name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
+                    android:paddingLeft="@dimen/add_task_textview_left_margin"
+                    android:singleLine="true"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_font"
+                    android:textColorHint="@color/edit_text_hint"
+                    android:textSize="@dimen/check_in_text_size">
+
+                    <requestFocus />
+
+                </EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/views_height"
+                android:layout_marginLeft="@dimen/add_task_left_margin"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".8"
+                    android:text="Goal Value:"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/task_layout_text_size" />
+
+                <EditText
+                    android:id="@+id/goal_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/add_task_textview_left_margin"
+                    android:layout_marginRight="@dimen/add_task_textview_left_margin"
+                    android:layout_weight="1.2"
+                    android:background="@drawable/amount_edittext_border"
+                    android:hint="00"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/add_task_textview_left_margin"
+                    android:singleLine="true"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_font"
+                    android:textColorHint="@color/edit_text_hint"
+                    android:textSize="@dimen/check_in_text_size" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/views_height"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/cancel"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/sign_in_round"
+                        android:text="Cancel"
+                        android:textAllCaps="false"
+                        android:textColor="@color/main_font"
+                        android:textSize="@dimen/task_layout_text_size" />
+
+                    <Button
+                        android:id="@+id/goalsave"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/sign_in_round"
+                        android:text="Update"
+                        android:textAllCaps="false"
+                        android:textColor="@color/main_font"
+                        android:textSize="@dimen/task_layout_text_size" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/goal_helpicon"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".3"
+                        android:background="@color/background"
+                        android:src="@drawable/ic_help_white_24dp" />
+
+                    <TextView
+                        android:id="@+id/helpicon_textview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.47"
+                        android:textColor="@color/main_font"
+                        android:textSize="@dimen/check_in_text_size" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/add_task_textview_left_margin"
+                        android:layout_weight="1.05"
+                        android:gravity="right|center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/pink"
+            android:indeterminateTintMode="src_atop" />
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/message_dialog_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/edittext_background"
+    android:orientation="vertical"
+    android:padding="@dimen/username_password_top_bottom_margin">
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:gravity="center"
+        android:padding="@dimen/username_password_top_bottom_margin"
+        android:text="Are you sure you want to mark it as completed?"
+        android:textColor="@color/main_font"
+        android:textSize="@dimen/check_in_text_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/username_password_top_bottom_margin">
+
+        <Button
+            android:id="@+id/Retry"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/views_height"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/sign_in_round"
+            android:text="Retry"
+            android:textAllCaps="false"
+            android:textColor="@color/main_font"
+            android:textSize="@dimen/check_in_text_size" />
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/views_height"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/username_password_top_bottom_margin"
+            android:layout_weight="1"
+            android:background="@drawable/sign_in_round"
+            android:text="Close app"
+            android:textAllCaps="false"
+            android:textColor="@color/main_font"
+            android:textSize="@dimen/check_in_text_size" />
+
+    </LinearLayout>
+
+</LinearLayout>

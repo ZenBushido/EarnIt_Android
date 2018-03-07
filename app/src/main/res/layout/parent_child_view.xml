@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_child_single_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/child_view_layput_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="7dp"
+        android:paddingLeft="@dimen/child_padding"
+        android:paddingRight="@dimen/child_padding"
+        android:paddingTop="7dp">
+
+        <TextView
+            android:id="@+id/fName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".7"
+            android:gravity="center|left"
+            android:text="Justin"
+            android:textColor="@color/check_in"
+            android:textSize="@dimen/task_date_header" />
+
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:id="@+id/user_image"
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_margin=".5dp"
+            android:layout_weight=".2"
+            android:background="@color/list_header_bd"
+            android:src="@drawable/checked_in"
+            app:siBorderColor="@android:color/white"
+            app:siBorderWidth="1.5dp"
+            app:siRadius="1dp"
+            app:siSquare="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="-10dp"
+            android:layout_weight=".1"
+            android:gravity="bottom"
+            android:text="..."
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/task_rejection_text_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/username_password_top_bottom_margin"
+        android:layout_marginTop="@dimen/username_password_top_bottom_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/child_padding"
+            android:layout_marginRight="20dp"
+            android:text="Pending Approval:"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/task_date_header" />
+
+        <com.mobiledi.earnit.customcontrol.ExpandableHeightListView
+            android:id="@+id/task_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fastScrollEnabled="false" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+#Wed Feb 21 18:10:15 IST 2018
+base.0=/Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/transforms/dexMerger/debug/29
+path.1=classes2.dex
+renamed.1=classes2.dex
+path.0=classes.dex
+renamed.0=classes.dex
+base.1=/Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/transforms/dexMerger/debug/29

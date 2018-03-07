@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/child_view_layput_bg"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/expend_collapse_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fillAfter="true"
+            android:fillEnabled="true"
+            android:src="@drawable/right_arrow" />
+
+        <TextView
+            android:id="@+id/expent_collapse_status_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="true"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/dateHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:paddingBottom="@dimen/username_password_top_bottom_margin"
+            android:paddingLeft="@dimen/username_password_top_bottom_margin"
+            android:paddingTop="@dimen/username_password_top_bottom_margin"
+            android:text="Today"
+            android:textColor="@color/check_in"
+            android:textSize="@dimen/task_date_header" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/children_task_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/expend_collapse_id" />
+
+</LinearLayout>

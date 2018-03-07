@@ -1,0 +1,122 @@
+-injars /Users/mac/Library/Android/sdk/build-tools/26.0.2/renderscript/lib/renderscript-v8.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/adapters-1.3.1.aar/1f5ebd3763db538ce0bbeabd42cf5a20/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/library-1.3.1.aar/048f6c2437ab795a4416b50110e7ae26/jars/classes.jar(**.class)
+-injars '/Applications/Android Studio.app/Contents/gradle/m2repository/com/android/databinding/baseLibrary/3.0.1/baseLibrary-3.0.1.jar'(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-core-9.6.0.aar/6bf17c69f4387c6d85ba786728d08bd5/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/ca6f62a8390eeab3de1c02a3864b87c8/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/materialdrawer-5.2.0.aar/fda675b888a5c53034c24978b11e1e97/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.9/f7b520c458572890807d143670c9b24f4de90897/joda-time-2.9.9.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.3.0/9e09011e9767bb76b5e27c9b8223476b93b14631/converter-gson-2.3.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.jakewharton.retrofit/retrofit1-okhttp3-client/1.0.2/7ed8a7e78c34074ec462b408b3c8a161028cb650/retrofit1-okhttp3-client-1.0.2.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-cognito/2.6.15/569c024bfa8dc45453e356d8f790f9fcf791d0e5/aws-android-sdk-cognito-2.6.15.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-s3/2.6.15/648f465edd04514bdad4374c59e4e58aed93af67/aws-android-sdk-s3-2.6.15.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-kms/2.6.15/314861631a4154f51ea03bc33a6d41ec87c6af76/aws-android-sdk-kms-2.6.15.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-core/2.6.15/d344a14d2b0ae2e98f4fbcb107b7a6b217824197/aws-android-sdk-core-2.6.15.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.1/2a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0/gson-2.8.1.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-math3/3.0/5f8d1d720333aa9a7dee1c949ea70d9ed7da6106/commons-math3-3.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/eb23ba41b1d317417b4eb68ed4787204/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/lib-2.2.0.aar/482dfe5e8931ca0d3505443da502e482/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/fastadapter-1.4.1.aar/dc7989feb95be7a382f0d24214a3cfd6/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/iconics-core-2.5.11.aar/1b9e855ccf61dcda2cb25386260341a1/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/materialize-0.8.8.aar/8c04f31b7d1826fa447622194f961ea9/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.2.2.aar/86f634d3f806175bd4a29ab0559f9c8e/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/8dcbbb6263fe4c7fee99aa964fe9e6df/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/a48459f62fcf179c340453af77e79b98/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.9/386a4339ffe52d5d63e80f9bed8d2b1d1a418249/android-async-http-1.4.9.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/android-shape-imageview-0.9.3.aar/4818c43bfb5f510774f6beb383469b53/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.5/6c6c702c89bfff3cd9e80b04d668c5e190d588c6/commons-lang3-3.5.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/android-iconify-fontawesome-2.2.2.aar/00c921dd0a1ace68af769e17a11db960/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/62230f8f0bacf9a51f6db7027f22a747/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/library-1.3.0.aar/6728e8b87f40f1b37b79749842f42dee/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.mobsandgeeks/android-saripaar/2.0.3/abd8da523222180f9531768c62509edf6cd9b02e/android-saripaar-2.0.3.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/CircularFloatingActionMenu-1.0.2.aar/3c3a0e5972e4b9938274039615ccee2c/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/blurry-2.1.1.aar/595d40cf9b8cd04d14569372085398e6/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-messaging-9.6.0.aar/e71d3650226ae460d93fd35a70816945/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-jobdispatcher-0.6.0.aar/6fda6ae50b1532626a316f2040eb249b/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/compressor-2.1.0.aar/a522fdd776445460ff4dbd08e4f259f7/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/lock9view-0.0.2.aar/29cd1a035d1c757df193880d2ca6e38f/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/9682a877b172d590be79effb6ea221bc/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/e099ed06300077344fc1c4718e29d745/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-crash-9.6.0.aar/ba25fe4b438421ffc5ad96f540c6cea1/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.1.1/5cd91fd014f5b72292f959748c20a2cefefae77d/eventbus-3.1.1.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.3.0/bcacde6a8ccedcc56c127403d26b76072fe6214d/retrofit-2.3.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.9.0/3bf7f8d6a20c90ffe9fc3f3c9118193c7720ecf1/logging-interceptor-3.9.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.9.0/1b6c10b5120995a7542c1a31b7828fb8593c8ba/okhttp-3.9.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/butterknife-8.8.1.aar/8792df0529932353e28756c65f819092/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/rollbar-android-1.0.0.aar/93e3b6e78fc12381431815473622dbb6/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/rxandroid-2.0.1.aar/328424e8187673b4b20fbe9e5d4c7e57/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/android-iconify-2.2.2.aar/c6a54a9368e10046111364272d1fd367/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/support-v13-25.3.1.aar/09e993f04028e96db453bf5c3ccef8a0/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-analytics-9.6.0.aar/ce2f77fa67994ac5e0cb4221eafcf6fb/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-9.6.0.aar/264dcfce4a35286f2635a36f3b24fa1b/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-iid-9.6.0.aar/922f40ff8cdfb556f35892a16cd25d09/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/firebase-common-9.6.0.aar/757262c65e2cf730eb5eb0021079d69e/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-tasks-9.6.0.aar/697d550029c685627fdb91d5f5dab113/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.6.0.aar/b63e926dca4b8082b3f5a19b977d552c/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/601f1d95aee034851000b4287ee0116b/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8639d4f4699503152d18366bf92d05c7/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.8.1/bc373fb6bc7bca3035041b924f158fd2b946ee8d/butterknife-annotations-8.8.1.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/2eab4d88fc51b40d0284ef03925dac9b/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/bf9575f042628c0b191f6d4c3616ce54/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2eee2036f9428bc358ebf0cf36fa1ff5/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/e6a6ba798389b110874ae1049ad228e0/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/b6dc53ecf110cd595bc21fe2964ecfe5/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/25269bd929abe38934dbc7b80b5734ef/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/aac5ca05067c49717e60877bd4c5dc5c/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.1.0/814258103cf26a15fcc26ecce35f5b7d24b73f8/support-annotations-26.1.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/cz.msebera.android/httpclient/4.3.6/526a9f794eab830eae4f23a62c572878b3f491ab/httpclient-4.3.6.jar(**.class)
+-injars /Users/mac/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.rollbar/rollbar-java/1.0.0/dc37f0253ad266dc6440dd574d35f361131fa292/rollbar-java-1.0.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.rollbar/rollbar-api/1.0.0/d4b118a038e64868e34cc03668c6d42793527a40/rollbar-api-1.0.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c132a46fa880f18e1048345bad6e4ee9/jars/classes.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/e414a4cb28434e25c4f6aa71426eb20cf4874ae9/common-1.0.0.jar(**.class)
+-injars /Users/mac/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar(**.class)
+-injars '/Volumes/disk 2/work/AA Android/earnit 3/materialcalendarview/build/intermediates/intermediate-jars/debug/classes.jar'(**.class)
+-injars '/Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/classes/debug'(**.class)
+-outjars '/Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/multi-dex/debug/componentClasses.jar'
+
+-libraryjars /Users/mac/Library/Android/sdk/build-tools/26.0.2/lib/shrinkedAndroid.jar
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontpreverify
+-dontnote **
+-dontwarn **
+-printconfiguration '/Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/multi-dex/debug/components.flags'
+
+
+# Referenced at /Volumes/disk 2/work/AA Android/earnit 3/app/build/intermediates/manifests/full/debug/AndroidManifest.xml:49
+-keep class com.mobiledi.earnit.MyApplication {
+    <init>(...);
+}
+
+-keep public class * extends android.app.Instrumentation {
+    <init>();
+}
+
+-keep public class * extends android.app.Application {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.android.tools.ir.** {
+    <fields>;
+    <methods>;
+}

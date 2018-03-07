@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="@dimen/message_dialog_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/edittext_background"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/message_title_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textStart"
+        android:textColor="@color/main_font"
+        android:textSize="@dimen/completed_text_size" />
+
+    <EditText
+        android:id="@+id/message_box"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/comment_edittext_height_message"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/comment_edittext_margin"
+        android:background="@drawable/edittext_background"
+        android:gravity="start"
+        android:imeOptions="actionDone"
+        android:padding="@dimen/comment_edittext_padding"
+        android:textColor="@color/main_font" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_layout_top_margin"
+        android:layout_marginTop="@dimen/button_layout_top_margin"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/message_cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_layout_views_height"
+            android:layout_marginLeft="@dimen/button_layout_left_right_margin"
+            android:layout_marginRight="@dimen/button_layout_right_left_margin"
+            android:layout_weight="1"
+            android:background="@drawable/sign_in_round"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/main_font"
+            android:textSize="@dimen/task_rejection_text_size" />
+
+        <Button
+            android:id="@+id/message_send"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_layout_views_height"
+            android:layout_marginLeft="@dimen/button_layout_right_left_margin"
+            android:layout_marginRight="@dimen/button_layout_left_right_margin"
+            android:layout_weight="1"
+            android:background="@drawable/sign_in_round"
+            android:text="Send"
+            android:textAllCaps="false"
+            android:textColor="@color/main_font"
+            android:textSize="@dimen/task_rejection_text_size" />
+
+    </LinearLayout>
+
+</LinearLayout>

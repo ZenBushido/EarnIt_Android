@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar_child_dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <TextView
+        android:id="@+id/textView_child"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scaleType="centerInside"
+        android:text="Welcome Back!"
+        android:textAlignment="center"
+        android:textColor="@color/main_font"
+        android:textSize="25sp" />
+
+    <com.github.siyamed.shapeimageview.CircularImageView
+        android:id="@+id/imageView_child"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|start"
+        android:layout_margin=".5dp"
+        android:layout_weight="1"
+        android:paddingLeft="0dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/logo"
+        app:siBorderColor="@android:color/white"
+        app:siBorderWidth="1.5dp"
+        app:siRadius="1dp"
+        app:siSquare="true" />
+
+    <ImageButton
+        android:id="@+id/calendarBtn_child"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_event_black_36dp"
+        android:visibility="gone" />
+
+</android.support.v7.widget.Toolbar>

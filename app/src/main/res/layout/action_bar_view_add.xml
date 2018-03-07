@@ -1,0 +1,87 @@
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar_add"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".75"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/addtask_back_arrow"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="-20dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/arrow_left" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/add_task_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerInside"
+                        android:textAlignment="center"
+                        android:textColor="@color/main_font"
+                        android:textSize="@dimen/toolbar_header_size" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.github.siyamed.shapeimageview.CircularImageView
+                android:id="@+id/add_task_avatar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:src="@drawable/default_avatar"
+                app:siBorderColor="@android:color/white"
+                app:siBorderWidth="1.5dp"
+                app:siRadius="1dp"
+                app:siSquare="true" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="-10dp"
+                android:layout_weight=".05"
+                android:gravity="bottom"
+                android:text="..."
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/task_rejection_text_size"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>
+

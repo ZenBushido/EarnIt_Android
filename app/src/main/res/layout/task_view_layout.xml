@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="330dp"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/pink"
+        android:text="View Details"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/background"
+        android:textSize="25dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/task_view_bottom_margin"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="Task Name:"
+            android:textColor="@color/pink"
+            android:textSize="@dimen/task_view_text_size" />
+
+        <TextView
+            android:id="@+id/task_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:paddingLeft="5dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/main_font"
+            android:textSize="@dimen/task_view_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/task_view_bottom_margin"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="Allowance:"
+            android:textColor="@color/pink"
+            android:textSize="@dimen/task_view_text_size" />
+
+        <TextView
+            android:id="@+id/allowance_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:paddingLeft="5dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/main_font"
+            android:textSize="@dimen/task_view_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/task_view_bottom_margin"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="Create Date:"
+            android:textColor="@color/pink"
+            android:textSize="@dimen/task_view_text_size" />
+
+        <TextView
+            android:id="@+id/create_date_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:paddingLeft="5dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/main_font"
+            android:textSize="@dimen/task_view_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/task_view_bottom_margin"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="Expiry Date:"
+            android:textColor="@color/pink"
+            android:textSize="@dimen/task_view_text_size" />
+
+        <TextView
+            android:id="@+id/expiry_date_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:paddingLeft="5dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/main_font"
+            android:textSize="@dimen/task_view_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".35" />
+
+        <Button
+            android:id="@+id/close_id"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight=".3"
+            android:background="@drawable/dialog_negative_button_bg"
+            android:text="Close"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/pink"
+            android:textSize="@dimen/task_view_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".35" />
+
+    </LinearLayout>
+
+</LinearLayout>

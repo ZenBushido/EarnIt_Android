@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "595241440190",
+    "firebase_url": "https://sanadapplication.firebaseio.com",
+    "project_id": "sanadapplication",
+    "storage_bucket": "sanadapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595241440190:android:35e66ece909f7ad6",
+        "android_client_info": {
+          "package_name": "com.hocrox.sanadapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595241440190-4rl5e0tqaum3or1rdkg2qchmsh15kdh5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hocrox.sanadapplication",
+            "certificate_hash": "52a7e1cc6401ab3d2ee430cd9a3b15ad48aa1a60"
+          }
+        },
+        {
+          "client_id": "595241440190-8gdiu1dir1qsjhuqtrf9ba9pbvhsgnub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9NqYWorU3Z0d9jtwKN6UBr5e9ER5NoBg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595241440190-8gdiu1dir1qsjhuqtrf9ba9pbvhsgnub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595241440190:android:1c588ba3129072b7",
+        "android_client_info": {
+          "package_name": "com.mobiledi.earnit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595241440190-8gdiu1dir1qsjhuqtrf9ba9pbvhsgnub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9NqYWorU3Z0d9jtwKN6UBr5e9ER5NoBg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
