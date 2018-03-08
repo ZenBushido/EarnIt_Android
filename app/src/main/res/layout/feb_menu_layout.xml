@@ -84,15 +84,15 @@
                 android:textColor="@color/pink"
                 android:textSize="@dimen/floating_menu_list_size" />
 
-        <TextView
+            <TextView
+                android:text="@string/app_monitor"
                 android:id="@+id/app_monitor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
                 android:padding="@dimen/feb_list_padding"
-                android:text="@string/app_monitor"
                 android:textColor="@color/pink"
                 android:textSize="@dimen/floating_menu_list_size" />
+
 
         </LinearLayout>
 

@@ -80,6 +80,11 @@ public class UsageListAdapter extends RecyclerView.Adapter<UsageListAdapter.View
         return new ViewHolder(v);
     }
 
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
+    }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
@@ -94,11 +99,11 @@ public class UsageListAdapter extends RecyclerView.Adapter<UsageListAdapter.View
                 String appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(mCustomUsageStatsList.get(position).usageStats.getPackageName().toString(), PackageManager.GET_META_DATA));
                 viewHolder.getPackageName().setText(appName);
                 viewHolder.getLastTimeUsed().setText(getAppUsage(mCustomUsageStatsList.get(position).usageStats));
-                Log.e(TAG, "Time: ="+ mCustomUsageStatsList.get(position).usageStats.getTotalTimeInForeground());
+                //Log.e(TAG, "Time: ="+ mCustomUsageStatsList.get(position).usageStats.getTotalTimeInForeground());
                 long timeInforground = 500;
                 timeInforground = mCustomUsageStatsList.get(position).usageStats.getTotalTimeInForeground();
                 int time = (int)timeInforground/1000;
-                Log.e(TAG, "Time= "+time);
+                //Log.e(TAG, "Time= "+time);
                 viewHolder.mProgressBar.setProgress((int) ((timeInforground / 1000 )));
             }
 
@@ -128,9 +133,7 @@ public class UsageListAdapter extends RecyclerView.Adapter<UsageListAdapter.View
             Log.e("TimeInforground", "Time in Foreground = " + TimeInforground);
             Log.e("BAC", "PackageName is" + PackageName + "Time is: " + hours + "h" + ":" + minutes + "m" + seconds + "s");
         }
-
         return hours + " hours " + minutes + " minutes ";
-
     }
 
     @Override
@@ -147,7 +150,7 @@ public class UsageListAdapter extends RecyclerView.Adapter<UsageListAdapter.View
         int max = Integer.MIN_VALUE;
 
         for(int i=0; i<list.size(); i++){
-            Log.e(TAG, "Max value= "+list.get(i).usageStats.getTotalTimeInForeground()/1000);
+          //  Log.e(TAG, "Max value= "+list.get(i).usageStats.getTotalTimeInForeground()/1000);
 
             if((double)list.get(i).usageStats.getTotalTimeInForeground() > max){
                 max =  (int)list.get(i).usageStats.getTotalTimeInForeground();

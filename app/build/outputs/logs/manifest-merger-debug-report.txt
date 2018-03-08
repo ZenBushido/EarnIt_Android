@@ -628,9 +628,9 @@ ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:24
 	android:name
 		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:247:13-61
 activity#com.mobiledi.earnit.activity.usageStats.AppUsageStatisticsActivity
-ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:252:9-83
+ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:251:9-84
 	android:name
-		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:252:19-81
+		ADDED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml:251:19-81
 uses-sdk
 INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/mac/Desktop/EarnIt_Android/app/src/main/AndroidManifest.xml

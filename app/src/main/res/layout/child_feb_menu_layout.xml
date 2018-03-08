@@ -28,9 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_weight="1"
+
                 android:gravity="center"
-                android:paddingTop="5dp"
                 android:text="@string/view_task"
                 android:textColor="@color/pink"
                 android:textSize="14sp" />
@@ -41,7 +40,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/balance"
                 android:textColor="@color/pink"
@@ -53,7 +51,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/calendar"
                 android:textColor="@color/pink"
@@ -79,12 +76,23 @@
                  android:text=" Profile" />-->
 
             <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:textSize="@dimen/floating_menu_list_size"
+                android:id="@+id/child_fb_profile"
+                android:textColor="@color/pink"
+                android:padding="2dp"
+                android:text=" Profile" />
+
+            <TextView
+
                 android:padding="2dp"
                 android:id="@+id/child_fb_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/child_logout"
                 android:textColor="@color/pink"

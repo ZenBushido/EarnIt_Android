@@ -3336,6 +3336,10 @@
         "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/a48459f62fcf179c340453af77e79b98/res/layout/abc_action_bar_view_list_nav_layout.xml"
     },
     {
+        "merged": "/Users/mac/Desktop/EarnIt_Android/app/build/intermediates/res/merged/debug/drawable_custom_progress_bar.xml.flat",
+        "source": "/Users/mac/Desktop/EarnIt_Android/app/src/main/res/drawable/custom_progress_bar.xml"
+    },
+    {
         "merged": "/Users/mac/Desktop/EarnIt_Android/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_check_circle_black_48dp.png.flat",
         "source": "/Users/mac/Desktop/EarnIt_Android/app/src/main/res/drawable-xhdpi/ic_check_circle_black_48dp.png"
     },

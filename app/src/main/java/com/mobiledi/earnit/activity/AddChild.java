@@ -273,6 +273,139 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
     }
 
 
+    private void addChildNew(String childImage) {
+
+        final JSONObject signInJson = new JSONObject();
+        try {
+            signInJson.put(AppConstant.ACCOUNT, new JSONObject().put(AppConstant.ID, parentObject.getAccount().getId()));
+            signInJson.put(AppConstant.EMAIL, email.getText().toString().trim());
+            signInJson.put(AppConstant.FIRST_NAME, firstName.getText().toString().trim());
+            signInJson.put(AppConstant.LAST_NAME, null);
+            signInJson.put(AppConstant.PASSWORD, password.getText().toString().trim());
+            signInJson.put(AppConstant.PHONE, phone.getText().toString().trim());
+            signInJson.put(AppConstant.CREATE_DATE, new DateTime().getMillis());
+            signInJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
+
+            if (mode.equalsIgnoreCase(AppConstant.UPDATE)) {
+                signInJson.put(AppConstant.ID, child.getId());
+                signInJson.put(AppConstant.FCM_TOKEN, child.getFcmToken());
+            }
+            if (UrlOfImage != null)
+                signInJson.put(AppConstant.AVATAR, UrlOfImage);
+
+            Utils.logDebug(TAG + " add-child-json", signInJson.toString());
+            StringEntity entity = new StringEntity(signInJson.toString());
+            entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
+            AsyncHttpClient httpClient = new AsyncHttpClient();
+            httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+            PersistentCookieStore myCookieStore = new PersistentCookieStore(addChild);
+            httpClient.setCookieStore(myCookieStore);
+            if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                httpClient.put(addChild, AppConstant.BASE_URL + AppConstant.UPDATE_CHILD, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        Utils.logDebug(TAG + " onSuccess", response.toString());
+                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                            showToast(firstName.getText() + " updated");
+                        else
+                            showToast(firstName.getText() + " added");
+
+                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        Utils.logDebug(TAG + " onSuccess", response.toString());
+
+                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                            showToast(firstName.getText() + " updated");
+                        else
+                            showToast(firstName.getText() + " added");
+
+                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Utils.logDebug(TAG + " onFailure", throwable.toString());
+                        unLockScreen();
+                        josnError(errorResponse);
+
+                    }
+
+                    @Override
+                    public void onStart() {
+                        progressBar.setVisibility(View.VISIBLE);
+                        lockScreen();
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        progressBar.setVisibility(View.GONE);
+                        unLockScreen();
+
+                    }
+                });
+            else
+                httpClient.post(addChild, AppConstant.BASE_URL + AppConstant.ADD_CHILD_PARENT, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        Utils.logDebug(TAG + " onSuccess", response.toString());
+                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                            showToast(firstName.getText() + " updated");
+                        else
+                            showToast(firstName.getText() + " added");
+
+                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
+
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        Utils.logDebug(TAG + " onSuccess", response.toString());
+
+                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                            showToast(firstName.getText() + " updated");
+                        else
+                            showToast(firstName.getText() + " added");
+
+                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Utils.logDebug(TAG + " onFailure", throwable.toString());
+                        Toast.makeText(addChild, getResources().getString(R.string.user_already_exists), Toast.LENGTH_LONG).show();
+                        unLockScreen();
+                        josnError(errorResponse);
+                    }
+
+                    @Override
+                    public void onStart() {
+                        progressBar.setVisibility(View.VISIBLE);
+                        lockScreen();
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        progressBar.setVisibility(View.GONE);
+                        unLockScreen();
+
+                    }
+                });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void addChild(String childImage) {
 
         final JSONObject signInJson = new JSONObject();

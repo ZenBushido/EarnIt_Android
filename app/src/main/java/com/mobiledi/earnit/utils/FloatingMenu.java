@@ -453,7 +453,8 @@ public class FloatingMenu {
         TextView goalBalance = (TextView) layout.findViewById(R.id.child_fb_balance);
         TextView calendar = (TextView) layout.findViewById(R.id.child_fb_calendar);
      /* TextView calendar = (TextView) layout.findViewById(R.id.child_fb_calendar);
-        TextView profile = (TextView) layout.findViewById(R.id.child_fb_profile);*/
+       */
+        TextView profile = (TextView) layout.findViewById(R.id.child_fb_profile);
         TextView logout = (TextView) layout.findViewById(R.id.child_fb_logout);
         try {
             viewTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_file_text_o)
@@ -464,8 +465,9 @@ public class FloatingMenu {
                     .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
             /*calendar.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_calendar)
                     .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
+           */
             profile.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_user)
-                    .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);*/
+                    .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
             logout.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_sign_out)
                     .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
         } catch (Exception e) {
@@ -588,7 +590,7 @@ public class FloatingMenu {
             case DisplayMetrics.DENSITY_HIGH:
                 Utils.logDebug(TAG, "dpi : hdpi");
                 popupWidth = 360;
-                popupHeight = 400;
+                popupHeight = 450;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -260;
                     OFFSET_Y = -8;
@@ -624,7 +626,7 @@ public class FloatingMenu {
             case DisplayMetrics.DENSITY_XXHIGH:
                 Utils.logDebug(TAG, "dpi : xxhdpi");
                 popupWidth = 600;
-                popupHeight = 790;
+                popupHeight = 840;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -370;
                     OFFSET_Y = -20;
@@ -701,56 +703,56 @@ public class FloatingMenu {
             case DisplayMetrics.DENSITY_LOW:
                 Utils.logDebug(TAG, "dpi : ldpi");
                 popupWidth = 450;
-                popupHeight = 280;
+                popupHeight = 320;
                 OFFSET_X = -295;
                 OFFSET_Y = -10;
                 break;
             case DisplayMetrics.DENSITY_MEDIUM:
                 Utils.logDebug(TAG, "dpi : mdpi");
                 popupWidth = 450;
-                popupHeight = 280;
+                popupHeight = 340;
                 OFFSET_X = -295;
                 OFFSET_Y = -10;
                 break;
             case DisplayMetrics.DENSITY_HIGH:
                 Utils.logDebug(TAG, "dpi : hdpi");
                 popupWidth = 360;
-                popupHeight = 240;
+                popupHeight = 320;
                 OFFSET_X = -255;
                 OFFSET_Y = -15;
                 break;
             case DisplayMetrics.DENSITY_XHIGH:
                 Log.d(TAG, "dpi : xhdpi");
                 popupWidth = 450;
-                popupHeight = 280;
+                popupHeight = 340;
                 OFFSET_X = -295;
               //  OFFSET_Y = -10;
                 break;
             case DisplayMetrics.DENSITY_XXHIGH:
                 Utils.logDebug(TAG, "dpi : xxhdpi");
                 popupWidth = 600;
-                popupHeight = 360;
+                popupHeight = 400;
                 OFFSET_X = -370;
                 OFFSET_Y = -15;
                 break;
             case DisplayMetrics.DENSITY_XXXHIGH:
                 Utils.logDebug(TAG, "dpi : xxxhdpi");
                 popupWidth = 800;
-                popupHeight = 510;
+                popupHeight = 560;
                 OFFSET_X = -490;
                 OFFSET_Y = -15;
                 break;
             case DisplayMetrics.DENSITY_420:
                 Utils.logDebug(TAG, "dpi : 420dpi");
                 popupWidth = 550;
-                popupHeight = 360;
+                popupHeight = 380;
                 OFFSET_X = -325;
                 OFFSET_Y = -10;
                 break;
             case DisplayMetrics.DENSITY_560:
                 Utils.logDebug(TAG, "dpi : 560dpi");
                 popupWidth = 720;
-                popupHeight = 440;
+                popupHeight = 460;
                 OFFSET_X = -420;
                 OFFSET_Y = -10;
                 break;

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Mar 07 12:37:06 IST 2018
+#Wed Mar 07 18:31:04 IST 2018
 17.baseType=DIRECTORY
 4.path=lib/x86_64/librsjni.so
 8.set=DEX
