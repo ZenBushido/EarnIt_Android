@@ -111,8 +111,8 @@ public class TaskAdapter extends BaseAdapter {
         TextView taskName, taskDueDate;
 
         public MyViewHolder(View item) {
-            taskName = (TextView) item.findViewById(R.id.taskName);
-            taskDueDate = (TextView) item.findViewById(R.id.childtaskName);
+            taskName =  item.findViewById(R.id.taskName);
+            taskDueDate =  item.findViewById(R.id.childtaskName);
         }
     }
 }

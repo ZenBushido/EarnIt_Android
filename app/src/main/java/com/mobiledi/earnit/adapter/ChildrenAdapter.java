@@ -62,10 +62,10 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
 
         public MyViewHolder(View view) {
             super(view);
-            firstName = (TextView) view.findViewById(R.id.fName);
-            profileImage = (CircularImageView) view.findViewById(R.id.user_image);
-            taskListView = (ExpandableHeightListView) view.findViewById(R.id.task_list);
-            rootLayout = (LinearLayout) view.findViewById(R.id.parent_child_single_view);
+            firstName =  view.findViewById(R.id.fName);
+            profileImage =  view.findViewById(R.id.user_image);
+            taskListView = view.findViewById(R.id.task_list);
+            rootLayout =  view.findViewById(R.id.parent_child_single_view);
         }
     }
 

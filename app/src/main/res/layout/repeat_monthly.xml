@@ -14,6 +14,7 @@
         android:paddingBottom="@dimen/username_password_top_bottom_margin">
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/views_height"
             android:layout_marginLeft="50dp"
@@ -62,7 +63,7 @@
                 android:layout_weight=".8"
                 android:gravity="right|center"
                 android:paddingRight="@dimen/add_task_textview_left_margin"
-                android:text="Every:"
+                android:text="Repeat every"
                 android:textColor="@color/main_font"
                 android:textSize="@dimen/check_in_text_size" />
 
@@ -75,7 +76,6 @@
                 android:gravity="center"
                 android:text=""
                 android:inputType="number"
-
                 android:textColor="@color/main_font" />
 
             <TextView

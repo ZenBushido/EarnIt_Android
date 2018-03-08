@@ -100,6 +100,7 @@
     <string name="view_task">\u0020View Tasks</string>
     <string name="calendar">\u0020Calendar</string>
     <string name="child_logout">\u0020Logout</string>
+    <string name="app_monitor">\u0020App Monitor</string>
     <string name="blank_space">\u0020\u0020\u0020\u0020\u0020\u0020\u0020
         \u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020
         \u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020
@@ -145,7 +146,6 @@
     <string name="total_balance">Total Account Balance:</string>
     <string name="adjust">Adjust</string>
     <string name="comments">Comments:</string>
-    <string name="app_monitor">App Monitor</string>
     <string name="open_app_usage_setting">Usage access settings</string>
     <string name="time_span">Time span:</string>
 
