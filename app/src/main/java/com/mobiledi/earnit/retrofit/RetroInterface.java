@@ -3,6 +3,10 @@ package com.mobiledi.earnit.retrofit;
 
 
 
+import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -22,5 +26,9 @@ public interface RetroInterface {
     @GET("dayTaskStatuses")
     Call<GetTaskResponse>
     getTasks();*/
+
+    @GET("/earnit-api/goals/{CHILDREN_ID}")
+    Call<List<GetAllGoalResponse>>
+    getGoals(@Path("CHILDREN_ID") int id );
 
 }

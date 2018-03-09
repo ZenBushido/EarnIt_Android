@@ -14,371 +14,237 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8d68b30-733e-4bac-a6b1-25f579fae389" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.gradle/4.1/fileContent/fileContent.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2018-03-08-10-06-59-795.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2018-03-08-10-06-59-795.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/arch/lifecycle/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/compat/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreui/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/coreutils/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/fragment/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/mediacompat/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v4/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$anim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/appcompat/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/cardview/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/cardview/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/cardview/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/cardview/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/cardview/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/cardview/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/android/support/v7/recyclerview/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$anim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/internal/data/Day.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/internal/utils/CalendarUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/internal/utils/ScreenUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$$Lambda$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$$Lambda$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$$Lambda$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$$Lambda$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$$Lambda$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$$Lambda$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$$Lambda$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$CalendarGestureDetector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnDateClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnDateLongClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnMonthChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnMonthTitleClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnMultipleDaySelectedListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/CalendarView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/DayView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$$Lambda$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$$Lambda$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$$Lambda$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$OnBackButtonClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$OnNextButtonClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$OnTitleClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/classes/debug/io/blackbox_vision/materialcalendarview/view/HeaderView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/incremental/debug-mergeJniLibs/merge-state" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/javaPrecompile/debug/annotationProcessors.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/arch/lifecycle/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/compat/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreui/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/coreutils/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/fragment/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/graphics/drawable/animated/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/mediacompat/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v4/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$anim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/appcompat/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/cardview/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/cardview/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/cardview/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/cardview/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/cardview/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/cardview/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/android/support/v7/recyclerview/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$anim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/internal/data/Day.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/internal/utils/CalendarUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/internal/utils/ScreenUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$CalendarGestureDetector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnDateClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnDateLongClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnMonthChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnMonthTitleClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/CalendarView$OnMultipleDaySelectedListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/CalendarView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/DayView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$OnBackButtonClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$OnNextButtonClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/HeaderView$OnTitleClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/materialcalendarview/build/retrolambda/debug/io/blackbox_vision/materialcalendarview/view/HeaderView.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.gradle/4.1/fileContent/annotation-processors.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileChanges/last-build.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileChanges/last-build.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_basement_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tasks_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_impl_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_common_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_core_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_crash_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_iid_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_messaging_10_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/Adjustment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/GetAllGoalResponse.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_basement_9_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tasks_9_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_9_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_impl_9_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_common_9_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_core_9_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_iid_9_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_messaging_9_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2018-03-08-13-09-04-752.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2018-03-08-13-09-04-752.rawproto" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/built.bin" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/built.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_child_feb_menu_layout.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_child_feb_menu_layout.xml.flat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_parent_calendar.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_parent_calendar.xml.flat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_repeat_daily.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_repeat_daily.xml.flat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_repeat_monthly.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_repeat_monthly.xml.flat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_repeat_weekly.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_repeat_weekly.xml.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-af_values-af.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-af_values-af.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-am_values-am.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-am_values-am.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ar_values-ar.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ar_values-ar.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-az_values-az.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-az_values-az.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-be_values-be.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-be_values-be.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-bg_values-bg.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-bg_values-bg.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-bn_values-bn.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-bn_values-bn.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-bs_values-bs.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-bs_values-bs.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ca_values-ca.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ca_values-ca.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-cs_values-cs.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-cs_values-cs.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-da_values-da.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-da_values-da.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-de_values-de.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-de_values-de.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-el_values-el.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-el_values-el.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-en-rGB_values-en-rGB.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-en-rGB_values-en-rGB.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-es-rUS_values-es-rUS.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-es-rUS_values-es-rUS.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-es_values-es.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-es_values-es.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-et_values-et.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-et_values-et.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-eu_values-eu.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-eu_values-eu.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fa_values-fa.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fa_values-fa.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fi_values-fi.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fi_values-fi.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fr-rCA_values-fr-rCA.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fr-rCA_values-fr-rCA.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fr_values-fr.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fr_values-fr.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-gl_values-gl.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-gl_values-gl.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-gu_values-gu.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-gu_values-gu.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hi_values-hi.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hi_values-hi.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hr_values-hr.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hr_values-hr.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hu_values-hu.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hu_values-hu.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hy_values-hy.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hy_values-hy.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-in_values-in.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-in_values-in.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-is_values-is.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-is_values-is.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-it_values-it.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-it_values-it.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-iw_values-iw.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-iw_values-iw.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ja_values-ja.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ja_values-ja.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ka_values-ka.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ka_values-ka.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-kk_values-kk.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-kk_values-kk.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-km_values-km.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-km_values-km.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-kn_values-kn.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-kn_values-kn.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ko_values-ko.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ko_values-ko.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ky_values-ky.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ky_values-ky.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-lo_values-lo.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-lo_values-lo.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-lt_values-lt.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-lt_values-lt.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-lv_values-lv.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-lv_values-lv.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-mk_values-mk.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-mk_values-mk.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ml_values-ml.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ml_values-ml.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-mn_values-mn.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-mn_values-mn.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-mr_values-mr.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-mr_values-mr.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ms_values-ms.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ms_values-ms.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-my_values-my.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-my_values-my.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-nb_values-nb.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-nb_values-nb.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ne_values-ne.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ne_values-ne.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-nl_values-nl.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-nl_values-nl.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pa_values-pa.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pa_values-pa.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pl_values-pl.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pl_values-pl.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pt-rBR_values-pt-rBR.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pt-rBR_values-pt-rBR.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pt-rPT_values-pt-rPT.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pt-rPT_values-pt-rPT.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ro_values-ro.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ro_values-ro.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ru_values-ru.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ru_values-ru.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-si_values-si.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-si_values-si.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sk_values-sk.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sk_values-sk.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sl_values-sl.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sl_values-sl.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sq_values-sq.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sq_values-sq.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sr_values-sr.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sr_values-sr.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sv_values-sv.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sv_values-sv.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sw_values-sw.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-sw_values-sw.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ta_values-ta.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ta_values-ta.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-te_values-te.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-te_values-te.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-th_values-th.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-th_values-th.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-tl_values-tl.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-tl_values-tl.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-tr_values-tr.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-tr_values-tr.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-uk_values-uk.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-uk_values-uk.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ur_values-ur.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ur_values-ur.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-uz_values-uz.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-uz_values-uz.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-vi_values-vi.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-vi_values-vi.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-zh-rCN_values-zh-rCN.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-zh-rCN_values-zh-rCN.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-zh-rHK_values-zh-rHK.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-zh-rHK_values-zh-rHK.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-zh-rTW_values-zh-rTW.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-zh-rTW_values-zh-rTW.arsc.flat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-zu_values-zu.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-zu_values-zu.arsc.flat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/compat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/compat/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/constraint/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/constraint/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/coreui/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/coreui/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/coreutils/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/coreutils/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/design/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/design/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/fragment/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/fragment/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/graphics/drawable/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/graphics/drawable/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/graphics/drawable/animated/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/graphics/drawable/animated/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/mediacompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/mediacompat/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/transition/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/transition/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v4/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v4/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/cardview/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/cardview/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/recyclerview/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/recyclerview/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/databinding/library/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/databinding/library/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/databinding/library/baseAdapters/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/databinding/library/baseAdapters/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/github/siyamed/shapeimageview/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/github/siyamed/shapeimageview/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mikepenz/fastadapter/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mikepenz/fastadapter/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mikepenz/iconics/core/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mikepenz/iconics/core/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mikepenz/materialdrawer/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mikepenz/materialdrawer/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mikepenz/materialize/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mikepenz/materialize/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mobiledi/earnit/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mobiledi/earnit/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/takwolf/android/lock9/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/takwolf/android/lock9/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/wdullaer/materialdatetimepicker/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/wdullaer/materialdatetimepicker/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/fr/tvbarthel/lib/blurdialogfragment/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/fr/tvbarthel/lib/blurdialogfragment/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/io/blackbox_vision/materialcalendarview/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/io/blackbox_vision/materialcalendarview/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/org/angmarch/views/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/org/angmarch/views/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-af.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-af.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-am.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-am.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ar.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ar.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-az.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-az.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-be.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-be.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bg.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bg.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bn.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bs.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ca.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ca.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-cs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-cs.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-da.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-da.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-el.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-el.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-en-rGB.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-en-rGB.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es-rUS.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es-rUS.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-et.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-et.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-eu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-eu.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fa.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fi.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr-rCA.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr-rCA.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-gl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-gl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-gu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-gu.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hi.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hu.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hy.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hy.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-in.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-in.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-is.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-is.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-it.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-it.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-iw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-iw.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ja.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ja.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ka.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ka.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-kk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-kk.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-km.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-km.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-kn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-kn.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ko.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ko.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ky.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ky.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lo.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lo.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lt.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lt.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lv.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mk.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ml.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ml.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mn.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ms.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ms.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-my.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-my.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-nb.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-nb.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ne.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ne.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-nl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-nl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pa.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pt-rBR.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pt-rBR.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pt-rPT.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pt-rPT.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ro.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ro.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-si.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-si.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sk.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sq.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sq.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sv.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sw.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ta.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ta.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-te.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-te.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-th.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-th.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-tl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-tl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-tr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-tr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-uk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-uk.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ur.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ur.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-uz.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-uz.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-vi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-vi.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rCN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rCN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rHK.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rHK.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rTW.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rTW.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zu.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/TaskAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/TaskAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentCalendarActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentCalendarActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/child_feb_menu_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/child_feb_menu_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/parent_calendar.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/parent_calendar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/repeat_daily.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/repeat_daily.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/repeat_monthly.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/repeat_monthly.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/repeat_weekly.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/repeat_weekly.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/materialcalendarview/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/materialcalendarview/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/materialcalendarview/materialcalendarview.iml" afterPath="$PROJECT_DIR$/materialcalendarview/materialcalendarview.iml" />
     </list>
@@ -398,37 +264,173 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="EarnIt_Android" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="EarnIt_Android" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value=":app" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ModuleNode" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="EarnIt_Android" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value=":app" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ModuleNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="EarnIt_Android" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value=":app" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ModuleNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="build" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="EarnIt_Android" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value=":app" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ModuleNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="android" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
+            </PATH>
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChildrenAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java">
+      <file leaf-file-name="FloatingMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="242">
+              <caret line="655" column="52" lean-forward="false" selection-start-line="655" selection-start-column="52" selection-end-line="655" selection-end-column="52" />
               <folding>
-                <element signature="e#10457#10458#0" expanded="true" />
-                <element signature="e#10528#10529#0" expanded="true" />
-                <element signature="e#10588#10589#0" expanded="true" />
-                <element signature="e#10656#10657#0" expanded="true" />
+                <element signature="e#22419#23080#0" expanded="true" />
+                <element signature="e#23079#23080#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskAdapter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/TaskAdapter.java">
+      <file leaf-file-name="ChildCalendarActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="71" column="33" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
+            <state relative-caret-position="-2240">
+              <caret line="53" column="25" lean-forward="false" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParentTaskApproval.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentTaskApproval.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParentProfile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1717">
+              <caret line="85" column="57" lean-forward="true" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
               <folding>
-                <element signature="e#1676#1677#0" expanded="true" />
-                <element signature="e#1722#1723#0" expanded="true" />
-                <element signature="e#1779#1780#0" expanded="true" />
-                <element signature="e#1810#1811#0" expanded="true" />
+                <element signature="e#8684#8685#0" expanded="true" />
+                <element signature="e#8715#8716#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParentCalendarActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentCalendarActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="87" column="38" lean-forward="true" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
+              <folding>
+                <element signature="e#14966#16860#0" expanded="true" />
+                <element signature="e#16859#16860#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UploadRuntimePermission.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/UploadRuntimePermission.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-679">
+              <caret line="334" column="46" lean-forward="false" selection-start-line="334" selection-start-column="46" selection-end-line="334" selection-end-column="46" />
+              <folding>
+                <element signature="e#3224#3225#0" expanded="true" />
+                <element signature="e#3264#3265#0" expanded="true" />
+                <element signature="e#4780#4781#0" expanded="true" />
+                <element signature="e#4825#4826#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -441,6 +443,7 @@
       <list>
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -3327,12 +3330,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/other/AppUsageStatisticsFragmentOther.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/other/UsageListAdapterOther.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddChild.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/MyReceiver.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/feb_menu_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/child_feb_menu_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/repeat_weekly.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/repeat_daily.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/repeat_monthly.xml" />
@@ -3340,6 +3339,19 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/TaskAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/ExpandableRecyclerviewList/TaskChildViewHolder.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/Adjustment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/GetAllGoalResponse.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/kotlinClass.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/child_feb_menu_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentCalendarActivity.java" />
       </list>
     </option>
   </component>
@@ -3458,7 +3470,55 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
+              <option name="myItemId" value="retrofit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EarnIt_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="earnit" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EarnIt_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="earnit" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3496,19 +3556,22 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="4d00b778d48a421b" />
+    <property name="device.picker.selection" value="28640044086E2I2" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.mobiledi.earnit.model.goal" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
     </key>
@@ -3526,6 +3589,24 @@
     </option>
   </component>
   <component name="RunManager" selected="Android App.app">
+    <configuration default="false" name="EarnIt_Android:app [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="signingReport" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -3595,8 +3676,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520494924653" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520596136187" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3643,8 +3723,7 @@
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
       </Profilers>
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520494924653" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520596136187" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3826,13 +3905,18 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520494924655" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520596136188" />
       </method>
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Android App.app" />
+      <item index="1" class="java.lang.String" itemvalue="Gradle.EarnIt_Android:app [signingReport]" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Gradle.EarnIt_Android:app [signingReport]" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="HTML_FILE_NAME" />
@@ -3876,18 +3960,18 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30060422" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15483384" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7353896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5584416" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2152568" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27114803" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3914,190 +3998,15 @@
           <properties field="mUsageListAdapter" class="com.mobiledi.earnit.activity.usageStats.AppUsageStatisticsFragment" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2895">
-          <caret line="232" column="71" lean-forward="false" selection-start-line="232" selection-start-column="71" selection-end-line="232" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1860">
-          <caret line="154" column="72" lean-forward="false" selection-start-line="154" selection-start-column="72" selection-end-line="154" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/NavigationDrawer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2355">
-          <caret line="197" column="61" lean-forward="false" selection-start-line="197" selection-start-column="61" selection-end-line="197" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/AppLockConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="67" lean-forward="false" selection-start-line="3" selection-start-column="67" selection-end-line="3" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8550">
-          <caret line="628" column="34" lean-forward="true" selection-start-line="628" selection-start-column="34" selection-end-line="628" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/cursor_color.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/custom_progress_bar.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="49" lean-forward="true" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/usage_row.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/other/CustomUsageStatsOther.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/other/AppUsageStatisticsFragmentOther.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/other/UsageListAdapterOther.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.9/5d171c3cd5343e5997f974561abed21442273fd1/android-async-http-1.4.9-sources.jar!/com/loopj/android/http/JsonHttpResponseHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="232" column="0" lean-forward="false" selection-start-line="232" selection-start-column="0" selection-end-line="232" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_app_usage_statistics.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="69" column="18" lean-forward="false" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/AuthenticationInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetrofitClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="44" column="44" lean-forward="true" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/ScreenSwitch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="316" column="33" lean-forward="false" selection-start-line="316" selection-start-column="33" selection-end-line="316" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddChild.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1364">
-          <caret line="570" column="39" lean-forward="true" selection-start-line="570" selection-start-column="39" selection-end-line="570" selection-end-column="39" />
-          <folding>
-            <element signature="e#21676#21730#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/ConnectivityReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetChildTaskListObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/EarnitRestCallBack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4105,34 +4014,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="45" column="52" lean-forward="false" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/checkin_single_row.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="35" lean-forward="false" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/AppLockConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="67" lean-forward="false" selection-start-line="3" selection-start-column="67" selection-end-line="3" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4140,7 +4038,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4148,9 +4045,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4173,7 +4067,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4188,22 +4081,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/childcalendar.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="769">
           <caret line="192" column="0" lean-forward="false" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="72" column="39" lean-forward="false" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
-          <folding />
-        </state>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsFragment.java">
@@ -4214,93 +4098,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="464" column="117" lean-forward="false" selection-start-line="464" selection-start-column="117" selection-end-line="464" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.joanzapata.iconify/android-iconify-fontawesome/2.2.2/a227b2763bb9b8341f2cdc4fd9dc429801ed0b64/android-iconify-fontawesome-2.2.2-sources.jar!/com/joanzapata/iconify/fonts/FontAwesomeIcons.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="53" column="34" lean-forward="false" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="154" column="72" lean-forward="false" selection-start-line="154" selection-start-column="72" selection-end-line="154" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/parent_calendar.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="34" lean-forward="true" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/repeat_monthly.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="252" column="40" lean-forward="false" selection-start-line="252" selection-start-column="40" selection-end-line="252" selection-end-column="40" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/repeat_daily.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/repeat_weekly.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
           <caret line="77" column="42" lean-forward="false" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/child_feb_menu_layout.xml">
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="97" column="42" lean-forward="false" selection-start-line="97" selection-start-column="42" selection-end-line="97" selection-end-column="42" />
-          <folding>
-            <element signature="e#3924#3946#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
@@ -4312,40 +4154,377 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/feb_menu_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="32" column="41" lean-forward="true" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
           <folding>
-            <element signature="e#3833#3865#0" expanded="true" />
+            <element signature="e#3833#3865#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="77" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/ScalingUtilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="109" column="16" lean-forward="false" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/RestCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="2970">
+          <caret line="233" column="65" lean-forward="false" selection-start-line="233" selection-start-column="65" selection-end-line="233" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/ExpandableRecyclerviewList/TaskChildViewHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="76" column="71" lean-forward="false" selection-start-line="76" selection-start-column="71" selection-end-line="76" selection-end-column="71" />
           <folding>
-            <element signature="e#10457#10458#0" expanded="true" />
-            <element signature="e#10528#10529#0" expanded="true" />
-            <element signature="e#10588#10589#0" expanded="true" />
-            <element signature="e#10656#10657#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/ExpandableRecyclerviewList/TaskGroupViewHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1810#1811#0" expanded="false" />
+            <element signature="e#1860#1861#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="253" column="0" lean-forward="true" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/TaskAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="71" column="33" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
+        <state relative-caret-position="1095">
+          <caret line="95" column="9" lean-forward="false" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
           <folding>
-            <element signature="e#1676#1677#0" expanded="true" />
-            <element signature="e#1722#1723#0" expanded="true" />
-            <element signature="e#1779#1780#0" expanded="true" />
-            <element signature="e#1810#1811#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1676#1677#0" expanded="false" />
+            <element signature="e#1722#1723#0" expanded="false" />
+            <element signature="e#1779#1780#0" expanded="false" />
+            <element signature="e#1810#1811#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-756">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-806">
+          <caret line="97" column="4" lean-forward="false" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="4" />
+          <folding>
+            <element signature="e#6163#6553#0" expanded="true" />
+            <element signature="e#6552#6553#0" expanded="true" />
+            <element signature="e#9423#9474#0" expanded="true" />
+            <element signature="e#9515#9566#0" expanded="true" />
+            <element signature="e#12234#12572#0" expanded="true" />
+            <element signature="e#12571#12572#0" expanded="true" />
+            <element signature="e#17057#17110#0" expanded="true" />
+            <element signature="e#17166#17223#0" expanded="true" />
+            <element signature="e#18062#18109#0" expanded="true" />
+            <element signature="e#27746#27798#0" expanded="true" />
+            <element signature="e#28153#28208#0" expanded="true" />
+            <element signature="e#32022#32073#0" expanded="true" />
+            <element signature="e#32238#32425#0" expanded="true" />
+            <element signature="e#32424#32425#0" expanded="true" />
+            <element signature="e#32584#32830#0" expanded="true" />
+            <element signature="e#32829#32830#0" expanded="true" />
+            <element signature="e#33358#34490#0" expanded="true" />
+            <element signature="e#34489#34490#0" expanded="true" />
+            <element signature="e#38558#39401#0" expanded="true" />
+            <element signature="e#39400#39401#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="57" lean-forward="false" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sign_layout.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/LoginScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="61" column="38" lean-forward="false" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/GoalActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-362">
+          <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddChild.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="330" column="80" lean-forward="false" selection-start-line="330" selection-start-column="80" selection-end-line="330" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/Adjustment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#512#513#0" expanded="false" />
+            <element signature="e#537#538#0" expanded="false" />
+            <element signature="e#574#575#0" expanded="false" />
+            <element signature="e#602#603#0" expanded="false" />
+            <element signature="e#636#637#0" expanded="false" />
+            <element signature="e#665#666#0" expanded="false" />
+            <element signature="e#710#711#0" expanded="false" />
+            <element signature="e#746#747#0" expanded="false" />
+            <element signature="e#779#780#0" expanded="false" />
+            <element signature="e#808#809#0" expanded="false" />
+            <element signature="e#852#853#0" expanded="false" />
+            <element signature="e#888#889#0" expanded="false" />
+            <element signature="e#930#931#0" expanded="false" />
+            <element signature="e#968#969#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/kotlinClass.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/GetAllGoalResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#998#999#0" expanded="false" />
+            <element signature="e#1023#1024#0" expanded="false" />
+            <element signature="e#1060#1061#0" expanded="false" />
+            <element signature="e#1088#1089#0" expanded="false" />
+            <element signature="e#1122#1123#0" expanded="false" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1196#1197#0" expanded="false" />
+            <element signature="e#1232#1233#0" expanded="false" />
+            <element signature="e#1269#1270#0" expanded="false" />
+            <element signature="e#1302#1303#0" expanded="false" />
+            <element signature="e#1354#1355#0" expanded="false" />
+            <element signature="e#1398#1399#0" expanded="false" />
+            <element signature="e#1429#1430#0" expanded="false" />
+            <element signature="e#1456#1457#0" expanded="false" />
+            <element signature="e#1496#1497#0" expanded="false" />
+            <element signature="e#1528#1529#0" expanded="false" />
+            <element signature="e#1565#1566#0" expanded="false" />
+            <element signature="e#1598#1599#0" expanded="false" />
+            <element signature="e#1650#1651#0" expanded="false" />
+            <element signature="e#1694#1695#0" expanded="false" />
+            <element signature="e#1727#1728#0" expanded="false" />
+            <element signature="e#1755#1756#0" expanded="false" />
+            <element signature="e#1798#1799#0" expanded="false" />
+            <element signature="e#1832#1833#0" expanded="false" />
+            <element signature="e#1872#1873#0" expanded="false" />
+            <element signature="e#1907#1908#0" expanded="false" />
+            <element signature="e#1964#1965#0" expanded="false" />
+            <element signature="e#2012#2013#0" expanded="false" />
+            <element signature="e#2044#2045#0" expanded="false" />
+            <element signature="e#2071#2072#0" expanded="false" />
+            <element signature="e#2112#2113#0" expanded="false" />
+            <element signature="e#2144#2145#0" expanded="false" />
+            <element signature="e#2192#2193#0" expanded="false" />
+            <element signature="e#2226#2227#0" expanded="false" />
+            <element signature="e#2290#2291#0" expanded="false" />
+            <element signature="e#2336#2337#0" expanded="false" />
+            <element signature="e#2371#2372#0" expanded="false" />
+            <element signature="e#2401#2402#0" expanded="false" />
+            <element signature="e#2448#2449#0" expanded="false" />
+            <element signature="e#2486#2487#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetrofitClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="51" column="39" lean-forward="false" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/child_feb_menu_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="91" column="50" lean-forward="true" selection-start-line="91" selection-start-column="50" selection-end-line="91" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="41" column="72" lean-forward="false" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1400">
+          <caret line="85" column="8" lean-forward="false" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="655" column="52" lean-forward="false" selection-start-line="655" selection-start-column="52" selection-end-line="655" selection-end-column="52" />
+          <folding>
+            <element signature="e#22419#23080#0" expanded="true" />
+            <element signature="e#23079#23080#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2240">
+          <caret line="53" column="25" lean-forward="false" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentTaskApproval.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/UploadRuntimePermission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-679">
+          <caret line="334" column="46" lean-forward="false" selection-start-line="334" selection-start-column="46" selection-end-line="334" selection-end-column="46" />
+          <folding>
+            <element signature="e#3224#3225#0" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#4780#4781#0" expanded="true" />
+            <element signature="e#4825#4826#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/parent_profile_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="66" column="28" lean-forward="false" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1717">
+          <caret line="85" column="57" lean-forward="true" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
+          <folding>
+            <element signature="e#8684#8685#0" expanded="true" />
+            <element signature="e#8715#8716#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentCalendarActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="87" column="38" lean-forward="true" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
+          <folding>
+            <element signature="e#14966#16860#0" expanded="true" />
+            <element signature="e#16859#16860#0" expanded="true" />
           </folding>
         </state>
       </provider>

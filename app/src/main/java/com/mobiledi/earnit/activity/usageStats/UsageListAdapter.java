@@ -53,8 +53,6 @@ public class UsageListAdapter extends RecyclerView.Adapter<UsageListAdapter.View
             super(v);
             ButterKnife.bind(this, v);
 
-            int minute =  (int)mCustomUsageStatsList.get(3).usageStats.getTotalTimeInForeground() /1000 ;
-
           int max =  getMax(mCustomUsageStatsList);
           Log.e(TAG, "Max = "+max);
 

@@ -15,26 +15,26 @@
                     "to": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,224,332,455,573,688,781,886,1018,1095,1171,1253,1364,1470,1568,1682,1782,1893,2021,2392,2474",
+                        "startOffsets": "105,224,332,455,573,688,781,886,1018,1095,1171,1253,1364,1470,1568,1682,1782,1893,2021,2341,2423",
                         "endColumns": "118,107,122,117,114,92,104,131,76,75,81,110,105,97,113,99,110,127,100,81,100",
-                        "endOffsets": "219,327,450,568,683,776,881,1013,1090,1166,1248,1359,1465,1563,1677,1777,1888,2016,2117,2469,2570"
+                        "endOffsets": "219,327,450,568,683,776,881,1013,1090,1166,1248,1359,1465,1563,1677,1777,1888,2016,2117,2418,2519"
                     }
                 },
                 {
-                    "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.6.0.aar/b63e926dca4b8082b3f5a19b977d552c/res/values-ml/values.xml",
+                    "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-10.2.1.aar/9ced6798ebfb83a378559c6e1a9f890f/res/values-ml/values.xml",
                     "from": {
                         "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "343",
-                        "endColumns": "269",
-                        "endOffsets": "608"
+                        "startColumns": "0",
+                        "startOffsets": "285",
+                        "endColumns": "218",
+                        "endOffsets": "503"
                     },
                     "to": {
                         "startLines": "21",
                         "startColumns": "4",
                         "startOffsets": "2122",
-                        "endColumns": "269",
-                        "endOffsets": "2387"
+                        "endColumns": "218",
+                        "endOffsets": "2336"
                     }
                 }
             ]

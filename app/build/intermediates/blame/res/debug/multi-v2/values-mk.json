@@ -4,20 +4,20 @@
             "outputFile": "/Users/mac/Desktop/EarnIt_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mk/values-mk.xml",
             "map": [
                 {
-                    "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.6.0.aar/b63e926dca4b8082b3f5a19b977d552c/res/values-mk/values.xml",
+                    "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-10.2.1.aar/9ced6798ebfb83a378559c6e1a9f890f/res/values-mk/values.xml",
                     "from": {
                         "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "343",
-                        "endColumns": "237",
-                        "endOffsets": "576"
+                        "startColumns": "0",
+                        "startOffsets": "285",
+                        "endColumns": "195",
+                        "endOffsets": "480"
                     },
                     "to": {
                         "startLines": "19",
                         "startColumns": "4",
                         "startOffsets": "1844",
-                        "endColumns": "237",
-                        "endOffsets": "2077"
+                        "endColumns": "195",
+                        "endOffsets": "2035"
                     }
                 },
                 {
@@ -32,9 +32,9 @@
                     "to": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,213,336,440,548,634,739,858,941,1023,1110,1216,1323,1424,1531,1642,1746,2082,2166",
+                        "startOffsets": "105,213,336,440,548,634,739,858,941,1023,1110,1216,1323,1424,1531,1642,1746,2040,2124",
                         "endColumns": "107,122,103,107,85,104,118,82,81,86,105,106,100,106,110,103,97,83,100",
-                        "endOffsets": "208,331,435,543,629,734,853,936,1018,1105,1211,1318,1419,1526,1637,1741,1839,2161,2262"
+                        "endOffsets": "208,331,435,543,629,734,853,936,1018,1105,1211,1318,1419,1526,1637,1741,1839,2119,2220"
                     }
                 }
             ]

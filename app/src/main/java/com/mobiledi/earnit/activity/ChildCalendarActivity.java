@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,9 @@ import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
@@ -36,7 +40,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.blackbox_vision.materialcalendarview.view.CalendarView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by GreenLose on 12/8/2017.
@@ -49,20 +58,23 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
     ChildCalendarActivity childCalendarActivity;
     private final MainPresenter presenter = new MainPresenter(this);
     private static final String MONTH_TEMPLATE = "MMMM yyyy";
-    TextView textView, bottom_2;
+
+    @BindView(R.id.bottom2) TextView bottom_2;
     Integer taskCOunter=0;
     List<Tasks> tasksList= new ArrayList<>();
-     RelativeLayout drawer;
-    CalendarView calendarView;
-    Button backlisttask;
-    ImageButton headerbackBtn, backarrow, forwardarrow;
-    CircularImageView childAvatar;
+    @BindView(R.id.drawer_layout) RelativeLayout drawer;
+    @BindView(R.id.calendar_view) CalendarView calendarView;
+    @BindView(R.id.back_to_tasklist) Button backlisttask;
+    @BindView(R.id.childcaledar_hearback) ImageButton headerbackBtn;
+    @BindView(R.id.childcalendar_backarrow)ImageButton backarrow;
+    @BindView(R.id.childcalendar_forward_arrow) ImageButton forwardarrow;
+    @BindView(R.id.add_task_avatar) CircularImageView childAvatar;
     Tasks currentTask;
     String screen_name;
     public Parent parentObject;
     public Child childObject, otherChild;
     Intent intent;
-    RelativeLayout progressBar;
+    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
     private String finalDate;
 
     String TAG = ChildCalendarActivity.class.getSimpleName();
@@ -71,25 +83,18 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.childcalendar);
-
         childCalendarActivity = this;
-        drawer = (RelativeLayout) findViewById(R.id.drawer_layout);
-        calendarView = (CalendarView) findViewById(R.id.calendar_view);
-        backlisttask = (Button) findViewById(R.id.back_to_tasklist);
-        backarrow = (ImageButton) findViewById(R.id.childcalendar_backarrow);
-        forwardarrow = (ImageButton) findViewById(R.id.childcalendar_forward_arrow);
-        headerbackBtn = (ImageButton) findViewById(R.id.childcaledar_hearback);
-        bottom_2 = (TextView) findViewById(R.id.bottom2);
+        ButterKnife.bind(this);
         presenter.addCalendarView();
-        progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
         presenter.animate();
-        childAvatar = (CircularImageView) findViewById(R.id.add_task_avatar);
         bottom_2.setText("Chose Goal Name");
         intent = getIntent();
         screen_name = intent.getStringExtra(AppConstant.FROM_SCREEN);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
 
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
+        Log.e(TAG, "Child ID= "+childObject.getId());
+
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         Log.e(TAG, "URL= "+"https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/"+childObject.getAvatar());
 
@@ -126,7 +131,30 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
 
 
         }
+
+        getAllGoals();
+
     }
+
+    private void getAllGoals() {
+
+        RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
+        Call<List<GetAllGoalResponse>> response = retroInterface.getGoals(childObject.getId());
+
+
+        response.enqueue(new Callback<List<GetAllGoalResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetAllGoalResponse>> call, Response<List<GetAllGoalResponse>> response) {
+               // Log.e(TAG, "response = "+response.body().get(0).getName());
+            }
+
+            @Override
+            public void onFailure(Call<List<GetAllGoalResponse>> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     @Override
     public void prepareCalendarView() {

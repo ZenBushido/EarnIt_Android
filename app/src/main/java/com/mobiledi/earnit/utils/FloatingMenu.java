@@ -69,8 +69,6 @@ public class FloatingMenu {
     private final String TAG = "FloatingMenu";
     int OFFSET_X = 0;
     int OFFSET_Y = 0;
-    //int popupWidth = 0;
-  //  int popupHeight = 0;
     Activity activity;
 
     ScreenSwitch screenSwitch;
@@ -263,7 +261,7 @@ public class FloatingMenu {
     private void showPopup(Activity view, Point p, final Child child, final Child childWithAllTask, final Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks) {
 
         // Inflate the popup_layout.xml
-        LinearLayout viewGroup = (LinearLayout) view.findViewById(R.id.feb_menu_layout);
+        LinearLayout viewGroup =  view.findViewById(R.id.feb_menu_layout);
         LayoutInflater layoutInflater = (LayoutInflater) view.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = layoutInflater.inflate(R.layout.feb_menu_layout, viewGroup);
 
@@ -282,13 +280,13 @@ public class FloatingMenu {
         // Displaying the popup at the specified location, + offsets.
         popup.showAtLocation(layout, Gravity.NO_GRAVITY, p.x - 6 + OFFSET_X, p.y - 6 + OFFSET_Y);
 
-        TextView addTask = (TextView) layout.findViewById(R.id.fb_add_task);
-        TextView allTask = (TextView) layout.findViewById(R.id.fb_a11_task);
-        TextView approvalTask = (TextView) layout.findViewById(R.id.fb_approve_task);
-        TextView balance = (TextView) layout.findViewById(R.id.fb_balance);
-        TextView goal = (TextView) layout.findViewById(R.id.fb_goal);
-        TextView message = (TextView) layout.findViewById(R.id.fb_message);
-        TextView app_monitor = (TextView) layout.findViewById(R.id.app_monitor);
+        TextView addTask =  layout.findViewById(R.id.fb_add_task);
+        TextView allTask =  layout.findViewById(R.id.fb_a11_task);
+        TextView approvalTask =  layout.findViewById(R.id.fb_approve_task);
+        TextView balance = layout.findViewById(R.id.fb_balance);
+        TextView goal =  layout.findViewById(R.id.fb_goal);
+        TextView message =  layout.findViewById(R.id.fb_message);
+        TextView app_monitor =  layout.findViewById(R.id.app_monitor);
         addTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_plus_circle)
                 .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
         allTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_file_text_o)
@@ -432,7 +430,7 @@ public class FloatingMenu {
 
 
         // Inflate the popup_layout.xml
-        LinearLayout viewGroup = (LinearLayout) view.findViewById(R.id.child_feb_menu_layout);
+        LinearLayout viewGroup = view.findViewById(R.id.child_feb_menu_layout);
         LayoutInflater layoutInflater = (LayoutInflater) view.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = layoutInflater.inflate(R.layout.child_feb_menu_layout, viewGroup);
 
@@ -454,13 +452,13 @@ public class FloatingMenu {
         // Displaying the popup at the specified location, + offsets.
         popup.showAtLocation(layout, Gravity.NO_GRAVITY, p.x + OFFSET_X, p.y + OFFSET_Y);
 
-        TextView viewTask = (TextView) layout.findViewById(R.id.child_fb_view_task);
-        TextView goalBalance = (TextView) layout.findViewById(R.id.child_fb_balance);
-        TextView calendar = (TextView) layout.findViewById(R.id.child_fb_calendar);
-     /* TextView calendar = (TextView) layout.findViewById(R.id.child_fb_calendar);
+        TextView viewTask = layout.findViewById(R.id.child_fb_view_task);
+        TextView goalBalance =  layout.findViewById(R.id.child_fb_balance);
+        TextView calendar =  layout.findViewById(R.id.child_fb_calendar);
+     /* TextView calendar =layout.findViewById(R.id.child_fb_calendar);
        */
-        TextView profile = (TextView) layout.findViewById(R.id.child_fb_profile);
-        TextView logout = (TextView) layout.findViewById(R.id.child_fb_logout);
+        TextView profile =  layout.findViewById(R.id.child_fb_profile);
+        TextView logout =  layout.findViewById(R.id.child_fb_logout);
         try {
             viewTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_file_text_o)
                     .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
@@ -476,7 +474,7 @@ public class FloatingMenu {
             logout.setCompoundDrawablesWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_sign_out)
                     .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
 
-            //setCompoundDrawablesWithIntrinsicBounds( R.drawable.smiley, 0, 0, 0);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -560,8 +558,6 @@ public class FloatingMenu {
         switch (activity.getResources().getDisplayMetrics().densityDpi) {
             case DisplayMetrics.DENSITY_LOW:
                 Utils.logDebug(TAG, "dpi : ldpi");
-               // popupWidth = 450;
-              //  popupHeight = 500;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -300;
                     OFFSET_Y = -20;
@@ -578,8 +574,6 @@ public class FloatingMenu {
                 break;
             case DisplayMetrics.DENSITY_MEDIUM:
                 Utils.logDebug(TAG, "dpi : mdpi");
-               // popupWidth = 450;
-               // popupHeight = 500;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -300;
                     OFFSET_Y = -20;
@@ -596,8 +590,6 @@ public class FloatingMenu {
                 break;
             case DisplayMetrics.DENSITY_HIGH:
                 Utils.logDebug(TAG, "dpi : hdpi");
-               // popupWidth = 360;
-              //  popupHeight = 450;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -260;
                     OFFSET_Y = -8;
@@ -614,8 +606,6 @@ public class FloatingMenu {
                 break;
             case DisplayMetrics.DENSITY_XHIGH:
                 Utils.logDebug(TAG, "dpi : xhdpi");
-              //  popupWidth = 450;
-             //   popupHeight = 500;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -300;
                     OFFSET_Y = -20;
@@ -632,8 +622,6 @@ public class FloatingMenu {
                 break;
             case DisplayMetrics.DENSITY_XXHIGH:
                 Utils.logDebug(TAG, "dpi : xxhdpi");
-               // popupWidth = 600;
-                //popupHeight = 840;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -370;
                     OFFSET_Y = -20;
@@ -650,8 +638,6 @@ public class FloatingMenu {
                 break;
             case DisplayMetrics.DENSITY_XXXHIGH:
                 Utils.logDebug(TAG, "dpi : xxxhdpi");
-               // popupWidth = 800;
-              //  popupHeight = 970;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -500;
                     OFFSET_Y = -20;
@@ -668,8 +654,6 @@ public class FloatingMenu {
                 break;
             case DisplayMetrics.DENSITY_420:
                 Utils.logDebug(TAG, "dpi : 420dpi");
-              //  popupWidth = 550;
-             //   popupHeight = 620;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -330;
                     OFFSET_Y = -10;
@@ -686,8 +670,6 @@ public class FloatingMenu {
                 break;
             case DisplayMetrics.DENSITY_560:
                 Utils.logDebug(TAG, "dpi : 560dpi");
-             //   popupWidth = 700;
-             //   popupHeight = 820;
                 if (fromScreen.equalsIgnoreCase(AppConstant.PARENT_DASHBOARD)) {
                     OFFSET_X = -400;
                     OFFSET_Y = -10;
@@ -709,57 +691,42 @@ public class FloatingMenu {
         switch (activity.getResources().getDisplayMetrics().densityDpi) {
             case DisplayMetrics.DENSITY_LOW:
                 Utils.logDebug(TAG, "dpi : ldpi");
-             //   popupWidth = 450;
-             //   popupHeight = 320;
+
                 OFFSET_X = -295;
                 OFFSET_Y = -10;
                 break;
             case DisplayMetrics.DENSITY_MEDIUM:
                 Utils.logDebug(TAG, "dpi : mdpi");
-             //   popupWidth = 450;
-             //   popupHeight = 340;
                 OFFSET_X = -295;
                 OFFSET_Y = -10;
                 break;
             case DisplayMetrics.DENSITY_HIGH:
                 Utils.logDebug(TAG, "dpi : hdpi");
-             //   popupWidth = 360;
-            //    popupHeight = 320;
                 OFFSET_X = -255;
                 OFFSET_Y = -15;
                 break;
             case DisplayMetrics.DENSITY_XHIGH:
                 Log.d(TAG, "dpi : xhdpi");
-            //    popupWidth = 450;
-            //    popupHeight = 340;
                 OFFSET_X = -295;
               //  OFFSET_Y = -10;
                 break;
             case DisplayMetrics.DENSITY_XXHIGH:
                 Utils.logDebug(TAG, "dpi : xxhdpi");
-             //   popupWidth = 600;
-             //   popupHeight = 400;
                 OFFSET_X = -370;
                 OFFSET_Y = -15;
                 break;
             case DisplayMetrics.DENSITY_XXXHIGH:
                 Utils.logDebug(TAG, "dpi : xxxhdpi");
-             //   popupWidth = 800;
-             //   popupHeight = 560;
                 OFFSET_X = -490;
                 OFFSET_Y = -15;
                 break;
             case DisplayMetrics.DENSITY_420:
                 Utils.logDebug(TAG, "dpi : 420dpi");
-             //   popupWidth = 550;
-             //   popupHeight = 380;
                 OFFSET_X = -325;
                 OFFSET_Y = -10;
                 break;
             case DisplayMetrics.DENSITY_560:
                 Utils.logDebug(TAG, "dpi : 560dpi");
-            //    popupWidth = 720;
-            //    popupHeight = 460;
                 OFFSET_X = -420;
                 OFFSET_Y = -10;
                 break;
@@ -767,7 +734,7 @@ public class FloatingMenu {
     }
 
     public void updateDeviceFCM() {
-        new AsyncTask<Void, Void, Void>() {
+         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 {

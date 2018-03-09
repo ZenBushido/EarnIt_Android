@@ -4,23 +4,6 @@
             "outputFile": "/Users/mac/Desktop/EarnIt_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hr/values-hr.xml",
             "map": [
                 {
-                    "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.6.0.aar/b63e926dca4b8082b3f5a19b977d552c/res/values-hr/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "343",
-                        "endColumns": "234",
-                        "endOffsets": "573"
-                    },
-                    "to": {
-                        "startLines": "21",
-                        "startColumns": "4",
-                        "startOffsets": "2078",
-                        "endColumns": "234",
-                        "endOffsets": "2308"
-                    }
-                },
-                {
                     "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.2.2.aar/86f634d3f806175bd4a29ab0559f9c8e/res/values-hr/values-hr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
@@ -32,9 +15,9 @@
                     "to": {
                         "startLines": "22,23,24,25,26,27,28,29,30,31,32,33,34",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2313,2375,2442,2549,2670,2751,2857,2986,3096,3193,3284,3379,3471",
+                        "startOffsets": "2269,2331,2398,2505,2626,2707,2813,2942,3052,3149,3240,3335,3427",
                         "endColumns": "61,66,106,120,80,105,128,109,96,90,94,91,99",
-                        "endOffsets": "2370,2437,2544,2665,2746,2852,2981,3091,3188,3279,3374,3466,3566"
+                        "endOffsets": "2326,2393,2500,2621,2702,2808,2937,3047,3144,3235,3330,3422,3522"
                     }
                 },
                 {
@@ -49,9 +32,26 @@
                     "to": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,210,318,441,538,648,734,838,957,1041,1124,1210,1314,1427,1533,1638,1751,1858,1981,3571,3660",
+                        "startOffsets": "105,210,318,441,538,648,734,838,957,1041,1124,1210,1314,1427,1533,1638,1751,1858,1981,3527,3616",
                         "endColumns": "104,107,122,96,109,85,103,118,83,82,85,103,112,105,104,112,106,122,96,88,100",
-                        "endOffsets": "205,313,436,533,643,729,833,952,1036,1119,1205,1309,1422,1528,1633,1746,1853,1976,2073,3655,3756"
+                        "endOffsets": "205,313,436,533,643,729,833,952,1036,1119,1205,1309,1422,1528,1633,1746,1853,1976,2073,3611,3712"
+                    }
+                },
+                {
+                    "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-10.2.1.aar/9ced6798ebfb83a378559c6e1a9f890f/res/values-hr/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "285",
+                        "endColumns": "190",
+                        "endOffsets": "475"
+                    },
+                    "to": {
+                        "startLines": "21",
+                        "startColumns": "4",
+                        "startOffsets": "2078",
+                        "endColumns": "190",
+                        "endOffsets": "2264"
                     }
                 }
             ]

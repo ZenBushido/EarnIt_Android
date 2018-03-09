@@ -61,6 +61,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
@@ -71,7 +74,7 @@ import id.zelory.compressor.Compressor;
  * Created by mradul on 8/4/17.
  */
 
-public class ParentProfile extends UploadRuntimePermission implements View.OnClickListener, Validator.ValidationListener {
+public class ParentProfile extends UploadRuntimePermission implements Validator.ValidationListener {
 
     final int PERMISSIONS_REQUEST = 10;
     public Intent in = null;
@@ -80,14 +83,14 @@ public class ParentProfile extends UploadRuntimePermission implements View.OnCli
 
     @Pattern(regex = "[a-zA-Z]+(\\\\s+[a-zA-Z]+)*", message = "Please enter valid First name")
     @Length(max = 12, min = 2, message = "")
-    EditText firstName;
+    @BindView(R.id.parent_first_name) EditText firstName;
 
 
     @NotEmpty
     @Email
-    EditText email;
+    @BindView(R.id.parent_email) EditText email;
 
-    EditText phone;
+    @BindView(R.id.parent_phone) EditText phone;
 
     EditText currentPassword;
 
@@ -95,31 +98,33 @@ public class ParentProfile extends UploadRuntimePermission implements View.OnCli
 
     EditText confirmPassword;
 
-    TextView changePassword, addChild;
-    Button save, cancel;
+    @BindView(R.id.parent_password) TextView changePassword;
+    @BindView(R.id.parent_add_child) TextView addChild;
+    @BindView(R.id.save_button) Button save;
+    @BindView(R.id.cancel_button) Button cancel;
     ParentProfile profile;
     Parent parentObject;
     Child child, otherChild;
     int childID;
     Validator validator;
-    RelativeLayout progressBar;
+    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
     Parent updateParent;
-    CircularImageView parentAvatar;
-    RecyclerView childListView;
-    TextView recyclerLayout;
+    @BindView(R.id.user_image) CircularImageView parentAvatar;
+    @BindView(R.id.child_list_id) RecyclerView childListView;
+    @BindView(R.id.chil_list_layout) TextView recyclerLayout;
     boolean isParentUpdate = false;
     String switchFrom;
     ScreenSwitch screenSwitch;
     ArrayList<Country> countries;
-    ImageButton mBackArrow;
+    @BindView(R.id.ivBackArrow) ImageButton mBackArrow;
     //TextView countryName, countryDial;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parent_profile_layout);
+        ButterKnife.bind(this);
         profile = this;
-        setViewId();
         screenSwitch = new ScreenSwitch(profile);
         countries = new ArrayList<>();
         countries = Utils.loadCountryData(TAG);
@@ -181,75 +186,56 @@ public class ParentProfile extends UploadRuntimePermission implements View.OnCli
         Utils.SetCursorPosition(phone);
     }
 
-    private void setViewId() {
+    //-------------------- TODO OnClick Methods ----------------------
 
-        firstName = (EditText) findViewById(R.id.parent_first_name);
-        mBackArrow = (ImageButton) findViewById(R.id.ivBackArrow);
-        email = (EditText) findViewById(R.id.parent_email);
-        phone = (EditText) findViewById(R.id.parent_phone);
-        changePassword = (TextView) findViewById(R.id.parent_password);
-        addChild = (TextView) findViewById(R.id.parent_add_child);
-        save = (Button) findViewById(R.id.save_button);
-        cancel = (Button) findViewById(R.id.cancel_button);
-        progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
-        parentAvatar = (CircularImageView) findViewById(R.id.user_image);
-        childListView = (RecyclerView) findViewById(R.id.child_list_id);
-        recyclerLayout = (TextView) findViewById(R.id.chil_list_layout);
-        //   countryName = (TextView) findViewById(R.id.countryCode);
-        //   countryDial = (TextView) findViewById(R.id.country_dial_code);
-//        countryName.setCompoundDrawablesWithIntrinsicBounds(null, null, (new IconDrawable(profile, FontAwesomeIcons.fa_caret_down)
-//                .colorRes(R.color.edit_text_hint).sizeDp(AppConstant.FEB_ICON_SIZE)), null);
-        save.setOnClickListener(profile);
-        cancel.setOnClickListener(profile);
-        addChild.setOnClickListener(profile);
-        changePassword.setOnClickListener(profile);
-        parentAvatar.setOnClickListener(profile);
-        mBackArrow.setOnClickListener(profile);
-        //countryName.setOnClickListener(profile);
+    @OnClick(R.id.cancel_button)
+    void cancel()
+    {
+        if (isParentUpdate)
+            moveToParentDashboard(updateParent);
+        else
+            moveToParentDashboard(parentObject);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.cancel_button:
-                if (isParentUpdate)
-                    moveToParentDashboard(updateParent);
-                else
-                    moveToParentDashboard(parentObject);
-                break;
+     @OnClick(R.id.save_button)
+    void save()
+     {
+         if (firstName.getText().toString().trim().length() == 0)
+             firstName.setError("Please enter valid String");
+         else validator.validate();
+     }
 
-            case R.id.save_button:
-                if (firstName.getText().toString().trim().length() == 0)
-                    firstName.setError("Please enter valid String");
-                else validator.validate();
-                break;
+     @OnClick(R.id.parent_add_child)
+             void addChild()
+     {
+         screenSwitch.moveToAddChild(parentObject, childID, switchFrom, AppConstant.ADD, null);
+     }
 
-            case R.id.parent_add_child:
-                screenSwitch.moveToAddChild(parentObject, childID, switchFrom, AppConstant.ADD, null);
-                break;
 
-            case R.id.parent_password:
-                if (progressBar.getVisibility() == View.GONE)
-                    showDialogOnCheckBox();
-                break;
-
-            case R.id.user_image:
-                vRuntimePermission(parentAvatar);
-                selectImage();
-                break;
-
-            case R.id.ivBackArrow:
-
-                onBackPressed();
-                break;
-
-//            case R.id.countryCode:
-//                Utils.showCountryDialog(countries, profile, countryDial, countryName);
-//                break;
-
-        }
-
+    @OnClick (R.id.parent_password)
+    void parentPassword()
+    {
+        if (progressBar.getVisibility() == View.GONE)
+            showDialogOnCheckBox();
     }
+
+    @OnClick(R.id.user_image)
+    void userImage()
+    {
+        vRuntimePermission(parentAvatar);
+        selectImage();
+    }
+
+    @OnClick(R.id.ivBackArrow)
+    void backArrow()
+    {
+        onBackPressed();
+    }
+
+
+
+
+
 
     public void showDialogOnCheckBox() {
         final Dialog dialog = new Dialog(profile);

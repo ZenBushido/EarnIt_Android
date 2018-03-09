@@ -15,26 +15,26 @@
                     "to": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,210,318,441,545,659,745,856,972,1052,1131,1215,1324,1431,1532,1640,1745,1852,1976,2356,2440",
+                        "startOffsets": "105,210,318,441,545,659,745,856,972,1052,1131,1215,1324,1431,1532,1640,1745,1852,1976,2284,2368",
                         "endColumns": "104,107,122,103,113,85,110,115,79,78,83,108,106,100,107,104,106,123,98,83,100",
-                        "endOffsets": "205,313,436,540,654,740,851,967,1047,1126,1210,1319,1426,1527,1635,1740,1847,1971,2070,2435,2536"
+                        "endOffsets": "205,313,436,540,654,740,851,967,1047,1126,1210,1319,1426,1527,1635,1740,1847,1971,2070,2363,2464"
                     }
                 },
                 {
-                    "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.6.0.aar/b63e926dca4b8082b3f5a19b977d552c/res/values-uz/values.xml",
+                    "source": "/Users/mac/.gradle/caches/transforms-1/files-1.1/play-services-basement-10.2.1.aar/9ced6798ebfb83a378559c6e1a9f890f/res/values-uz/values.xml",
                     "from": {
                         "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "343",
-                        "endColumns": "280",
-                        "endOffsets": "619"
+                        "startColumns": "0",
+                        "startOffsets": "285",
+                        "endColumns": "208",
+                        "endOffsets": "493"
                     },
                     "to": {
                         "startLines": "21",
                         "startColumns": "4",
                         "startOffsets": "2075",
-                        "endColumns": "280",
-                        "endOffsets": "2351"
+                        "endColumns": "208",
+                        "endOffsets": "2279"
                     }
                 }
             ]

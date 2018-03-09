@@ -8,13 +8,13 @@ package com.takwolf.android.lock9;
 
 public final class R {
     public static final class attr {
-        public static final int lineColor = 0x7f040124;
-        public static final int lineWidth = 0x7f040125;
-        public static final int nodeOnSrc = 0x7f040147;
-        public static final int nodeSrc = 0x7f040148;
+        public static final int lineColor = 0x7f040121;
+        public static final int lineWidth = 0x7f040122;
+        public static final int nodeOnSrc = 0x7f040144;
+        public static final int nodeSrc = 0x7f040145;
     }
     public static final class styleable {
-        public static final int[] Lock9View = { 0x7f040124, 0x7f040125, 0x7f040147, 0x7f040148 };
+        public static final int[] Lock9View = { 0x7f040121, 0x7f040122, 0x7f040144, 0x7f040145 };
         public static final int Lock9View_lineColor = 0;
         public static final int Lock9View_lineWidth = 1;
         public static final int Lock9View_nodeOnSrc = 2;

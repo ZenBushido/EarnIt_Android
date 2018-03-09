@@ -95,8 +95,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     Map<Integer, String> childs;
     List<String> assignChild;
     int childID;
-    final int TASK_NAME_LENGTH = 40;
     Intent intent;
+    final int TASK_NAME_LENGTH = 40;
     boolean checkboxStatus = false;
     boolean checkboxStatusLock = false;
 

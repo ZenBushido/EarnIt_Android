@@ -515,6 +515,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     @SuppressLint("ValidFragment")
     public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
         private int mNumberPickerInputId = 0;
+
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState){
             final Calendar c = Calendar.getInstance();
