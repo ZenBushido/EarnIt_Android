@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by mac on 09/03/18.
  */
 
-class Adjustment {
+public class Adjustment {
 
     @SerializedName("id")
     @Expose

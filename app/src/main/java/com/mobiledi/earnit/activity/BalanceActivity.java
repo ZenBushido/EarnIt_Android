@@ -22,6 +22,9 @@ import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
@@ -39,6 +42,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by mobile-di on 7/10/17.
@@ -46,12 +52,10 @@ import cz.msebera.android.httpclient.Header;
 
 public class BalanceActivity extends BaseActivity   {
 
-    @BindView(R.id.goal_header)
-    TextView headerBalance;
-    @BindView(R.id.goal_avatar)
-    CircularImageView avatar;
-    @BindView(R.id.btn_adjust)
-    Button btn_adjust;
+    @BindView(R.id.goal_header) TextView headerBalance;
+    @BindView(R.id.goal_avatar) CircularImageView avatar;
+    @BindView(R.id.btn_adjust)  Button btn_adjust;
+    @BindView(R.id.tv_cash) TextView tv_cash;
     BalanceAdjustment balance;
     public Parent parentObject;
     public Child childObject, otherChild;
@@ -101,6 +105,7 @@ public class BalanceActivity extends BaseActivity   {
         //listGoal = (List<Goal>) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
         tasks = (Tasks) intent.getSerializableExtra(AppConstant.TO_EDIT);
 
+        progressBar.setVisibility(View.VISIBLE);
 
 
 
@@ -119,7 +124,8 @@ public class BalanceActivity extends BaseActivity   {
         headerBalance.setText(childObject.getFirstName());
 
         if (isDeviceOnline())
-            isGoalExists();
+           // isGoalExists();
+        getAllGoals();
 
 
         try {
@@ -181,6 +187,60 @@ public class BalanceActivity extends BaseActivity   {
     }
 
 
+    private void getAllGoals() {
+
+        RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
+        Call<List<GetAllGoalResponse>> response = retroInterface.getGoals(childObject.getId());
+
+
+        response.enqueue(new Callback<List<GetAllGoalResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetAllGoalResponse>> call, Response<List<GetAllGoalResponse>> response) {
+                // Log.e(TAG, "response = "+response.body().get(0).getName());
+
+              //  Log.e(TAG, "Response= "+response.body().get(0).getAdjustments().get(0).getAmount());
+
+                Integer cashTotal = 0;
+                Integer goalTotal = 0;
+                Integer totalAccountBalance = 0;
+
+                for (int i = 0; i < response.body().size(); i++)
+                {
+                    cashTotal += response.body().get(i).getCash();
+                    int goalAmount = response.body().get(i).getAmount();
+
+
+                        for(int j=0; j<response.body().get(i).getAdjustments().size(); j++)
+                        {
+                            goalTotal+= response.body().get(i).getAdjustments().get(j).getAmount();
+                            Log.e(TAG, "Goal Total= "+goalTotal);
+                        }
+                    goalTotal+= response.body().get(i).getAmount();
+
+                }
+
+                totalAccountBalance += cashTotal+goalTotal;
+                tv_cash.setText("$" + cashTotal.toString());
+
+
+                totalBalance.setText("$" + totalAccountBalance.toString());
+                totalGoal.setText("$" + goalTotal.toString());
+
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+                recyclerView.setLayoutManager(mLayoutManager);
+                adapter = new MyRecyclerViewAdapter(getApplicationContext(), response.body());
+                recyclerView.setAdapter(adapter);
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<List<GetAllGoalResponse>> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     public void isGoalExists() {
 
@@ -207,6 +267,7 @@ public class BalanceActivity extends BaseActivity   {
                                     Goal goal = new GetObjectFromResponse().getGoalObject(object);
                                     listGoal.add(goal);
                                     Log.i(TAG, "goal-responsel1 = "+ goal.getGoalName());
+                                    Log.i(TAG, "goal-responsel1 = "+ goal.getAdjustments().get(0).getAmount());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -215,18 +276,34 @@ public class BalanceActivity extends BaseActivity   {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Integer balancesTotalGoals = 0;
+                    Integer cashTotal = 0;
+                    Integer goalTotal = 0;
 
                     for (int i = 0; i < listGoal.size(); i++)
-                        balancesTotalGoals += listGoal.get(i).getCash();
+                    {
+                        cashTotal += listGoal.get(i).getCash();
+                        int goalAmount = listGoal.get(i).getAmount();
+/*
+                        for(int j=0; j<listGoal.get(i).getAdjustments().size(); j++)
+                        {
+                            goalTotal = goalAmount+listGoal.get(i).getAdjustments().get(j).getAmount();
 
-                    totalBalance.setText("$" + balancesTotalGoals.toString());
-                    totalGoal.setText("$" + balancesTotalGoals.toString());
+                        }
+                        Log.e(TAG, "Goal Total= "+goalTotal);*/
+
+                    }
+
+
+
+
+
+                    totalBalance.setText("$" + cashTotal.toString());
+                    totalGoal.setText("$" + cashTotal.toString());
 
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 
                     recyclerView.setLayoutManager(mLayoutManager);
-                    adapter = new MyRecyclerViewAdapter(getApplicationContext(), listGoal);
+                  //  adapter = new MyRecyclerViewAdapter(getApplicationContext(), listGoal);
                     recyclerView.setAdapter(adapter);
                 }
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Goal;
+import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
 import com.mobiledi.earnit.utils.Utils;
 
 import java.util.Collections;
@@ -17,11 +18,13 @@ import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private List<Goal> mData ;
+    private List<GetAllGoalResponse> mData ;
     private LayoutInflater mInflater;
+    String TAG = MyRecyclerViewAdapter.class.getSimpleName();
+    String goalPercentageStr;
 
     // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, List<Goal> data) {
+    public MyRecyclerViewAdapter(Context context, List<GetAllGoalResponse> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         String.valueOf(data.size());
@@ -37,19 +40,37 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the textview in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String goal = mData.get(position).getGoalName();
+        String goal = mData.get(position).getName();
         String amount = mData.get(position).getAmount()+"";
         holder.myTextView.setText(goal+":");
+        Integer goalTotal = 0;
 
-        double value = (double)mData.get(position).getCash()/(double)mData.get(position).getAmount();
+        if(!mData.get(position).getAdjustments().isEmpty())
+        {
+            for(int j=0; j<mData.get(position).getAdjustments().size(); j++)
+            {
+                goalTotal+= mData.get(position).getAdjustments().get(j).getAmount();
+            }
+            goalTotal = goalTotal+ mData.get(position).getAmount();
+            Log.e(TAG, "Goal Total= "+goalTotal);
+            double value = (double)mData.get(position).getCash()/(double)goalTotal;
+            double percentage =  value * 100;
+            percentage = Utils.roundOff(percentage, 1);
+            goalPercentageStr = "$"+mData.get(position).getCash()+" of " + "$"+goalTotal
+                    +" / " +percentage+"%";
+            holder.tv_amount.setText(goalPercentageStr);
 
-        double percentage =  value * 100;
+        }
+        else
+        {
+            double value = (double)mData.get(position).getCash()/(double)mData.get(position).getAmount();
+            double percentage =  value * 100;
+            percentage = Utils.roundOff(percentage, 1);
+            String goalPercentageStr = "$"+mData.get(position).getCash()+" of " + "$"+mData.get(position).getAmount()
+                    +" / " +percentage+"%";
+            holder.tv_amount.setText(goalPercentageStr);
+        }
 
-        percentage = Utils.roundOff(percentage, 1);
-        String goalPercentageStr = "$"+mData.get(position).getCash()+" of " + "$"+mData.get(position).getAmount()
-                +" / " +percentage+"%";
-
-        holder.tv_amount.setText(goalPercentageStr);
     }
 
     // total number of rows
@@ -63,18 +84,17 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView myTextView;
         public TextView tv_amount;
-
         public ViewHolder(View itemView) {
             super(itemView);
-            myTextView = (TextView) itemView.findViewById(R.id.tvGoalName);
-            tv_amount = (TextView) itemView.findViewById(R.id.tv_amount);
+            myTextView = itemView.findViewById(R.id.tvGoalName);
+            tv_amount = itemView.findViewById(R.id.tv_amount);
         }
 
     }
 
     // convenience method for getting data at click position
     public String getItem(int id) {
-        return mData.get(id).getGoalName();
+        return mData.get(id).getName();
     }
 
 

@@ -84,6 +84,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
     EditText task_detailedt, adjustmentedt;
     ImageButton helpIcon, forward_arrow, backward_arrow;
     int count = 0;
+    boolean addValue = true;
 
     List<Goal> listGoal = new ArrayList<>();
 
@@ -229,7 +230,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
     private void showBottomSheetDialog(ArrayList<Item> items, final TextView dropDownView, final String type) {
         mBottomSheetDialog = new BottomSheetDialog(this);
         final View view = getLayoutInflater().inflate(R.layout.sheet, null);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView =  view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ItemAdapter(items, new ItemAdapter.ItemListener() {
@@ -243,11 +244,13 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
                 switch (item.getId()) {
                     case 0: {
                         balanceSetting.setText(add);
+                        addValue= true;
                         mBottomSheetDialog.dismiss();
                     }
                     break;
                     case 1: {
                         balanceSetting.setText(subtract);
+                        addValue = false;
                         mBottomSheetDialog.dismiss();
                     }
                     break;
@@ -394,7 +397,15 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
 
         JSONObject signInJson = new JSONObject();
         try {
-            signInJson.put(AppConstant.AMOUNT, adjustmentedt.getText().toString().trim());
+            if(addValue)
+            {
+                signInJson.put(AppConstant.AMOUNT, Integer.parseInt(adjustmentedt.getText().toString().trim()));
+            }
+            else
+            {
+                signInJson.put(AppConstant.AMOUNT, -Integer.parseInt(adjustmentedt.getText().toString().trim()));
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -421,6 +432,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
         PersistentCookieStore myCookieStore = new PersistentCookieStore(balance);
         httpClient.setCookieStore(myCookieStore);
         Log.e(TAG, "Entity: "+entity);
+        Log.e(TAG, "URL= "+AppConstant.BASE_URL+"/"+"adjustments");
         httpClient.post(balance, AppConstant.BASE_URL + "/" + "adjustments", entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

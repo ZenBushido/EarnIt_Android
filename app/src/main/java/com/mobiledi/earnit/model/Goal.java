@@ -1,8 +1,10 @@
 package com.mobiledi.earnit.model;
 
+import com.mobiledi.earnit.model.goal.Adjustment;
 import com.mobiledi.earnit.utils.Utils;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by mradul on 8/1/17.
@@ -17,6 +19,8 @@ public class Goal implements Serializable{
     private String goal;
     private long createDate;
     private long updateDate;
+
+    private List<Adjustment> adjustments = null;
 
     public Goal(){}
 
@@ -84,4 +88,13 @@ public class Goal implements Serializable{
     public void setUpdateDate(long updateDate) {
         this.updateDate = updateDate;
     }
+
+    public List<Adjustment> getAdjustments() {
+        return adjustments;
+    }
+
+    public void setAdjustments(List<Adjustment> adjustments) {
+        this.adjustments = adjustments;
+    }
+
 }
