@@ -259,8 +259,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
-
-
                     </RelativeLayout>
 
 
@@ -383,7 +381,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.4"
                 android:gravity="center"
-                android:text="$322 or $2000 earned "
+                android:text="$322 of $2000 earned "
                 android:textColor="@color/check_in"
                 android:textSize="12sp" />
 

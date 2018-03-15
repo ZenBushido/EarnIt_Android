@@ -73,7 +73,7 @@
                                 android:id="@+id/input_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/views_height"
-
+                                android:text="bright.roots.testing@gmail.com"
                                 android:background="@android:color/white"
                                 android:ems="10"
                                 android:focusable="true"
@@ -92,6 +92,7 @@
                             </EditText>
 
                             <EditText
+                                android:text="admin@123"
                                 android:layout_marginTop="0.5dp"
                                 android:id="@+id/input_password"
                                 android:layout_width="match_parent"

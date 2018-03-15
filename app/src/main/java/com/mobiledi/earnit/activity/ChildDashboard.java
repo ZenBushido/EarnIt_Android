@@ -51,6 +51,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import retrofit.ServiceGenerator;
 import retrofit2.Call;
@@ -62,11 +64,11 @@ public class ChildDashboard extends BaseActivity {
     private static final int FEB_ICON_SIZE = 15;
     ChildDashboard childDashboard;
     private Child childObject;
-    private RecyclerView childTaskDateList;
-    private CircularImageView childImage;
+    @BindView(R.id.child_task_date_list) RecyclerView childTaskDateList;
+    @BindView(R.id.child_dashboard_avatar) CircularImageView childImage;
     private ChildViewDateAdapter childViewDateAdapter;
-    private RelativeLayout progress;
-    private TextView childDashboardHeader;
+    @BindView(R.id.loadingPanel) RelativeLayout progress;
+    @BindView(R.id.child_dashboard_header) TextView childDashboardHeader;
     int bCount = 0;
     long time;
     Handler handler;
@@ -78,6 +80,7 @@ public class ChildDashboard extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_dashboard);
+        ButterKnife.bind(this);
         childDashboard = this;
         taskList = new ArrayList<>();
         //SERIALIZE OBJECT FROM INTENT OBJECT
@@ -85,8 +88,7 @@ public class ChildDashboard extends BaseActivity {
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
         //SET PROFILE IMAGE
-        childImage = (CircularImageView) findViewById(R.id.child_dashboard_avatar);
-        childDashboardHeader = (TextView) findViewById(R.id.child_dashboard_header);
+
         childDashboardHeader.setText(getResources().getString(R.string.my_task));
         try {
             Picasso.with(childDashboard.getApplicationContext()).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childImage);
@@ -96,8 +98,7 @@ public class ChildDashboard extends BaseActivity {
         }
 
        // callRetrofit();
-        progress = (RelativeLayout) findViewById(R.id.loadingPanel);
-        childTaskDateList = (RecyclerView) findViewById(R.id.child_task_date_list);
+
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         childTaskDateList.setLayoutManager(mLayoutManager);
         childTaskDateList.setItemAnimator(new DefaultItemAnimator());
@@ -113,6 +114,7 @@ public class ChildDashboard extends BaseActivity {
                         JSONObject object = response.getJSONObject(i);
 
 
+                        Log.e(TAG, "OBJECT= "+object);
                         //TASKS
                         Tasks task = new GetObjectFromResponse().getTaskObject(object, childObject.getId());
                         taskList.add(task);

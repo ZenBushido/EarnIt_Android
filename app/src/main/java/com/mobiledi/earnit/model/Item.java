@@ -7,6 +7,13 @@ package com.mobiledi.earnit.model;
 public class Item {
 
     private String mTitle;
+    private int id;
+
+    public Item(int id, String mTitle) {
+
+        this.id = id;
+        this.mTitle = mTitle;
+    }
 
     public String getmTitle() {
         return mTitle;
@@ -18,14 +25,6 @@ public class Item {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    private int id;
-
-    public Item(int id, String mTitle) {
-
-        this.id = id;
-        this.mTitle = mTitle;
     }
 
     public void setmTitle(String mTitle) {

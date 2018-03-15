@@ -84,6 +84,8 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         if (intent.getSerializableExtra(AppConstant.TASK_OBJECT) != null) {
 
             taskObject = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
+         //   Log.e(TAG, "Task Object: "+taskObject.getName());
+        //    Log.e(TAG, "Task Object: "+taskObject.getGoal().getGoalName());
 
             autoFillTaskDetails(taskObject);
         } else {

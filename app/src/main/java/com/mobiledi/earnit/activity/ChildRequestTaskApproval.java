@@ -86,7 +86,6 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.child_request_task_approval);
         ButterKnife.bind(this);
-        Log.e(TAG, "Activity Created");
         requestTaskApproval = this;
         setViewIds();
         Intent intent = getIntent();
@@ -94,12 +93,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         task = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
         goal = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
 
-        Log.e(TAG, "Task: "+ task.getName());
 
-//        Log.e(TAG, "Task: "+ goal.getGoalName());
-  //      Log.e(TAG, "Task: "+ goal.getId());
-
-        Log.e(TAG, "Child: "+ child.getFirstName() );
 
         setViewData();
         requestRequiredApplicationPermission(new String[]{Manifest.permission.CAMERA,
@@ -172,7 +166,6 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 else {
                     updateTaskStatus(task, null);
 
-
                 }
 
                 break;
@@ -207,7 +200,13 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             if (selectedTask.getGoal() == null)
                 Utils.logDebug(TAG, "Goal is not available");
             else
+            {
                 taskJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, selectedTask.getGoal().getId()));
+                Utils.logDebug(TAG, "Goal is available");
+                Utils.logDebug(TAG, "Goal ID= "+selectedTask.getGoal().getId());
+                Utils.logDebug(TAG, "Goal ID= "+selectedTask.getGoal().getGoalName());
+            }
+
 
             if (selectedTask.getRepititionSchedule() == null)
                 Utils.logDebug(TAG, "repeat is none");

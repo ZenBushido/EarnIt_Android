@@ -29,6 +29,10 @@ import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Item;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.model.adjustBalance.AdjustBalanceResponse;
+import com.mobiledi.earnit.model.adjustBalance.AdjustGoalData;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
@@ -49,6 +53,9 @@ import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by mobile-di on 7/10/17.
@@ -86,12 +93,14 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
     int count = 0;
     boolean addValue = true;
 
+    AdjustGoalData adjustGoalData;
     List<Goal> listGoal = new ArrayList<>();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.balance_layout);
+
 
         balance_Header = (TextView) findViewById(R.id.balance_header);
         forward_arrow = (ImageButton) findViewById(R.id.addtask_forward_arrow);
@@ -122,7 +131,8 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
         tasks = (Tasks) intent.getSerializableExtra(AppConstant.TO_EDIT);
         fromScreen = intent.getStringExtra(AppConstant.FROM_SCREEN);
         userType = intent.getStringExtra(AppConstant.TYPE);
-        headerBalance.setText("Adjust" + " " + childObject.getFirstName() + " " + "BalanceAdjustment");
+       // headerBalance.setText("Adjust" + " " + childObject.getFirstName() + " " + "BalanceAdjustment");
+        headerBalance.setText("Balance Adjustment");
         balanceSetting.setText("Add");
         if (isDeviceOnline())
             isGoalExists();
@@ -192,7 +202,62 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
                                                     Utils.showToast(balance, getResources().getString(R.string.no_balance_reason));
                                                 } else {
 
-                                                    int finalBalance;
+                                                   com.mobiledi.earnit.model.adjustBalance.Goal goal = new com.mobiledi.earnit.model.adjustBalance.Goal(listGoal.get(count - 1).getId());
+
+                                                    if(addValue)
+                                                    {
+                                                        String adjustBalance = adjustmentedt.getText().toString();
+                                                        double mBalance = Double.parseDouble(adjustBalance);
+                                                        adjustGoalData = new AdjustGoalData(mBalance, task_detailedt.getText().toString(), goal );
+
+                                                        RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(), parentObject.getPassword());
+                                                        Call<AdjustBalanceResponse> call = retroInterface.adjustBalance(adjustGoalData);
+
+                                                        call.enqueue(new Callback<AdjustBalanceResponse>() {
+                                                            @Override
+                                                            public void onResponse(Call<AdjustBalanceResponse> call, Response<AdjustBalanceResponse> response) {
+                                                                Log.e(TAG, "Response Code: "+response.code());
+                                                                Log.e(TAG, "Response Code: "+response.code());
+                                                                showToast("Adjustment added for " + childObject.getFirstName());
+                                                                screenSwitch.moveToParentDashboard(parentObject);
+                                                            }
+
+                                                            @Override
+                                                            public void onFailure(Call<AdjustBalanceResponse> call, Throwable t) {
+
+                                                            }
+                                                        });
+
+
+                                                    }
+
+                                                    else
+                                                    {
+                                                        String adjustBalance = adjustmentedt.getText().toString();
+                                                        double mBalance = Double.parseDouble(adjustBalance);
+                                                        adjustGoalData = new AdjustGoalData(-mBalance, task_detailedt.getText().toString(), goal );
+
+                                                        RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(), parentObject.getPassword());
+                                                        Call<AdjustBalanceResponse> call = retroInterface.adjustBalance(adjustGoalData);
+
+                                                        call.enqueue(new Callback<AdjustBalanceResponse>() {
+                                                            @Override
+                                                            public void onResponse(Call<AdjustBalanceResponse> call, Response<AdjustBalanceResponse> response) {
+                                                                Log.e(TAG, "Response Code: "+response.code());
+                                                                showToast("Adjustment added for " + childObject.getFirstName());
+                                                                screenSwitch.moveToParentDashboard(parentObject);
+                                                            }
+
+                                                            @Override
+                                                            public void onFailure(Call<AdjustBalanceResponse> call, Throwable t) {
+
+                                                            }
+                                                        });
+                                                    }
+
+
+
+                                                   /* int finalBalance;
 
                                                     String adjustBalance = adjustmentedt.getText().toString();
                                                     int mBalance = Integer.parseInt(adjustBalance);
@@ -203,7 +268,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
                                                         adjustmentedt.setError(null);
                                                     }
 
-                                                    addEditGoal();
+                                                    addEditGoal();*/
 
                                                 }
                                             }

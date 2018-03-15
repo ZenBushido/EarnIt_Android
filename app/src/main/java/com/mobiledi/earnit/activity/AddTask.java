@@ -42,6 +42,10 @@ import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Item;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.model.getChild.GetAllChildResponse;
+import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.stickyEvent.MessageEvent;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
@@ -72,10 +76,15 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TimeZone;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.mobiledi.earnit.R.id.task_name;
 
@@ -84,12 +93,18 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     public Parent parentObject;
     public Child childObject, otherChild;
-    Button save, cancel, checkbox, screenlockBtn;
-    EditText taskName, taskDetails, amountTxt;
-    TextView date_time_textview;
-    TextView childName, assignTo;
-    CircularImageView childAvatar;
-    ImageView dueDate;
+    @BindView(R.id.save) Button save;
+    @BindView(R.id.cancel) Button cancel;
+    @BindView(R.id.newtask_requirephoto) Button checkbox;
+    @BindView(R.id.newtask_screenlockcheck) Button screenlockBtn;
+    @BindView(R.id.task_name) EditText taskName;
+    @BindView(R.id.task_detail) EditText taskDetails;
+    @BindView(R.id.task_amount) EditText amountTxt;
+    @BindView(R.id.date_time_textview) TextView date_time_textview;
+    @BindView(R.id.add_task_header) TextView childName;
+    @BindView(R.id.assign_to_id) TextView assignTo;
+    @BindView(R.id.add_task_avatar) CircularImageView childAvatar;
+    @BindView(R.id.due_date) ImageView dueDate;
     String NONE = "None";
     AddTask addTask;
     Map<Integer, String> childs;
@@ -103,7 +118,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     boolean IS_EDITING_TASK = false;
     private final String TAG = "AddTask";
     TextView repeatSpinner, assignSpinner;
-    RelativeLayout progressBar;
+    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
     String screen_name;
     private String goalName;
     private String repeat = "";
@@ -117,12 +132,13 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     ArrayList<Item> repeatList, goalsList;
     private BottomSheetDialog mBottomSheetDialog;
     int fetchGoalId = 0;
-    private Toolbar goalToolbar;
-    private ImageButton drawerToggle;
+    @BindView(R.id.toolbar_add) Toolbar goalToolbar;
+    @BindView(R.id.drawerBtn) ImageButton drawerToggle;
     List<Child> childList = new ArrayList<>();
     int childsCounter = 0;
     AddTaskModel.repititionSchedule repititionSchedule;
-    ImageButton back, addTask_help;
+    @BindView(R.id.addtask_back_arrow) ImageButton back;
+    @BindView(R.id.addtask_helpicon)ImageButton    addTask_help;
     private Calendar c;
     Integer retry = 0;
 
@@ -131,15 +147,10 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task_layout);
-
-        addTask_help = (ImageButton) findViewById(R.id.addtask_helpicon);
-        goalToolbar = (Toolbar) findViewById(R.id.toolbar_add);
-        drawerToggle = (ImageButton) findViewById(R.id.drawerBtn);
-        progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
+        ButterKnife.bind(this);
         setSupportActionBar(goalToolbar);
         //getSupportActionBar().setTitle(null);
-        screenlockBtn = (Button) findViewById(R.id.newtask_screenlockcheck);
-        back = (ImageButton) findViewById(R.id.addtask_back_arrow);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,12 +160,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         });
         addTask = this;
         screenSwitch = new ScreenSwitch(addTask);
-        save = (Button) findViewById(R.id.save);
-        cancel = (Button) findViewById(R.id.cancel);
-        taskDetails = (EditText) findViewById(R.id.task_detail);
-        taskName = (EditText) findViewById(task_name);
-        amountTxt = (EditText) findViewById(R.id.task_amount);
-        date_time_textview = (TextView) findViewById(R.id.date_time_textview);
+
         intent = getIntent();
         screen_name = intent.getStringExtra(AppConstant.FROM_SCREEN);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
@@ -189,12 +195,12 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         //      repeatList.add(new Item(2, otherChild.getFirstName()));
 
         callGoalService(parentObject.getEmail(), parentObject.getPassword(), childObject.getId());
-        childName = (TextView) findViewById(R.id.add_task_header);
+
         childName.setText(childObject.getFirstName());
-        childAvatar = (CircularImageView) findViewById(R.id.add_task_avatar);
-        dueDate = (ImageView) findViewById(R.id.due_date);
-        checkbox = (Button) findViewById(R.id.newtask_requirephoto);
-        assignTo = (TextView) findViewById(R.id.assign_to_id);
+
+
+
+
         try {
             Picasso.with(addTask).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
         } catch (Exception e) {
@@ -219,6 +225,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         screenlockBtn.setOnClickListener(addTask);
         if (isDeviceOnline())
             fetchChildList();
+        //fetchAllChildList();
 
         taskName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -579,7 +586,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                     });
                 } else {
                     Utils.logDebug(TAG, "calling task add api");
-                    Log.e("testing url", "" + AppConstant.BASE_URL + AppConstant.TASKS_API);
+                    Log.e(TAG, "testing url "+ "" + AppConstant.BASE_URL + AppConstant.TASKS_API);
+                    Log.e(TAG, "JSON: "+ entity);
 
                     httpClient.post(this, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
 
@@ -784,7 +792,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 if (type.equalsIgnoreCase(AppConstant.GOAL)) {
                     for (int i = 0; i < goalList.size(); i++) {
                         if (item.getId() != 0) {
-                            fetchGoalId = goalList.get(i).getId();
+                            //fetchGoalId = goalList.get(i).getId();
+                            Log.e(TAG, "Goal ID= "+ fetchGoalId);
                         }
 
                     }
@@ -802,6 +811,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 }
 
                 showToast(item.getTitle());
+                fetchGoalId = item.getId();
+                Log.e(TAG, "GOal id;::= "+item.getId());
                 dropDownView.setText(item.getTitle());
                 if (mBottomSheetDialog != null) {
                     mBottomSheetDialog.dismiss();
@@ -821,6 +832,26 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     @Override
     public void onDrawerToggeled() {
+
+    }
+
+    public void fetchAllChildList()
+    {
+
+        RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
+        Call<List<GetAllChildResponse>> response = retroInterface.getAllChild(parentObject.getAccount().getId());
+
+        response.enqueue(new Callback<List<GetAllChildResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetAllChildResponse>> call, Response<List<GetAllChildResponse>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<GetAllChildResponse>> call, Throwable t) {
+
+            }
+        });
 
     }
 

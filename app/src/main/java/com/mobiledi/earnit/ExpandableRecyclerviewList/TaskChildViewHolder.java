@@ -98,6 +98,9 @@ public class TaskChildViewHolder extends ChildViewHolder {
 
                     Log.e(TAG, "Child Object: " + child.getFirstName());
                     Log.e(TAG, "Task Object: " + task.getName());
+                    Log.e(TAG, "Task Object: " + task.getDetails());
+                    Log.e(TAG, "Task Object: " + task.getGoal().getGoalName());
+                    Log.e(TAG, "Task Object: " + task.getGoal().getId());
 
                     itemView.getContext().startActivity(requestTaskApproval);
 

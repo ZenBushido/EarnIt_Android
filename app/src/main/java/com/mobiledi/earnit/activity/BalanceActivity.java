@@ -192,7 +192,6 @@ public class BalanceActivity extends BaseActivity   {
         RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
         Call<List<GetAllGoalResponse>> response = retroInterface.getGoals(childObject.getId());
 
-
         response.enqueue(new Callback<List<GetAllGoalResponse>>() {
             @Override
             public void onResponse(Call<List<GetAllGoalResponse>> call, Response<List<GetAllGoalResponse>> response) {

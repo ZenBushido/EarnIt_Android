@@ -37,6 +37,7 @@
                     android:src="@drawable/arrow_left" />
 
                 <ImageButton
+
                     android:id="@+id/drawerBtn"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
                     android:gravity="center_horizontal">
 
                     <TextView
+
                         android:id="@+id/goal_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

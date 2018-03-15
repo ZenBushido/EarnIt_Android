@@ -89,6 +89,10 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
     public void onBindChildViewHolder(TaskChildViewHolder taskChildViewHolder, int position, Object childListItem) {
 
         Tasks childTask = (Tasks) childListItem;
+        Log.e(TAG, "Child Task= "+childTask.getName());
+        Log.e(TAG, "Child Task= "+childTask.getStatus());
+        //        Log.e(TAG, "Child Task= "+childTask.getGoal().getId());
+   //     Log.e(TAG, "Child Task= "+childTask.getGoal().getGoalName());
         taskChildViewHolder.onBind(childTask, datedue, parent, child, screenName);
     }
 }
