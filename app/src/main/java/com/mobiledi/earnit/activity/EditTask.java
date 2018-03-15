@@ -92,6 +92,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.mobiledi.earnit.activity.ParentDashboard.parentObject;
+
 public class EditTask extends BaseActivity implements View.OnClickListener, NavigationDrawer.OnDrawerToggeled {
 
     public Parent parentObject;
@@ -797,7 +799,8 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                screenSwitch.moveToAllTaskScreen(childObject, childObject, AppConstant.CHECKED_IN_SCREEN, parentObject, screen_name);
+                updateTaskStatus(currentTask, AppConstant.APPROVED);
+
 
             }
         });
@@ -976,5 +979,128 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     @Override
     public void onDrawerToggeled() {
 
+    }
+
+    private void updateTaskStatus(Tasks selectedTask, String changedStatus) {
+        JSONObject taskJson = new JSONObject();
+        try {
+            taskJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, selectedTask.getChildId()));
+            taskJson.put(AppConstant.ID, selectedTask.getId());
+            taskJson.put(AppConstant.NAME, selectedTask.getName());
+            taskJson.put(AppConstant.DUE_DATE, selectedTask.getDueDate());
+            taskJson.put(AppConstant.CREATE_DATE, selectedTask.getCreateDate());
+            taskJson.put(AppConstant.DESCRIPTION, selectedTask.getDetails());
+            taskJson.put(AppConstant.STATUS, changedStatus);
+            taskJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
+            taskJson.put(AppConstant.ALLOWANCE, selectedTask.getAllowance());
+
+            if (selectedTask.getRepititionSchedule() == null)
+                Utils.logDebug(TAG, "repeat is none");
+            else {
+                JSONObject repeatSchedule = new JSONObject();
+                repeatSchedule.put(AppConstant.ID, selectedTask.getRepititionSchedule().getId());
+                repeatSchedule.put(AppConstant.REPEAT, selectedTask.getRepititionSchedule().getRepeat());
+                taskJson.put(AppConstant.REPITITION_SCHEDULE, repeatSchedule);
+
+            }
+
+            if (selectedTask.getPictureRequired())
+                taskJson.put(AppConstant.PICTURE_REQUIRED, selectedTask.getPictureRequired());
+            else {
+                taskJson.put(AppConstant.PICTURE_REQUIRED, 0);
+                Utils.logDebug(TAG, "picture required not checked");
+            }
+
+            if (selectedTask.getGoal() != null) {
+                taskJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, selectedTask.getGoal().getId()));
+
+            } Utils.logDebug(TAG, " child-update-task : " + taskJson.toString());
+            StringEntity entity = new StringEntity(taskJson.toString());
+            entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
+            AsyncHttpClient httpClient = new AsyncHttpClient();
+            httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+
+            httpClient.put(addTask, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    Utils.logDebug(TAG, " onSuccessOU : " + response.toString());
+                    progressBar.setVisibility(View.GONE);
+                    lockScreen();
+
+                    final AsyncHttpClient client = new AsyncHttpClient();
+                    client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+                    client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                            ArrayList<Tasks> taskList = new ArrayList<>();
+
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject object = response.getJSONObject(i);
+                                    //TASKS
+                                    Tasks task = new GetObjectFromResponse().getTaskObject(object, childObject.getId());
+                                    taskList.add(task);
+
+
+                                } catch (Exception e) {
+
+                                }
+                                childObject.setTasksArrayList(taskList);
+                                screenSwitch.moveToAllTaskScreen(childObject, childObject, AppConstant.CHECKED_IN_SCREEN, parentObject, screen_name);
+                                //screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
+                            }
+                        }
+                    });
+
+                    //if(isDeviceOnline())
+                      //  fetchChildTaskList();
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    Utils.logDebug(TAG, " onSuccessAU : " + response.toString());
+                    progressBar.setVisibility(View.GONE);
+                    lockScreen();
+                    screenSwitch.moveToAllTaskScreen(childObject, childObject, AppConstant.CHECKED_IN_SCREEN, parentObject, screen_name);
+                  //  if(isDeviceOnline())
+                    //    fetchChildTaskList();
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                    showToast(getResources().getString(R.string.api_calling_failed));
+                    Utils.logDebug(TAG, " onFailureU : " + errorResponse.toString());
+                    unLockScreen();
+
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    showToast(getResources().getString(R.string.api_calling_failed));
+                    Utils.logDebug(TAG, " onFailureU : " + errorResponse.toString());
+                    unLockScreen();
+
+                }
+
+                @Override
+                public void onStart() {
+                    progressBar.setVisibility(View.VISIBLE);
+                    lockScreen();
+
+
+                }
+
+                @Override
+                public void onFinish() {
+                    progressBar.setVisibility(View.GONE);
+                    unLockScreen();
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -202,58 +202,68 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
                                                     Utils.showToast(balance, getResources().getString(R.string.no_balance_reason));
                                                 } else {
 
-                                                   com.mobiledi.earnit.model.adjustBalance.Goal goal = new com.mobiledi.earnit.model.adjustBalance.Goal(listGoal.get(count - 1).getId());
-
-                                                    if(addValue)
+                                                    if(!balance_Header.getText().toString().equalsIgnoreCase("Chose Goal Name"))
                                                     {
-                                                        String adjustBalance = adjustmentedt.getText().toString();
-                                                        double mBalance = Double.parseDouble(adjustBalance);
-                                                        adjustGoalData = new AdjustGoalData(mBalance, task_detailedt.getText().toString(), goal );
+                                                        com.mobiledi.earnit.model.adjustBalance.Goal goal = new com.mobiledi.earnit.model.adjustBalance.Goal(listGoal.get(count - 1).getId());
 
-                                                        RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(), parentObject.getPassword());
-                                                        Call<AdjustBalanceResponse> call = retroInterface.adjustBalance(adjustGoalData);
+                                                        if(addValue)
+                                                        {
+                                                            String adjustBalance = adjustmentedt.getText().toString();
+                                                            double mBalance = Double.parseDouble(adjustBalance);
+                                                            adjustGoalData = new AdjustGoalData(mBalance, task_detailedt.getText().toString(), goal );
 
-                                                        call.enqueue(new Callback<AdjustBalanceResponse>() {
-                                                            @Override
-                                                            public void onResponse(Call<AdjustBalanceResponse> call, Response<AdjustBalanceResponse> response) {
-                                                                Log.e(TAG, "Response Code: "+response.code());
-                                                                Log.e(TAG, "Response Code: "+response.code());
-                                                                showToast("Adjustment added for " + childObject.getFirstName());
-                                                                screenSwitch.moveToParentDashboard(parentObject);
-                                                            }
+                                                            RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(), parentObject.getPassword());
+                                                            Call<AdjustBalanceResponse> call = retroInterface.adjustBalance(adjustGoalData);
 
-                                                            @Override
-                                                            public void onFailure(Call<AdjustBalanceResponse> call, Throwable t) {
+                                                            call.enqueue(new Callback<AdjustBalanceResponse>() {
+                                                                @Override
+                                                                public void onResponse(Call<AdjustBalanceResponse> call, Response<AdjustBalanceResponse> response) {
+                                                                    Log.e(TAG, "Response Code: "+response.code());
+                                                                    Log.e(TAG, "Response Code: "+response.code());
+                                                                    showToast("Adjustment added for " + childObject.getFirstName());
+                                                                    screenSwitch.moveToParentDashboard(parentObject);
+                                                                }
 
-                                                            }
-                                                        });
+                                                                @Override
+                                                                public void onFailure(Call<AdjustBalanceResponse> call, Throwable t) {
 
+                                                                }
+                                                            });
+
+
+                                                        }
+
+                                                        else
+                                                        {
+                                                            String adjustBalance = adjustmentedt.getText().toString();
+                                                            double mBalance = Double.parseDouble(adjustBalance);
+                                                            adjustGoalData = new AdjustGoalData(-mBalance, task_detailedt.getText().toString(), goal );
+
+                                                            RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(), parentObject.getPassword());
+                                                            Call<AdjustBalanceResponse> call = retroInterface.adjustBalance(adjustGoalData);
+
+                                                            call.enqueue(new Callback<AdjustBalanceResponse>() {
+                                                                @Override
+                                                                public void onResponse(Call<AdjustBalanceResponse> call, Response<AdjustBalanceResponse> response) {
+                                                                    Log.e(TAG, "Response Code: "+response.code());
+                                                                    showToast("Adjustment added for " + childObject.getFirstName());
+                                                                    screenSwitch.moveToParentDashboard(parentObject);
+                                                                }
+
+                                                                @Override
+                                                                public void onFailure(Call<AdjustBalanceResponse> call, Throwable t) {
+
+                                                                }
+                                                            });
+                                                        }
 
                                                     }
 
                                                     else
                                                     {
-                                                        String adjustBalance = adjustmentedt.getText().toString();
-                                                        double mBalance = Double.parseDouble(adjustBalance);
-                                                        adjustGoalData = new AdjustGoalData(-mBalance, task_detailedt.getText().toString(), goal );
-
-                                                        RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(), parentObject.getPassword());
-                                                        Call<AdjustBalanceResponse> call = retroInterface.adjustBalance(adjustGoalData);
-
-                                                        call.enqueue(new Callback<AdjustBalanceResponse>() {
-                                                            @Override
-                                                            public void onResponse(Call<AdjustBalanceResponse> call, Response<AdjustBalanceResponse> response) {
-                                                                Log.e(TAG, "Response Code: "+response.code());
-                                                                showToast("Adjustment added for " + childObject.getFirstName());
-                                                                screenSwitch.moveToParentDashboard(parentObject);
-                                                            }
-
-                                                            @Override
-                                                            public void onFailure(Call<AdjustBalanceResponse> call, Throwable t) {
-
-                                                            }
-                                                        });
+                                                        showToast("Select Goal");
                                                     }
+
 
 
 

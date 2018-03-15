@@ -340,9 +340,10 @@
                                 android:textSize="@dimen/check_in_text_size" />
 
                             <ImageView
+                                android:padding="3dp"
                                 android:id="@+id/due_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:background="@android:color/transparent"
                                 android:src="@drawable/calender" />
 

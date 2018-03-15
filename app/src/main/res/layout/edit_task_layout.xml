@@ -7,7 +7,8 @@
     android:layout_gravity="center"
     android:fitsSystemWindows="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
@@ -17,6 +18,17 @@
             layout="@layout/action_bar_view_headeradded"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <ScrollView
+
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -251,39 +263,32 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:gravity="right|center"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginRight="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:layout_weight="0.2"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.02" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".8"
-                            android:gravity="right|center"
+                            android:gravity="right"
                             android:paddingRight="@dimen/add_task_textview_left_margin"
                             android:text="Requires Photo:"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
 
                         <Button
+                            android:padding="2dp"
                             android:id="@+id/newtask_requirephoto"
-                            android:layout_width="0dp"
-                            android:layout_height="28dp"
-                            android:layout_weight=".16"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:background="@drawable/round_corner"
                             android:gravity="center"
                             android:textColor="@color/main_font" />
@@ -291,81 +296,89 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:gravity="right|center"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginRight="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:layout_weight="0.2"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.2" />
+
 
                         <TextView
-                            android:layout_width="0dp"
+
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.6"
-                            android:gravity="right|center"
+                            android:gravity="right"
                             android:paddingRight="@dimen/add_task_textview_left_margin"
                             android:text="Lock Phone/Apps if overdue:"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
 
                         <Button
+                            android:padding="2dp"
                             android:id="@+id/newtask_screenlockcheck"
-                            android:layout_width="0dp"
-                            android:layout_height="28dp"
-                            android:layout_weight="0.16"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:background="@drawable/round_corner"
-                            android:gravity="center"
                             android:textColor="@color/main_font" />
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
+
+
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/add_task_left_margin"
-                        android:layout_marginRight="35dp"
                         android:layout_marginTop="5dp"
-                        android:layout_weight="0.2"
-                        android:orientation="horizontal">
+                        >
 
                         <TextView
+                            android:layout_centerVertical="true"
+                            android:text="afdadfasdf"
                             android:id="@+id/date_time_textview"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.47"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="@dimen/add_task_textview_left_margin"
-                            android:layout_weight="1.05"
-                            android:gravity="right|center"
-                            android:text="Due Date:"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
-
-                        <ImageView
-                            android:id="@+id/due_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:src="@drawable/calender" />
+                            android:gravity="left"
+                            android:textColor="@color/main_font"
+                            android:textSize="@dimen/check_in_text_size" />
 
-                    </LinearLayout>
+                        <LinearLayout
+                            android:gravity="center"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/add_task_textview_left_margin"
+                                android:gravity="right|center"
+                                android:text="Due Date:"
+                                android:textColor="@color/main_font"
+                                android:textSize="@dimen/check_in_text_size" />
+
+                            <ImageView
+                                android:padding="2dp"
+                                android:id="@+id/due_date"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/calender" />
+                        </LinearLayout>
+
+
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -376,15 +389,15 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <Button
                             android:id="@+id/btnDelete"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_38size"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_weight="1"
@@ -394,12 +407,12 @@
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
                         <Button
+                            android:layout_weight="1"
                             android:id="@+id/cancel"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_38size"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:layout_weight="1"
                             android:background="@drawable/sign_in_round"
                             android:text="Cancel"
                             android:textAllCaps="false"
@@ -407,12 +420,12 @@
                             android:textSize="@dimen/check_in_text_size" />
 
                         <Button
+                            android:layout_weight="1"
                             android:id="@+id/save"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_38size"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:layout_weight="1"
                             android:background="@drawable/sign_in_round"
                             android:text="Save"
                             android:textAllCaps="false"
@@ -459,7 +472,8 @@
             </LinearLayout>
 
         </LinearLayout>
-
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <RelativeLayout

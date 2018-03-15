@@ -40,15 +40,20 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by mradul on 7/18/17.
  */
 
 public class ParentCheckInChildDashboard extends BaseActivity implements View.OnClickListener {
 
-    CircularImageView tChildImage;
-    TextView tHeaderName, addTask, readyLabel;
-    private Toolbar parentCheckinToolbar;
+    @BindView(R.id.user_image) CircularImageView tChildImage;
+    @BindView(R.id.textView_child) TextView tHeaderName;
+    @BindView(R.id.add_task) TextView addTask;
+    @BindView(R.id.approval_label) TextView readyLabel;
+    @BindView(R.id.toolbar_child) Toolbar parentCheckinToolbar;
     public Child childObject;
     Child otherChild;
     Parent parentObject;
@@ -56,35 +61,32 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
     ChildViewDateAdapter parentCheckInTaskAdapter;
     ParentCheckInChildDashboard parentCheckInChildDashboard;
     Button notifyChildButton;
-    private ImageButton drawerToggle;
-    RelativeLayout progressBar;
+    @BindView(R.id.calendarBtn_child) ImageButton drawerToggle;
+    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
     Handler handler;
     Runnable runnable;
     String onScreen, fromScreen;
-    LinearLayout showAllBlock, addTaskBlock;
+    @BindView(R.id.show_all_block) LinearLayout showAllBlock;
+    @BindView(R.id.add_task_block) LinearLayout addTaskBlock;
     TextView addTaskTextview, showAllTextView;
     ImageView showAllAddTask;
     boolean alreadyClick = false;
     private final String TAG = "ParentCheckInDashboard";
     ScreenSwitch screenSwitch;
-    private ImageButton ivBackArrow;
+    @BindView(R.id.ivBackArrow) ImageButton ivBackArrow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parent_checkin_child_layout);
-        parentCheckinToolbar = (Toolbar) findViewById(R.id.toolbar_child);
+        ButterKnife.bind(this);
         setSupportActionBar(parentCheckinToolbar);
         getSupportActionBar().setTitle(null);
+
         parentCheckInChildDashboard = this;
         screenSwitch = new ScreenSwitch(parentCheckInChildDashboard);
-        tChildImage = (CircularImageView) findViewById(R.id.user_image);
-        tHeaderName = (TextView) parentCheckinToolbar.findViewById(R.id.textView_child);
-        addTask = (TextView) findViewById(R.id.add_task);
-        readyLabel = (TextView) findViewById(R.id.approval_label);
-        drawerToggle = (ImageButton) parentCheckinToolbar.findViewById(R.id.calendarBtn_child);
         drawerToggle.setImageResource(R.drawable.ic_menu_pink_36dp);
-        ivBackArrow = (ImageButton) findViewById(R.id.ivBackArrow);
+
         ivBackArrow.setOnClickListener(this);
         //SERIALIZE OBJECT FROM INTENT OBJECT
         Intent intent = getIntent();
@@ -102,9 +104,8 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
             e.printStackTrace();
         }
         tHeaderName.setText(childObject.getFirstName().substring(0, 1).toUpperCase() + childObject.getFirstName().substring(1) + "'s Tasks");
-        progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
-        showAllBlock = (LinearLayout) findViewById(R.id.show_all_block);
-        addTaskBlock = (LinearLayout) findViewById(R.id.add_task_block);
+
+
         addTaskTextview = (TextView) findViewById(R.id.add_task);
         showAllTextView = (TextView) findViewById(R.id.show_all);
         showAllAddTask = (ImageView) findViewById(R.id.add_task_show_all_id);

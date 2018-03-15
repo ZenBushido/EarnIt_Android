@@ -50,4 +50,5 @@
 
 
     <dimen name="usage_row_height">72dp</dimen>
+    <dimen name="_38size">38dp</dimen>
 </resources>

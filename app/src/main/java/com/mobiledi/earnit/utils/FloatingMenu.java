@@ -333,27 +333,41 @@ public class FloatingMenu {
             @Override
             public void onClick(View v) {
 
+                Log.e(TAG, "All Task");
                 final AsyncHttpClient client = new AsyncHttpClient();
                 client.setBasicAuth(parent.getEmail(), parent.getPassword());
                 client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId(), null, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        ArrayList<Tasks> taskList = new ArrayList<>();
 
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject object = response.getJSONObject(i);
-                                //TASKS
-                                Tasks task = new GetObjectFromResponse().getTaskObject(object, child.getId());
-                                taskList.add(task);
+                        if(response.length()==0)
+                        {
+                            ArrayList<Tasks> taskList = new ArrayList<>();
+
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject object = response.getJSONObject(i);
+                                    //TASKS
+                                    Tasks task = new GetObjectFromResponse().getTaskObject(object, child.getId());
+                                    taskList.add(task);
 
 
-                            } catch (Exception e) {
+                                } catch (Exception e) {
 
+                                    Log.e(TAG, "Error: "+e.getLocalizedMessage());
+
+                                }
+                                child.setTasksArrayList(taskList);
+                                screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
                             }
-                            child.setTasksArrayList(taskList);
-                            screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
                         }
+
+                        else
+                        {
+                            //Utils.showToast("No Task Assigned.");
+                            Utils.showToast(activity, activity.getResources().getString(R.string.no_more_task));
+                        }
+
                     }
                 });
             }

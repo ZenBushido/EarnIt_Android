@@ -111,13 +111,13 @@ public class BalanceActivity extends BaseActivity   {
 
         fromScreen = intent.getStringExtra(AppConstant.FROM_SCREEN);
         userType = intent.getStringExtra(AppConstant.TYPE);
-        Log.e(TAG, "User Type = " + userType);
+
         if (userType.equals(AppConstant.CHILD)) {
-            Log.e(TAG, "Visibility Gone");
+
             btn_adjust.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
         } else {
-            Log.e(TAG, "Visible Adjust button");
+
             btn_adjust.setVisibility(View.VISIBLE);
             view.setVisibility(View.VISIBLE);
         }
@@ -147,14 +147,13 @@ public class BalanceActivity extends BaseActivity   {
 
     @OnClick(R.id.goal_avatar)
     void floatingMenu() {
-        Log.e(TAG, "Clicked");
-        if (userType.equalsIgnoreCase(AppConstant.PARENT)) {
-            Log.e(TAG, "Parent");
+        if (userType.equalsIgnoreCase(AppConstant.PARENT))
+
             new FloatingMenu(balanceChild).fetchAvatarDimension(avatar, childObject, otherChild, parentObject, AppConstant.BALANCE_SCREEN, progressBar, tasks);
-        } else {
-            Log.e(TAG, "Child");
+         else
+
             new FloatingMenu(balanceChild).fetchAvatarDimension(avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar);
-        }
+
     }
 
     @OnClick(R.id.addtask_back_arrow)
@@ -195,9 +194,7 @@ public class BalanceActivity extends BaseActivity   {
         response.enqueue(new Callback<List<GetAllGoalResponse>>() {
             @Override
             public void onResponse(Call<List<GetAllGoalResponse>> call, Response<List<GetAllGoalResponse>> response) {
-                // Log.e(TAG, "response = "+response.body().get(0).getName());
 
-              //  Log.e(TAG, "Response= "+response.body().get(0).getAdjustments().get(0).getAmount());
 
                 Integer cashTotal = 0;
                 Integer goalTotal = 0;
@@ -206,13 +203,10 @@ public class BalanceActivity extends BaseActivity   {
                 for (int i = 0; i < response.body().size(); i++)
                 {
                     cashTotal += response.body().get(i).getCash();
-                    int goalAmount = response.body().get(i).getAmount();
 
-
-                        for(int j=0; j<response.body().get(i).getAdjustments().size(); j++)
+                    for(int j=0; j<response.body().get(i).getAdjustments().size(); j++)
                         {
                             goalTotal+= response.body().get(i).getAdjustments().get(j).getAmount();
-                            Log.e(TAG, "Goal Total= "+goalTotal);
                         }
                     goalTotal+= response.body().get(i).getAmount();
 
@@ -282,7 +276,7 @@ public class BalanceActivity extends BaseActivity   {
                     {
                         cashTotal += listGoal.get(i).getCash();
                         int goalAmount = listGoal.get(i).getAmount();
-/*
+                    /*
                         for(int j=0; j<listGoal.get(i).getAdjustments().size(); j++)
                         {
                             goalTotal = goalAmount+listGoal.get(i).getAdjustments().get(j).getAmount();

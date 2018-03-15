@@ -245,7 +245,7 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Utils.logDebug(TAG, "Child error response: "+ errorResponse.toString());
+                Utils.logDebug(TAG, "Child error response: "+ throwable.getLocalizedMessage());
 
             }
 
