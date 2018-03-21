@@ -51,22 +51,18 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             {
                 goalTotal+= mData.get(position).getAdjustments().get(j).getAmount();
             }
+
             goalTotal = goalTotal+ mData.get(position).getAmount();
-
-
-
             goalPercentageStr = "$"+goalTotal+ " of " +"$"+ mData.get(position).getAmount();
-
             holder.tv_amount.setText(goalPercentageStr);
 
         }
         else
         {
-            double value = (double)mData.get(position).getCash()/(double)mData.get(position).getAmount();
-            double percentage =  value * 100;
-            percentage = Utils.roundOff(percentage, 1);
-            String goalPercentageStr = "$"+mData.get(position).getCash()+" of " + "$"+mData.get(position).getAmount()
-                    +" / " +percentage+"%";
+
+            goalTotal = goalTotal+ mData.get(position).getAmount();
+            String goalPercentageStr = "$"+goalTotal+" of " + "$"+mData.get(position).getAmount();
+
             holder.tv_amount.setText(goalPercentageStr);
         }
 

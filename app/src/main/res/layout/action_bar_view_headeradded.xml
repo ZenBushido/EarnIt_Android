@@ -77,16 +77,16 @@
                 app:siSquare="true" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="0dp"
                 android:layout_marginLeft="-10dp"
-                android:layout_weight=".05"
                 android:gravity="bottom"
                 android:text="..."
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/task_rejection_text_size"
                 android:textStyle="bold" />
+
 
         </LinearLayout>
 

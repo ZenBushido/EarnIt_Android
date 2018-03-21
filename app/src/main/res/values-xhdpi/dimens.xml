@@ -9,6 +9,7 @@
     <dimen name="toolbar_header_size">23sp</dimen><!--...-->
     <dimen name="task_layout_text_size">18sp</dimen><!--form-->
     <dimen name="completed_text_size">18sp</dimen>
+    <dimen name="app_text_size">18sp</dimen>
 
 
     <!--login screen -->
@@ -64,7 +65,7 @@
     <dimen name="comment_edittext_margin">5dp</dimen>
     <dimen name="comment_edittext_padding">10dp</dimen>
     <dimen name="button_layout_top_margin">10dp</dimen>
-    <dimen name="button_layout_views_height">35dp</dimen>
+    <dimen name="button_layout_views_height">32dp</dimen>
     <dimen name="button_layout_left_right_margin">40dp</dimen>
     <dimen name="button_layout_right_left_margin">20dp</dimen>
     <dimen name="task_approval_decline_dialog_width">350dp</dimen>
@@ -102,5 +103,6 @@
 
     <!--dailog-->
     <dimen name="message_dialog_width">310dp</dimen>
+    <dimen name="action_bar_text_size">20dp</dimen>
 
 </resources>

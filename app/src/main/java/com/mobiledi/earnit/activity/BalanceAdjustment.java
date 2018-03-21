@@ -31,6 +31,7 @@ import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.model.adjustBalance.AdjustBalanceResponse;
 import com.mobiledi.earnit.model.adjustBalance.AdjustGoalData;
+import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
 import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
@@ -94,7 +95,10 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
     boolean addValue = true;
 
     AdjustGoalData adjustGoalData;
-    List<Goal> listGoal = new ArrayList<>();
+  //  List<Goal> listGoal = new ArrayList<>();
+    List<GetAllGoalResponse> listGoalResponse = new ArrayList<>();
+    List<Integer> listTotalAmount = new ArrayList<>();
+
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -135,7 +139,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
         headerBalance.setText("Balance Adjustment");
         balanceSetting.setText("Add");
         if (isDeviceOnline())
-            isGoalExists();
+            getAllGoals();
         if (parentObject != null) {
             NavigationDrawer navigationDrawer = new NavigationDrawer(this, parentObject, addToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, childObject.getId());
             navigationDrawer.setOnDrawerToggeled(this);
@@ -147,20 +151,30 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
 
         }
         if (isDeviceOnline())
-            isGoalExists();
-        if (listGoal == null || listGoal.size() < 1) {
+           // isGoalExists();
+        if (listGoalResponse == null || listGoalResponse.size() < 1) {
             currentBalance.setText("Chose Ballance");
             balance_Header.setText("Chose Goal Name");
 
             forward_arrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (count < listGoal.size()) {
-                        balance_Header.setText(listGoal.get(count).getGoalName());
-                        currentBalance.setText(listGoal.get(count).getAmount() + "");
+                    Log.e(TAG, "Forward Count= "+count);
+                    if (count < listGoalResponse.size()) {
+
+                        balance_Header.setText(listGoalResponse.get(count).getName());
+                        currentBalance.setText(listTotalAmount.get(count) + "");
                         count++;
 
                     }
+                    else
+                    {
+                        count = 0;
+                        balance_Header.setText(listGoalResponse.get(count).getName());
+                        currentBalance.setText(listTotalAmount.get(count) + "");
+
+                    }
+
                 }
             });
 
@@ -168,10 +182,19 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
 
                 @Override
                 public void onClick(View v) {
+                    Log.e(TAG, "Backward Count= "+count);
                     if (count > 0) {
                         --count;
-                        balance_Header.setText(listGoal.get(count).getGoalName());
-                        currentBalance.setText(listGoal.get(count).getAmount() + "");
+
+                        balance_Header.setText(listGoalResponse.get(count).getName());
+                        currentBalance.setText(listTotalAmount.get(count) + "");
+                    }
+                    else
+                    {
+                        count = listGoalResponse.size()-1;
+                        balance_Header.setText(listGoalResponse.get(count).getName());
+                        currentBalance.setText(listTotalAmount.get(count) + "");
+
                     }
                 }
             });
@@ -204,7 +227,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
 
                                                     if(!balance_Header.getText().toString().equalsIgnoreCase("Chose Goal Name"))
                                                     {
-                                                        com.mobiledi.earnit.model.adjustBalance.Goal goal = new com.mobiledi.earnit.model.adjustBalance.Goal(listGoal.get(count - 1).getId());
+                                                        com.mobiledi.earnit.model.adjustBalance.Goal goal = new com.mobiledi.earnit.model.adjustBalance.Goal(listGoalResponse.get(count - 1).getId());
 
                                                         if(addValue)
                                                         {
@@ -406,66 +429,42 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
 
     }
 
-    public void isGoalExists() {
 
-        try {
-            AsyncHttpClient client = new AsyncHttpClient();
-            client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
-            client.get(AppConstant.BASE_URL + AppConstant.GOAL_API + childObject.getId(), null, new JsonHttpResponseHandler() {
 
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                }
+    private void getAllGoals() {
 
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+        RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
+        Call<List<GetAllGoalResponse>> response = retroInterface.getGoals(childObject.getId());
 
-                    try {
-                        if (response.length() > 0 && (response.getJSONObject(0).get(AppConstant.ID) instanceof Integer)) {
 
-                            for (int i = 0; i < response.length(); i++) {
-                                try {
-                                    JSONObject object = response.getJSONObject(i);
-                                    if (object.has(AppConstant.ID)) {
-                                        Goal goal = new GetObjectFromResponse().getGoalObject(object);
-                                        listGoal.add(goal);
-                                        Log.i("goal-responsel1", String.valueOf(listGoal.size()));
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        response.enqueue(new Callback<List<GetAllGoalResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetAllGoalResponse>> call, Response<List<GetAllGoalResponse>> response) {
+                // Log.e(TAG, "response = "+response.body().get(0).getName());
+                listGoalResponse = response.body();
+
+
+                for(int i=0; i< listGoalResponse.size(); i++)
+                {
+                    int totalAmount = 0;
+                    for(int j =0; j<listGoalResponse.get(i).getAdjustments().size(); j++)
+                    {
+                        totalAmount+= listGoalResponse.get(i).getAdjustments().get(j).getAmount();
+
                     }
 
+                    totalAmount = totalAmount + listGoalResponse.get(i).getAmount();
+                    Log.e(TAG, "Total Amount= "+totalAmount);
 
+                    listTotalAmount.add(totalAmount);
                 }
+            }
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                    super.onFailure(statusCode, headers, throwable, errorResponse);
-                }
+            @Override
+            public void onFailure(Call<List<GetAllGoalResponse>> call, Throwable t) {
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    super.onFailure(statusCode, headers, throwable, errorResponse);
-                }
-
-                @Override
-                public void onStart() {
-                    progressBar.setVisibility(View.VISIBLE);
-                }
-
-                @Override
-                public void onFinish() {
-                    progressBar.setVisibility(View.GONE);
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            }
+        });
     }
 
     private void addEditGoal() {
@@ -486,7 +485,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
         }
 
         try {
-            signInJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, listGoal.get(count - 1).getId()));
+            signInJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, listGoalResponse.get(count - 1).getId()));
         } catch (JSONException e) {
             e.printStackTrace();
         }

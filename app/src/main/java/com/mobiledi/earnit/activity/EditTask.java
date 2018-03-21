@@ -98,6 +98,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
     public Parent parentObject;
     public Child childObject, otherChild;
+    public Goal goalObject;
     @BindView(R.id.save)Button save;
     @BindView(R.id.cancel) Button cancel;
     @BindView(R.id.newtask_requirephoto) Button checkbox;
@@ -177,11 +178,15 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
         this.currentTaskStatus = intent.getStringExtra(AppConstant.TASK_STATUS);
 
+
         //---------- Intent Get Extra
         screen_name = intent.getStringExtra(AppConstant.FROM_SCREEN);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
+        goalObject = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
+        Log.e(TAG, "Goal Object= "+goalObject.getId());
+        Log.e(TAG, "Goal Object= "+goalObject.getGoalName() );
 
         fetchCHildId = childObject.getId();
         NavigationDrawer navigationDrawer = new NavigationDrawer(addTask, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);

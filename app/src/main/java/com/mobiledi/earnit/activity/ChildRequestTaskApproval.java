@@ -93,8 +93,6 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         task = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
         goal = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
 
-
-
         setViewData();
         requestRequiredApplicationPermission(new String[]{Manifest.permission.CAMERA,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -106,10 +104,12 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         taskDetails.setText(task.getDetails());
         taskDueDate.setText(DateTimeFormat.forPattern(AppConstant.DATE_FORMAT).print(new DateTime(task.getDueDate())));
         if(goal!=null)
-        {
-            Log.e(TAG, "Goal is not null");
+
             tv_applies_to.setText(goal.getGoalName());
-        }
+
+        else
+            tv_applies_to.setText("NA");
+
         // tv_applies_to.setText(goal.getGoalName());
         // taskAmount.setText("$ " + String.valueOf(Utils.roundOff(task.getAllowance(), 2)));
         if (task.getPictureRequired()) {
@@ -123,6 +123,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             if (task.getRepititionSchedule() != null) {
                 String repeatFrequency = task.getRepititionSchedule().getRepeat();
 
+                Log.e(TAG, "Repeat is not null");
+                Log.e(TAG, "Repeat Freq= "+repeatFrequency);
                 if (repeatFrequency.isEmpty()) {
                     Toast.makeText(this, "Submit task for Approval.", Toast.LENGTH_SHORT).show();
                 } else {

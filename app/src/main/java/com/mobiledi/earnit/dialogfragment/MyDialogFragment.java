@@ -44,7 +44,7 @@ DailyDialogListener dailyDialogListener;
 
         repeat_daily_text= (TextView) dialogView.findViewById(R.id.repeat_daily_frequency);
         repeat_daily_text.setText("Daily");
-textEdit = (EditText) dialogView.findViewById(R.id.repeat_daily_checkbox);
+        textEdit = (EditText) dialogView.findViewById(R.id.repeat_daily_checkbox);
         final EditText repeat_daily_check = (EditText) dialogView.findViewById(R.id.repeat_daily_checkbox);
         repeat_daily_check.setText("");
         // "Got it" button

@@ -34,6 +34,7 @@ import com.mobiledi.earnit.activity.ParentCheckInChildDashboard;
 import com.mobiledi.earnit.activity.ParentDashboard;
 import com.mobiledi.earnit.activity.ParentProfile;
 import com.mobiledi.earnit.activity.ParentTaskApproval;
+import com.mobiledi.earnit.activity.RequestTransfer;
 import com.mobiledi.earnit.activity.usageStats.AppUsageStatisticsActivity;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Goal;
@@ -274,6 +275,19 @@ goals.add(goal);
         activity.startActivity(moveToBalance);
     }
 
+    public void moveToRequestTransfer(Child child, Child otherChild, Parent parent, String fromScreen, Tasks tasks, List<Goal> goal, String userType) {
+        Intent moveToBalance = new Intent(activity, RequestTransfer.class);
+        moveToBalance.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        moveToBalance.putExtra(AppConstant.CHILD_OBJECT, child);
+        moveToBalance.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
+        moveToBalance.putExtra(AppConstant.PARENT_OBJECT, parent);
+        moveToBalance.putExtra(AppConstant.FROM_SCREEN, fromScreen);
+        moveToBalance.putExtra(AppConstant.TO_EDIT, (Serializable) tasks);
+        moveToBalance.putExtra(AppConstant.GOAL_OBJECT, (Serializable) goal);
+        moveToBalance.putExtra(AppConstant.TYPE, userType);
+        activity.startActivity(moveToBalance);
+    }
+
     public void moveToBalanceScreen(Child child, Child otherChild, Parent parent, String fromScreen, Tasks tasks, List<Goal> goal, String userType) {
         Intent moveToBalance = new Intent(activity, BalanceActivity.class);
         moveToBalance.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -398,14 +412,14 @@ goals.add(goal);
     }
 
 
-    public void usageStats(Parent parent, String fromScreen) {
+    public void usageStats(Parent parent, String fromScreen, Child child) {
 
         //activity.startActivity(new Intent(activity, AppUsageStatisticsActivity.class));
 
         Intent moveToTaskApproval = new Intent(activity, AppUsageStatisticsActivity.class);
         // moveToTaskApproval.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-
+        moveToTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
         moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parent);
         moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, fromScreen);
 

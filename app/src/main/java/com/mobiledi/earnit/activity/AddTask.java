@@ -424,7 +424,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 if (taskName.getText().toString().trim().length() > 0) {
                     if (taskName.getText().toString().trim().length() <= TASK_NAME_LENGTH) {
 
-                        if (!amountTxt.getText().equals(""))
+                        if (!amountTxt.getText().equals("")|!amountTxt.getText().toString().isEmpty())
                             saveTask();
 
                     } else
@@ -611,6 +611,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                         @Override
                         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                             Utils.logDebug(TAG, "calling onFailure : " + errorResponse.toString());
+                            Utils.showToast(addTask, "Internal Server Error");
                             unLockScreen();
                         }
 
@@ -803,7 +804,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                         if (item.getId() != 0) {
                             if (item.getId() - 1 == childList.get(i).getId()) {
                                 childObject = childList.get(i);
-                                childID = childList.get(i).getId();
+                                //childID = childList.get(i).getId();
+                                Log.e(TAG, "Name= "+childList.get(i).getFirstName());
                             }
                         }
 
@@ -811,8 +813,13 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 }
 
                 showToast(item.getTitle());
-                fetchGoalId = item.getId();
-                Log.e(TAG, "GOal id;::= "+item.getId());
+
+                if(type.equalsIgnoreCase(AppConstant.CHILD))
+                    childID = item.getId();
+                else
+                    fetchGoalId = item.getId();
+                Log.e(TAG, "GOal id;::= "+childID);
+                Log.e(TAG, "GOal id;::= "+fetchGoalId);
                 dropDownView.setText(item.getTitle());
                 if (mBottomSheetDialog != null) {
                     mBottomSheetDialog.dismiss();

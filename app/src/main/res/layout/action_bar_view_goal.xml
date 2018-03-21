@@ -54,14 +54,13 @@
                     android:gravity="center_horizontal">
 
                     <TextView
-
                         android:id="@+id/goal_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scaleType="centerInside"
                         android:textAlignment="center"
                         android:textColor="@color/main_font"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/action_bar_text_size" />
 
                 </LinearLayout>
 
@@ -76,14 +75,15 @@
                 app:siBorderColor="@android:color/white"
                 app:siBorderWidth="1.5dp"
                 app:siRadius="1dp"
+
                 app:siSquare="true" />
 
             <TextView
-                android:layout_width="0dp"
+
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="0dp"
                 android:layout_marginLeft="-10dp"
-                android:layout_weight=".05"
                 android:gravity="bottom"
                 android:text="..."
                 android:textColor="@android:color/white"

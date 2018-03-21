@@ -30,8 +30,9 @@
     <dimen name="tips_margin">10dp</dimen>
     <dimen name="tips_bottom_margin">0dp</dimen>
     <dimen name="tips_top_margin">10dp</dimen>
-    <dimen name="tops_text_size">20sp</dimen>
+    <dimen name="tops_text_size">18sp</dimen>
     <dimen name="task_layout_text_size">15sp</dimen>
+    <dimen name="app_text_size">15sp</dimen>
 
     <!--Nav Drawer-->
     <dimen name="drawer_text_size">14sp</dimen>
@@ -60,7 +61,7 @@
     <dimen name="comment_edittext_margin">5dp</dimen>
     <dimen name="comment_edittext_padding">10dp</dimen>
     <dimen name="button_layout_top_margin">10dp</dimen>
-    <dimen name="button_layout_views_height">35dp</dimen>
+    <dimen name="button_layout_views_height">32dp</dimen>
     <dimen name="button_layout_left_right_margin">20dp</dimen>
     <dimen name="button_layout_right_left_margin">20dp</dimen>
     <dimen name="task_approval_decline_dialog_width">300dp</dimen>
@@ -81,7 +82,7 @@
 
     <dimen name="views_height">35dp</dimen>
     <!-- FLOATING MENU -->
-    <dimen name="floating_menu_list_size">15sp</dimen>
+    <dimen name="floating_menu_list_size">14sp</dimen>
     <dimen name="floating_menu_avatar_size">65dp</dimen>
 
     <!--GOAL SCREEN -->
@@ -90,6 +91,7 @@
 
     <!--dailog-->
     <dimen name="message_dialog_width">280dp</dimen>
+    <dimen name="action_bar_text_size">18dp</dimen>
 
 
 </resources>

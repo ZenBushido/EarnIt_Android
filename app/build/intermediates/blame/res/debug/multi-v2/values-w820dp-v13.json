@@ -6,18 +6,18 @@
                 {
                     "source": "/Users/mac/Desktop/EarnIt_Android/app/src/main/res/values-w820dp/dimens.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "295",
-                        "endColumns": "57",
-                        "endOffsets": "348"
+                        "startLines": "5,-1",
+                        "startColumns": "4,-1",
+                        "startOffsets": "354,-1",
+                        "endColumns": "51,-1",
+                        "endOffsets": "401,-1"
                     },
                     "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "57",
-                        "endOffsets": "108"
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,107",
+                        "endColumns": "51,57",
+                        "endOffsets": "102,160"
                     }
                 }
             ]

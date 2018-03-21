@@ -160,6 +160,12 @@
         for this app through Settings > Security > Apps with usage access
     </string>
     <string name="daily_usage">Daily Usage</string>
+    <string name="no_task_schedule">No tasks currently scheduled.</string>
+    <string name="due_date">Due Date</string>
+    <string name="app_lock">Apps lock if overdue:</string>
+    <string name="real_time_money">Realtime Money Transfer:</string>
+    <string name="transfer">Transfer:</string>
+    <string name="photo_required">Photo Required</string>
 
 
 </resources>

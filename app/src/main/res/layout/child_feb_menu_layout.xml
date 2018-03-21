@@ -30,7 +30,7 @@
                 android:padding="2dp"
                 android:text="@string/view_task"
                 android:textColor="@color/pink"
-                android:textSize="15sp" />
+                android:textSize="@dimen/app_text_size" />
 
             <TextView
                 android:id="@+id/child_fb_balance"
@@ -41,7 +41,7 @@
                 android:padding="2dp"
                 android:text="@string/balance"
                 android:textColor="@color/pink"
-                android:textSize="15sp" />
+                android:textSize="@dimen/app_text_size" />
 
             <TextView
                 android:visibility="gone"
@@ -53,7 +53,7 @@
                 android:padding="2dp"
                 android:text="@string/calendar"
                 android:textColor="@color/pink"
-                android:textSize="15sp" />
+                android:textSize="@dimen/app_text_size" />
 
             <!-- <TextView
                  android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
                 android:padding="2dp"
                 android:text="@string/child_logout"
                 android:textColor="@color/pink"
-                android:textSize="15sp" />
+                android:textSize="@dimen/app_text_size" />
 
             <TextView
                 android:layout_width="wrap_content"

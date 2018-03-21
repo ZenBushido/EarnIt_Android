@@ -29,6 +29,7 @@
     <dimen name="tips_top_margin">10dp</dimen>
     <dimen name="tops_text_size">20sp</dimen>
     <dimen name="task_layout_text_size">18sp</dimen>
+    <dimen name="app_text_size">18sp</dimen>
 
     <!--Nav Drawer-->
     <dimen name="drawer_text_size">14sp</dimen>
@@ -51,4 +52,6 @@
 
     <dimen name="usage_row_height">72dp</dimen>
     <dimen name="_38size">38dp</dimen>
+    <dimen name="action_bar_text_size">20dp</dimen>
+    <dimen name="repeat_dialog_size">140dp</dimen>
 </resources>

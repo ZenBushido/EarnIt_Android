@@ -29,6 +29,7 @@ import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
+import com.mobiledi.earnit.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -82,6 +83,7 @@ public class BalanceActivity extends BaseActivity   {
     @BindView(R.id.view)
     View view;
     BalanceActivity balanceChild;
+    boolean isGoalAvailable = false;
 
 
     @Override
@@ -105,6 +107,7 @@ public class BalanceActivity extends BaseActivity   {
         //listGoal = (List<Goal>) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
         tasks = (Tasks) intent.getSerializableExtra(AppConstant.TO_EDIT);
 
+        Log.e(TAG, "Child Object= "+childObject.getAvatar());
         progressBar.setVisibility(View.VISIBLE);
 
 
@@ -124,7 +127,6 @@ public class BalanceActivity extends BaseActivity   {
         headerBalance.setText(childObject.getFirstName());
 
         if (isDeviceOnline())
-           // isGoalExists();
         getAllGoals();
 
 
@@ -142,7 +144,11 @@ public class BalanceActivity extends BaseActivity   {
 
     @OnClick(R.id.btn_adjust)
     void adjustBalance() {
+
+        if(isGoalAvailable)
         screenSwitch.moveToBalance(childObject, otherChild, parentObject, AppConstant.BALANCE_SCREEN, tasks, listGoal, userType);
+        else
+            Utils.showToast(this, "Add Gaols First to Adjust");
     }
 
     @OnClick(R.id.goal_avatar)
@@ -150,7 +156,7 @@ public class BalanceActivity extends BaseActivity   {
         if (userType.equalsIgnoreCase(AppConstant.PARENT))
 
             new FloatingMenu(balanceChild).fetchAvatarDimension(avatar, childObject, otherChild, parentObject, AppConstant.BALANCE_SCREEN, progressBar, tasks);
-         else
+        else
 
             new FloatingMenu(balanceChild).fetchAvatarDimension(avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar);
 
@@ -196,6 +202,11 @@ public class BalanceActivity extends BaseActivity   {
             public void onResponse(Call<List<GetAllGoalResponse>> call, Response<List<GetAllGoalResponse>> response) {
 
 
+                if(response.body().isEmpty())
+                    isGoalAvailable = false;
+                else
+                    isGoalAvailable = true;
+
                 Integer cashTotal = 0;
                 Integer goalTotal = 0;
                 Integer totalAccountBalance = 0;
@@ -205,9 +216,9 @@ public class BalanceActivity extends BaseActivity   {
                     cashTotal += response.body().get(i).getCash();
 
                     for(int j=0; j<response.body().get(i).getAdjustments().size(); j++)
-                        {
-                            goalTotal+= response.body().get(i).getAdjustments().get(j).getAmount();
-                        }
+                    {
+                        goalTotal+= response.body().get(i).getAdjustments().get(j).getAmount();
+                    }
                     goalTotal+= response.body().get(i).getAmount();
 
                 }
@@ -235,85 +246,6 @@ public class BalanceActivity extends BaseActivity   {
     }
 
 
-    public void isGoalExists() {
 
-        try {
-            AsyncHttpClient client = new AsyncHttpClient();
-            client.setBasicAuth(childObject.getEmail(), childObject.getPassword());
-            client.get(AppConstant.BASE_URL + AppConstant.GOAL_API + childObject.getId(), null, new JsonHttpResponseHandler() {
-
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                }
-
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
-                    Log.e(TAG, "JSONARRAY: " + response);
-
-                    try {
-                        if (response.length() > 0 && (response.getJSONObject(0).get(AppConstant.ID) instanceof Integer)) {
-
-                            for (int i = 0; i < response.length(); i++) {
-                                try {
-                                    JSONObject object = response.getJSONObject(i);
-                                    Goal goal = new GetObjectFromResponse().getGoalObject(object);
-                                    listGoal.add(goal);
-                                    Log.i(TAG, "goal-responsel1 = "+ goal.getGoalName());
-                                    Log.i(TAG, "goal-responsel1 = "+ goal.getAdjustments().get(0).getAmount());
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    Integer cashTotal = 0;
-                    Integer goalTotal = 0;
-
-                    for (int i = 0; i < listGoal.size(); i++)
-                    {
-                        cashTotal += listGoal.get(i).getCash();
-                        int goalAmount = listGoal.get(i).getAmount();
-                    /*
-                        for(int j=0; j<listGoal.get(i).getAdjustments().size(); j++)
-                        {
-                            goalTotal = goalAmount+listGoal.get(i).getAdjustments().get(j).getAmount();
-
-                        }
-                        Log.e(TAG, "Goal Total= "+goalTotal);*/
-
-                    }
-
-
-
-
-
-                    totalBalance.setText("$" + cashTotal.toString());
-                    totalGoal.setText("$" + cashTotal.toString());
-
-                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-
-                    recyclerView.setLayoutManager(mLayoutManager);
-                  //  adapter = new MyRecyclerViewAdapter(getApplicationContext(), listGoal);
-                    recyclerView.setAdapter(adapter);
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                    super.onFailure(statusCode, headers, throwable, errorResponse);
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    super.onFailure(statusCode, headers, throwable, errorResponse);
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
 }

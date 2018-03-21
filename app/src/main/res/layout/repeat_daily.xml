@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/repeat_dialog_size"
     android:layout_gravity="center"
     android:fitsSystemWindows="true">
 
@@ -50,16 +50,18 @@
         </LinearLayout>
 
         <LinearLayout
+
+            android:gravity="center|center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/views_height"
             android:layout_marginLeft="@dimen/add_task_left_margin"
-            android:layout_marginTop="@dimen/add_task_top_margin"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight=".8"
+
                 android:gravity="right|center"
                 android:paddingRight="@dimen/add_task_textview_left_margin"
                 android:text="Repeat every"
@@ -67,10 +69,13 @@
                 android:textSize="@dimen/check_in_text_size" />
 
             <EditText
+
+                android:padding="4dp"
                 android:id="@+id/repeat_daily_checkbox"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:layout_weight=".16"
+                android:minWidth="28dp"
+                android:maxWidth="42dp"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
@@ -78,9 +83,8 @@
                 android:textColor="@color/main_font" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.02"
                 android:gravity="left|center"
                 android:paddingLeft="10dp"
                 android:text="days(s)"
@@ -98,11 +102,10 @@
 
             <Button
                 android:id="@+id/repeatdaily_cancel"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/button_layout_views_height"
                 android:layout_marginLeft="@dimen/button_layout_left_right_margin"
                 android:layout_marginRight="@dimen/button_layout_right_left_margin"
-                android:layout_weight="1"
                 android:background="@drawable/purple_round_button"
                 android:text="Cancel"
                 android:textAllCaps="false"
@@ -111,11 +114,11 @@
 
             <Button
                 android:id="@+id/repeatdaily_ok"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/button_layout_views_height"
                 android:layout_marginLeft="@dimen/button_layout_right_left_margin"
                 android:layout_marginRight="@dimen/button_layout_left_right_margin"
-                android:layout_weight="1"
+
                 android:background="@drawable/purple_round_button"
                 android:text="Ok"
                 android:textAllCaps="false"

@@ -124,12 +124,19 @@ public class EditGoalActivity extends BaseActivity implements View.OnClickListen
         NavigationDrawer navigationDrawer = new NavigationDrawer(goalActivity, parentObject,  goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
         navigationDrawer.setOnDrawerToggeled(this);
 
-        try {
-            Picasso.with(goalActivity).load(childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
-        } catch (Exception e) {
-            Picasso.with(goalActivity).load(R.drawable.default_avatar).into(childAvatar);
-            e.printStackTrace();
+
+        if (childObject != null) {
+
+            try {
+                Picasso.with(this).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
+
+            } catch (Exception e) {
+                Picasso.with(this).load(R.drawable.default_avatar).into(childAvatar);
+                e.printStackTrace();
+            }
+
         }
+
         goalName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

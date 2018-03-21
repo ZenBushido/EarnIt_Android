@@ -249,7 +249,9 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.usageStats.AppUsageStatisticsActivity" />
-
+        <activity android:name=".activity.RequestTransfer"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
     </application>
 
 </manifest>

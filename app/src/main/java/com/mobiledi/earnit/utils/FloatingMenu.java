@@ -107,11 +107,11 @@ public class FloatingMenu {
         p.x = location[0];
         p.y = location[1] - 25;
         showPopup(activity, p, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
-        //Rect loation = locateView(view);
-        //popupShow(activity, loation, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
+     //   Rect loation = locateView(view);
+      //  popupShow(activity, loation, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
     }
 
-   /* public void popupShow(Activity view, Rect location, final Child child, final Child childWithAllTask, Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks)
+    /*public void popupShow(Activity view, Rect location, final Child child, final Child childWithAllTask, final Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks)
     {
 
         // Inflate the popup_layout.xml
@@ -123,8 +123,8 @@ public class FloatingMenu {
         // Creating the PopupWindow
         final PopupWindow popup = new PopupWindow(view);
         popup.setContentView(layout);
-        popup.setWidth(popupWidth);
-        popup.setHeight(popupHeight);
+        popup.setWidth(ListPopupWindow.WRAP_CONTENT);
+        popup.setHeight(ListPopupWindow.WRAP_CONTENT);
         popup.setFocusable(true);
 
         // Clear the default translucent background
@@ -140,6 +140,7 @@ public class FloatingMenu {
         TextView balance = (TextView) layout.findViewById(R.id.fb_balance);
         TextView goal = (TextView) layout.findViewById(R.id.fb_goal);
         TextView message = (TextView) layout.findViewById(R.id.fb_message);
+        TextView app_monitor =  layout.findViewById(R.id.app_monitor);
         addTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_plus_circle)
                 .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
         allTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_file_text_o)
@@ -152,7 +153,8 @@ public class FloatingMenu {
                 .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
         message.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_comment)
                 .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
-
+        app_monitor.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_eye)
+                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
 
         int i = 0;
 
@@ -176,7 +178,8 @@ public class FloatingMenu {
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                screenSwitch.moveToAddTask(child, childWithAllTask, FloatingMenu.this.parent, fromScreen, null);
+                screenSwitch.moveToAddTask(child, childWithAllTask, parent, fromScreen, null);
+
                 popup.dismiss();
             }
         });
@@ -184,11 +187,16 @@ public class FloatingMenu {
             @Override
             public void onClick(View v) {
 
+                progressBar.setVisibility(View.VISIBLE);
+                popup.dismiss();
                 final AsyncHttpClient client = new AsyncHttpClient();
-                client.setBasicAuth(FloatingMenu.this.parent.getEmail(), FloatingMenu.this.parent.getPassword());
+                client.setBasicAuth(parent.getEmail(), parent.getPassword());
                 client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId(), null, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+
+
+
                         ArrayList<Tasks> taskList = new ArrayList<>();
 
                         for (int i = 0; i < response.length(); i++) {
@@ -201,10 +209,42 @@ public class FloatingMenu {
 
                             } catch (Exception e) {
 
+                                Log.e(TAG, "Error: "+e.getLocalizedMessage());
+
                             }
                             child.setTasksArrayList(taskList);
+
+                        }
+
+                        List<String> listStatus = new ArrayList<>();
+
+                        for(int j=0; j< taskList.size(); j++)
+                        {
+                            if(taskList.get(j).getStatus().equalsIgnoreCase("Created"))
+                                listStatus.add(taskList.get(j).getStatus());
+
+                        }
+
+
+                        Log.e(TAG, "Task List size= "+taskList.size());
+                        if(listStatus.size()!=0)
+                        {
+                            progressBar.setVisibility(View.GONE);
                             screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
                         }
+
+
+                        else
+
+                        {
+                            progressBar.setVisibility(View.GONE);
+                            Utils.showToast(activity, activity.getResources().getString(R.string.no_task_schedule));
+                        }
+
+
+
+
+
                     }
                 });
             }
@@ -250,14 +290,22 @@ public class FloatingMenu {
                 popup.dismiss();
             }
         });
+
+        app_monitor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                screenSwitch.usageStats( parent,   AppConstant.PARENT, child);
+                popup.dismiss();
+            }
+        });
         //   febIcon.setOnClickListener(new View.OnClickListener() {
         //     @Override
         //   public void onClick(View v) {
         //     popup.dismiss();
         //      }
         //    });
-    }*/
-
+    }
+*/
     private void showPopup(Activity view, Point p, final Child child, final Child childWithAllTask, final Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks) {
 
         // Inflate the popup_layout.xml
@@ -333,15 +381,16 @@ public class FloatingMenu {
             @Override
             public void onClick(View v) {
 
-                Log.e(TAG, "All Task");
+                progressBar.setVisibility(View.VISIBLE);
+                popup.dismiss();
                 final AsyncHttpClient client = new AsyncHttpClient();
                 client.setBasicAuth(parent.getEmail(), parent.getPassword());
                 client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId(), null, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
-                        if(response.length()==0)
-                        {
+
+
                             ArrayList<Tasks> taskList = new ArrayList<>();
 
                             for (int i = 0; i < response.length(); i++) {
@@ -358,15 +407,37 @@ public class FloatingMenu {
 
                                 }
                                 child.setTasksArrayList(taskList);
-                                screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
+
                             }
+
+                        List<String> listStatus = new ArrayList<>();
+
+                        for(int j=0; j< taskList.size(); j++)
+                        {
+                            if(taskList.get(j).getStatus().equalsIgnoreCase("Created"))
+                                listStatus.add(taskList.get(j).getStatus());
+
                         }
 
-                        else
+
+                        Log.e(TAG, "Task List size= "+taskList.size());
+                        if(listStatus.size()!=0)
                         {
-                            //Utils.showToast("No Task Assigned.");
-                            Utils.showToast(activity, activity.getResources().getString(R.string.no_more_task));
+                            progressBar.setVisibility(View.GONE);
+                            screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
                         }
+
+
+                        else
+
+                        {
+                            progressBar.setVisibility(View.GONE);
+                            Utils.showToast(activity, activity.getResources().getString(R.string.no_task_schedule));
+                        }
+
+
+
+
 
                     }
                 });
@@ -417,7 +488,7 @@ public class FloatingMenu {
         app_monitor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                screenSwitch.usageStats( parent,   AppConstant.PARENT);
+                screenSwitch.usageStats( parent,   AppConstant.PARENT, child);
                 popup.dismiss();
             }
         });

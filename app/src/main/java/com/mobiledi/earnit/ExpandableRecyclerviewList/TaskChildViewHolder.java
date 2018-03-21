@@ -17,6 +17,7 @@ import com.mobiledi.earnit.activity.EditTask;
 import com.mobiledi.earnit.activity.ParentTaskApproval;
 import com.mobiledi.earnit.libmoduleExpandable.ViewHolder.ChildViewHolder;
 import com.mobiledi.earnit.model.Child;
+import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.utils.AppConstant;
@@ -37,6 +38,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
     ImageView thumbUp, right_arrow;
     LinearLayout task_details_layout, task_description_layout;
     public Tasks task;
+    public Goal goal;
 
     String TAG = TaskChildViewHolder.class.getSimpleName();
 
@@ -76,6 +78,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     addTask.putExtra(AppConstant.OTHER_CHILD_OBJECT, child);
                     addTask.putExtra(AppConstant.PARENT_OBJECT, parent);
                     addTask.putExtra(AppConstant.TO_EDIT, (Serializable) task);
+                    addTask.putExtra(AppConstant.GOAL_OBJECT, (Serializable) task.getGoal() );
                     addTask.putExtra(AppConstant.TASK_STATUS, AppConstant.EDIT);
                     itemView.getContext().startActivity(addTask);
                 } else if (isParentChild.equals("Parent") && currentTask.getStatus().equals(AppConstant.COMPLETED)) {
@@ -84,7 +87,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     // moveToTaskApproval.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     moveToTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
                     moveToTaskApproval.putExtra(AppConstant.OTHER_CHILD_OBJECT, child);
-                    moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parent);
+                    moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, (Serializable)parent);
                     moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, AppConstant.CHECKED_IN_SCREEN);
                     moveToTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
                     itemView.getContext().startActivity(moveToTaskApproval);
@@ -92,15 +95,12 @@ public class TaskChildViewHolder extends ChildViewHolder {
 
                 } else if (!currentTask.getStatus().equals(AppConstant.COMPLETED)) {
                     Intent requestTaskApproval = new Intent(itemView.getContext(), ChildRequestTaskApproval.class);
-                    requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
+                    requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, (Serializable) child);
                     requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
-                    //requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT,  task.getGoal());
+                    requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
 
-                    Log.e(TAG, "Child Object: " + child.getFirstName());
-                    Log.e(TAG, "Task Object: " + task.getName());
-                    Log.e(TAG, "Task Object: " + task.getDetails());
-                    Log.e(TAG, "Task Object: " + task.getGoal().getGoalName());
-                    Log.e(TAG, "Task Object: " + task.getGoal().getId());
+
+
 
                     itemView.getContext().startActivity(requestTaskApproval);
 

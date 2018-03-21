@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     android:layout_gravity="center">
 
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_layout"
@@ -132,7 +136,8 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
+                android:gravity="center"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/views_height"
                 android:layout_marginLeft="@dimen/add_task_left_margin"
@@ -140,10 +145,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_weight=".8"
                     android:text="Goals:"
                     android:textAlignment="textStart"
                     android:textColor="@color/main_font"
@@ -151,18 +155,18 @@
                     tools:ignore="RtlCompat" />
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginRight="40dp"
-                    android:layout_weight=".8"
                     android:text="Delete:"
                     android:textAlignment="viewEnd"
                     android:textColor="@color/main_font"
                     android:textSize="@dimen/task_layout_text_size"
                     tools:ignore="RtlCompat" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:id="@+id/vertical_line"
@@ -175,14 +179,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.6"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.6"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView
@@ -190,13 +192,14 @@
                     android:layout_margin="10dp"
                     android:paddingBottom="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"/>
 
-                </android.support.v7.widget.RecyclerView>
+
 
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.4"
@@ -271,6 +274,7 @@
         </LinearLayout>
 
     </LinearLayout>
+    </ScrollView>
 
     <RelativeLayout
         android:id="@+id/loadingPanel"

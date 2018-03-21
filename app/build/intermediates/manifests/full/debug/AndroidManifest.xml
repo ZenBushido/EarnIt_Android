@@ -263,6 +263,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity android:name="com.mobiledi.earnit.activity.usageStats.AppUsageStatisticsActivity" />
+        <activity
+            android:name="com.mobiledi.earnit.activity.RequestTransfer"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <meta-data
             android:name="android.support.VERSION"

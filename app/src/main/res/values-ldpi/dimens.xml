@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--login screen -->
+    <dimen name="logo_width">250dp</dimen>
+    <dimen name="logo_height">250dp</dimen>
+    <dimen name="tag_line_text_size">24sp</dimen>
+    <dimen name="tag_line_top_margin">-30dp</dimen>
+    <dimen name="username_password_block_top_margin">15dp</dimen>
+    <dimen name="username_left_padding">15dp</dimen>
+    <dimen name="childlist_left_padding">25dp</dimen>
+    <dimen name="username_password_top_bottom_margin">10dp</dimen>
+    <dimen name="horizontal_line_width">1dp</dimen>
+    <dimen name="sign_in_top_margin">20dp</dimen>
+    <dimen name="sign_in_left_right_margin">20dp</dimen>
+    <dimen name="sign_in_text_size">20sp</dimen>
+    <dimen name="sign_up_block_top_margin">10dp</dimen>
+    <dimen name="sign_up_block_textview_text_size">13sp</dimen>
+    <dimen name="sign_up_button_height">30dp</dimen>
+    <dimen name="sign_up_button_text_size">16sp</dimen>
+    <dimen name="sign_up_button_left_margin">10dp</dimen>
+
+
+    <!--single child view in parent dashboard-->
+    <dimen name="task_date_header">17sp</dimen>
+    <dimen name="child_padding">9dp</dimen>
+    <dimen name="check_in_text_size">14sp</dimen>
+    <dimen name="check_in_padding">9dp</dimen>
+    <dimen name="task_list_bottom_margin">2dp</dimen>
+    <dimen name="tips_margin">9dp</dimen>
+    <dimen name="tips_bottom_margin">0dp</dimen>
+    <dimen name="tips_top_margin">9dp</dimen>
+    <dimen name="tops_text_size">17sp</dimen>
+    <dimen name="task_layout_text_size">14sp</dimen>
+    <dimen name="app_text_size">14sp</dimen>
+
+    <!--Nav Drawer-->
+    <dimen name="drawer_text_size">13sp</dimen>
+    <dimen name="fab_margin">15dp</dimen>
+
+    <dimen name="task_view_text_size">12sp</dimen>
+    <dimen name="task_view_bottom_margin">7dp</dimen>
+
+    <!--Add Task-->
+    <dimen name="add_task_textview_left_margin">9dp</dimen>
+    <dimen name="add_task_left_margin">9dp</dimen>
+    <dimen name="add_task_top_margin">3dp</dimen>
+
+    <!--TASK REJECTION SCREEN-->
+    <dimen name="task_rejection_text_size">15sp</dimen>
+    <dimen name="task_description_left_right_margin">19dp</dimen>
+    <dimen name="task_description_top_margin">4dp</dimen>
+    <dimen name="task_due_Date_left_padding">9dp</dimen>
+    <dimen name="completed_text_bottom_margin">-46dp</dimen>
+    <dimen name="completed_text_size">15sp</dimen>
+    <dimen name="task_image_height">178dp</dimen>
+    <dimen name="task_image_left_right_margin">58dp</dimen>
+    <dimen name="comment_text_top_margin">-44dp</dimen>
+    <dimen name="comment_text_left_margin">18dp</dimen>
+    <dimen name="comment_edittext_height">78dp</dimen>
+    <dimen name="comment_edittext_margin">4dp</dimen>
+    <dimen name="comment_edittext_padding">9dp</dimen>
+    <dimen name="button_layout_top_margin">9dp</dimen>
+    <dimen name="button_layout_views_height">34dp</dimen>
+    <dimen name="button_layout_left_right_margin">18dp</dimen>
+    <dimen name="button_layout_right_left_margin">18dp</dimen>
+    <dimen name="task_approval_decline_dialog_width">295dp</dimen>
+    <dimen name="progress_bar_bottom_margin">28dp</dimen>
+
+
+    <!--MESSAGE DIALOG-->
+    <dimen name="comment_edittext_height_message">95dp</dimen>
+    <dimen name="comment_edittext_margin_message">4dp</dimen>
+    <dimen name="button_layout_views_height_message">33dp</dimen>
+    <dimen name="button_layout_left_right_margin_message">33dp</dimen>
+
+
+
+    <!--GOAL LAYOUT-->
+    <dimen name="goal_button_button_top_margin">146dp</dimen>
+
+
+    <dimen name="views_height">33dp</dimen>
+    <!-- FLOATING MENU -->
+    <dimen name="floating_menu_list_size">14sp</dimen>
+    <dimen name="floating_menu_avatar_size">63dp</dimen>
+
+    <!--GOAL SCREEN -->
+    <dimen name="textview_padding">42dp</dimen>
+
+
+    <!--dailog-->
+    <dimen name="message_dialog_width">275dp</dimen>
+    <dimen name="action_bar_text_size">18dp</dimen>
+
+
+</resources>

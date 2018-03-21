@@ -51,6 +51,8 @@
         </LinearLayout>
 
         <LinearLayout
+
+            android:gravity="center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/views_height"
             android:layout_marginLeft="@dimen/add_task_left_margin"
@@ -58,9 +60,9 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight=".8"
+
                 android:gravity="right|center"
                 android:paddingRight="@dimen/add_task_textview_left_margin"
                 android:text="Repeat every:"
@@ -68,21 +70,19 @@
                 android:textSize="@dimen/check_in_text_size" />
 
             <EditText
+                android:padding="2dp"
                 android:id="@+id/repeat_weekly_checkbox"
-                android:layout_width="0dp"
+                android:layout_width="30dp"
                 android:layout_height="28dp"
-                android:layout_weight=".16"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
                 android:inputType="number"
-
                 android:textColor="@color/main_font" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.02"
                 android:gravity="left|center"
                 android:paddingLeft="10dp"
                 android:text="weeks(s)  on:"
@@ -92,6 +92,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_layout_top_margin"
@@ -100,10 +101,9 @@
 
             <Button
                 android:id="@+id/repeat_weekly_san"
-                android:layout_width="0dp"
+                android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginLeft="@dimen/button_layout_left_right_margin"
-                android:layout_weight=".16"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
@@ -111,10 +111,9 @@
 
             <Button
                 android:id="@+id/repeat_weekly_mon"
-                android:layout_width="0dp"
+                android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginLeft="5dp"
-                android:layout_weight=".16"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
@@ -122,10 +121,9 @@
 
             <Button
                 android:id="@+id/repeat_weekly_tue"
-                android:layout_width="0dp"
+                android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginLeft="5dp"
-                android:layout_weight=".16"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
@@ -133,10 +131,9 @@
 
             <Button
                 android:id="@+id/repeat_weekly_wen"
-                android:layout_width="0dp"
+                android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginLeft="5dp"
-                android:layout_weight=".16"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
@@ -144,10 +141,9 @@
 
             <Button
                 android:id="@+id/repeat_weekly_thu"
-                android:layout_width="0dp"
+                android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginLeft="5dp"
-                android:layout_weight=".16"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
@@ -155,10 +151,9 @@
 
             <Button
                 android:id="@+id/repeat_weekly_fri"
-                android:layout_width="0dp"
+                android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginLeft="5dp"
-                android:layout_weight=".16"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
@@ -166,11 +161,10 @@
 
             <Button
                 android:id="@+id/repeat_weekly_sat"
-                android:layout_width="0dp"
+                android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="@dimen/button_layout_left_right_margin"
-                android:layout_weight=".16"
                 android:background="@drawable/repeat_textview_roundboarder"
                 android:gravity="center"
                 android:text=""
