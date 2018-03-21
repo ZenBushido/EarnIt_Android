@@ -185,8 +185,6 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         goalObject = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
-        Log.e(TAG, "Goal Object= "+goalObject.getId());
-        Log.e(TAG, "Goal Object= "+goalObject.getGoalName() );
 
         fetchCHildId = childObject.getId();
         NavigationDrawer navigationDrawer = new NavigationDrawer(addTask, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
@@ -787,7 +785,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         final TextView message = (TextView) dialog.findViewById(R.id.dialog_message);
-        message.setText("Are you sure you want to approve this task? Credit will be applied  if any was assigned.");
+        message.setText("Are you sure you want to approve this task? Any credit toward this task will be applied");
         Button declineButton = (Button) dialog.findViewById(R.id.cancel);
         declineButton.setText(AppConstant.NO);
         declineButton.setOnClickListener(new View.OnClickListener() {

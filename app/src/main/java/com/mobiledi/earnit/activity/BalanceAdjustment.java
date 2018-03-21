@@ -162,9 +162,9 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
                     Log.e(TAG, "Forward Count= "+count);
                     if (count < listGoalResponse.size()) {
 
-                        balance_Header.setText(listGoalResponse.get(count).getName());
-                        currentBalance.setText(listTotalAmount.get(count) + "");
-                        count++;
+                            balance_Header.setText(listGoalResponse.get(count).getName());
+                            currentBalance.setText(listTotalAmount.get(count) + "");
+                            count++;
 
                     }
                     else

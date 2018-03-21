@@ -82,6 +82,7 @@ import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -168,7 +169,6 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         childID = childObject.getId();
-        amountTxt.setText("");
         amountTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -424,8 +424,12 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 if (taskName.getText().toString().trim().length() > 0) {
                     if (taskName.getText().toString().trim().length() <= TASK_NAME_LENGTH) {
 
-                        if (!amountTxt.getText().equals("")|!amountTxt.getText().toString().isEmpty())
+                        Log.e(TAG, "Amount= "+amountTxt.getText().toString());
+                        if (amountTxt.getText().toString().trim().length() > 0)
                             saveTask();
+                        else
+                        Utils.showToast(this, "Add amount");
+
 
                     } else
                         showToast(getResources().getString(R.string.task_name_too_long));
@@ -464,7 +468,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             if (fetchGoalId > 0)
                 addTaskJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, fetchGoalId));
             addTaskJson.put(AppConstant.ALLOWANCE, Double.parseDouble(amountTxt.getText().toString()));
-            Log.e(TAG, "Goal= "+addTaskJson);
+
 
             addTaskJson.put(AppConstant.NAME, taskName.getText().toString().trim());
             addTaskJson.put(AppConstant.DESCRIPTION, taskDetails.getText().toString());
