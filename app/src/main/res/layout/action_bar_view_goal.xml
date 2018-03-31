@@ -68,19 +68,21 @@
 
             <com.github.siyamed.shapeimageview.CircularImageView
                 android:id="@+id/goal_avatar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/avatar_size"
+                android:layout_height="@dimen/avatar_size"
                 android:src="@drawable/default_avatar"
                 app:siBorderColor="@android:color/white"
                 app:siBorderWidth="1.5dp"
                 app:siRadius="1dp"
                 app:siSquare="true" />
 
+
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="0dp"
-                android:layout_marginLeft="-10dp"
                 android:gravity="bottom"
                 android:text="..."
                 android:textColor="@android:color/white"

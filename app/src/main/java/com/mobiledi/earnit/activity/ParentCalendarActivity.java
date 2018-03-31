@@ -115,7 +115,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     String NONE = "None";
     Map<Integer, String> childs;
     @BindView(R.id.toolbar_add) Toolbar goalToolbar;
-
+    String onFirst, onDay;
     private final String TAG = "ParentCalendarActivity";
     ScreenSwitch screenSwitch;
     TextView repeatTask;
@@ -266,25 +266,35 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                 buttonClicked = true;
                 if (checkValue.equalsIgnoreCase("daily")) {
 
-                    AddTaskModel.repititionSchedule response = new AddTaskModel.repititionSchedule();
-                    //  response.endTime = "11:00";
-                    //  response.startTime = "10:00";
-                    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-                    sdf.format(new Date());
-                    response.endTime =  startTimer.getText().toString();
-                    response.startTime =sdf.format(new Date()) ;
-                    response.repeat = "daily";
                     if(dayOfWeek!=null)
+                    {
+                        AddTaskModel.repititionSchedule response = new AddTaskModel.repititionSchedule();
+                        //  response.endTime = "11:00";
+                        //  response.startTime = "10:00";
+                        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+                        sdf.format(new Date());
+                        response.endTime =  startTimer.getText().toString();
+                        response.startTime =sdf.format(new Date()) ;
+                        response.repeat = "daily";
+                        if(dayOfWeek!=null)
+                            response.setEveryNday(Integer.parseInt(dayOfWeek));
+                        else
+                            response.setEveryNday(0);
+
+                        response.setDate(finalDate);
+                        //AppConstant.addTaskModel.setRepititionSchedule(response);
+
                         response.setEveryNday(Integer.parseInt(dayOfWeek));
+                        EventBus.getDefault().postSticky(new MessageEvent(response));
+
+                        finish();
+                    }
+
                     else
-                        response.setEveryNday(0);
+                    {
+                        showToast("Enter Number of days");
+                    }
 
-                    response.setDate(finalDate);
-                    //AppConstant.addTaskModel.setRepititionSchedule(response);
-                    response.setEveryNday(Integer.parseInt(dayOfWeek));
-                    EventBus.getDefault().postSticky(new MessageEvent(response));
-
-                    finish();
 
                 } else if (checkValue.equalsIgnoreCase("week")) {
 
@@ -316,6 +326,18 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     sdf.format(new Date());
                     response.endTime =  startTimer.getText().toString();
                     response.startTime =sdf.format(new Date()) ;
+
+                    if(onFirst!=null)
+
+                    {
+                        Log.e(TAG, "On first is not null");
+                        response.onFirst = onFirst;
+                        response.onDay = onDay;
+                    }
+                    else
+                    {
+                        Log.e(TAG, "On first is null");
+                    }
 
 
                     response.repeat = "monthly";
@@ -509,8 +531,21 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void updateResult2(List<String> inputText, String s) {
+        for(int i=0; i< inputText.size(); i++)
+        {
+            Log.e(TAG, "Input text= "+inputText.get(i));
+        }
         monthList = inputText;
         dayOfWeek=s;
+    }
+
+    @Override
+    public void updateOnDay(String onFirst, String onDay, String s) {
+
+        Log.e(TAG, "Upate on day method");
+        this.onFirst = onFirst;
+        this.onDay = onDay;
+
     }
 
     @Override

@@ -11,14 +11,6 @@ import java.util.List;
 public class AddTaskModel {
 
 
-
-
-
-
-
-
-
-
     @SerializedName("allowance")
     public double allowance;
     @SerializedName("dueDate")
@@ -78,7 +70,9 @@ public class AddTaskModel {
         @SerializedName("repeat")
         public String repeat;
         public Integer everyNday;
-public String date;
+        public String date;
+        public String onFirst;
+        public String onDay;
 
         public String getDate() {
             return date;

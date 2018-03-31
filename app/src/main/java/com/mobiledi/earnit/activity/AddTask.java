@@ -45,6 +45,7 @@ import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Item;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDay;
 import com.mobiledi.earnit.model.getChild.GetAllChildResponse;
 import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
 import com.mobiledi.earnit.retrofit.RetroInterface;
@@ -67,6 +68,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -469,6 +471,37 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 break;
         }
     }
+
+/*
+    void saveSpecificaTaskDay() throws ParseException {
+
+        DateTime due = new DateTime();
+        DateTimeZone tz = DateTimeZone.getDefault();
+        Long instant = DateTime.now().getMillis();
+
+        long offsetInMilliseconds = tz.getOffset(instant);
+        MessageEvent m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
+
+        if (m != null) {
+
+            repititionSchedule = m.getResponse();
+            EventBus.getDefault().removeAllStickyEvents();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/DD/yyyy hh:mm:ss aaa", Locale.getDefault());
+            simpleDateFormat.setTimeZone(TimeZone.getDefault());
+            Date date = (Date) simpleDateFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
+            DateTime dateTime = new DateTime(date);
+
+            String dueDate = String.valueOf(dateTime.getMillis() + offsetInMilliseconds);
+
+            AddTaskWithSelecteDay addTaskWithSelecteDay = new AddTaskWithSelecteDay(Double.parseDouble(amountTxt.getText().toString()),
+                    dueDate, taskName.getText().toString().trim(),
+                    checkboxStatus, childID+"", fetchGoalId+"",
+
+
+                    );
+
+        }
+    }*/
 
 
     private void saveTask() {

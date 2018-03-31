@@ -12,8 +12,8 @@ public final class R {
         public static final int action_button_margin = 0x7f070050;
         public static final int action_button_size = 0x7f070051;
         public static final int action_menu_radius = 0x7f070052;
-        public static final int sub_action_button_content_margin = 0x7f07015b;
-        public static final int sub_action_button_size = 0x7f07015c;
+        public static final int sub_action_button_content_margin = 0x7f07015c;
+        public static final int sub_action_button_size = 0x7f07015d;
     }
     public static final class drawable {
         public static final int button_action = 0x7f08006a;

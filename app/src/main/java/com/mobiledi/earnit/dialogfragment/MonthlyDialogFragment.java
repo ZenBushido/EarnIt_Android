@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,10 +28,13 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.mobiledi.earnit.dialogfragment.WeeklyDialogFragment.weekList;
 
 
-public class MonthlyDialogFragment extends DialogFragment {
-
+public class MonthlyDialogFragment extends DialogFragment implements AdapterView.OnItemSelectedListener {
+     EditText repeat_monthly_check;
     String TAG = MonthlyDialogFragment.class.getSimpleName();
     public static List<String> monthList = new ArrayList<>();
+    public String onFirst;
+    public String onDay;
+     RadioButton onButton;
 MonthlyDialogListener monthlyDialogListener;
     @Override
     public void onAttach(Activity context) {
@@ -136,6 +140,8 @@ MonthlyDialogListener monthlyDialogListener;
         TextView repeat_daily_text = (TextView) dialogView.findViewById(R.id.repeat_monthly_frequency);
         repeat_daily_text.setText("Monthly");
         final Spinner repeat_monthly_first = (Spinner) dialogView.findViewById(R.id.repeat_monthly_first);
+        repeat_monthly_first.setOnItemSelectedListener(this);
+
         final Spinner repeat_monthly_last = (Spinner) dialogView.findViewById(R.id.repeat_monthly_last);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, onThe);
         adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown);
@@ -143,7 +149,8 @@ MonthlyDialogListener monthlyDialogListener;
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, onTheLast);
         adapter2.setDropDownViewResource(R.layout.custom_spinner_dropdown);
         repeat_monthly_last.setAdapter(adapter2);
-        final EditText repeat_monthly_check = (EditText) dialogView.findViewById(R.id.repeat_monthly_checkbox);
+        repeat_monthly_last.setOnItemSelectedListener(this);
+        repeat_monthly_check = (EditText) dialogView.findViewById(R.id.repeat_monthly_checkbox);
         repeat_monthly_check.setText("");
 
 
@@ -212,7 +219,7 @@ MonthlyDialogListener monthlyDialogListener;
 
 
         final RadioButton eachButton = (RadioButton) dialogView.findViewById(R.id.repeatmonthly_eachradio);
-        final RadioButton onButton = (RadioButton) dialogView.findViewById(R.id.repeatmonthly_ontheradio);
+ onButton = (RadioButton) dialogView.findViewById(R.id.repeatmonthly_ontheradio);
         repeat_monthly_first.setEnabled(false);
         repeat_monthly_last.setEnabled(false);
         eachButton.setOnClickListener(new View.OnClickListener() {
@@ -989,13 +996,34 @@ MonthlyDialogListener monthlyDialogListener;
         buttonPos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e(TAG, "Testing");
                 Log.e(TAG, "check text= "+ repeat_monthly_check.getText().toString());
-                if (Objects.equals(repeat_monthly_check.getText().toString(), "00") || Objects.equals(repeat_monthly_check.getText().toString(), "0") || Objects.equals(repeat_monthly_check.getText().toString(), "")|| monthList.size()<1)
-                    Toast.makeText(getActivity(), "Insert correct data", Toast.LENGTH_LONG).show();
-                else
-                { monthlyDialogListener.updateResult2(monthList, repeat_monthly_check.getText().toString());
+                if(!onButton.isChecked()) {
+                    Log.e(TAG, "on check is false");
+                    if (Objects.equals(repeat_monthly_check.getText().toString(), "00") || Objects.equals(repeat_monthly_check.getText().toString(), "0") || Objects.equals(repeat_monthly_check.getText().toString(), "") || monthList.size() < 1)
+                        Toast.makeText(getActivity(), "Insert correct data", Toast.LENGTH_LONG).show();
+                    else
+                    {
+                        dismiss();
+                        monthlyDialogListener.updateResult2(monthList, repeat_monthly_check.getText().toString());
+                    }
 
-                    dismiss();
+
+                }
+                else
+                {
+                    Log.e(TAG, "on check is true");
+                    if (Objects.equals(repeat_monthly_check.getText().toString(), "00") || Objects.equals(repeat_monthly_check.getText().toString(), "0") || Objects.equals(repeat_monthly_check.getText().toString(), "") )
+                        Toast.makeText(getActivity(), "Insert correct data", Toast.LENGTH_LONG).show();
+
+                    else
+
+                    {
+                        dismiss();
+                        monthlyDialogListener.updateOnDay(onFirst, onDay,  repeat_monthly_check.getText().toString());
+                    }
+
+
 
                 }
             }
@@ -1055,6 +1083,28 @@ MonthlyDialogListener monthlyDialogListener;
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        Spinner spinner = (Spinner) parent;
+        if(spinner.getId() == R.id.repeat_monthly_first)
+        {
+                     onFirst = String.valueOf(parent.getItemAtPosition(position)) ;
+            Log.e(TAG, "onDay+ "+onFirst);
+        }
+        else if(spinner.getId() == R.id.repeat_monthly_last)
+        {
+            onDay = String.valueOf(parent.getItemAtPosition(position));
+            Log.e(TAG, "onDay+ "+onDay);
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
     /* @Override
      protected float getDownScaleFactor() {
 
@@ -1088,5 +1138,9 @@ MonthlyDialogListener monthlyDialogListener;
      }*/
     public interface MonthlyDialogListener {
         void updateResult2(List<String> inputText, String integer);
+
+
+
+        void updateOnDay(String onFirst, String onDay, String s);
     }
 }

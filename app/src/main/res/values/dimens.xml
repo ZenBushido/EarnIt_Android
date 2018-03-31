@@ -54,4 +54,5 @@
     <dimen name="_38size">38dp</dimen>
     <dimen name="action_bar_text_size">20dp</dimen>
     <dimen name="repeat_dialog_size">140dp</dimen>
+    <dimen name="avatar_size">60dp</dimen>
 </resources>
