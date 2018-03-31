@@ -24,6 +24,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -200,15 +203,19 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
 //        callGoalService(parentObject.getEmail(), parentObject.getPassword(), childObject.getId());
         childAvatar = (CircularImageView) findViewById(R.id.add_task_avatar);
 
+
+
         if (childObject != null) {
 
-            try {
-                Picasso.with(parentCalendarActivity).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.override(350,350);
+            requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+            requestOptions.placeholder(R.drawable.default_avatar);
+            requestOptions.error(R.drawable.default_avatar);
 
-            } catch (Exception e) {
-                Picasso.with(parentCalendarActivity).load(R.drawable.default_avatar).into(childAvatar);
-                e.printStackTrace();
-            }
+            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+parentObject.getAvatar())
+                    .into(childAvatar);
+
 
         }
 
@@ -546,7 +553,11 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             int currentHour;
             if(hourOfDay>11)
             {
+
                 currentHour = hourOfDay - 12;
+
+                if(currentHour == 0)
+                    currentHour =12;
             }
             else
             {

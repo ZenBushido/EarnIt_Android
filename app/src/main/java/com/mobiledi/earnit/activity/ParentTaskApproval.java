@@ -61,6 +61,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
     String fromScreen;
     ScreenSwitch screenSwitch;
     ArrayList<Tasks> completedTaskList;
+    TaskComment taskComment;
 
 
     @Override
@@ -77,8 +78,11 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         otherChildObject = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
         fromScreen = intent.getStringExtra(AppConstant.FROM_SCREEN);
+        taskComment =  (TaskComment) intent.getSerializableExtra(AppConstant.TASK_COMMENTS);
         Utils.logDebug(TAG, "comming from >" + fromScreen);
 
+      //  Log.e(TAG, "Task comment: "+taskCommentArrayList.getComment());
+      //  Log.e(TAG, "Task comment: "+taskCommentArrayList.getPictureUrl());
 
 
         if (intent.getSerializableExtra(AppConstant.TASK_OBJECT) != null) {
@@ -155,6 +159,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
         if(task.getTaskComments()!=null)
         {
+            Log.e(TAG, "Task comment is not null");
             if (task.getTaskComments().size() > 0) {
                 TaskComment comment = task.getTaskComments().get(task.getTaskComments().size() - 1);
                 if (comment.getPictureUrl().isEmpty()) {
@@ -183,6 +188,41 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     commentBox.setKeyListener(null);
                 }
             }
+        }
+
+        else {
+
+            if(taskComment!=null)
+            {
+                    if (taskComment.getPictureUrl().isEmpty()) {
+                        postedImage.setVisibility(View.GONE);
+                    } else {
+                        progressBar.setVisibility(View.VISIBLE);
+                        Picasso.with(parentTaskApproval).load(AppConstant.AMAZON_URL+taskComment.getPictureUrl()).into(postedImage, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                progressBar.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onError() {
+                                progressBar.setVisibility(View.GONE);
+                            }
+
+                        });
+                    }
+
+                    if (taskComment.getComment().isEmpty()) {
+                        commentBox.setVisibility(View.GONE);
+                        commentLabel.setVisibility(View.GONE);
+                    } else {
+                        commentBox.setText(taskComment.getComment());
+                        commentBox.setKeyListener(null);
+                    }
+
+            }
+
+
         }
 
 

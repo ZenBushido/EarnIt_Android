@@ -35,6 +35,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -202,20 +205,28 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         callGoalService(parentObject.getEmail(), parentObject.getPassword(), childID);
 
 
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.override(350,350);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
 
-        try {
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar()).
+                into(childAvatar);
+
+
+      /*  try {
             Picasso.with(addTask).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
         } catch (Exception e) {
             Picasso.with(addTask).load(R.drawable.default_avatar).into(childAvatar);
             e.printStackTrace();
-        }
+        }*/
 
         childs = (Map<Integer, String>) intent.getSerializableExtra(AppConstant.CHILD_MAP);
         assignChild = new LinkedList<>(Arrays.asList(childObject.getFirstName()));
         assignTo.setText(childObject.getFirstName());
         save.setOnClickListener(addTask);
         cancel.setOnClickListener(addTask);
-
         checkbox.setOnClickListener(addTask);
         childAvatar.setOnClickListener(addTask);
         assignTo.setOnClickListener(addTask);
@@ -232,7 +243,8 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
             }
         });
-        repeatSpinner.setText(NONE);
+        //if(goalObject.getGoalName().isEmpty())
+        //repeatSpinner.setText(NONE);
 
         taskName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -260,10 +272,11 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         currentTask = (Tasks) intent.getSerializableExtra(AppConstant.TO_EDIT);
         fetchCHildId = childObject.getId();
         autoFill(currentTask);
-        if (currentTask.getGoal() != null) {
-            fetchGoalId = currentTask.getGoal().getId();
+        if (goalObject != null) {
+            Log.e(TAG, "Goal is not null");
+            fetchGoalId = goalObject.getId();
             fetchCHildId = childObject.getId();
-            goalName = currentTask.getGoal().getGoalName();
+            goalName = goalObject.getGoalName();
             repeatSpinner.setText(goalName.substring(0, 1).toUpperCase() + goalName.substring(1));
         } else {
             repeatSpinner.setText(NONE);
@@ -273,6 +286,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         } else {
             repeat = NONE;
         }
+        Log.e(TAG, "Allowance: "+currentTask.getAllowance());
         amountTxt.setText(currentTask.getAllowance() + "");
 
 

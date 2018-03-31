@@ -39,6 +39,7 @@ public final class AppConstant {
     public static boolean MESSAGE_STATUS = false;
     //public final static AddTaskModel addTaskModel = new AddTaskModel();
 
+    public final static String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/";
     public final static String BASE_URL_QA = "http://35.162.48.144:8080/earnit-api";
     public final static String BASE_URL_PROD = "https://api.myearnitapp.com:8443/earnit-api";
     public static final String BASE_URL = BuildConfig.DEBUG ? BASE_URL_QA : BASE_URL_PROD;

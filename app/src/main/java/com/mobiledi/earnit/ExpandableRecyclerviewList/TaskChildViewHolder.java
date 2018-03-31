@@ -90,6 +90,8 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, (Serializable)parent);
                     moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, AppConstant.CHECKED_IN_SCREEN);
                     moveToTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
+                    if(task.getTaskComments()!=null)
+                    moveToTaskApproval.putExtra(AppConstant.TASK_COMMENTS, (Serializable) task.getTaskComments().get(0));
                     itemView.getContext().startActivity(moveToTaskApproval);
 
 
@@ -98,6 +100,8 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, (Serializable) child);
                     requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
                     requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
+                    requestTaskApproval.putExtra(AppConstant.REPETITION_SCHEDULE, task.getRepititionSchedule());
+                    requestTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parent);
 
 
 

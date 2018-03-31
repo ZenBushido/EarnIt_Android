@@ -29,6 +29,7 @@ import static com.mobiledi.earnit.dialogfragment.WeeklyDialogFragment.weekList;
 
 public class MonthlyDialogFragment extends DialogFragment {
 
+    String TAG = MonthlyDialogFragment.class.getSimpleName();
     public static List<String> monthList = new ArrayList<>();
 MonthlyDialogListener monthlyDialogListener;
     @Override
@@ -137,10 +138,10 @@ MonthlyDialogListener monthlyDialogListener;
         final Spinner repeat_monthly_first = (Spinner) dialogView.findViewById(R.id.repeat_monthly_first);
         final Spinner repeat_monthly_last = (Spinner) dialogView.findViewById(R.id.repeat_monthly_last);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, onThe);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown);
         repeat_monthly_first.setAdapter(adapter);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, onTheLast);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter2.setDropDownViewResource(R.layout.custom_spinner_dropdown);
         repeat_monthly_last.setAdapter(adapter2);
         final EditText repeat_monthly_check = (EditText) dialogView.findViewById(R.id.repeat_monthly_checkbox);
         repeat_monthly_check.setText("");
@@ -988,6 +989,7 @@ MonthlyDialogListener monthlyDialogListener;
         buttonPos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e(TAG, "check text= "+ repeat_monthly_check.getText().toString());
                 if (Objects.equals(repeat_monthly_check.getText().toString(), "00") || Objects.equals(repeat_monthly_check.getText().toString(), "0") || Objects.equals(repeat_monthly_check.getText().toString(), "")|| monthList.size()<1)
                     Toast.makeText(getActivity(), "Insert correct data", Toast.LENGTH_LONG).show();
                 else

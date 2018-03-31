@@ -20,6 +20,9 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -134,12 +137,22 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         if (mode.equalsIgnoreCase(AppConstant.UPDATE)) {
             addChildHeader.setText(AppConstant.EDIT + " Child");
             save.setText(AppConstant.UPDATE);
-            try {
+
+
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.override(350,350);
+            requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+            requestOptions.placeholder(R.drawable.default_avatar);
+            requestOptions.error(R.drawable.default_avatar);
+
+            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar()).into(childAvatar);
+
+            /*try {
                 Picasso.with(addChild).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + child.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
             } catch (Exception e) {
                 e.printStackTrace();
                 Picasso.with(addChild).load(R.drawable.default_avatar).into(childAvatar);
-            }
+            }*/
             email.setText(child.getEmail());
             firstName.setText(child.getFirstName().substring(0, 1) + child.getFirstName().substring(1));
             password.setText(child.getPassword());

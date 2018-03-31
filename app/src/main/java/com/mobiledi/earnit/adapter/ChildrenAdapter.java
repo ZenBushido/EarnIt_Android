@@ -15,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -97,11 +100,20 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
                 childApprovalList=new ArrayList<>();
             final Child child = childApprovalList.get(position);
             final Child childWithAllTask = childList.get(position);
-            try {
+
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.override(350,350);
+            requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+            requestOptions.placeholder(R.drawable.default_avatar);
+            requestOptions.error(R.drawable.default_avatar);
+
+            Glide.with(activity).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar())
+                    .into(holder.profileImage);
+          /*  try {
                 Picasso.with(activity.getApplicationContext()).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + child.getAvatar()).error(R.drawable.default_avatar).into(holder.profileImage);
             }catch (Exception e){
                 Picasso.with(activity.getApplicationContext()).load(R.drawable.default_avatar).into(holder.profileImage);
-            }
+            }*/
             holder.firstName.setText(child.getFirstName());
             holder.firstName.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
@@ -42,12 +44,19 @@ public class ChildMessage extends BaseActivity implements View.OnClickListener {
         token = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE).getString(AppConstant.TOKEN_ID, null);
         childName.setText(child.getFirstName());
 
-        try{
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar()).into(childAvatar);
+
+
+   /*     try{
             Picasso.with(getApplicationContext()).load(child.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
         }catch (Exception e){
             e.printStackTrace();
             Picasso.with(getApplicationContext()).load(R.drawable.default_avatar).into(childAvatar);
-        }
+        }*/
 
         messageContent.setText(child.getMessage());
 

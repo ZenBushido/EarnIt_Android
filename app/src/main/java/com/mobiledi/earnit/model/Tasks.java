@@ -29,7 +29,6 @@ public class Tasks implements Serializable, Parcelable {
     private Goal goal;
 
     // repetition
-
     private RepititionSchedule repititionSchedule;
 
 

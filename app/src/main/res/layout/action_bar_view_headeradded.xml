@@ -1,4 +1,5 @@
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_add"
     android:layout_width="match_parent"
@@ -86,7 +87,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/task_rejection_text_size"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
 

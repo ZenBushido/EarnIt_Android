@@ -580,17 +580,17 @@ public final class R {
         public static final int abc_search_dropdown_item_icons_2line = 0x7f0b0018;
         public static final int abc_search_view = 0x7f0b0019;
         public static final int abc_select_dialog_material = 0x7f0b001a;
-        public static final int notification_media_action = 0x7f0b0084;
-        public static final int notification_media_cancel_action = 0x7f0b0085;
-        public static final int notification_template_big_media = 0x7f0b0086;
-        public static final int notification_template_big_media_narrow = 0x7f0b0088;
-        public static final int notification_template_media = 0x7f0b008d;
-        public static final int notification_template_part_chronometer = 0x7f0b008f;
-        public static final int notification_template_part_time = 0x7f0b0090;
-        public static final int select_dialog_item_material = 0x7f0b00a1;
-        public static final int select_dialog_multichoice_material = 0x7f0b00a2;
-        public static final int select_dialog_singlechoice_material = 0x7f0b00a3;
-        public static final int support_simple_spinner_dropdown_item = 0x7f0b00ab;
+        public static final int notification_media_action = 0x7f0b0085;
+        public static final int notification_media_cancel_action = 0x7f0b0086;
+        public static final int notification_template_big_media = 0x7f0b0087;
+        public static final int notification_template_big_media_narrow = 0x7f0b0089;
+        public static final int notification_template_media = 0x7f0b008e;
+        public static final int notification_template_part_chronometer = 0x7f0b0090;
+        public static final int notification_template_part_time = 0x7f0b0091;
+        public static final int select_dialog_item_material = 0x7f0b00a2;
+        public static final int select_dialog_multichoice_material = 0x7f0b00a3;
+        public static final int select_dialog_singlechoice_material = 0x7f0b00a4;
+        public static final int support_simple_spinner_dropdown_item = 0x7f0b00ac;
     }
     public static final class string {
         public static final int abc_action_bar_home_description = 0x7f0f0000;

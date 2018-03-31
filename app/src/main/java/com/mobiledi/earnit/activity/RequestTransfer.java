@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
@@ -44,12 +46,19 @@ public class RequestTransfer extends AppCompatActivity {
         fromScreen = intent.getStringExtra(AppConstant.FROM_SCREEN);
         userType = intent.getStringExtra(AppConstant.TYPE);
 
-        try {
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar())
+                .into(avatar);
+
+     /*   try {
             Picasso.with(this).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(avatar);
         } catch (Exception e) {
             Picasso.with(this).load(R.drawable.default_avatar).into(avatar);
             e.printStackTrace();
-        }
+        }*/
 
     }
 }

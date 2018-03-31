@@ -79,11 +79,11 @@
         <activity
             android:name="com.mobiledi.earnit.activity.AddTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name="com.mobiledi.earnit.activity.EditTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name="com.mobiledi.earnit.activity.ParentProfile"
             android:configChanges="orientation|screenSize"

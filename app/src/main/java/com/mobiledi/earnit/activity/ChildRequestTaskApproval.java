@@ -24,14 +24,20 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Goal;
+import com.mobiledi.earnit.model.Parent;
+import com.mobiledi.earnit.model.RepititionSchedule;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.utils.AppConstant;
+import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.RestCall;
 import com.mobiledi.earnit.utils.Utils;
 
@@ -48,6 +54,7 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
@@ -76,6 +83,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     Child child;
     Tasks task;
     Goal goal;
+    Parent parentObject;
+    RepititionSchedule repititionSchedule;
     @BindView(R.id.loadingPanel) RelativeLayout progress;
 
     @BindView(R.id.tv_applies_to)
@@ -92,6 +101,15 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         child = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         task = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
         goal = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
+        repititionSchedule = (RepititionSchedule) intent.getSerializableExtra(AppConstant.REPETITION_SCHEDULE);
+
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.override(350,350);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar()).into(childAvatar);
 
         setViewData();
         requestRequiredApplicationPermission(new String[]{Manifest.permission.CAMERA,
@@ -120,20 +138,25 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             uploadImage.setVisibility(View.GONE);
             //requiredPhoto.setText(AppConstant.NO);}
 
-            if (task.getRepititionSchedule() != null) {
-                String repeatFrequency = task.getRepititionSchedule().getRepeat();
-
-                Log.e(TAG, "Repeat is not null");
-                Log.e(TAG, "Repeat Freq= "+repeatFrequency);
-                if (repeatFrequency.isEmpty()) {
-                    Toast.makeText(this, "Submit task for Approval.", Toast.LENGTH_SHORT).show();
-                } else {
-                    repeats.setText(repeatFrequency.substring(0, 1).toUpperCase() + repeatFrequency.substring(1));
-                }
-
-            } else repeats.setText(AppConstant.NO);
 
         }
+
+
+        if (repititionSchedule != null) {
+            String repeatFrequency = repititionSchedule.getRepeat();
+
+            Log.e(TAG, "Repeat is not null");
+            Log.e(TAG, "Repeat Freq= "+repeatFrequency);
+            if (repeatFrequency.isEmpty()) {
+                Toast.makeText(this, "Submit task for Approval.", Toast.LENGTH_SHORT).show();
+            } else {
+                repeats.setText(repeatFrequency.substring(0, 1).toUpperCase() + repeatFrequency.substring(1));
+            }
+
+        } else
+        {
+            Log.e(TAG, "Repetition is null");
+            repeats.setText(AppConstant.NO);}
     }
 
     public void setViewIds() {
@@ -163,8 +186,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                     } else {
                         showToast(getResources().getString(R.string.please_upload_picture));
                     }
-                } else if (taskComments.getText().toString().equals(""))
-                    showToast("Write  comment !");
+                }
                 else {
                     updateTaskStatus(task, null);
 
@@ -180,6 +202,11 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
 
     }
 
+    @OnClick(R.id.child_avatar)
+    void floatingMenu()
+    {
+        new FloatingMenu(requestTaskApproval).fetchAvatarDimension(childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+    }
     @Override
     public void onBackPressed() {
         new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);

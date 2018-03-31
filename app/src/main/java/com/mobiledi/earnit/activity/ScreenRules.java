@@ -25,6 +25,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.activity.applock.SplashActivity;
@@ -109,12 +111,19 @@ public class ScreenRules extends AppCompatActivity implements NavigationDrawer.O
         Button okBtn = (Button) findViewById(R.id.screenrule_save);
         childAvatar = (CircularImageView) findViewById(R.id.add_task_avatar);
 
-        try {
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar())
+                .into(childAvatar);
+
+     /*   try {
             Picasso.with(ScreenRules.this).load(childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
         } catch (Exception e) {
             Picasso.with(ScreenRules.this).load(R.drawable.default_avatar).into(childAvatar);
             e.printStackTrace();
-        }
+        }*/
 
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,11 +6,11 @@
                 {
                     "source": "/Users/mac/Desktop/EarnIt_Android/app/src/main/res/values-w820dp/dimens.xml",
                     "from": {
-                        "startLines": "5,-1",
-                        "startColumns": "4,-1",
-                        "startOffsets": "354,-1",
-                        "endColumns": "51,-1",
-                        "endOffsets": "401,-1"
+                        "startLines": "5,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "354,295",
+                        "endColumns": "51,57",
+                        "endOffsets": "401,348"
                     },
                     "to": {
                         "startLines": "2,3",

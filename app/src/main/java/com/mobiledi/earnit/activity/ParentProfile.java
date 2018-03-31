@@ -27,6 +27,9 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -132,12 +135,23 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
         switchFrom = getIntent().getStringExtra(AppConstant.SCREEN);
         if (switchFrom.equalsIgnoreCase(AppConstant.CHECKED_IN_SCREEN) || switchFrom.equalsIgnoreCase(AppConstant.CHECKED_IN_TASK_APPROVAL__SCREEN))
             childID = getIntent().getIntExtra(AppConstant.CHILD_ID, 0);
-        try {
+
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.override(350,350);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+parentObject.getAvatar())
+                .into(parentAvatar);
+
+
+      /*  try {
             Picasso.with(profile).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/"+parentObject.getAvatar()).error(R.drawable.default_avatar).into(parentAvatar);
         } catch (Exception e) {
             Picasso.with(profile).load(R.drawable.default_avatar).into(parentAvatar);
             e.printStackTrace();
-        }
+        }*/
         email.setText(parentObject.getEmail());
         email.setEnabled(false);
         if (!parentObject.getPhone().isEmpty()) {
@@ -483,6 +497,7 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
                             child = new GetObjectFromResponse().getChildObject(childObject);
                             otherChild = new GetObjectFromResponse().getChildObject(childObject);
 
+
                             ArrayList<Tasks> taskList = new ArrayList<>();
                             ArrayList<Tasks> otherTaskList = new ArrayList<>();
                             JSONArray taskArray = childObject.getJSONArray(AppConstant.TASKS);
@@ -529,6 +544,8 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
             }
         });
     }
+
+
 
     public void updateAutoLoginCredential(String email, String password) {
         SharedPreferences shareToken = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);

@@ -13,6 +13,9 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -130,12 +133,19 @@ public class BalanceActivity extends BaseActivity   {
         getAllGoals();
 
 
-        try {
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.override(350,350);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar()).into(avatar);
+
+     /*   try {
             Picasso.with(balance).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(avatar);
         } catch (Exception e) {
             Picasso.with(balance).load(R.drawable.default_avatar).into(avatar);
             e.printStackTrace();
-        }
+        }*/
 
 
     }

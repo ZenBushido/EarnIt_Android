@@ -214,7 +214,7 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Utils.logDebug(TAG, "Child error response: " + errorResponse.toString());
+                Utils.logDebug(TAG, "Child error response: " );
 
             }
 

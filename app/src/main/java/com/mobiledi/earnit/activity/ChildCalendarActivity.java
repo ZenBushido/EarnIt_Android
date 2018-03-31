@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
@@ -98,13 +101,23 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         Log.e(TAG, "URL= "+"https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/"+childObject.getAvatar());
 
-        try {
+
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.override(350,350);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar()).into(childAvatar);
+
+
+     /*   try {
             Picasso.with(childCalendarActivity).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
 
         } catch (Exception e) {
             e.printStackTrace();
             Picasso.with(childCalendarActivity).load(R.drawable.default_avatar).into(childAvatar);
-        }
+        }*/
 
         backarrow.setOnClickListener(childCalendarActivity);
         backlisttask.setOnClickListener(childCalendarActivity);

@@ -292,6 +292,7 @@ public class UploadRuntimePermission extends Activity {
                 }
             } else if (requestCode == 2) {
 
+                Log.e(TAG, "SElecting picture from gallery");
                 Uri selectedImage = data.getData();
                 String[] filePath = {MediaStore.Images.Media.DATA};
                 Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
@@ -405,7 +406,8 @@ public class UploadRuntimePermission extends Activity {
     }
 
     private void uploadImageToAWS(String selectedImagePath) {
-
+        Log.e(TAG, "UPLoading to AWS");
+        Log.e(TAG, "Path ="+selectedImagePath);
         if (selectedImagePath == null) {
             Toast.makeText(this, "Could not find the filepath of the selected file", Toast.LENGTH_LONG).show();
 

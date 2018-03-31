@@ -13,6 +13,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -66,12 +69,20 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Chil
     public void onBindViewHolder(final ChildListHolder holder, final int position) {
         final Child child = childList.get(position);
 
-        try {
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.override(350,350);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+
+        Glide.with(activity).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar())
+                .into(holder.childImage);
+      /*  try {
             Picasso.with(activity).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + child.getAvatar()).error(R.drawable.default_avatar).into(holder.childImage);
         } catch (Exception e) {
             Picasso.with(activity).load(R.drawable.default_avatar).into(holder.childImage);
         }
-
+*/
         holder.childFullName.setText(child.getFirstName().substring(0, 1) + child.getFirstName().substring(1).toLowerCase());
         holder.childFullName.setOnClickListener(new View.OnClickListener() {
             @Override

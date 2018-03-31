@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.loopj.android.http.AsyncHttpClient;
@@ -90,12 +93,35 @@ public class ChildDashboard extends BaseActivity {
         //SET PROFILE IMAGE
 
         childDashboardHeader.setText(getResources().getString(R.string.my_task));
-        try {
+        Log.e(TAG, "Child objcet getting");
+        Log.e(TAG, "CHILD ID= "+childObject.getId());
+
+        if (childObject != null) {
+
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.override(350,350);
+            requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+            requestOptions.placeholder(R.drawable.default_avatar);
+            requestOptions.error(R.drawable.default_avatar);
+            Log.e(TAG, AppConstant.AMAZON_URL+childObject.getAvatar());
+
+            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar())
+                    .into(childImage);
+
+            Log.e(TAG, "Child objcet is not null");
+            Log.e(TAG, AppConstant.AMAZON_URL+childObject.getAvatar());
+            Log.e(TAG, AppConstant.AMAZON_URL+childObject);
+            Log.e(TAG, childObject.getAvatar());
+        }
+        else
+            Log.e(TAG, "Child objcet is null.......");
+
+    /*    try {
             Picasso.with(childDashboard.getApplicationContext()).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childImage);
         } catch (Exception e) {
             e.printStackTrace();
             Picasso.with(childDashboard.getApplicationContext()).load(R.drawable.default_avatar).into(childImage);
-        }
+        }*/
 
        // callRetrofit();
 

@@ -6,7 +6,7 @@
     <dimen name="check_in_text_size">16sp</dimen><!--task-->
     <dimen name="task_date_header">20sp</dimen><!--taskheader-->
     <dimen name="task_rejection_text_size">18sp</dimen><!--...-->
-    <dimen name="toolbar_header_size">23sp</dimen><!--...-->
+    <dimen name="toolbar_header_size">20sp</dimen><!--...-->
     <dimen name="task_layout_text_size">18sp</dimen><!--form-->
     <dimen name="completed_text_size">18sp</dimen>
     <dimen name="app_text_size">18sp</dimen>

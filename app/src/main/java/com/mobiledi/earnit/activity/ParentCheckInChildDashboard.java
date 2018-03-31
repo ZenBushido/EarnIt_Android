@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -21,6 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ChildViewDateAdapter;
@@ -97,12 +101,22 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
         //SET PROFILE IMAGE
-        try {
+
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.override(350,350);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.placeholder(R.drawable.default_avatar);
+        requestOptions.error(R.drawable.default_avatar);
+
+        Log.e(TAG, AppConstant.AMAZON_URL+childObject.getAvatar());
+        Glide.with(this).applyDefaultRequestOptions(requestOptions)
+                .load(AppConstant.AMAZON_URL+childObject.getAvatar()).into(tChildImage);
+      /*  try {
             Picasso.with(getApplicationContext()).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(tChildImage);
         } catch (Exception e) {
             Picasso.with(getApplicationContext()).load(R.drawable.default_avatar).into(tChildImage);
             e.printStackTrace();
-        }
+        }*/
         tHeaderName.setText(childObject.getFirstName().substring(0, 1).toUpperCase() + childObject.getFirstName().substring(1) + "'s Tasks");
 
 

@@ -41,6 +41,7 @@
                         android:src="@drawable/arrow_left" />
 
                     <TextView
+                        android:text="adfaafadf"
                         android:id="@+id/task_name"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -335,11 +336,13 @@
         </ScrollView>
 
         <RelativeLayout
+            android:visibility="gone"
+            android:layout_centerInParent="true"
             android:id="@+id/loadingPanel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone">
+          >
 
             <ProgressBar
                 android:layout_width="wrap_content"

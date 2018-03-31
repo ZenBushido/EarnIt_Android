@@ -401,6 +401,8 @@ goals.add(goal);
 
 
     public void moveToTaskApproval(Child child, Child otherChild, Parent parent, String fromScreen, Tasks tasks) {
+
+
         Intent moveToTaskApproval = new Intent(activity, ParentTaskApproval.class);
        // moveToTaskApproval.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         moveToTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
@@ -408,6 +410,15 @@ goals.add(goal);
         moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parent);
         moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, fromScreen);
         moveToTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) tasks);
+        if(tasks!=null)
+        {
+            Log.e(TAG, "Tasks is not null....");
+            moveToTaskApproval.putExtra(AppConstant.TASK_COMMENTS, (Serializable) tasks.getTaskComments().get(0));
+        }
+        else {
+            Log.e(TAG, "TASK IS NULL.....");
+        }
+
         activity.startActivity(moveToTaskApproval);
     }
 
