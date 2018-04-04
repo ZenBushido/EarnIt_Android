@@ -3,6 +3,8 @@ package com.mobiledi.earnit.retrofit;
 
 
 
+import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDay;
+import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDayResponse;
 import com.mobiledi.earnit.model.adjustBalance.AdjustBalanceResponse;
 import com.mobiledi.earnit.model.adjustBalance.AdjustGoalData;
 import com.mobiledi.earnit.model.getChild.GetAllChildResponse;
@@ -11,6 +13,8 @@ import com.mobiledi.earnit.model.task.GetAllTaskResponse;
 
 import java.util.List;
 
+
+import io.reactivex.Observer;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -50,5 +54,8 @@ public interface RetroInterface {
     Call<List<GetAllTaskResponse>>
     getAllTask(@Path("CHILDREN_ID") int id);
 
+    @POST("tasks")
+    Call<AddTaskWithSelecteDayResponse>
+    addTAskWithSelectedDay(@Body AddTaskWithSelecteDay addTaskWithSelecteDay);
 
 }

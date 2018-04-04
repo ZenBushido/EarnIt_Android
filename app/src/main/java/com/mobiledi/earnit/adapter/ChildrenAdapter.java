@@ -100,7 +100,7 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
                 childApprovalList=new ArrayList<>();
             final Child child = childApprovalList.get(position);
             final Child childWithAllTask = childList.get(position);
-
+            Log.e(TAG, "ID: : "+child.getId());
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.override(350,350);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);

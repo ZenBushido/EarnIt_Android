@@ -46,6 +46,8 @@ import com.mobiledi.earnit.model.Item;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDay;
+import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDayResponse;
+import com.mobiledi.earnit.model.addTask.RepititionSchedule;
 import com.mobiledi.earnit.model.getChild.GetAllChildResponse;
 import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
 import com.mobiledi.earnit.retrofit.RetroInterface;
@@ -87,10 +89,12 @@ import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
+import io.reactivex.Observable;
 import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 import static com.mobiledi.earnit.R.id.task_name;
 
@@ -148,7 +152,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     private Calendar c;
     Integer retry = 0;
 
-
+    MessageEvent m ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -440,7 +444,34 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
                         Log.e(TAG, "Amount= "+amountTxt.getText().toString());
                         if (amountTxt.getText().toString().trim().length() > 0)
-                            saveTask();
+                        {
+                            m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
+                            Log.e(TAG, "MessageEvent: "+m.getResponse().repeat);
+                            Log.e(TAG, "MessageEvent: "+m.getResponse().onFirst);
+                            Log.e(TAG, "MessageEvent: "+m.getResponse().onDay);
+                            if(m.getResponse().onDay!=null)
+                            {
+
+                                if(m.getResponse().onDay.equals("")||m.getResponse().onFirst.equals(""))
+                                {
+                                    Log.e(TAG, "Both are empty");
+                                    saveTask();
+                                }
+                                else
+                                {
+                                    Log.e(TAG, "Both are not empty");
+                                    saveTaskWithSelectedDays();
+                                }
+
+
+                            }
+
+
+
+
+                          //  saveTask();
+                        }
+
                         else
                         Utils.showToast(this, "Add amount");
 
@@ -472,36 +503,79 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         }
     }
 
-/*
-    void saveSpecificaTaskDay() throws ParseException {
+    private void saveTaskWithSelectedDays() {
 
-        DateTime due = new DateTime();
-        DateTimeZone tz = DateTimeZone.getDefault();
-        Long instant = DateTime.now().getMillis();
-
-        long offsetInMilliseconds = tz.getOffset(instant);
-        MessageEvent m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
-
-        if (m != null) {
-
+        try {
             repititionSchedule = m.getResponse();
-            EventBus.getDefault().removeAllStickyEvents();
+            DateTime due = new DateTime();
+            DateTimeZone tz = DateTimeZone.getDefault();
+            Long instant = DateTime.now().getMillis();
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add(m.getResponse().onDay);
+
+            long offsetInMilliseconds = tz.getOffset(instant);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/DD/yyyy hh:mm:ss aaa", Locale.getDefault());
+
             simpleDateFormat.setTimeZone(TimeZone.getDefault());
+
             Date date = (Date) simpleDateFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
             DateTime dateTime = new DateTime(date);
+            long dueTime = dateTime.getMillis() + offsetInMilliseconds;
+//"yyyyy.MMMMM.dd GGG hh:mm aaa"
+            //"EEE, d MMM yyyy HH:mm:ss Z"
+            SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy hh:mm:ss aaa");
+            String dateString = formatter.format(new Date(dueTime));
 
-            String dueDate = String.valueOf(dateTime.getMillis() + offsetInMilliseconds);
+            Log.e(TAG, "Date String = "+dateString);
+            RepititionSchedule repititionSchedule = new RepititionSchedule(m.getResponse().startTime,
+                    m.getResponse().endTime, m.getResponse().repeat, m.getResponse().everyNday,
+                    m.getResponse().onFirst, arrayList );
 
-            AddTaskWithSelecteDay addTaskWithSelecteDay = new AddTaskWithSelecteDay(Double.parseDouble(amountTxt.getText().toString()),
-                    dueDate, taskName.getText().toString().trim(),
-                    checkboxStatus, childID+"", fetchGoalId+"",
+            com.mobiledi.earnit.model.addTask.Children child = new com.mobiledi.earnit.model.addTask.Children ();
+            child.setId(childID);
+            com.mobiledi.earnit.model.addTask.Goal goal = new com.mobiledi.earnit.model.addTask.Goal();
+            goal.setId(fetchGoalId);
+            double value = Double.parseDouble(amountTxt.getText().toString());
 
+            AddTaskWithSelecteDay addTaskWithSelecteDay = new AddTaskWithSelecteDay(value,
+                    dateString, taskName.getText().toString().trim(), checkboxStatus, child, goal,
+                    repititionSchedule, taskDetails.getText().toString(), false,
+                    checkboxStatusLock
 
                     );
 
+
+
+            RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(),
+                    parentObject.getPassword());
+
+
+           Call<AddTaskWithSelecteDayResponse> call = retroInterface.addTAskWithSelectedDay(addTaskWithSelecteDay);
+           call.enqueue(new Callback<AddTaskWithSelecteDayResponse>() {
+               @Override
+               public void onResponse(Call<AddTaskWithSelecteDayResponse> call, Response<AddTaskWithSelecteDayResponse> response) {
+                   Log.e(TAG, "Response: "+response.body().getName());
+               }
+
+               @Override
+               public void onFailure(Call<AddTaskWithSelecteDayResponse> call, Throwable t) {
+                   Log.e(TAG, "Error: "+t.getLocalizedMessage());
+               }
+           });
+
+
+
         }
-    }*/
+
+        catch (Exception e)
+        {
+                Log.e(TAG, "ERROR: : "+e.getLocalizedMessage());
+        }
+
+
+
+    }
+
 
 
     private void saveTask() {
@@ -531,7 +605,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             Log.e(TAG, "Task full= "+addTaskJson);
 
             JSONObject repSchedule = new JSONObject();
-            MessageEvent m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
+
 
             if (m != null) {
                 repititionSchedule = m.getResponse();

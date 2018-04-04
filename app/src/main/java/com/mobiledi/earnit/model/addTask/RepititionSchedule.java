@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class RepititionSchedule {
 
+
+
     @SerializedName("startTime")
     @Expose
     private String startTime;
@@ -24,6 +26,15 @@ public class RepititionSchedule {
     @SerializedName("specificDays")
     @Expose
     private List<String> specificDays = null;
+
+    public RepititionSchedule(String startTime, String endTime, String repeat, Integer everyNRepeat, String performTaskOnTheNSpecifiedDay, List<String> specificDays) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.repeat = repeat;
+        this.everyNRepeat = everyNRepeat;
+        this.performTaskOnTheNSpecifiedDay = performTaskOnTheNSpecifiedDay;
+        this.specificDays = specificDays;
+    }
 
     public String getStartTime() {
         return startTime;

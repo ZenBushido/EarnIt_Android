@@ -71,8 +71,8 @@ public class AddTaskModel {
         public String repeat;
         public Integer everyNday;
         public String date;
-        public String onFirst;
-        public String onDay;
+        public String onFirst="";
+        public String onDay="";
 
         public String getDate() {
             return date;

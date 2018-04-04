@@ -271,6 +271,7 @@ public class GetObjectFromResponse {
 
 
     public List<ChildsTaskObject> getChildTaskListObject(Child childObject, String type,String fromScreen) {
+        Log.e(TAG, "Child ID= "+childObject.getId());
         //Get Unique Dates
         PENDING_APPROVAL_DATE = new DateTime().plusDays(-2).withTimeAtStartOfDay().toString();
         PAST_DUE_DATE = new DateTime().plusDays(-1).withTimeAtStartOfDay().toString();
@@ -284,7 +285,37 @@ public class GetObjectFromResponse {
 
                         for (int i = 0; i < task.getRepititionSchedule().getSpecificDays().size(); i++) {
 
-                            Integer month = Integer.parseInt(task.getRepititionSchedule().getSpecificDays().get(i));
+                            Integer month = 1;
+
+                            switch (task.getRepititionSchedule().getSpecificDays().get(i)) {
+                                case "Sunday":
+                                    month = 6;
+                                    break;
+                                case "sunday":
+                                    month = 6;
+                                    break;
+                                case "monday":
+                                    month = 1;
+                                    break;
+                                case "tuesday":
+                                    month = 2;
+                                    break;
+                                case "wednesday":
+                                    month = 3;
+                                    break;
+                                case "thursday":
+                                    month = 4;
+                                    break;
+                                case "friday":
+                                    month = 5;
+                                    break;
+                                case "saturday":
+                                    month = 6;
+                                    break;
+                                default:
+                                    month = 1;
+                            }
+                            Log.e(TAG, "Month= "+month);
                             String key = new DateTime(task.getDueDate()).withDayOfMonth(month).plusMonths(j * task.getRepititionSchedule().getEveryNRepeat()).withTimeAtStartOfDay().toString();
                             if (!new DateTime(task.getDueDate()).withDayOfMonth(month).plusMonths(j * task.getRepititionSchedule().everyNRepeat).withTimeAtStartOfDay().isBefore(new DateTime().plusDays(-1).withTimeAtStartOfDay()))
                                 if (!task.getStatus().equals(AppConstant.APPROVED)) {

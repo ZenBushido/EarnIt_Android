@@ -213,7 +213,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             requestOptions.placeholder(R.drawable.default_avatar);
             requestOptions.error(R.drawable.default_avatar);
 
-            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+parentObject.getAvatar())
+            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar())
                     .into(childAvatar);
 
 
@@ -331,12 +331,19 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
 
                     {
                         Log.e(TAG, "On first is not null");
+                        Log.e(TAG, onFirst);
+                        Log.e(TAG, onDay);
                         response.onFirst = onFirst;
                         response.onDay = onDay;
                     }
                     else
                     {
                         Log.e(TAG, "On first is null");
+                        //Log.e(TAG, onFirst);
+                       // Log.e(TAG, onDay);
+                        response.onFirst = "";
+                        response.onDay = "";
+
                     }
 
 
@@ -570,10 +577,6 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             linearLayout.setMinimumWidth(0);
             linearLayout.setMinimumHeight(0);
             tpd.setCustomTitle(linearLayout);
-
-
-
-
             return tpd;
         }
 
@@ -593,10 +596,16 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
 
                 if(currentHour == 0)
                     currentHour =12;
+
+
+
+
             }
             else
             {
                 currentHour = hourOfDay;
+                if(currentHour == 0)
+                    currentHour =12;
             }
 
 
