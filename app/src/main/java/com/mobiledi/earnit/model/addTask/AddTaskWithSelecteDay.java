@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class AddTaskWithSelecteDay {
 
-    public AddTaskWithSelecteDay(Double allowance, String dueDate, String name, Boolean pictureRequired, Children children, Goal goal, RepititionSchedule repititionSchedule, String description, Boolean isDeleted, Boolean shouldLockAppsIfTaskOverdue) {
+    public AddTaskWithSelecteDay(Double allowance, String dueDate, String name, Boolean pictureRequired,  Children children, Goal goal, RepititionSchedule repititionSchedule, String description, Boolean isDeleted, Boolean shouldLockAppsIfTaskOverdue) {
 
         this.allowance = allowance;
         this.dueDate = dueDate;
@@ -21,6 +21,7 @@ public class AddTaskWithSelecteDay {
         this.description = description;
         this.isDeleted = isDeleted;
         this.shouldLockAppsIfTaskOverdue = shouldLockAppsIfTaskOverdue;
+
     }
 
     @SerializedName("allowance")
@@ -53,6 +54,7 @@ public class AddTaskWithSelecteDay {
     @SerializedName("shouldLockAppsIfTaskOverdue")
     @Expose
     private Boolean shouldLockAppsIfTaskOverdue;
+
 
     public Double getAllowance() {
         return allowance;
@@ -133,5 +135,16 @@ public class AddTaskWithSelecteDay {
     public void setShouldLockAppsIfTaskOverdue(Boolean shouldLockAppsIfTaskOverdue) {
         this.shouldLockAppsIfTaskOverdue = shouldLockAppsIfTaskOverdue;
     }
+
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+
 
 }

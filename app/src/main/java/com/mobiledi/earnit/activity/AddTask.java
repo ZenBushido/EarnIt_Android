@@ -178,6 +178,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         childID = childObject.getId();
+        Log.e(TAG, "Child ID: "+childID);
         amountTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -446,25 +447,29 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                         if (amountTxt.getText().toString().trim().length() > 0)
                         {
                             m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
-                            Log.e(TAG, "MessageEvent: "+m.getResponse().repeat);
-                            Log.e(TAG, "MessageEvent: "+m.getResponse().onFirst);
-                            Log.e(TAG, "MessageEvent: "+m.getResponse().onDay);
-                            if(m.getResponse().onDay!=null)
+
+                            if(m!=null)
                             {
-
-                                if(m.getResponse().onDay.equals("")||m.getResponse().onFirst.equals(""))
+                                if(m.getResponse().onDay!=null)
                                 {
-                                    Log.e(TAG, "Both are empty");
-                                    saveTask();
-                                }
-                                else
-                                {
-                                    Log.e(TAG, "Both are not empty");
-                                    saveTaskWithSelectedDays();
-                                }
 
-
+                                    if(m.getResponse().onDay.equals("")||m.getResponse().onFirst.equals(""))
+                                    {
+                                        Log.e(TAG, "Both are empty");
+                                        saveTask();
+                                    }
+                                    else
+                                    {
+                                        Log.e(TAG, "Both are not empty");
+                                        saveTaskWithSelectedDays();
+                                    }
+                                }
                             }
+                            else
+                            {
+                                Toast.makeText(getApplicationContext(), "Please add due date", Toast.LENGTH_LONG).show();
+                            }
+
 
 
 
@@ -521,20 +526,29 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             Date date = (Date) simpleDateFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
             DateTime dateTime = new DateTime(date);
             long dueTime = dateTime.getMillis() + offsetInMilliseconds;
-//"yyyyy.MMMMM.dd GGG hh:mm aaa"
+            //"yyyyy.MMMMM.dd GGG hh:mm aaa"
             //"EEE, d MMM yyyy HH:mm:ss Z"
             SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy hh:mm:ss aaa");
             String dateString = formatter.format(new Date(dueTime));
 
             Log.e(TAG, "Date String = "+dateString);
+            Log.e(TAG, "EVERY N DAY: "+m.getResponse().getEveryNday());
             RepititionSchedule repititionSchedule = new RepititionSchedule(m.getResponse().startTime,
                     m.getResponse().endTime, m.getResponse().repeat, m.getResponse().everyNday,
                     m.getResponse().onFirst, arrayList );
 
             com.mobiledi.earnit.model.addTask.Children child = new com.mobiledi.earnit.model.addTask.Children ();
+            childID = childObject.getId();
+            Log.e(TAG, "ChildID= "+childID);
             child.setId(childID);
             com.mobiledi.earnit.model.addTask.Goal goal = new com.mobiledi.earnit.model.addTask.Goal();
-            goal.setId(fetchGoalId);
+            if(fetchGoalId!=0)
+            {
+                goal.setId(fetchGoalId);
+            }
+            else
+            goal=null;
+
             double value = Double.parseDouble(amountTxt.getText().toString());
 
             AddTaskWithSelecteDay addTaskWithSelecteDay = new AddTaskWithSelecteDay(value,
@@ -554,7 +568,12 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
            call.enqueue(new Callback<AddTaskWithSelecteDayResponse>() {
                @Override
                public void onResponse(Call<AddTaskWithSelecteDayResponse> call, Response<AddTaskWithSelecteDayResponse> response) {
-                   Log.e(TAG, "Response: "+response.body().getName());
+                  // Log.e(TAG, "Response: "+response.body().getName());
+
+                   if(response.code() ==201)
+                   showDialogOnTaskAdded(childObject, otherChild);
+                   else
+                       showToast("Unexpected Error Occured");
                }
 
                @Override
@@ -562,8 +581,6 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                    Log.e(TAG, "Error: "+t.getLocalizedMessage());
                }
            });
-
-
 
         }
 

@@ -552,6 +552,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         Log.e(TAG, "Upate on day method");
         this.onFirst = onFirst;
         this.onDay = onDay;
+        dayOfWeek = s;
 
     }
 

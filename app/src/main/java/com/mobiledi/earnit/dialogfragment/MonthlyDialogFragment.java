@@ -1030,7 +1030,7 @@ MonthlyDialogListener monthlyDialogListener;
         });
 
         // "Cancel" button
-        Button buttonNeg = (Button) dialogView.findViewById(R.id.repeatmonthly_cancel);
+        Button buttonNeg =  dialogView.findViewById(R.id.repeatmonthly_cancel);
         buttonNeg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

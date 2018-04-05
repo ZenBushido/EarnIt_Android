@@ -51,6 +51,10 @@ import com.mobiledi.earnit.model.Item;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.TaskV2Model;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.model.deleteTask.DeleteTaskResponse;
+import com.mobiledi.earnit.model.editTask.EditTaskRequest;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.stickyEvent.MessageEvent;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
@@ -427,7 +431,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // continue with delete
-                        deleteTask(currentTask.getId());
+                        deleteTaskWithId(currentTask.getId());
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -439,67 +443,99 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                 .show();
     }
 
-    private void deleteTask(int id) {
+    private void deleteTaskWithId(int id)
+    {
+        RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(), parentObject.getPassword());
 
-        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-        asyncHttpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
-        asyncHttpClient.delete(addTask, AppConstant.BASE_URL + AppConstant.TASKS_API_DELETE + id, new JsonHttpResponseHandler() {
+        Call<DeleteTaskResponse> call = retroInterface.deleteTask(id);
 
+        call.enqueue(new Callback<DeleteTaskResponse>() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("Success Code", String.valueOf(statusCode));
-                Log.d("Success Response", response.toString());
+            public void onResponse(Call<DeleteTaskResponse> call, Response<DeleteTaskResponse> response) {
 
-                try {
-                    String taskResponse = response.getString("message");
-                    String finalTaskResponse = taskResponse.substring(2, taskResponse.length() - 2);
-
-                    Toast.makeText(addTask.getBaseContext(), finalTaskResponse + " successfully.", Toast.LENGTH_SHORT).show();
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String response) {
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Log.d("Failure Code", String.valueOf(statusCode));
-                Log.d("Failure Response", errorResponse.toString());
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-            }
-
-            @Override
-            public void onStart() {
-
-            }
-
-            @Override
-            public void onFinish() {
+                Toast.makeText(addTask.getBaseContext(), response.body().getMessage().get(0) + " successfully.", Toast.LENGTH_SHORT).show();
                 chechUserTasks();
-
             }
 
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
+            @Override
+            public void onFailure(Call<DeleteTaskResponse> call, Throwable t) {
+
             }
         });
-
     }
 
+
+    private void editTask()
+    {
+
+        AddTaskModel.repititionSchedule repititionSchedule = null;
+
+ /*       long offsetInMilliseconds = tz.getOffset(instant);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/DD/yyyy hh:mm:ss aaa", Locale.getDefault());
+
+        simpleDateFormat.setTimeZone(TimeZone.getDefault());
+
+        Date date = (Date) simpleDateFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
+        DateTime dateTime = new DateTime(date);
+        long dueTime = dateTime.getMillis() + offsetInMilliseconds;*/
+
+        try
+         {
+
+             SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy hh:mm:ss aaa");
+             String dateString = formatter.format(new DateTime().getMillis());
+
+
+             MessageEvent m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
+             EventBus.getDefault().removeAllStickyEvents();
+             if (m != null) {
+                 repititionSchedule = m.getResponse();
+                 EventBus.getDefault().removeAllStickyEvents();
+
+
+             }
+
+             if(repititionSchedule!=null)
+             {
+
+                 String starTime = formatter.format(repititionSchedule.getStartTime());
+                 String endTime = formatter.format(repititionSchedule.getEndTime());
+
+
+
+
+               /*  EditTaskRequest.RepititionSchedule repititionSchedule1 = new EditTaskRequest().new RepititionSchedule(
+                       repititionSchedule.
+                 );*/
+             }
+
+             /*
+             * this.goal = goal;
+        this.repititionSchedule = repititionSchedule;
+        this.description = description;
+        this.isDeleted = isDeleted;
+        this.shouldLockAppsIfTaskOverdue = shouldLockAppsIfTaskOverdue;*/
+
+            String dueDate =  formatter.format(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
+
+            EditTaskRequest.Children children = new EditTaskRequest().new Children(childID);
+            EditTaskRequest.Goal goal = new EditTaskRequest().new Goal(fetchGoalId);
+
+
+        /*    EditTaskRequest editTaskRequest = new EditTaskRequest(
+                     currentTask.getId(), Double.parseDouble(amountTxt.getText().toString()),
+                     dateString,  dueDate, taskName.getText().toString().trim(),
+                     checkboxStatus ? 1 : 0, AppConstant.DUE, children, goal,
+                     );*/
+         }
+        catch (Exception e)
+        {
+
+        }
+
+
+
+    }
     private void saveTask() {
         AddTaskModel.repititionSchedule repititionSchedule = null;
 
