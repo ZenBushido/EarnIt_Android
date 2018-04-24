@@ -168,7 +168,7 @@ public class BalanceActivity extends BaseActivity   {
             new FloatingMenu(balanceChild).fetchAvatarDimension(avatar, childObject, otherChild, parentObject, AppConstant.BALANCE_SCREEN, progressBar, tasks);
         else
 
-            new FloatingMenu(balanceChild).fetchAvatarDimension(avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar);
+            new FloatingMenu(balanceChild).fetchAvatarDimension(null, avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar);
 
     }
 

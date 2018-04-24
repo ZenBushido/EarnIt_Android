@@ -73,7 +73,6 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
     @BindView(R.id.show_all_block) LinearLayout showAllBlock;
     @BindView(R.id.add_task_block) LinearLayout addTaskBlock;
     TextView addTaskTextview, showAllTextView;
-    ImageView showAllAddTask;
     boolean alreadyClick = false;
     private final String TAG = "ParentCheckInDashboard";
     ScreenSwitch screenSwitch;
@@ -122,7 +121,6 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
 
         addTaskTextview = (TextView) findViewById(R.id.add_task);
         showAllTextView = (TextView) findViewById(R.id.show_all);
-        showAllAddTask = (ImageView) findViewById(R.id.add_task_show_all_id);
         if (onScreen != null)
             if (onScreen.equalsIgnoreCase(AppConstant.CHECKED_IN_SCREEN))
                 addTaskBlock.setVisibility(View.VISIBLE);
@@ -146,7 +144,6 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
         notifyChildButton.setOnClickListener(parentCheckInChildDashboard);
         addTaskTextview.setOnClickListener(parentCheckInChildDashboard);
         showAllTextView.setOnClickListener(parentCheckInChildDashboard);
-        showAllAddTask.setOnClickListener(parentCheckInChildDashboard);
         tChildImage.setOnClickListener(parentCheckInChildDashboard);
 
         new NavigationDrawer(parentCheckInChildDashboard, parentObject, parentCheckinToolbar, drawerToggle, onScreen, childObject.getId());
@@ -201,20 +198,20 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
                 screenSwitch.moveToAddTask(childObject, otherChild, parentObject, onScreen, null);
 
                 break;
+//            case R.id.show_all:
+//                if (!alreadyClick) {
+//                    alreadyClick = true;
+//                    List<ChildsTaskObject> childsTaskObjects = removeDeclineTask();
+//                    parentCheckInTaskAdapter = new ChildViewDateAdapter(childsTaskObjects, parentObject, childObject, "Parent");
+//
+//                    parentCheckinRecycler.setAdapter(parentCheckInTaskAdapter);
+//
+//                    //  }else{
+//                    //    showToast(getResources().getString(R.string.no_more_task));
+//
+//                }
+//                break;
             case R.id.show_all:
-                if (!alreadyClick) {
-                    alreadyClick = true;
-                    List<ChildsTaskObject> childsTaskObjects = removeDeclineTask();
-                    parentCheckInTaskAdapter = new ChildViewDateAdapter(childsTaskObjects, parentObject, childObject, "Parent");
-
-                    parentCheckinRecycler.setAdapter(parentCheckInTaskAdapter);
-
-                    //  }else{
-                    //    showToast(getResources().getString(R.string.no_more_task));
-
-                }
-                break;
-            case R.id.add_task_show_all_id:
                 screenSwitch.moveToAddTask(childObject, otherChild, parentObject, AppConstant.CHECKED_IN_TASK_APPROVAL__SCREEN, null);
                 break;
 

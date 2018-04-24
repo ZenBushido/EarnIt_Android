@@ -220,9 +220,11 @@ public class GetObjectFromResponse {
             childAccount.setAccountCode(account.getString(AppConstant.ACCOUNT_CODE));
             //Feb 8, 2018 10:10:50 AM
             // MMM d, yyyy hh:mm:ss a
-            DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM d, yyyy hh:mm:ss a");
-            DateTime dt = formatter.parseDateTime(account.getString(AppConstant.CREATE_DATE));
-            long milliseconds = dt.getMillis();
+            //TODO Date from server @dateCreate(or createDate) won't formatted
+//            DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM d, yyyy hh:mm:ss a");
+//            Date date = DateTime.parse(account.getString(AppConstant.CREATE_DATE), DateTimeFormat.forPattern("MMM d, yyyy hh:mm:ss a").withLocale(Locale.)).toDate();
+//            DateTime dt = new DateTime(date);
+            long milliseconds = DateTime.now().getMillis();
             childAccount.setCreateDate(milliseconds);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -265,12 +267,12 @@ public class GetObjectFromResponse {
         return comment;
     }
 
-    List<ChildsTaskObject> childsTaskObjectList = new ArrayList<>();
+    ArrayList<ChildsTaskObject> childsTaskObjectList = new ArrayList<>();
 
     Map<String, ArrayList<Tasks>> map = new TreeMap<>();
 
 
-    public List<ChildsTaskObject> getChildTaskListObject(Child childObject, String type,String fromScreen) {
+    public ArrayList<ChildsTaskObject> getChildTaskListObject(Child childObject, String type,String fromScreen) {
         Log.e(TAG, "Child ID= "+childObject.getId());
         //Get Unique Dates
         PENDING_APPROVAL_DATE = new DateTime().plusDays(-2).withTimeAtStartOfDay().toString();

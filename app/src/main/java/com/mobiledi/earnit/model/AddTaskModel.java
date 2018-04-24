@@ -1,7 +1,11 @@
 package com.mobiledi.earnit.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -124,6 +128,20 @@ public class AddTaskModel {
 
         @SerializedName("specificDays")
         public List<String> specificDays;
+
+        @Override
+        public String toString() {
+            return "repititionSchedule{" +
+                    "startTime='" + startTime + '\'' +
+                    ", endTime='" + endTime + '\'' +
+                    ", repeat='" + repeat + '\'' +
+                    ", everyNday=" + everyNday +
+                    ", date='" + date + '\'' +
+                    ", onFirst='" + onFirst + '\'' +
+                    ", onDay='" + onDay + '\'' +
+                    ", specificDays=" + specificDays +
+                    '}';
+        }
     }
 
 

@@ -1,7 +1,9 @@
 package com.mobiledi.earnit.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,10 +20,13 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.mobiledi.earnit.R;
+import com.mobiledi.earnit.SharedPreference;
 import com.mobiledi.earnit.model.Child;
+import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.TaskComment;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.model.getChild.Task;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
@@ -38,11 +43,16 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
+import retrofit.GetGoalsFromChildInterface;
+import retrofit.ServiceGenerator;
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class ParentTaskApproval extends BaseActivity implements View.OnClickListener {
 
@@ -88,6 +98,9 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         if (intent.getSerializableExtra(AppConstant.TASK_OBJECT) != null) {
 
             taskObject = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
+
+            Log.d("asdljlahsdkj", "\nnput Task: " + new Task().from(taskObject).toString() + "\ntaskObject: " + taskObject.toString());
+
          //   Log.e(TAG, "Task Object: "+taskObject.getName());
         //    Log.e(TAG, "Task Object: "+taskObject.getGoal().getGoalName());
 
@@ -248,6 +261,40 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
          //       addEditGoal(taskObject);
                 updateTaskStatus(taskObject, AppConstant.APPROVED);
         }
+    }
+
+    private void updateTask(Tasks h, String status){
+        Task task = new Task().from(h);
+        if (task.isRepeat()){
+            if (task.isLastTask())
+                task.setStatus(AppConstant.TASK_CLOSED);
+            else{
+
+            }
+        } else {
+            task.setStatus(AppConstant.TASK_CLOSED);
+        }
+        SharedPreferences preferences = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
+        String email = preferences.getString(AppConstant.EMAIL, null);
+        String password = preferences.getString(AppConstant.PASSWORD, null);
+        GetGoalsFromChildInterface getTaskFromChildInterface = ServiceGenerator.createService(GetGoalsFromChildInterface.class, email, password);
+        retrofit2.Call<Task> taskV2Models = getTaskFromChildInterface.updateTask(task);
+        Log.d("asdljlahsdkj", "before send request:\nEmail: " + email + "\nPassword: " + password + "\nTask: \n" + task.toString());
+        taskV2Models.enqueue(new retrofit2.Callback<Task>() {
+            @Override
+            public void onResponse(@NonNull retrofit2.Call<Task> call, @NonNull Response<Task> response) {
+                if (response.body() != null) {
+                    Log.d("asdljlahsdkj", response.body().toString());
+                } else {
+                    Log.d("asdljlahsdkj", "response.body() is null. Response = \n" + response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Task> call, @NonNull Throwable throwable) {
+
+            }
+        });
     }
 
     private void updateTaskStatus(Tasks selectedTask, String changedStatus) {

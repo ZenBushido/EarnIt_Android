@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/mac/Desktop/EarnIt_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-560dpi-v4/values-560dpi-v4.xml",
+            "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-560dpi-v4\\values-560dpi-v4.xml",
             "map": [
                 {
-                    "source": "/Users/mac/Desktop/EarnIt_Android/app/src/main/res/values-560dpi/dimens.xml",
+                    "source": "D:\\Android\\Projects\\EarnIt\\app\\src\\main\\res\\values-560dpi\\dimens.xml",
                     "from": {
                         "startLines": "101,45,44,46,34,87,83,84,81,82,27,26,25,10,78,79,80,77,76,72,73,37,38,90,89,94,93,12,5,4,88,14,15,13,17,16,18,20,19,6,7,85,24,69,70,71,74,75,33,28,68,41,40,100,30,29,31,32,9,8,11,97",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

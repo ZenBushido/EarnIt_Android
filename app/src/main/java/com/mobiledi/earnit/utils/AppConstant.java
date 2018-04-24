@@ -9,6 +9,10 @@ import com.mobiledi.earnit.model.AddTaskModel;
 
 public final class AppConstant {
 
+    public static final int DAILY_NUM_REPETITIONS = 7;
+    public static final int WEEKLY_NUM_REPETITIONS = 7;
+    public static final int MONTHLY_NUM_REPETITIONS = 7;
+
     public static final String REPETITION_SCHEDULE = "repititionSchedule";
     public static final String START_TIME = "startTime";
     public static final String END_TIME = "endTime" ;
@@ -70,6 +74,7 @@ public final class AppConstant {
     public final static String TASK_list_OBJECT = "taskListObject";
     public final static String CHILD_TASK_list = "childTaskList";
     public final static String GOAL_OBJECT = "goalObject";
+    public final static String ADD_TASK_MODEL = "add_task_model";
 
     //USER TYPES
     public final static String PARENT = "PARENT";
@@ -141,6 +146,7 @@ public final class AppConstant {
 
     // App Screens
     public final static String FROM_SCREEN = "from_screen";
+    public final static String CHILD_TASKS_OBJECT = "child_tasks_object";
     public final static String SCREEN = "screen";
     public final static String PARENT_SCREEN = "parent_screen";
     public final static String CHECKED_IN_SCREEN = "checked_in_screen";

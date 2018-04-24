@@ -44,7 +44,6 @@
                 android:textSize="@dimen/app_text_size" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/child_fb_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

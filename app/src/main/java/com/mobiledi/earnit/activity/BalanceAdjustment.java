@@ -402,7 +402,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
                 if (userType.equalsIgnoreCase(AppConstant.PARENT))
                     new FloatingMenu(balance).fetchAvatarDimension(avatar, childObject, otherChild, parentObject, AppConstant.BALANCE_SCREEN, progressBar, null);
                 else
-                    new FloatingMenu(balance).fetchAvatarDimension(avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar);
+                    new FloatingMenu(balance).fetchAvatarDimension(null, avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar);
                 break;
         }
     }

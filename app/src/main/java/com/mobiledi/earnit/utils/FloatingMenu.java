@@ -27,11 +27,13 @@ import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.MyUtils;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.activity.ChildCalendarActivity;
 import com.mobiledi.earnit.activity.LoginScreen;
 import com.mobiledi.earnit.model.Child;
+import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.TaskV2Model;
 import com.mobiledi.earnit.model.Tasks;
@@ -70,7 +72,7 @@ public class FloatingMenu {
     int OFFSET_X = 0;
     int OFFSET_Y = 0;
     Activity activity;
-
+    ArrayList<ChildsTaskObject> childTaskObjects;
     ScreenSwitch screenSwitch;
     public Parent parent;
 
@@ -314,7 +316,7 @@ public class FloatingMenu {
         View layout = layoutInflater.inflate(R.layout.feb_menu_layout, viewGroup);
 
         checkDeviceResolution(fromScreen);
-        // Creating the PopupWindow
+        //Creating the PopupWindow
         final PopupWindow popup = new PopupWindow(view);
         popup.setContentView(layout);
         popup.setWidth(ListPopupWindow.WRAP_CONTENT);
@@ -501,7 +503,7 @@ public class FloatingMenu {
 
 }
 
-    public void fetchAvatarDimension(CircularImageView view, Child childObject, Parent parentObject, String onScreen, RelativeLayout progress) {
+    public void fetchAvatarDimension(ArrayList<ChildsTaskObject> childTaskObjects, CircularImageView view, Child childObject, Parent parentObject, String onScreen, RelativeLayout progress) {
 
         int[] location = new int[2];
         view.getLocationOnScreen(location);
@@ -509,6 +511,7 @@ public class FloatingMenu {
         p.x = location[0];
         p.y = location[1];
         showChildPopUp(activity, p, childObject, parentObject, onScreen, progress);
+        this.childTaskObjects = childTaskObjects;
     }
 
     public void showChildPopUp(final Activity view, Point p, final Child childObject, final Parent parentObject, final String onScreen, final RelativeLayout progress) {
@@ -579,7 +582,6 @@ public class FloatingMenu {
             @Override
             public void onClick(View v) {
                 //  if (parentObject != null){
-                screenSwitch.moveToBalanceScreen(childObject, childObject, parentObject, onScreen, null, null, AppConstant.CHILD);
                 popup.dismiss();
               /*  }else {
                     Toast.makeText(activity.getBaseContext(),"Sorry, Parent is not available",Toast.LENGTH_SHORT).show();
@@ -589,13 +591,16 @@ public class FloatingMenu {
         calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.showToast(activity, "ChildCalendar");
-                Intent childcalendar = new Intent(activity, ChildCalendarActivity.class);
-                childcalendar.putExtra(AppConstant.CHILD_OBJECT, childObject);
-                childcalendar.putExtra(AppConstant.PARENT_OBJECT, parentObject);
-                childcalendar.putExtra(AppConstant.FROM_SCREEN, onScreen);
-                childcalendar.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                activity.startActivity(childcalendar);
+                if (!MyApplication.getInstance().isCalendarIsOpen()) {
+                    Utils.showToast(activity, "ChildCalendar");
+                    Intent childcalendar = new Intent(activity, ChildCalendarActivity.class);
+                    childcalendar.putExtra(AppConstant.CHILD_OBJECT, childObject);
+                    childcalendar.putExtra(AppConstant.PARENT_OBJECT, parentObject);
+                    childcalendar.putExtra(AppConstant.FROM_SCREEN, onScreen);
+                    childcalendar.putExtra(AppConstant.CHILD_TASKS_OBJECT, childTaskObjects);
+                    childcalendar.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    activity.startActivity(childcalendar);
+                }
                 popup.dismiss();
 
             }

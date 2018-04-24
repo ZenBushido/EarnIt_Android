@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.mobiledi.earnit.model.goal.Adjustment;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.List;
 
 /**
@@ -121,5 +125,27 @@ public class Goal {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Goal from(com.mobiledi.earnit.model.Goal goal){
+        if  (goal != null) {
+            DateTimeFormatter format = DateTimeFormat.forPattern("MMM dd, yyyy hh:mm:ss a");
+            setId(goal.getId());
+            setAmount(goal.getAmount());
+
+            DateTime dueDate = new DateTime(goal.getCreateDate());
+            setCreateDate(format.print(dueDate));
+
+            setName(goal.getGoalName());
+
+            DateTime updateDate = new DateTime(goal.getUpdateDate());
+            setUpdateDate(format.print(updateDate));
+
+            setTally(goal.getTally());
+            setTallyPercent((int) goal.getTallyPercent());
+            setCash(goal.getCash());
+            setAdjustments(goal.getAdjustments());
+        }
+        return this;
     }
 }

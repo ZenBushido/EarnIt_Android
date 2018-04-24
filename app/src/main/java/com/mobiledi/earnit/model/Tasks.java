@@ -3,6 +3,7 @@ package com.mobiledi.earnit.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.Utils;
 
 import org.joda.time.DateTime;
@@ -11,6 +12,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by praks on 07/07/17.
@@ -24,13 +26,20 @@ public class Tasks implements Serializable, Parcelable {
     private long dueDate;
     private String name;
     private ArrayList<TaskComment> taskComments;
+    private String details;
+    private boolean pictureRequired;
+    private String status;
+    private long updateDate;
 
-    // goal
     private Goal goal;
 
-    // repetition
     private RepititionSchedule repititionSchedule;
 
+    private ArrayList<DateTime> datesRepetitions;
+
+
+    public Tasks() {
+    }
 
 
     protected Tasks(Parcel in) {
@@ -76,7 +85,6 @@ public class Tasks implements Serializable, Parcelable {
     }
 
 
-
     public String getDetails() {
         return Utils.checkIsNUll(details);
     }
@@ -85,22 +93,12 @@ public class Tasks implements Serializable, Parcelable {
         this.details = details;
     }
 
-    private String details;
-    private boolean pictureRequired;
-    private String status;
-    private long updateDate;
-
     public RepititionSchedule getRepititionSchedule() {
         return repititionSchedule;
     }
 
     public void setRepititionSchedule(RepititionSchedule repititionSchedule) {
         this.repititionSchedule = repititionSchedule;
-    }
-
-
-
-    public Tasks() {
     }
 
     public int getId() {
@@ -132,9 +130,9 @@ public class Tasks implements Serializable, Parcelable {
     }
 
     public String getDueDateAsString() {
-        if(getDueDate() == 0){
+        if (getDueDate() == 0) {
             return null;
-        }else {
+        } else {
             DateTime dt = new DateTime(getDueDate());
             DateTimeFormatter fmt = DateTimeFormat.forPattern("h:mm a");
             return fmt.print(dt);
@@ -164,7 +162,8 @@ public class Tasks implements Serializable, Parcelable {
     public String getStatus() {
         return Utils.checkIsNUll(status);
     }
-String datenew;
+
+    String datenew;
 
     public String getDatenew() {
         return datenew;
@@ -194,6 +193,25 @@ String datenew;
         this.childId = childId;
     }
 
+    @Override
+    public String toString() {
+        return "Tasks{" +
+                "id=" + id +
+                ", childId=" + childId +
+                ", allowance=" + allowance +
+                ", createDate=" + new DateTime(createDate).toString() +
+                ", dueDate=" + new DateTime(dueDate).toString() +
+                ", name='" + name + '\'' +
+                ", taskComments=" + taskComments +
+                ", goal=" + goal +
+                ", repititionSchedule=" + repititionSchedule +
+                ", details='" + details + '\'' +
+                ", pictureRequired=" + pictureRequired +
+                ", status='" + status + '\'' +
+                ", updateDate=" + new DateTime(updateDate).toString() +
+                ", datenew='" + datenew + '\'' +
+                '}';
+    }
 
     @Override
     public int describeContents() {
@@ -213,5 +231,71 @@ String datenew;
         parcel.writeString(status);
         parcel.writeLong(updateDate);
         parcel.writeString(datenew);
+    }
+
+    public boolean datesEquals(DateTime dueDate){
+        DateTime thisDate = new DateTime(getDueDate());
+        return thisDate.getDayOfMonth() == dueDate.getDayOfMonth() &&thisDate.getMonthOfYear() == dueDate.getMonthOfYear() && thisDate.getYear() == dueDate.getYear();
+    }
+
+    public boolean containsDateRepitiions(DateTime dateTime){
+        if (repititionSchedule == null){
+            return false;
+        }
+        for (DateTime date : datesRepetitions){
+            if (date.getDayOfMonth() == dateTime.getDayOfMonth() && date.getMonthOfYear() == dateTime.getMonthOfYear() && date.getYear() == dateTime.getYear()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<DateTime> getDatesRepetitions(){
+        if (repititionSchedule == null) {
+            return null;
+        }
+        ArrayList<DateTime> repetitionsDates = new ArrayList<>();
+        if (repititionSchedule.getRepeat().equalsIgnoreCase("daily")){
+            for (int i = 0; i <= AppConstant.DAILY_NUM_REPETITIONS; i++){
+                DateTime repeatDate = new DateTime(dueDate).plusDays(repititionSchedule.getEveryNRepeat() == 0 ? (i + 1) : repititionSchedule.everyNRepeat);
+                datesRepetitions.add(repeatDate);
+            }
+        }
+        if (repititionSchedule.getRepeat().equalsIgnoreCase("weekly")){
+            for (int i = 0; i <= AppConstant.WEEKLY_NUM_REPETITIONS; i++){
+                DateTime repeatDate = new DateTime(dueDate).plusWeeks(repititionSchedule.getEveryNRepeat() == 0 ? (i + 1) : repititionSchedule.everyNRepeat);
+                datesRepetitions.add(repeatDate);
+            }
+        }
+        if (repititionSchedule.getRepeat().equalsIgnoreCase("monthly")){
+
+        }
+        return repetitionsDates;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tasks tasks = (Tasks) o;
+        return id == tasks.id &&
+                childId == tasks.childId &&
+                Double.compare(tasks.allowance, allowance) == 0 &&
+                createDate == tasks.createDate &&
+                dueDate == tasks.dueDate &&
+                pictureRequired == tasks.pictureRequired &&
+                updateDate == tasks.updateDate &&
+                Objects.equals(name, tasks.name) &&
+                Objects.equals(taskComments, tasks.taskComments) &&
+                Objects.equals(details, tasks.details) &&
+                Objects.equals(status, tasks.status) &&
+                Objects.equals(goal, tasks.goal) &&
+                Objects.equals(repititionSchedule, tasks.repititionSchedule) &&
+                Objects.equals(datenew, tasks.datenew);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, childId, allowance, createDate, dueDate, name, taskComments, details, pictureRequired, status, updateDate, goal, repititionSchedule, datenew);
     }
 }

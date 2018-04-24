@@ -23,7 +23,9 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupViewHolder, TaskChildViewHolder> {
     Parent parent;
@@ -34,14 +36,11 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
     List<Tasks> tasksList = new ArrayList<>();
     public List<ChildsTaskObject> groups;
 
-    public ChildViewDateAdapter(@NonNull List<? extends ParentListItem>  groups, Parent parent, Child child, String name) {
-
+    public ChildViewDateAdapter(@NonNull List<? extends ParentListItem> groups, Parent parent, Child child, String name) {
         super(groups);
-
         this.parent = parent;
         this.child = child;
         screenName = name;
-
 
     }
 
@@ -65,22 +64,22 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
         if (dateTime.equals(new DateTime(GetObjectFromResponse.PENDING_APPROVAL_DATE).withTimeAtStartOfDay())) {
             DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
             String toPrintDate = fmt.print(dateTime);
-            datedue=  toPrintDate;
+            datedue = toPrintDate;
             taskGroupViewHolder.setDateHeader(AppConstant.NON_COMPLETED_APPROVED);
         } else if (dateTime.equals(new DateTime(GetObjectFromResponse.PAST_DUE_DATE).withTimeAtStartOfDay())) {
             DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
             String toPrintDate = fmt.print(dateTime);
-            datedue=  toPrintDate;
+            datedue = toPrintDate;
             taskGroupViewHolder.setDateHeader(AppConstant.PAST_DUE);
         } else if (dateTime.equals(new DateTime().withTimeAtStartOfDay())) {
             DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
             String toPrintDate = fmt.print(dateTime);
-            datedue=  toPrintDate;
+            datedue = toPrintDate;
             taskGroupViewHolder.setDateHeader("Today");
         } else {
             DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
             String toPrintDate = fmt.print(dateTime);
-            datedue=  toPrintDate;
+            datedue = toPrintDate;
             taskGroupViewHolder.setDateHeader(toPrintDate);
         }
     }
@@ -89,10 +88,10 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
     public void onBindChildViewHolder(TaskChildViewHolder taskChildViewHolder, int position, Object childListItem) {
 
         Tasks childTask = (Tasks) childListItem;
-        Log.e(TAG, "Child Task= "+childTask.getName());
-        Log.e(TAG, "Child Task= "+childTask.getStatus());
+        Log.e(TAG, "Child Task= " + childTask.getName());
+        Log.e(TAG, "Child Task= " + childTask.getStatus());
         //        Log.e(TAG, "Child Task= "+childTask.getGoal().getId());
-   //     Log.e(TAG, "Child Task= "+childTask.getGoal().getGoalName());
+        //     Log.e(TAG, "Child Task= "+childTask.getGoal().getGoalName());
         taskChildViewHolder.onBind(childTask, datedue, parent, child, screenName);
     }
 }

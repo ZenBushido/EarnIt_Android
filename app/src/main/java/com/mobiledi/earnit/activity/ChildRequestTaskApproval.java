@@ -175,7 +175,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back_arrow:
-                new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+//                new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+                onBackPressed();
                 break;
 
             case R.id.request_approval:
@@ -205,11 +206,12 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     @OnClick(R.id.child_avatar)
     void floatingMenu()
     {
-        new FloatingMenu(requestTaskApproval).fetchAvatarDimension(childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+        new FloatingMenu(requestTaskApproval).fetchAvatarDimension(null, childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
     }
     @Override
     public void onBackPressed() {
-        new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+//        new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+        super.onBackPressed();
     }
 
     private void updateTaskStatus(Tasks selectedTask, String uploadedPicture) {

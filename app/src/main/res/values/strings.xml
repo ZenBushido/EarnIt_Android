@@ -19,6 +19,8 @@
     <string name="child_name">Child\'s Name:</string>
     <string name="child_email">Child\'s Email:</string>
     <string name="child_phone">Child\'s Phone:</string>
+    <string name="no_tasks">No tasks currently scheduled for %1$s</string>
+    <string name="ok">OK</string>
 
     <string name="app_tag_line">Responsibility Made EASY!</string>
     <string name="sign_in">Sign in</string>
@@ -92,7 +94,7 @@
     <string name="forgot">Forgot password?</string>
     <!--FLOATING MENUS-->
     <string name="add_task">\u0020Add Tasks</string>
-    <string name="all_task">\u0020All Tasks</string>
+    <string name="all_taskall_task">\u0020All Tasks</string>
     <string name="approve_task">\u0020Approve Tasks</string>
     <string name="balance">\u0020Balances</string>
     <string name="goal">\u0020Goals</string>
@@ -166,6 +168,7 @@
     <string name="real_time_money">Realtime Money Transfer:</string>
     <string name="transfer">Transfer:</string>
     <string name="photo_required">Photo Required</string>
+    <string name="all_tasks">All Tasks</string>
 
 
 </resources>

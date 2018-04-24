@@ -62,6 +62,8 @@ import com.mobiledi.earnit.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -103,18 +105,30 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     public Parent parentObject;
     public Child childObject, otherChild;
-    @BindView(R.id.save) Button save;
-    @BindView(R.id.cancel) Button cancel;
-    @BindView(R.id.newtask_requirephoto) Button checkbox;
-    @BindView(R.id.newtask_screenlockcheck) Button screenlockBtn;
-    @BindView(R.id.task_name) EditText taskName;
-    @BindView(R.id.task_detail) EditText taskDetails;
-    @BindView(R.id.task_amount) EditText amountTxt;
-    @BindView(R.id.date_time_textview) TextView date_time_textview;
-    @BindView(R.id.add_task_header) TextView childName;
-    @BindView(R.id.assign_to_id) TextView assignTo;
-    @BindView(R.id.add_task_avatar) CircularImageView childAvatar;
-    @BindView(R.id.due_date) ImageView dueDate;
+    @BindView(R.id.save)
+    Button save;
+    @BindView(R.id.cancel)
+    Button cancel;
+    @BindView(R.id.newtask_requirephoto)
+    Button checkbox;
+    @BindView(R.id.newtask_screenlockcheck)
+    Button screenlockBtn;
+    @BindView(R.id.task_name)
+    EditText taskName;
+    @BindView(R.id.task_detail)
+    EditText taskDetails;
+    @BindView(R.id.task_amount)
+    EditText amountTxt;
+    @BindView(R.id.date_time_textview)
+    TextView date_time_textview;
+    @BindView(R.id.add_task_header)
+    TextView childName;
+    @BindView(R.id.assign_to_id)
+    TextView assignTo;
+    @BindView(R.id.add_task_avatar)
+    CircularImageView childAvatar;
+    @BindView(R.id.due_date)
+    ImageView dueDate;
     String NONE = "None";
     AddTask addTask;
     Map<Integer, String> childs;
@@ -128,7 +142,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     boolean IS_EDITING_TASK = false;
     private final String TAG = "AddTask";
     TextView repeatSpinner, assignSpinner;
-    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
+    @BindView(R.id.loadingPanel)
+    RelativeLayout progressBar;
     String screen_name;
     private String goalName;
     private String repeat = "";
@@ -142,17 +157,22 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     ArrayList<Item> repeatList, goalsList;
     private BottomSheetDialog mBottomSheetDialog;
     int fetchGoalId = 0;
-    @BindView(R.id.toolbar_add) Toolbar goalToolbar;
-    @BindView(R.id.drawerBtn) ImageButton drawerToggle;
+    @BindView(R.id.toolbar_add)
+    Toolbar goalToolbar;
+    @BindView(R.id.drawerBtn)
+    ImageButton drawerToggle;
     List<Child> childList = new ArrayList<>();
     int childsCounter = 0;
     AddTaskModel.repititionSchedule repititionSchedule;
-    @BindView(R.id.addtask_back_arrow) ImageButton back;
-    @BindView(R.id.addtask_helpicon)ImageButton    addTask_help;
+    @BindView(R.id.addtask_back_arrow)
+    ImageButton back;
+    @BindView(R.id.addtask_helpicon)
+    ImageButton addTask_help;
     private Calendar c;
     Integer retry = 0;
 
-    MessageEvent m ;
+    MessageEvent m;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,7 +180,6 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         ButterKnife.bind(this);
         setSupportActionBar(goalToolbar);
         //getSupportActionBar().setTitle(null);
-
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +197,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         childID = childObject.getId();
-        Log.e(TAG, "Child ID: "+childID);
+        Log.e(TAG, "Child ID: " + childID);
         amountTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -209,12 +228,12 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         childName.setText(childObject.getFirstName());
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.override(350,350);
+        requestOptions.override(350, 350);
         requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
         requestOptions.placeholder(R.drawable.default_avatar);
         requestOptions.error(R.drawable.default_avatar);
 
-        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar())
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + childObject.getAvatar())
                 .into(childAvatar);
 
 
@@ -362,6 +381,12 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("dsiudi", "onDestroy");
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -386,7 +411,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
                     parentCalendarAcitivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                    startActivity(parentCalendarAcitivity);
+                    startActivityForResult(parentCalendarAcitivity, 101);
                 } else {
 
                     Toast.makeText(AddTask.this, "Add Task Title", Toast.LENGTH_LONG).show();
@@ -443,42 +468,30 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 if (taskName.getText().toString().trim().length() > 0) {
                     if (taskName.getText().toString().trim().length() <= TASK_NAME_LENGTH) {
 
-                        Log.e(TAG, "Amount= "+amountTxt.getText().toString());
-                        if (amountTxt.getText().toString().trim().length() > 0)
-                        {
-                            m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
+                        Log.e(TAG, "Amount= " + amountTxt.getText().toString());
+                        if (amountTxt.getText().toString().trim().length() > 0) {
+                            m = (MessageEvent)EventBus.getDefault().getStickyEvent(MessageEvent.class);
 
-                            if(m!=null)
-                            {
-                                if(m.getResponse().onDay!=null)
-                                {
+                            Log.d("dosidoi", "getStickyEvent: " + m);
+                            if (m != null) {
+//                                if (m.getResponse().onDay != null) {
 
-                                    if(m.getResponse().onDay.equals("")||m.getResponse().onFirst.equals(""))
-                                    {
+                                    if (m.getResponse().onDay.equals("") || m.getResponse().onFirst.equals("")) {
                                         Log.e(TAG, "Both are empty");
                                         saveTask();
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         Log.e(TAG, "Both are not empty");
                                         saveTaskWithSelectedDays();
                                     }
-                                }
-                            }
-                            else
-                            {
+//                                }
+                            } else {
                                 Toast.makeText(getApplicationContext(), "Please add due date", Toast.LENGTH_LONG).show();
                             }
 
 
-
-
-
-                          //  saveTask();
-                        }
-
-                        else
-                        Utils.showToast(this, "Add amount");
+                            //  saveTask();
+                        } else
+                            Utils.showToast(this, "Add amount");
 
 
                     } else
@@ -531,23 +544,21 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy hh:mm:ss aaa");
             String dateString = formatter.format(new Date(dueTime));
 
-            Log.e(TAG, "Date String = "+dateString);
-            Log.e(TAG, "EVERY N DAY: "+m.getResponse().getEveryNday());
+            Log.e(TAG, "Date String = " + dateString);
+            Log.e(TAG, "EVERY N DAY: " + m.getResponse().getEveryNday());
             RepititionSchedule repititionSchedule = new RepititionSchedule(m.getResponse().startTime,
                     m.getResponse().endTime, m.getResponse().repeat, m.getResponse().everyNday,
-                    m.getResponse().onFirst, arrayList );
+                    m.getResponse().onFirst, arrayList);
 
-            com.mobiledi.earnit.model.addTask.Children child = new com.mobiledi.earnit.model.addTask.Children ();
+            com.mobiledi.earnit.model.addTask.Children child = new com.mobiledi.earnit.model.addTask.Children();
             childID = childObject.getId();
-            Log.e(TAG, "ChildID= "+childID);
+            Log.e(TAG, "ChildID= " + childID);
             child.setId(childID);
             com.mobiledi.earnit.model.addTask.Goal goal = new com.mobiledi.earnit.model.addTask.Goal();
-            if(fetchGoalId!=0)
-            {
+            if (fetchGoalId != 0) {
                 goal.setId(fetchGoalId);
-            }
-            else
-            goal=null;
+            } else
+                goal = null;
 
             double value = Double.parseDouble(amountTxt.getText().toString());
 
@@ -556,43 +567,37 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                     repititionSchedule, taskDetails.getText().toString(), false,
                     checkboxStatusLock
 
-                    );
-
+            );
 
 
             RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(),
                     parentObject.getPassword());
 
 
-           Call<AddTaskWithSelecteDayResponse> call = retroInterface.addTAskWithSelectedDay(addTaskWithSelecteDay);
-           call.enqueue(new Callback<AddTaskWithSelecteDayResponse>() {
-               @Override
-               public void onResponse(Call<AddTaskWithSelecteDayResponse> call, Response<AddTaskWithSelecteDayResponse> response) {
-                  // Log.e(TAG, "Response: "+response.body().getName());
+            Call<AddTaskWithSelecteDayResponse> call = retroInterface.addTAskWithSelectedDay(addTaskWithSelecteDay);
+            call.enqueue(new Callback<AddTaskWithSelecteDayResponse>() {
+                @Override
+                public void onResponse(Call<AddTaskWithSelecteDayResponse> call, Response<AddTaskWithSelecteDayResponse> response) {
+                    // Log.e(TAG, "Response: "+response.body().getName());
 
-                   if(response.code() ==201)
-                   showDialogOnTaskAdded(childObject, otherChild);
-                   else
-                       showToast("Unexpected Error Occured");
-               }
+                    if (response.code() == 201)
+                        showDialogOnTaskAdded(childObject, otherChild);
+                    else
+                        showToast("Unexpected Error Occured");
+                }
 
-               @Override
-               public void onFailure(Call<AddTaskWithSelecteDayResponse> call, Throwable t) {
-                   Log.e(TAG, "Error: "+t.getLocalizedMessage());
-               }
-           });
+                @Override
+                public void onFailure(Call<AddTaskWithSelecteDayResponse> call, Throwable t) {
+                    Log.e(TAG, "Error: " + t.getLocalizedMessage());
+                }
+            });
 
+        } catch (Exception e) {
+            Log.e(TAG, "ERROR: : " + e.getLocalizedMessage());
         }
-
-        catch (Exception e)
-        {
-                Log.e(TAG, "ERROR: : "+e.getLocalizedMessage());
-        }
-
 
 
     }
-
 
 
     private void saveTask() {
@@ -619,7 +624,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             addTaskJson.put(AppConstant.TASK_COMMENTS, new JSONArray());
             addTaskJson.put("shouldLockAppsIfTaskOverdue", checkboxStatusLock);
 
-            Log.e(TAG, "Task full= "+addTaskJson);
+            Log.e(TAG, "Task full= " + addTaskJson);
 
             JSONObject repSchedule = new JSONObject();
 
@@ -627,12 +632,10 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             if (m != null) {
                 repititionSchedule = m.getResponse();
                 EventBus.getDefault().removeAllStickyEvents();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/DD/yyyy hh:mm:ss aaa", Locale.getDefault());
-
-                simpleDateFormat.setTimeZone(TimeZone.getDefault());
-
-                Date date = (Date) simpleDateFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
-                DateTime dateTime = new DateTime(date);
+                DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss a").withLocale(Locale.ENGLISH);
+                DateTime dateTime = dtf.parseDateTime(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
+                Log.d("dsjlo", "original date = " + repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
+                Log.d("dsjlo", "joda date = " + dateTime.toString());
                 addTaskJson.put(AppConstant.DUE_DATE, dateTime.getMillis() + offsetInMilliseconds);
 
             }
@@ -671,7 +674,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
                 }
 
-                Log.e(TAG, "Add Task Value= : "+addTaskJson);
+                Log.e(TAG, "Add Task Value= : " + addTaskJson);
                 Utils.logDebug(TAG, "add_task_json :" + String.valueOf(addTaskJson));
 
                 StringEntity entity = new StringEntity(addTaskJson.toString());
@@ -726,8 +729,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                     });
                 } else {
                     Utils.logDebug(TAG, "calling task add api");
-                    Log.e(TAG, "testing url "+ "" + AppConstant.BASE_URL + AppConstant.TASKS_API);
-                    Log.e(TAG, "JSON: "+ entity);
+                    Log.e(TAG, "testing url " + "" + AppConstant.BASE_URL + AppConstant.TASKS_API);
+                    Log.e(TAG, "JSON: " + entity);
 
                     httpClient.post(this, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
 
@@ -780,6 +783,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             } else
                 Toast.makeText(getApplicationContext(), "Please add due date", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
+            Log.d("dosidoi", "Exception");
             e.printStackTrace();
         }
 
@@ -832,7 +836,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
-                    Log.e(TAG, "Goal Response= "+response);
+                    Log.e(TAG, "Goal Response= " + response);
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject object = response.getJSONObject(i);
@@ -923,7 +927,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
         mBottomSheetDialog = new BottomSheetDialog(this);
         final View view = getLayoutInflater().inflate(R.layout.sheet, null);
-        RecyclerView recyclerView =  view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -934,7 +938,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                     for (int i = 0; i < goalList.size(); i++) {
                         if (item.getId() != 0) {
                             //fetchGoalId = goalList.get(i).getId();
-                            Log.e(TAG, "Goal ID= "+ fetchGoalId);
+                            Log.e(TAG, "Goal ID= " + fetchGoalId);
                         }
 
                     }
@@ -945,7 +949,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                             if (item.getId() - 1 == childList.get(i).getId()) {
                                 childObject = childList.get(i);
                                 //childID = childList.get(i).getId();
-                                Log.e(TAG, "Name= "+childList.get(i).getFirstName());
+                                Log.e(TAG, "Name= " + childList.get(i).getFirstName());
                             }
                         }
 
@@ -954,12 +958,12 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
                 showToast(item.getTitle());
 
-                if(type.equalsIgnoreCase(AppConstant.CHILD))
+                if (type.equalsIgnoreCase(AppConstant.CHILD))
                     childID = item.getId();
                 else
                     fetchGoalId = item.getId();
-                Log.e(TAG, "GOal id;::= "+childID);
-                Log.e(TAG, "GOal id;::= "+fetchGoalId);
+                Log.e(TAG, "GOal id;::= " + childID);
+                Log.e(TAG, "GOal id;::= " + fetchGoalId);
                 dropDownView.setText(item.getTitle());
                 if (mBottomSheetDialog != null) {
                     mBottomSheetDialog.dismiss();
@@ -982,8 +986,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     }
 
-    public void fetchAllChildList()
-    {
+    public void fetchAllChildList() {
 
         RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
         Call<List<GetAllChildResponse>> response = retroInterface.getAllChild(parentObject.getAccount().getId());
@@ -1092,5 +1095,4 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             }
         });
     }
-
 }

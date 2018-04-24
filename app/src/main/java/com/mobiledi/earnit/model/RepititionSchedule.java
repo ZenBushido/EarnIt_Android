@@ -15,7 +15,7 @@ public class RepititionSchedule implements Serializable {
     private String repeat;
     public String startTime ;
     public String endTime ;
-    public int everyNRepeat ;
+    public int everyNRepeat = 0;
     public List<String> specificDays ;
     public List<DayTaskStatus> dayTaskStatuses ;
 
@@ -87,5 +87,17 @@ public class RepititionSchedule implements Serializable {
         this.repeat = repeat;
     }
 
-
+    @Override
+    public String toString() {
+        return "RepititionSchedule{" +
+                "id=" + id +
+                ", expiryDate=" + expiryDate +
+                ", repeat='" + repeat + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", everyNRepeat=" + everyNRepeat +
+                ", specificDays=" + specificDays +
+                ", dayTaskStatuses=" + dayTaskStatuses +
+                '}';
+    }
 }

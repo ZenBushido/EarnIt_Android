@@ -164,21 +164,13 @@
                 <TextView
                     android:id="@+id/show_all"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="?attr/actionBarSize"
                     android:layout_weight=".8"
                     android:gravity="center"
-                    android:text="Show All"
+                    android:text="Add Task"
                     android:textAllCaps="false"
                     android:textColor="@color/main_font"
                     android:textSize="@dimen/task_date_header" />
-
-                <ImageButton
-                    android:id="@+id/add_task_show_all_id"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".2"
-                    android:background="@color/background"
-                    android:src="@drawable/add_task" />
 
             </LinearLayout>
 

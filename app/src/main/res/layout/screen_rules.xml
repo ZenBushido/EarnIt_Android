@@ -323,11 +323,11 @@
                         android:textColor="@color/main_font"
                         android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/require_photo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/require_photo"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="0.2" />-->
 
                 </LinearLayout>
 
@@ -360,7 +360,7 @@
                         android:textSize="@dimen/check_in_text_size" />
 
                     <TextView
-                        android:id="@+id/require_photo"
+                        android:id="@+id/require_photo2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2" />
@@ -395,11 +395,11 @@
                         android:textColor="@color/main_font"
                         android:textSize="@dimen/check_in_text_size" />
 
-                    <TextView
-                        android:id="@+id/require_photo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/require_photo"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="0.2" />-->
 
                 </LinearLayout>
 
@@ -431,11 +431,11 @@
                         android:textColor="@color/main_font"
                         android:textSize="@dimen/check_in_text_size" />
 
-                    <TextView
-                        android:id="@+id/require_photo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/require_photo"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="0.2" />-->
 
                 </LinearLayout>
 
@@ -467,11 +467,11 @@
                         android:textColor="@color/main_font"
                         android:textSize="@dimen/check_in_text_size" />
 
-                    <TextView
-                        android:id="@+id/require_photo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/require_photo3"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="0.2" />-->
 
                 </LinearLayout>
 

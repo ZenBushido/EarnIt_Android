@@ -50,6 +50,7 @@ import com.mobiledi.earnit.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
+import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -79,7 +80,9 @@ import android.view.Gravity;
 import android.widget.TextView;
 import android.app.DialogFragment;
 import android.app.Dialog;
+
 import java.util.Calendar;
+
 import android.widget.TimePicker;
 
 /**
@@ -94,16 +97,20 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     private static final String MONTH_TEMPLATE = "MMMM yyyy";
     ParentCalendarActivity parentCalendarActivity;
     public Parent parentObject;
-    @BindView(R.id.addtask_helpicon) ImageButton helpIcon;
+    @BindView(R.id.addtask_helpicon)
+    ImageButton helpIcon;
     ImageButton goback;
-    @BindView(R.id.save) Button saveBtn;
-    @BindView(R.id.cancel) Button cancelBtn;
+    @BindView(R.id.save)
+    Button saveBtn;
+    @BindView(R.id.cancel)
+    Button cancelBtn;
     CircularImageView childAvatar;
     TextView childName;
     public Child childObject, otherChild;
     Intent intent;
     public List<String> monthList;
-    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
+    @BindView(R.id.loadingPanel)
+    RelativeLayout progressBar;
     Tasks currentTask;
     String screen_name;
     boolean IS_EDITING_TASK = false;
@@ -114,22 +121,28 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     ArrayList<String> list;
     String NONE = "None";
     Map<Integer, String> childs;
-    @BindView(R.id.toolbar_add) Toolbar goalToolbar;
+    @BindView(R.id.toolbar_add)
+    Toolbar goalToolbar;
     String onFirst, onDay;
     private final String TAG = "ParentCalendarActivity";
     ScreenSwitch screenSwitch;
     TextView repeatTask;
     private BottomSheetDialog mBottomSheetDialog;
     private String repeat;
-    @BindView(R.id.drawer_layout) RelativeLayout drawer;
-    @BindView(R.id.calendar_view) CalendarView calendarView;
-    @BindView(R.id.addtask_back_arrow) ImageButton headerBack;
+    @BindView(R.id.drawer_layout)
+    RelativeLayout drawer;
+    @BindView(R.id.calendar_view)
+    CalendarView calendarView;
+    @BindView(R.id.addtask_back_arrow)
+    ImageButton headerBack;
     public static Boolean buttonClicked;
     List<String> weeklist = new ArrayList<>();
-    @BindView(R.id.rule_apply_from) TextView startTimer;
+    @BindView(R.id.rule_apply_from)
+    TextView startTimer;
     String dayOfWeek;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/DD/yyyy");
-    String finalDate = simpleDateFormat.format(new Date());
+    String finalDate;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,7 +155,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         setSupportActionBar(goalToolbar);
         getSupportActionBar().setTitle(null);
 
-
+        finalDate = new DateTime().toString("MM/dd/yyyy");
         presenter.addCalendarView();
         presenter.animate();
 
@@ -154,7 +167,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             public void onClick(View view) {
 
                 DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getFragmentManager(),"TimePicker");
+                newFragment.show(getFragmentManager(), "TimePicker");
 
                 /*TimeSelectUtilsForCallendar timeSelectUtils = new TimeSelectUtilsForCallendar(ParentCalendarActivity.this, null, startTimer, new TimeSelectUtilsForCallendar.GetSubmitTime() {
                     @Override
@@ -184,7 +197,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         childName = (TextView) findViewById(R.id.add_task_header);
-        if(childObject!=null)
+        if (childObject != null)
             childName.setText(childObject.getFirstName());
         list = new ArrayList<>();
         list.add(NONE);
@@ -204,16 +217,15 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         childAvatar = (CircularImageView) findViewById(R.id.add_task_avatar);
 
 
-
         if (childObject != null) {
 
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.override(350,350);
+            requestOptions.override(350, 350);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
             requestOptions.placeholder(R.drawable.default_avatar);
             requestOptions.error(R.drawable.default_avatar);
 
-            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar())
+            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + childObject.getAvatar())
                     .into(childAvatar);
 
 
@@ -249,7 +261,6 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     }
 
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -264,19 +275,18 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                 Log.e("testing final date", "" + finalDate);
                 //  AppConstant.addTaskModel.setDueDate(finalDate);
                 buttonClicked = true;
+                Log.d("dsiudi", "save click");
                 if (checkValue.equalsIgnoreCase("daily")) {
-
-                    if(dayOfWeek!=null)
-                    {
+                    if (dayOfWeek != null) {
                         AddTaskModel.repititionSchedule response = new AddTaskModel.repititionSchedule();
                         //  response.endTime = "11:00";
                         //  response.startTime = "10:00";
                         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
                         sdf.format(new Date());
-                        response.endTime =  startTimer.getText().toString();
-                        response.startTime =sdf.format(new Date()) ;
+                        response.endTime = startTimer.getText().toString();
+                        response.startTime = sdf.format(new Date());
                         response.repeat = "daily";
-                        if(dayOfWeek!=null)
+                        if (dayOfWeek != null)
                             response.setEveryNday(Integer.parseInt(dayOfWeek));
                         else
                             response.setEveryNday(0);
@@ -288,10 +298,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                         EventBus.getDefault().postSticky(new MessageEvent(response));
 
                         finish();
-                    }
-
-                    else
-                    {
+                    } else {
                         showToast("Enter Number of days");
                     }
 
@@ -304,12 +311,12 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
 
                     sdf.format(new Date());
-                    response.endTime =  startTimer.getText().toString();
-                    response.startTime =sdf.format(new Date()) ;
+                    response.endTime = startTimer.getText().toString();
+                    response.startTime = sdf.format(new Date());
                     response.repeat = "weekly";
                     response.setSpecificDays(weeklist);
                     response.setDate(finalDate);
-                    if(dayOfWeek!=null)
+                    if (dayOfWeek != null)
                         response.setEveryNday(Integer.parseInt(dayOfWeek));
                     else
                         response.setEveryNday(0);
@@ -324,23 +331,19 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     AddTaskModel.repititionSchedule response = new AddTaskModel.repititionSchedule();
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
                     sdf.format(new Date());
-                    response.endTime =  startTimer.getText().toString();
-                    response.startTime =sdf.format(new Date()) ;
+                    response.endTime = startTimer.getText().toString();
+                    response.startTime = sdf.format(new Date());
 
-                    if(onFirst!=null)
-
-                    {
+                    if (onFirst != null){
                         Log.e(TAG, "On first is not null");
                         Log.e(TAG, onFirst);
                         Log.e(TAG, onDay);
                         response.onFirst = onFirst;
                         response.onDay = onDay;
-                    }
-                    else
-                    {
+                    } else {
                         Log.e(TAG, "On first is null");
                         //Log.e(TAG, onFirst);
-                       // Log.e(TAG, onDay);
+                        // Log.e(TAG, onDay);
                         response.onFirst = "";
                         response.onDay = "";
 
@@ -349,7 +352,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
 
                     response.repeat = "monthly";
                     response.setDate(finalDate);
-                    if(dayOfWeek!=null)
+                    if (dayOfWeek != null)
                         response.setEveryNday(Integer.parseInt(dayOfWeek));
                     else
                         response.setEveryNday(0);
@@ -359,14 +362,13 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     EventBus.getDefault().postSticky(new MessageEvent(response));
                     finish();
 
-                }
-                else{
+                } else {
 
                     AddTaskModel.repititionSchedule response = new AddTaskModel.repititionSchedule();
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
                     sdf.format(new Date());
-                    response.endTime =  startTimer.getText().toString();
-                    response.startTime =sdf.format(new Date()) ;
+                    response.endTime = startTimer.getText().toString();
+                    response.startTime = sdf.format(new Date());
 
                     response.setDate(finalDate);
 
@@ -377,6 +379,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
 
                 }
 
+                Log.d("dosidoi", "date = " + finalDate + "getStickyEvent: " + EventBus.getDefault().getStickyEvent(MessageEvent.class).toString());
                 break;
             case R.id.cancel:
                 onBackPressed();
@@ -417,7 +420,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     case 1: {
 
                         checkValue = "daily";
-                        dayOfWeek=null;
+                        dayOfWeek = null;
                         MyDialogFragment dialogFrag = new MyDialogFragment();
                         FragmentManager fm = getFragmentManager();
                         dialogFrag.show(fm, getString(R.string.dialog_tag));
@@ -425,7 +428,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     break;
                     case 2: {
                         checkValue = "week";
-                        dayOfWeek=null;
+                        dayOfWeek = null;
 
                         WeeklyDialogFragment dialogFrag = new WeeklyDialogFragment();
                         FragmentManager fm = getFragmentManager();
@@ -434,7 +437,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     break;
                     case 3: {
                         checkValue = "month";
-                        dayOfWeek=null;
+                        dayOfWeek = null;
 
                         MonthlyDialogFragment dialogFrag = new MonthlyDialogFragment();
                         FragmentManager fm = getFragmentManager();
@@ -501,16 +504,17 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         calendarView.setFirstDayOfWeek(Calendar.SUNDAY).setOnDateClickListener(new CalendarView.OnDateClickListener() {
             @Override
             public void onDateClick(@NonNull Date selectedDate) {
-                SimpleDateFormat sdf = new SimpleDateFormat("mm/DD/yyyy");
-                finalDate = sdf.format(selectedDate);
+                Log.d("dosidoi", "onDateClick date = " + new DateTime(selectedDate).toString("MM/dd/yyyy"));
+                finalDate = new DateTime(selectedDate).toString("MM/dd/yyyy");
 
             }
         });
         calendarView.setFirstDayOfWeek(Calendar.SUNDAY).setOnMonthChangeListener(new CalendarView.OnMonthChangeListener() {
             @Override
             public void onMonthChange(@NonNull Date monthDate) {
-                SimpleDateFormat sdf = new SimpleDateFormat("mm/DD/yyyy");
-                finalDate = sdf.format(monthDate);
+
+                Log.d("dosidoi", "onMonthChange date = " + new DateTime(monthDate).toString("MM/dd/yyyy"));
+                finalDate = new DateTime(monthDate).toString("MM/dd/yyyy");
             }
         });
         calendarView.setOnDateLongClickListener(new CalendarView.OnDateLongClickListener() {
@@ -533,17 +537,16 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     @Override
     public void updateResult(List<String> inputText, String s) {
         weeklist = inputText;
-        dayOfWeek=s;
+        dayOfWeek = s;
     }
 
     @Override
     public void updateResult2(List<String> inputText, String s) {
-        for(int i=0; i< inputText.size(); i++)
-        {
-            Log.e(TAG, "Input text= "+inputText.get(i));
+        for (int i = 0; i < inputText.size(); i++) {
+            Log.e(TAG, "Input text= " + inputText.get(i));
         }
         monthList = inputText;
-        dayOfWeek=s;
+        dayOfWeek = s;
     }
 
     @Override
@@ -557,23 +560,23 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     }
 
     @Override
-    public void updateResult(String inputText,String s) {
+    public void updateResult(String inputText, String s) {
         days = inputText;
-        dayOfWeek=s;
+        dayOfWeek = s;
     }
 
     @SuppressLint("ValidFragment")
-    public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
+    public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
         private int mNumberPickerInputId = 0;
 
         @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState){
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar c = Calendar.getInstance();
             int hour = c.get(Calendar.HOUR_OF_DAY);
             int minute = c.get(Calendar.MINUTE);
 
             TimePickerDialog tpd = new TimePickerDialog(getActivity(), R.style.TimePickerTheme
-                    ,this, hour, minute, false);
+                    , this, hour, minute, false);
             LinearLayout linearLayout = new LinearLayout(getActivity());
             linearLayout.setMinimumWidth(0);
             linearLayout.setMinimumHeight(0);
@@ -582,36 +585,30 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         }
 
 
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute){
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             String aMpM = "AM";
-            if(hourOfDay >11)
-            {
+            if (hourOfDay > 11) {
                 aMpM = "PM";
             }
 
             int currentHour;
-            if(hourOfDay>11)
-            {
+            if (hourOfDay > 11) {
 
                 currentHour = hourOfDay - 12;
 
-                if(currentHour == 0)
-                    currentHour =12;
+                if (currentHour == 0)
+                    currentHour = 12;
 
 
-
-
-            }
-            else
-            {
+            } else {
                 currentHour = hourOfDay;
-                if(currentHour == 0)
-                    currentHour =12;
+                if (currentHour == 0)
+                    currentHour = 12;
             }
 
 
             startTimer.setText(String.valueOf(currentHour)
-                    + ":" + String.valueOf(minute) + ":"+"00"+" "+ aMpM );
+                    + ":" + String.valueOf(minute) + ":" + "00" + " " + aMpM);
 
         }
 

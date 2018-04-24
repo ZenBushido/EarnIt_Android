@@ -17,4 +17,11 @@ public class MessageEvent {
     public MessageEvent(AddTaskModel.repititionSchedule response) {
         this.response = response;
     }
+
+    @Override
+    public String toString() {
+        return "MessageEvent{" +
+                "response=" + response +
+                '}';
+    }
 }

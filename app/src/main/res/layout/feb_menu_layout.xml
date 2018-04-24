@@ -42,7 +42,7 @@
 
                 android:padding="10dp"
 
-                android:text="@string/all_task"
+                android:text="@string/all_tasks"
                 android:textColor="@color/pink"
                 android:textSize="@dimen/floating_menu_list_size" />
 

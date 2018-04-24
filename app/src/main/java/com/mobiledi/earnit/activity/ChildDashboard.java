@@ -79,6 +79,7 @@ public class ChildDashboard extends BaseActivity {
     private Parent parentObject;
     String TAG = ChildDashboard.class.getSimpleName();
     ArrayList<Tasks> taskList ;
+    private ArrayList<ChildsTaskObject> childTaskObjects;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,7 +155,7 @@ public class ChildDashboard extends BaseActivity {
                 }
             }
         });
-        List<ChildsTaskObject> childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.CHILD, AppConstant.CHECKED_IN_SCREEN);
+        childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.CHILD, AppConstant.CHECKED_IN_SCREEN);
 
         if (childTaskObjects.size() > 0) {
             childViewDateAdapter = new ChildViewDateAdapter(childTaskObjects,parentObject,childObject,"child");
@@ -163,7 +164,7 @@ public class ChildDashboard extends BaseActivity {
         childImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new FloatingMenu(childDashboard).fetchAvatarDimension(childImage, childObject, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+                new FloatingMenu(childDashboard).fetchAvatarDimension(childTaskObjects, childImage, childObject, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
             }
         });
         callApi();

@@ -155,6 +155,10 @@ public class Child implements Serializable {
         this.tasksArrayList = tasksArrayList;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Child{" +
+                "tasksArrayList=" + tasksArrayList +
+                '}';
+    }
 }

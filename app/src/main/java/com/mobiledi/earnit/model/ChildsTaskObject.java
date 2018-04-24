@@ -3,6 +3,7 @@ package com.mobiledi.earnit.model;
 
 import com.mobiledi.earnit.libmoduleExpandable.Model.ParentListItem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by praks on 13/07/17.
  */
 
-public class ChildsTaskObject implements ParentListItem {
+public class ChildsTaskObject implements ParentListItem, Serializable {
     String dueDate;
     ArrayList<Tasks> tasks;
 
@@ -47,5 +48,13 @@ public class ChildsTaskObject implements ParentListItem {
     @Override
     public boolean isInitiallyExpanded() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "{\"ChildsTaskObject\":{" +
+                "dueDate='" + dueDate + '\'' +
+                ", tasks=" + tasks +
+                "}}";
     }
 }
