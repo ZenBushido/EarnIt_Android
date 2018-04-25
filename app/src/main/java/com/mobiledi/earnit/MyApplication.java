@@ -14,7 +14,6 @@ import com.rollbar.android.Rollbar;
 
 public class MyApplication extends Application {
     private static MyApplication instance;
-    boolean calendarIsOpen;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -37,14 +36,6 @@ public class MyApplication extends Application {
 
     public static void setInstance(MyApplication instance) {
         MyApplication.instance = instance;
-    }
-
-    public boolean isCalendarIsOpen() {
-        return calendarIsOpen;
-    }
-
-    public void setCalendarIsOpen(boolean calendarIsOpen) {
-        this.calendarIsOpen = calendarIsOpen;
     }
 
     /*This methods belongs to enable Multidexing for Application and Fixing crashing issue for lollipop and below it.*/

@@ -30,6 +30,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Goal;
@@ -87,6 +88,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     RepititionSchedule repititionSchedule;
     @BindView(R.id.loadingPanel) RelativeLayout progress;
 
+    private boolean previousActivityIsCalendar;
+
     @BindView(R.id.tv_applies_to)
     TextView tv_applies_to;
 
@@ -101,6 +104,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         child = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         task = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
         goal = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
+        previousActivityIsCalendar = intent.getBooleanExtra("previousActivityIsCalendar", false);
         repititionSchedule = (RepititionSchedule) intent.getSerializableExtra(AppConstant.REPETITION_SCHEDULE);
 
         RequestOptions requestOptions = new RequestOptions();
@@ -206,7 +210,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     @OnClick(R.id.child_avatar)
     void floatingMenu()
     {
-        new FloatingMenu(requestTaskApproval).fetchAvatarDimension(null, childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+        new FloatingMenu(requestTaskApproval).fetchAvatarDimension(null, childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress, previousActivityIsCalendar);
     }
     @Override
     public void onBackPressed() {

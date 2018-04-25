@@ -112,7 +112,6 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.childcalendar);
-        MyApplication.getInstance().setCalendarIsOpen(true);
         childCalendarActivity = this;
         ButterKnife.bind(this);
         badges = new HashMap<>();
@@ -192,32 +191,11 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         calendarView.setOnDateClickListener(new CalendarView.OnDateClickListener() {
             @Override
             public void onDateClick(@NonNull Date selectedDate) {
-//                Log.d("dsds", "onDateClick. size = " + childObject.getTasksArrayList().size());
-//                Child child = getChild(childObject, new DateTime(selectedDate));
-//                ScreenSwitch screenSwitch = new ScreenSwitch(ChildCalendarActivity.this);
-//                if (child != null) {
-//                    Log.d("dsjfhkj", "size() != 0");
-//                    if (child.getTasksArrayList().size() > 1) {
-//                        Log.d("dsjfhkj", "size() > 1");
-//                        screenSwitch.moveTOChildDashboard(getChild(childObject, new DateTime(selectedDate)));
-//                    } else {
-//                        Log.d("dsjfhkj", "size() == 1");
-//                        Tasks task = child.getTasksArrayList().get(0);
-//                        Intent requestTaskApproval = new Intent(ChildCalendarActivity.this, ChildRequestTaskApproval.class);
-//                        requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
-//                        requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
-//                        requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
-//                        requestTaskApproval.putExtra(AppConstant.REPETITION_SCHEDULE, task.getRepititionSchedule());
-//                        requestTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parentObject);
-//                        startActivity(requestTaskApproval);
-//                    }
-//                } else {
-//                    showDialogOnTaskAdded(new DateTime(selectedDate));
-//                }
                 ArrayList<Tasks> tasks = new ArrayList<>();
                 DateTime dateTime = new DateTime(selectedDate);
                 ScreenSwitch screenSwitch = new ScreenSwitch(ChildCalendarActivity.this);
                 Child child = getChild(childObject, new DateTime(selectedDate));
+                Log.d("askdjhhkj", "child = " + child);
                 for (ChildsTaskObject taskObject : childTaskObjects){
                     DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
                     DateTime dateTime2 = dtf.parseDateTime(taskObject.getDueDate());
@@ -234,8 +212,8 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                         Log.d("dsjfhkj", "size() == 1");
                         Tasks task = tasks.get(0);
                         Intent requestTaskApproval = new Intent(ChildCalendarActivity.this, ChildRequestTaskApproval.class);
-//                        requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
-                        requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, childObject);
+                        requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
+                        requestTaskApproval.putExtra("previousActivityIsCalendar", true);
                         requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
                         requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
                         requestTaskApproval.putExtra(AppConstant.REPETITION_SCHEDULE, task.getRepititionSchedule());
@@ -248,12 +226,6 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
             }
         });
         getAllGoals();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        MyApplication.getInstance().setCalendarIsOpen(false);
     }
 
     private boolean datesEquals(DateTime firstDate, DateTime secondDate){
@@ -287,6 +259,20 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
     }
 
     private Child getChild(Child child, DateTime taskDate) {
+        Child returnChild = new Child();
+        returnChild.setAccount(child.getAccount());
+        returnChild.setAvatar(child.getAvatar());
+        returnChild.setCreateDate(child.getCreateDate());
+        returnChild.setEmail(child.getEmail());
+        returnChild.setFcmToken(child.getFcmToken());
+        returnChild.setFirstName(child.getFirstName());
+        returnChild.setId(child.getId());
+        returnChild.setLastName(child.getLastName());
+        returnChild.setMessage(child.getMessage());
+        returnChild.setPassword(child.getPassword());
+        returnChild.setPhone(child.getPhone());
+        returnChild.setUpdateDate(child.getUpdateDate());
+        returnChild.setUserType(child.getUserType());
         ArrayList<Tasks> emptyTasks = new ArrayList<>();
         for (Tasks task : child.getTasksArrayList()) {
             DateTime datesArray = new DateTime(task.getDueDate());
@@ -299,11 +285,11 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
             }
         }
         if (emptyTasks.size() != 0) {
-            child.setTasksArrayList(emptyTasks);
+            returnChild.setTasksArrayList(emptyTasks);
         } else {
             return null;
         }
-        return child;
+        return returnChild;
     }
 
     private void setBadges(boolean firstCall, int month) {
