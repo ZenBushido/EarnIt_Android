@@ -22,33 +22,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f43b9ab9-e657-4e1c-8c87-631f84ed6ac4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/4.4/fileChanges/last-build.bin" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/4.4/fileContent/fileContent.lock" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_solver_1_1_0_jar.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__de_hdodenhof_circleimageview_2_2_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/release/app-release.apk" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/release/output.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/android/support/constraint/group-index.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/android/support/group-index.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/firebase/group-index.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/proguard-files/proguard-android-optimize.txt-3.1.1" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/proguard-files/proguard-android.txt-3.1.1" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/proguard-files/proguard-defaults.txt-3.1.1" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyApplication.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/child_request_task_approval.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/child_request_task_approval.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/childcalendar.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/childcalendar.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -135,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChildCalendarActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChildCalendarActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="291" column="26" lean-forward="false" selection-start-line="291" selection-start-column="26" selection-end-line="291" selection-end-column="26" />
+            <state relative-caret-position="137">
+              <caret line="113" column="40" lean-forward="false" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
               <folding>
                 <element signature="e#6323#6616#0" expanded="true" />
                 <element signature="e#6615#6616#0" expanded="true" />
@@ -160,15 +136,41 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="childcalendar.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/childcalendar.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="105" column="44" lean-forward="false" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ChildRequestTaskApproval.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="115" column="99" lean-forward="false" selection-start-line="115" selection-start-column="99" selection-end-line="115" selection-end-column="99" />
+            <state relative-caret-position="442">
+              <caret line="98" column="48" lean-forward="true" selection-start-line="98" selection-start-column="48" selection-end-line="98" selection-end-column="48" />
               <folding>
                 <element signature="e#4876#4888#0" expanded="true" />
                 <element signature="e#7529#7585#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="child_request_task_approval.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/child_request_task_approval.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="356" column="21" lean-forward="false" selection-start-line="356" selection-start-column="21" selection-end-line="356" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -3366,7 +3368,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/editTask/EditTaskRequest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/editTask/EditTaskResponse.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/deleteTask/DeleteTaskResponse.java" />
         <option value="$PROJECT_DIR$/gradle.properties" />
@@ -3383,7 +3384,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/getChild/Task.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/child_feb_menu_layout.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/childcalendar.xml" />
         <option value="$PROJECT_DIR$/materialcalendarview/src/main/res/layout/material_calendar_view.xml" />
         <option value="$PROJECT_DIR$/materialcalendarview/src/main/java/io/blackbox_vision/materialcalendarview/view/CalendarView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/circular_background.xml" />
@@ -3417,6 +3417,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/child_request_task_approval.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/childcalendar.xml" />
       </list>
     </option>
   </component>
@@ -3507,7 +3509,7 @@
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1524686950285" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1524687940048" />
     <property name="ExportApk.ApkPath" value="D:\Android\Projects\EarnIt\app" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
@@ -3921,7 +3923,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524594877835</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="- fix return back to Child Calendar screen bug(Not all dates displayed).">
+      <created>1524687050357</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1524687050357</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3934,7 +3943,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1673774" sideWeight="0.50567263" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68421054" sideWeight="0.5060423" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22121535" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22121535" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62988114" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -4344,16 +4353,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/childcalendar.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/childcalendar_toolbar.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -4380,16 +4379,6 @@
         <state relative-caret-position="850">
           <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/child_request_task_approval.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="32" column="51" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -4534,17 +4523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="115" column="99" lean-forward="false" selection-start-line="115" selection-start-column="99" selection-end-line="115" selection-end-column="99" />
-          <folding>
-            <element signature="e#4876#4888#0" expanded="true" />
-            <element signature="e#7529#7585#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Child.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="583">
@@ -4553,10 +4531,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="98" column="48" lean-forward="true" selection-start-line="98" selection-start-column="48" selection-end-line="98" selection-end-column="48" />
+          <folding>
+            <element signature="e#4876#4888#0" expanded="true" />
+            <element signature="e#7529#7585#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/child_request_task_approval.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="356" column="21" lean-forward="false" selection-start-line="356" selection-start-column="21" selection-end-line="356" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="291" column="26" lean-forward="false" selection-start-line="291" selection-start-column="26" selection-end-line="291" selection-end-column="26" />
+        <state relative-caret-position="137">
+          <caret line="113" column="40" lean-forward="false" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
           <folding>
             <element signature="e#6323#6616#0" expanded="true" />
             <element signature="e#6615#6616#0" expanded="true" />
@@ -4573,6 +4573,17 @@
             <element signature="e#21972#21973#0" expanded="true" />
             <element signature="e#21996#21997#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/childcalendar.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="105" column="44" lean-forward="false" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>

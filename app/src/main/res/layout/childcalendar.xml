@@ -103,7 +103,7 @@
                 <Button
                     android:id="@+id/back_to_tasklist"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:layout_weight="0.6"
                     android:background="@drawable/sign_in_round"
                     android:text="Back to Task List"
@@ -118,27 +118,28 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.25">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.25">-->
+
+            <!--</LinearLayout>-->
+
+            <!--<View-->
+                <!--android:id="@+id/vertical_line"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@android:color/darker_gray" />-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.1">-->
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/vertical_line"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1">
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.25"
