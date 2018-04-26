@@ -30,7 +30,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
@@ -215,7 +214,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     @OnClick(R.id.child_avatar)
     void floatingMenu()
     {
-        new FloatingMenu(requestTaskApproval).fetchAvatarDimension(childTasksObjects, childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress, previousActivityIsCalendar);
+        new FloatingMenu(requestTaskApproval).fetchAvatarDimension252(childTasksObjects, childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress, previousActivityIsCalendar, task);
     }
     @Override
     public void onBackPressed() {

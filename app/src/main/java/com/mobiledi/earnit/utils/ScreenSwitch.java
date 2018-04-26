@@ -290,7 +290,7 @@ goals.add(goal);
 
     public void moveToBalanceScreen(Child child, Child otherChild, Parent parent, String fromScreen, Tasks tasks, List<Goal> goal, String userType) {
         Intent moveToBalance = new Intent(activity, BalanceActivity.class);
-        moveToBalance.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        moveToBalance.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
         moveToBalance.putExtra(AppConstant.CHILD_OBJECT, child);
         moveToBalance.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
         moveToBalance.putExtra(AppConstant.PARENT_OBJECT, parent);

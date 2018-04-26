@@ -79,6 +79,7 @@ public class FloatingMenu {
     private boolean previousActivityIsCalendar;
 
     public FloatingMenu(Activity activity) {
+        Log.d("jdsahdkjh", "FloatingMenu constructor");
         this.activity = activity;
         screenSwitch = new ScreenSwitch(activity);
     }
@@ -112,203 +113,8 @@ public class FloatingMenu {
         //  popupShow(activity, loation, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
     }
 
-    /*public void popupShow(Activity view, Rect location, final Child child, final Child childWithAllTask, final Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks)
-    {
-
-        // Inflate the popup_layout.xml
-        LinearLayout viewGroup = (LinearLayout) view.findViewById(R.id.feb_menu_layout);
-        LayoutInflater layoutInflater = (LayoutInflater) view.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = layoutInflater.inflate(R.layout.feb_menu_layout, viewGroup);
-
-        checkDeviceResolution(fromScreen);
-        // Creating the PopupWindow
-        final PopupWindow popup = new PopupWindow(view);
-        popup.setContentView(layout);
-        popup.setWidth(ListPopupWindow.WRAP_CONTENT);
-        popup.setHeight(ListPopupWindow.WRAP_CONTENT);
-        popup.setFocusable(true);
-
-        // Clear the default translucent background
-        popup.setBackgroundDrawable(new BitmapDrawable());
-
-        // Displaying the popup at the specified location, + offsets.
-       // popup.showAtLocation(layout, Gravity.NO_GRAVITY, p.x - 6 + OFFSET_X, p.y - 6 + OFFSET_Y);
-        popup.showAtLocation(layout, Gravity.TOP|Gravity.LEFT, location.left, location.centerY());
-
-        TextView addTask = (TextView) layout.findViewById(R.id.fb_add_task);
-        TextView allTask = (TextView) layout.findViewById(R.id.fb_a11_task);
-        TextView approvalTask = (TextView) layout.findViewById(R.id.fb_approve_task);
-        TextView balance = (TextView) layout.findViewById(R.id.fb_balance);
-        TextView goal = (TextView) layout.findViewById(R.id.fb_goal);
-        TextView message = (TextView) layout.findViewById(R.id.fb_message);
-        TextView app_monitor =  layout.findViewById(R.id.app_monitor);
-        addTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_plus_circle)
-                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
-        allTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_file_text_o)
-                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
-        approvalTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_eye)
-                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
-        balance.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_usd)
-                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
-        goal.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_star)
-                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
-        message.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_comment)
-                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
-        app_monitor.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_eye)
-                .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
-
-        int i = 0;
-
-        for (Tasks tasks1 : childWithAllTask.getTasksArrayList()) {
-
-            if (tasks1.getStatus().equalsIgnoreCase("Completed")) {
-
-                i = i + 1;
-            }
-
-
-        }
-        approvalTask.setText(" Approval Pending (" + i + ")");
-
-
-        // try {
-        //   Picasso.with(activity).load(child.getAvatar()).error(R.drawable.default_avatar).into(febIcon);
-        //  } catch (Exception e) {
-        //    e.printStackTrace();
-        //  }
-        addTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screenSwitch.moveToAddTask(child, childWithAllTask, parent, fromScreen, null);
-
-                popup.dismiss();
-            }
-        });
-        allTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                progressBar.setVisibility(View.VISIBLE);
-                popup.dismiss();
-                final AsyncHttpClient client = new AsyncHttpClient();
-                client.setBasicAuth(parent.getEmail(), parent.getPassword());
-                client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId(), null, new JsonHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
-
-
-                        ArrayList<Tasks> taskList = new ArrayList<>();
-
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject object = response.getJSONObject(i);
-                                //TASKS
-                                Tasks task = new GetObjectFromResponse().getTaskObject(object, child.getId());
-                                taskList.add(task);
-
-
-                            } catch (Exception e) {
-
-                                Log.e(TAG, "Error: "+e.getLocalizedMessage());
-
-                            }
-                            child.setTasksArrayList(taskList);
-
-                        }
-
-                        List<String> listStatus = new ArrayList<>();
-
-                        for(int j=0; j< taskList.size(); j++)
-                        {
-                            if(taskList.get(j).getStatus().equalsIgnoreCase("Created"))
-                                listStatus.add(taskList.get(j).getStatus());
-
-                        }
-
-
-                        Log.e(TAG, "Task List size= "+taskList.size());
-                        if(listStatus.size()!=0)
-                        {
-                            progressBar.setVisibility(View.GONE);
-                            screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
-                        }
-
-
-                        else
-
-                        {
-                            progressBar.setVisibility(View.GONE);
-                            Utils.showToast(activity, activity.getResources().getString(R.string.no_task_schedule));
-                        }
-
-
-
-
-
-                    }
-                });
-            }
-        });
-
-        approvalTask.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick (View v){
-                if (child.getTasksArrayList().size() > 0)
-                    screenSwitch.moveToTaskApproval(child, childWithAllTask, FloatingMenu.this.parent, fromScreen, tasks);
-                else
-                    Utils.showToast(FloatingMenu.this.activity, FloatingMenu.this.activity.getResources().getString(R.string.no_task_for_approval));
-                popup.dismiss();
-            }
-        });
-        balance.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick (View v){
-                //screenSwitch.moveToBalance(child, childWithAllTask, parent, fromScreen, tasks, null, AppConstant.PARENT);
-                screenSwitch.moveToBalanceScreen(child, childWithAllTask, FloatingMenu.this.parent, fromScreen, tasks, null, AppConstant.PARENT);
-                popup.dismiss();
-            }
-        });
-        goal.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick (View v){
-                screenSwitch.isGoalExists(child, childWithAllTask, FloatingMenu.this.parent, progressBar, fromScreen, tasks);
-                popup.dismiss();
-            }
-        });
-        message.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick (View v){
-                screenSwitch.sendMessage(v, childWithAllTask);
-                popup.dismiss();
-            }
-        });
-
-        app_monitor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screenSwitch.usageStats( parent,   AppConstant.PARENT, child);
-                popup.dismiss();
-            }
-        });
-        //   febIcon.setOnClickListener(new View.OnClickListener() {
-        //     @Override
-        //   public void onClick(View v) {
-        //     popup.dismiss();
-        //      }
-        //    });
-    }
-*/
     private void showPopup(Activity view, Point p, final Child child, final Child childWithAllTask, final Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks) {
-
+        Log.d("jdsahdkjh", "showPopup 1");
         // Inflate the popup_layout.xml
         LinearLayout viewGroup = view.findViewById(R.id.feb_menu_layout);
         LayoutInflater layoutInflater = (LayoutInflater) view.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -374,6 +180,7 @@ public class FloatingMenu {
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("jdsahdkjh", "click addTask ");
                 screenSwitch.moveToAddTask(child, childWithAllTask, parent, fromScreen, null);
                 popup.dismiss();
             }
@@ -381,6 +188,7 @@ public class FloatingMenu {
         allTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("jdsahdkjh", "click allTask ");
 
                 progressBar.setVisibility(View.VISIBLE);
                 popup.dismiss();
@@ -453,6 +261,7 @@ public class FloatingMenu {
         {
             @Override
             public void onClick(View v) {
+                Log.d("jdsahdkjh", "click balance ");
                 //screenSwitch.moveToBalance(child, childWithAllTask, parent, fromScreen, tasks, null, AppConstant.PARENT);
                 screenSwitch.moveToBalanceScreen(child, childWithAllTask, parent, fromScreen, tasks, null, AppConstant.PARENT);
                 popup.dismiss();
@@ -463,6 +272,7 @@ public class FloatingMenu {
         {
             @Override
             public void onClick(View v) {
+                Log.d("jdsahdkjh", "click goal ");
                 screenSwitch.isGoalExists(child, childWithAllTask, parent, progressBar, fromScreen, tasks);
                 popup.dismiss();
             }
@@ -472,6 +282,7 @@ public class FloatingMenu {
         {
             @Override
             public void onClick(View v) {
+                Log.d("jdsahdkjh", "click message ");
                 screenSwitch.sendMessage(v, childWithAllTask);
                 popup.dismiss();
             }
@@ -480,6 +291,7 @@ public class FloatingMenu {
         app_monitor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("jdsahdkjh", "click app_monitor ");
                 screenSwitch.usageStats(parent, AppConstant.PARENT, child);
                 popup.dismiss();
             }
@@ -493,30 +305,31 @@ public class FloatingMenu {
 
     }
 
-    public void fetchAvatarDimension(ArrayList<ChildsTaskObject> childTaskObjects, CircularImageView view, Child childObject, Parent parentObject, String onScreen, RelativeLayout progress) {
+    public void fetchAvatarDimension253(ArrayList<ChildsTaskObject> childTaskObjects, CircularImageView view, Child childObject, Parent parentObject, String onScreen, RelativeLayout progress, Tasks tasks) {
 
         int[] location = new int[2];
         view.getLocationOnScreen(location);
         Point p = new Point();
         p.x = location[0];
         p.y = location[1];
-        showChildPopUp(activity, p, childObject, parentObject, onScreen, progress);
+        showChildPopUp(activity, p, childObject, parentObject, onScreen, progress, tasks);
         this.childTaskObjects = childTaskObjects;
     }
 
-    public void fetchAvatarDimension(ArrayList<ChildsTaskObject> childTaskObjects, CircularImageView view, Child childObject, Parent parentObject, String onScreen, RelativeLayout progress, boolean previousActivityIsCalendar) {
+    public void fetchAvatarDimension252(ArrayList<ChildsTaskObject> childTaskObjects, CircularImageView view, Child childObject, Parent parentObject, String onScreen, RelativeLayout progress, boolean previousActivityIsCalendar, Tasks tasks) {
 
         int[] location = new int[2];
         view.getLocationOnScreen(location);
         Point p = new Point();
         p.x = location[0];
         p.y = location[1];
-        showChildPopUp(activity, p, childObject, parentObject, onScreen, progress);
+        showChildPopUp(activity, p, childObject, parentObject, onScreen, progress, tasks);
         this.childTaskObjects = childTaskObjects;
         this.previousActivityIsCalendar = previousActivityIsCalendar;
     }
 
-    public void showChildPopUp(final Activity view, Point p, final Child childObject, final Parent parentObject, final String onScreen, final RelativeLayout progress) {
+    public void showChildPopUp(final Activity view, Point p, final Child childObject, final Parent parentObject, final String onScreen, final RelativeLayout progress, final Tasks tasks) {
+        Log.d("jdsahdkjh", "showPopup 2");
 
 
         // Inflate the popup_layout.xml
@@ -545,6 +358,7 @@ public class FloatingMenu {
         TextView viewTask = layout.findViewById(R.id.child_fb_view_task);
         TextView goalBalance = layout.findViewById(R.id.child_fb_balance);
         TextView calendar = layout.findViewById(R.id.child_fb_calendar);
+        TextView balance = layout.findViewById(R.id.child_fb_balance);
         /* TextView calendar =layout.findViewById(R.id.child_fb_calendar);
          */
         TextView profile = layout.findViewById(R.id.child_fb_profile);
@@ -609,20 +423,17 @@ public class FloatingMenu {
 
             }
         });
-      /*  calendar.setOnClickListener(new View.OnClickListener() {
+        balance.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View v) {
-                lMessage.showToast("TODO: Calendar");
+                Log.d("jdsahdkjh", "click balance ");
+                //screenSwitch.moveToBalance(child, childWithAllTask, parent, fromScreen, tasks, null, AppConstant.PARENT);
+                screenSwitch.moveToBalanceScreen(childObject, childObject, parent, onScreen, tasks, null, MyApplication.getInstance().getUserType());
                 popup.dismiss();
-
             }
         });
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                lMessage.showToast("TODO :Profile");
-            }
-        });*/
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

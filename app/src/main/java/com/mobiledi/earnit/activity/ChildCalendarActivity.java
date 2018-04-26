@@ -1,14 +1,12 @@
 package com.mobiledi.earnit.activity;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
@@ -31,7 +29,6 @@ import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
-import com.mobiledi.earnit.model.getChild.Task;
 import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
 import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.retrofit.RetrofitClient;
@@ -161,7 +158,7 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         childAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new FloatingMenu(childCalendarActivity).fetchAvatarDimension(null, childAvatar, childObject, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progressBar);
+                new FloatingMenu(childCalendarActivity).fetchAvatarDimension253(null, childAvatar, childObject, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progressBar, null);
 
             }
         });

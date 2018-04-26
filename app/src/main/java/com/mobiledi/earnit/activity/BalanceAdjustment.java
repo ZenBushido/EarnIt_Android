@@ -8,7 +8,6 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -39,11 +38,9 @@ import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
-import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.NavigationDrawer;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -402,7 +399,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
                 if (userType.equalsIgnoreCase(AppConstant.PARENT))
                     new FloatingMenu(balance).fetchAvatarDimension(avatar, childObject, otherChild, parentObject, AppConstant.BALANCE_SCREEN, progressBar, null);
                 else
-                    new FloatingMenu(balance).fetchAvatarDimension(null, avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar);
+                    new FloatingMenu(balance).fetchAvatarDimension253(null, avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar, tasks);
                 break;
         }
     }

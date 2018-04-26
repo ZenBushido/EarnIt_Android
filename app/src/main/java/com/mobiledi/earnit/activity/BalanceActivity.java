@@ -1,5 +1,7 @@
 package com.mobiledi.earnit.activity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,8 +19,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.MyRecyclerViewAdapter;
 import com.mobiledi.earnit.model.Child;
@@ -30,14 +30,8 @@ import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
-import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +39,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cz.msebera.android.httpclient.Header;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -168,7 +161,7 @@ public class BalanceActivity extends BaseActivity   {
             new FloatingMenu(balanceChild).fetchAvatarDimension(avatar, childObject, otherChild, parentObject, AppConstant.BALANCE_SCREEN, progressBar, tasks);
         else
 
-            new FloatingMenu(balanceChild).fetchAvatarDimension(null, avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar);
+            new FloatingMenu(balanceChild).fetchAvatarDimension253(null, avatar, childObject, parentObject, AppConstant.BALANCE_SCREEN, progressBar, tasks);
 
     }
 
@@ -195,10 +188,16 @@ public class BalanceActivity extends BaseActivity   {
 
     @Override
     public void onBackPressed() {
-        if (userType.equalsIgnoreCase(AppConstant.PARENT))
-            screenSwitch.moveToParentDashboard(parentObject);
-        else
-            screenSwitch.moveToChildDashboard(childObject, progressBar);
+        ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
+
+        int sizeStack =  am.getRunningTasks(2).size();
+        Log.d("lksjdfjlkj", " back pressed: " + userType + "; sizeStack: " + sizeStack);
+        super.onBackPressed();
+//        moveTaskToBack(true);
+//        if (userType.equalsIgnoreCase(AppConstant.PARENT))
+//            screenSwitch.moveToParentDashboard(parentObject);
+//        else
+//            screenSwitch.moveToChildDashboard(childObject, progressBar);
     }
 
 

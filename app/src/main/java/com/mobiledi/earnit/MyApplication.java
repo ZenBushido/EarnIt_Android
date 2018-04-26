@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class MyApplication extends Application {
     private static MyApplication instance;
     private ArrayList<ChildsTaskObject> childsTaskObjects;
+    private String userType;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -51,5 +52,17 @@ public class MyApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    public static void setInstance(MyApplication instance) {
+        MyApplication.instance = instance;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

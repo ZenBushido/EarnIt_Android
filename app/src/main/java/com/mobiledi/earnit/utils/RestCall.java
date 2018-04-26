@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Parent;
@@ -79,6 +80,7 @@ public class RestCall {
                         updateToken.putExtra(AppConstant.IS_LOGOUT, false);
                         if (response.getString(AppConstant.TYPE).equals(AppConstant.PARENT)) {
                             parent = new GetObjectFromResponse().getParentObject(response);
+                            MyApplication.getInstance().setUserType(AppConstant.PARENT);
 
                             // token update for child
                             updateToken.putExtra(AppConstant.PARENT_OBJECT, parent);
@@ -102,6 +104,7 @@ public class RestCall {
                             }
 
                         } else if (response.getString(AppConstant.TYPE).equals(AppConstant.CHILD)) {
+                            MyApplication.getInstance().setUserType(AppConstant.CHILD);
 
                             Child child = new GetObjectFromResponse().getChildObject(response);
                             //TASKS

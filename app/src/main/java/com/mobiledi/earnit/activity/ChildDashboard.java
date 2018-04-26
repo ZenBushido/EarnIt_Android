@@ -1,11 +1,8 @@
 package com.mobiledi.earnit.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.MyApplication;
@@ -27,41 +23,20 @@ import com.mobiledi.earnit.adapter.ChildViewDateAdapter;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.mobiledi.earnit.model.Parent;
-import com.mobiledi.earnit.model.TaskV2Model;
 import com.mobiledi.earnit.model.Tasks;
-import com.mobiledi.earnit.retrofit.RetroInterface;
-import com.mobiledi.earnit.retrofit.RetrofitClient;
-import com.mobiledi.earnit.service.UpdateFcmToken;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.RestCall;
-import com.squareup.picasso.Picasso;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
-import retrofit.ServiceGenerator;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class ChildDashboard extends BaseActivity {
@@ -166,7 +141,7 @@ public class ChildDashboard extends BaseActivity {
         childImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new FloatingMenu(childDashboard).fetchAvatarDimension(childTaskObjects, childImage, childObject, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+                new FloatingMenu(childDashboard).fetchAvatarDimension253(childTaskObjects, childImage, childObject, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress, null);
             }
         });
         callApi();
