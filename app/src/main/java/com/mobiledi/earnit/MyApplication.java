@@ -6,7 +6,10 @@ import android.support.multidex.MultiDex;
 
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.rollbar.android.Rollbar;
+
+import java.util.ArrayList;
 
 /**
  * Created by mobile-di on 4/10/17.
@@ -14,6 +17,7 @@ import com.rollbar.android.Rollbar;
 
 public class MyApplication extends Application {
     private static MyApplication instance;
+    private ArrayList<ChildsTaskObject> childsTaskObjects;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -34,8 +38,12 @@ public class MyApplication extends Application {
         return instance == null ? new MyApplication() : instance;
     }
 
-    public static void setInstance(MyApplication instance) {
-        MyApplication.instance = instance;
+    public ArrayList<ChildsTaskObject> getChildsTaskObjects() {
+        return childsTaskObjects;
+    }
+
+    public void setChildsTaskObjects(ArrayList<ChildsTaskObject> childsTaskObjects) {
+        this.childsTaskObjects = childsTaskObjects;
     }
 
     /*This methods belongs to enable Multidexing for Application and Fixing crashing issue for lollipop and below it.*/

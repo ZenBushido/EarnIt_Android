@@ -21,6 +21,7 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ChildViewDateAdapter;
 import com.mobiledi.earnit.model.Child;
@@ -156,6 +157,7 @@ public class ChildDashboard extends BaseActivity {
             }
         });
         childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.CHILD, AppConstant.CHECKED_IN_SCREEN);
+        MyApplication.getInstance().setChildsTaskObjects(childTaskObjects);
 
         if (childTaskObjects.size() > 0) {
             childViewDateAdapter = new ChildViewDateAdapter(childTaskObjects,parentObject,childObject,"child");

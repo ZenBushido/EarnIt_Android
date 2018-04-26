@@ -33,6 +33,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
+import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.RepititionSchedule;
@@ -51,6 +52,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -88,6 +90,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     RepititionSchedule repititionSchedule;
     @BindView(R.id.loadingPanel) RelativeLayout progress;
 
+    private ArrayList<ChildsTaskObject> childTasksObjects;
+
     private boolean previousActivityIsCalendar;
 
     @BindView(R.id.tv_applies_to)
@@ -104,6 +108,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         child = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         task = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
         goal = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
+        childTasksObjects = (ArrayList<ChildsTaskObject>) intent.getSerializableExtra(AppConstant.CHILD_TASKS_OBJECT);
         previousActivityIsCalendar = intent.getBooleanExtra("previousActivityIsCalendar", false);
         repititionSchedule = (RepititionSchedule) intent.getSerializableExtra(AppConstant.REPETITION_SCHEDULE);
 
@@ -210,7 +215,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     @OnClick(R.id.child_avatar)
     void floatingMenu()
     {
-        new FloatingMenu(requestTaskApproval).fetchAvatarDimension(null, childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress, previousActivityIsCalendar);
+        new FloatingMenu(requestTaskApproval).fetchAvatarDimension(childTasksObjects, childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress, previousActivityIsCalendar);
     }
     @Override
     public void onBackPressed() {

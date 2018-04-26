@@ -97,7 +97,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
 
                 } else if (!currentTask.getStatus().equals(AppConstant.COMPLETED)) {
                     Intent requestTaskApproval = new Intent(itemView.getContext(), ChildRequestTaskApproval.class);
-                    requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, (Serializable) child);
+                    requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
                     requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
                     requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
                     requestTaskApproval.putExtra(AppConstant.REPETITION_SCHEDULE, task.getRepititionSchedule());

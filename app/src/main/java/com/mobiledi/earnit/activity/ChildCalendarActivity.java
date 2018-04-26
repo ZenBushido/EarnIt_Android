@@ -124,7 +124,8 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         Log.d("dbopc", "\nonCreate. calendarMonth = " + calendarMonth);
         screen_name = intent.getStringExtra(AppConstant.FROM_SCREEN);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
-        childTasksObject = (ArrayList<ChildsTaskObject>) intent.getSerializableExtra(AppConstant.CHILD_TASKS_OBJECT);
+//        childTasksObject = (ArrayList<ChildsTaskObject>) intent.getSerializableExtra(AppConstant.CHILD_TASKS_OBJECT);
+        childTasksObject = MyApplication.getInstance().getChildsTaskObjects();
         Log.d("dsaldasluidj", "childTasksObject: " + childTasksObject.toString().replace("'", "\""));
 
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
