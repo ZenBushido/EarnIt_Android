@@ -4,7 +4,41 @@
             "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.0.2.aar\\6c5eaee731be999b0e79b2bcd45cff42\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\0761e875f4ebf78b1e2c34d50c0848f7\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,125,189,260",
+                        "endColumns": "69,63,70,67",
+                        "endOffsets": "120,184,255,323"
+                    },
+                    "to": {
+                        "startLines": "3,4,5,6",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "123,193,257,328",
+                        "endColumns": "69,63,70,67",
+                        "endOffsets": "188,252,323,391"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialdatetimepicker-3.2.2.aar\\ea7111be4529b122a31de612d1bc8ba4\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,120,183,245,315,367,421,472,532,593,653",
+                        "endColumns": "64,62,61,69,51,53,50,59,60,59,56",
+                        "endOffsets": "115,178,240,310,362,416,467,527,588,648,705"
+                    },
+                    "to": {
+                        "startLines": "7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "396,461,524,586,656,708,762,813,873,934,994",
+                        "endColumns": "64,62,61,69,51,53,50,59,60,59,56",
+                        "endOffsets": "456,519,581,651,703,757,808,868,929,989,1046"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.0.2.aar\\070c7d545b9988584ba19f5d91fd8877\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,24 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialdatetimepicker-3.2.2.aar\\925ab1eeb8165bbdaeaf59cc8a85e33a\\res\\values-land\\values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,120,183,245,315,367,421,472,532,593,653",
-                        "endColumns": "64,62,61,69,51,53,50,59,60,59,56",
-                        "endOffsets": "115,178,240,310,362,416,467,527,588,648,705"
-                    },
-                    "to": {
-                        "startLines": "7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "396,461,524,586,656,708,762,813,873,934,994",
-                        "endColumns": "64,62,61,69,51,53,50,59,60,59,56",
-                        "endOffsets": "456,519,581,651,703,757,808,868,929,989,1046"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\lib-2.2.0.aar\\ccf3699bfcee8aa20cac699f1349c593\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\lib-2.2.0.aar\\ba462bf79c94c174d27a1ff265062cfd\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",
@@ -54,23 +71,6 @@
                         "startOffsets": "55",
                         "endColumns": "67",
                         "endOffsets": "118"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\87945c4b84b81c1c479f661b959d0eda\\res\\values-land\\values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,125,189,260",
-                        "endColumns": "69,63,70,67",
-                        "endOffsets": "120,184,255,323"
-                    },
-                    "to": {
-                        "startLines": "3,4,5,6",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "123,193,257,328",
-                        "endColumns": "69,63,70,67",
-                        "endOffsets": "188,252,323,391"
                     }
                 }
             ]

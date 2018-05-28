@@ -21,22 +21,24 @@ import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.utils.AppConstant;
+import com.mobiledi.earnit.utils.Utils;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 /**
  * Created by adox on 01.02.2018..
  */
 
 public class TaskChildViewHolder extends ChildViewHolder {
-    TextView childTaskDetail, childTaskDueDate, childTaskCheckbox;
-    Button childTaskStatus;
-    ImageView thumbUp, right_arrow;
-    LinearLayout task_details_layout, task_description_layout;
+    private TextView childTaskDetail, childTaskDueDate, childTaskCheckbox;
+    private Button childTaskStatus;
+    private ImageView thumbUp, right_arrow;
+    private LinearLayout task_details_layout, task_description_layout;
     public Tasks task;
     public Goal goal;
 
@@ -54,16 +56,12 @@ public class TaskChildViewHolder extends ChildViewHolder {
         task_description_layout = (LinearLayout) item.findViewById(R.id.task_description_layout);
     }
 
-    public void onBind(final Tasks currentTask, String title, final Parent parent, final Child child, final String isParentChild) {
+    public void onBind(final Tasks currentTask, final long title, final Parent parent, final Child child, final String isParentChild) {
 
         task = currentTask;
+        Utils.logDebug(TAG, "!!!! Task == " + task.toString());
         childTaskDetail.setText(currentTask.getName());
-        DateTime dt = new DateTime(currentTask.getDueDate());
-        String toPrintDate = title.substring(title.length() - 5);
-        DateTime dts = new DateTime(currentTask.getDueDate());
-        DateTimeFormatter fmt2 = DateTimeFormat.forPattern("@ h:mm a");
-        String toPrintDate2 = fmt2.print(dts);
-        childTaskDueDate.setText(toPrintDate + toPrintDate2);
+        childTaskDueDate.setText(new DateTime(task.getDueDate()).toString("MM/dd@ h:mm a", Locale.getDefault()));
         DateTime currentDate = new DateTime();
         task_description_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +76,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     addTask.putExtra(AppConstant.OTHER_CHILD_OBJECT, child);
                     addTask.putExtra(AppConstant.PARENT_OBJECT, parent);
                     addTask.putExtra(AppConstant.TO_EDIT, (Serializable) task);
+                    Utils.logDebug(TAG, "1 Task == " + task);
                     addTask.putExtra(AppConstant.GOAL_OBJECT, (Serializable) task.getGoal() );
                     addTask.putExtra(AppConstant.TASK_STATUS, AppConstant.EDIT);
                     itemView.getContext().startActivity(addTask);
@@ -90,6 +89,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, (Serializable)parent);
                     moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, AppConstant.CHECKED_IN_SCREEN);
                     moveToTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
+                    Utils.logDebug(TAG, "2 Task == " + task);
                     if(task.getTaskComments()!=null)
                     moveToTaskApproval.putExtra(AppConstant.TASK_COMMENTS, (Serializable) task.getTaskComments().get(0));
                     itemView.getContext().startActivity(moveToTaskApproval);
@@ -99,9 +99,11 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     Intent requestTaskApproval = new Intent(itemView.getContext(), ChildRequestTaskApproval.class);
                     requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
                     requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
+                    Utils.logDebug(TAG, "3! Task == " + task);
                     requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
                     requestTaskApproval.putExtra(AppConstant.REPETITION_SCHEDULE, task.getRepititionSchedule());
                     requestTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parent);
+                    requestTaskApproval.putExtra(AppConstant.DUE_DATE_STRING, title);
 
 
 

@@ -34,6 +34,7 @@ import com.mobiledi.earnit.activity.ChildCalendarActivity;
 import com.mobiledi.earnit.activity.LoginScreen;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
+import com.mobiledi.earnit.model.DayTaskStatus;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.TaskV2Model;
 import com.mobiledi.earnit.model.Tasks;
@@ -161,10 +162,16 @@ public class FloatingMenu {
         int i = 0;
 
         for (Tasks tasks1 : childWithAllTask.getTasksArrayList()) {
-
-            if (tasks1.getStatus().equalsIgnoreCase("Completed")) {
-
-                i = i + 1;
+            Utils.logDebug(TAG, "taskl: " + tasks1.toString());
+            if  (tasks1.getRepititionSchedule() != null && tasks1.getRepititionSchedule().getDayTaskStatuses() != null){
+                List<DayTaskStatus> dayTaskStatuses = tasks1.getRepititionSchedule().getDayTaskStatuses();
+                for (DayTaskStatus dayTaskStatus : dayTaskStatuses){
+                    if (dayTaskStatus.getStatus().equalsIgnoreCase(AppConstant.COMPLETED)){
+                        i ++;
+                    }
+                }
+            } else if (tasks1.getStatus().equalsIgnoreCase("Completed")) {
+                i++;
             }
 
 
@@ -194,9 +201,11 @@ public class FloatingMenu {
                 popup.dismiss();
                 final AsyncHttpClient client = new AsyncHttpClient();
                 client.setBasicAuth(parent.getEmail(), parent.getPassword());
+                Log.e(TAG, "URL = " + AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId());
                 client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId(), null, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        Log.e(TAG, "resp d = " + response.toString());
 
 
                         ArrayList<Tasks> taskList = new ArrayList<>();
@@ -249,9 +258,36 @@ public class FloatingMenu {
         {
             @Override
             public void onClick(View v) {
-                if (child.getTasksArrayList().size() > 0)
-                    screenSwitch.moveToTaskApproval(child, childWithAllTask, parent, fromScreen, tasks);
-                else
+                List<Tasks> tasksList = new ArrayList<>();
+                for (Tasks tasks1 : childWithAllTask.getTasksArrayList()) {
+                    Tasks newTask = Tasks.from(tasks1);
+                    Utils.logDebug(TAG, "taskl: " + newTask.toString());
+                    if  (newTask.getRepititionSchedule() != null && newTask.getRepititionSchedule().getDayTaskStatuses() != null){
+                        List<DayTaskStatus> dayTaskStatuses = newTask.getRepititionSchedule().getDayTaskStatuses();
+                        for (DayTaskStatus dayTaskStatus : dayTaskStatuses){
+                            if (dayTaskStatus.getStatus().equalsIgnoreCase(AppConstant.COMPLETED)){
+                                newTask.setStartDate(newTask.getDueDate());
+                                DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM dd, yyyy HH:mm:ss a").withLocale(Locale.US);
+                                DateTime dt = formatter.parseDateTime(dayTaskStatus.getCreatedDateTime());
+                                newTask.setDueDate(dt.getMillis());
+//                                tasks1.setStatus(dayTaskStatus.getStatus());
+                                tasksList.add(newTask);
+                                Log.d("asdljlahsdkj", "a tut duedate = " + new DateTime(newTask.getDueDate()).toString() + "\nstartDate = " + new DateTime(newTask.getStartDate()).toString());
+                            }
+                        }
+                    } else if (newTask.getStatus().equalsIgnoreCase("Completed")) {
+                        tasksList.add(newTask);
+                    }
+
+
+                }
+                if (tasksList.size() > 0) {
+                    if (tasksList.size() > 1) {
+                        screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, AppConstant.TASK_APPROVAL_SCREEN);
+                    } else {
+                        screenSwitch.moveToTaskApproval(child, childWithAllTask, parent, fromScreen, tasksList.get(0));
+                    }
+                } else
                     Utils.showToast(activity, activity.getResources().getString(R.string.no_task_for_approval));
                 popup.dismiss();
             }

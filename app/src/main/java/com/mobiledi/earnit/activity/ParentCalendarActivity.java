@@ -34,6 +34,7 @@ import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ItemAdapter;
 import com.mobiledi.earnit.dialogfragment.MonthlyDialogFragment;
 import com.mobiledi.earnit.dialogfragment.MyDialogFragment;
+import com.mobiledi.earnit.dialogfragment.TimePickerFragment;
 import com.mobiledi.earnit.dialogfragment.WeeklyDialogFragment;
 import com.mobiledi.earnit.model.AddTaskModel;
 import com.mobiledi.earnit.model.Child;
@@ -166,7 +167,8 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             @Override
             public void onClick(View view) {
 
-                DialogFragment newFragment = new TimePickerFragment();
+                TimePickerFragment newFragment = new TimePickerFragment();
+                newFragment.setTextView(startTimer);
                 newFragment.show(getFragmentManager(), "TimePicker");
 
                 /*TimeSelectUtilsForCallendar timeSelectUtils = new TimeSelectUtilsForCallendar(ParentCalendarActivity.this, null, startTimer, new TimeSelectUtilsForCallendar.GetSubmitTime() {
@@ -565,7 +567,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         dayOfWeek = s;
     }
 
-    @SuppressLint("ValidFragment")
+    /*@SuppressLint("ValidFragment")
     public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
         private int mNumberPickerInputId = 0;
 
@@ -612,5 +614,5 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
 
         }
 
-    }
+    }*/
 }

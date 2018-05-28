@@ -216,6 +216,7 @@
                                 android:textSize="@dimen/check_in_text_size" />
 
                             <TextView
+                                tools:text="05/17"
                                 android:id="@+id/task_due_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

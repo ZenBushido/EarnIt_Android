@@ -28,11 +28,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
+import com.google.gson.JsonArray;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
+import com.mobiledi.earnit.model.DayTaskStatus;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.RepititionSchedule;
@@ -43,6 +45,7 @@ import com.mobiledi.earnit.utils.RestCall;
 import com.mobiledi.earnit.utils.Utils;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +56,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,9 +88,10 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     ChildRequestTaskApproval requestTaskApproval;
     Child child;
     Tasks task;
+    RepititionSchedule repititionSchedule;
+    private long dueDate;
     Goal goal;
     Parent parentObject;
-    RepititionSchedule repititionSchedule;
     @BindView(R.id.loadingPanel) RelativeLayout progress;
 
     private ArrayList<ChildsTaskObject> childTasksObjects;
@@ -106,10 +111,14 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         Intent intent = getIntent();
         child = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         task = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
+        task.setRepititionSchedule(repititionSchedule);
         goal = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
+        dueDate = intent.getLongExtra(AppConstant.DUE_DATE_STRING, 0);
         childTasksObjects = (ArrayList<ChildsTaskObject>) intent.getSerializableExtra(AppConstant.CHILD_TASKS_OBJECT);
         previousActivityIsCalendar = intent.getBooleanExtra("previousActivityIsCalendar", false);
         repititionSchedule = (RepititionSchedule) intent.getSerializableExtra(AppConstant.REPETITION_SCHEDULE);
+        task.setRepititionSchedule(repititionSchedule);
+        Utils.logDebug(TAG, "Task == " + task);
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.override(350,350);
@@ -128,7 +137,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     private void setViewData() {
         taskName.setText(task.getName());
         taskDetails.setText(task.getDetails());
-        taskDueDate.setText(DateTimeFormat.forPattern(AppConstant.DATE_FORMAT).print(new DateTime(task.getDueDate())));
+        taskDueDate.setText(DateTimeFormat.forPattern(AppConstant.DATE_FORMAT).print(new DateTime(dueDate)));
         if(goal!=null)
 
             tv_applies_to.setText(goal.getGoalName());
@@ -198,9 +207,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 }
                 else {
                     updateTaskStatus(task, null);
-
                 }
-
                 break;
             case R.id.upload_task_image:
                 vRuntimePermission(uploadImage);
@@ -222,18 +229,45 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         super.onBackPressed();
     }
 
+    private boolean isLastTask(Tasks task){
+        if (task.getRepititionSchedule() != null && task.getRepititionSchedule().getSpecificDays() != null
+                && !task.getRepititionSchedule().getSpecificDays().isEmpty()){
+            int i = -1;
+            try{
+                i = Integer.parseInt(task.getRepititionSchedule().getSpecificDays().get(task.getRepititionSchedule().getSpecificDays().size() - 1));
+            } catch (NumberFormatException ignored){}
+            if (i == new DateTime(dueDate).getDayOfMonth()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void updateTaskStatus(Tasks selectedTask, String uploadedPicture) {
+        Utils.logDebug(TAG, "updateTaskStatus() Task == " + selectedTask.toString());
         progress.setVisibility(View.GONE);
         JSONObject taskJson = new JSONObject();
+        boolean isLastTask = isLastTask(selectedTask);
         try {
+
+            DateTime due = new DateTime();
+            DateTimeZone tz = DateTimeZone.getDefault();
+            Long instant = DateTime.now().getMillis();
+            long offsetInMilliseconds = tz.getOffset(instant);
+
             taskJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, selectedTask.getChildId()));
             taskJson.put(AppConstant.ID, selectedTask.getId());
             taskJson.put(AppConstant.NAME, selectedTask.getName());
-            taskJson.put(AppConstant.DUE_DATE, selectedTask.getDueDate());
-            taskJson.put(AppConstant.CREATE_DATE, selectedTask.getCreateDate());
+            taskJson.put(AppConstant.DUE_DATE, selectedTask.getRepititionSchedule() == null ? selectedTask.getDueDate() + offsetInMilliseconds : selectedTask.getStartDate() + offsetInMilliseconds);
+            taskJson.put(AppConstant.CREATE_DATE, selectedTask.getCreateDate() + offsetInMilliseconds);
             taskJson.put(AppConstant.DESCRIPTION, selectedTask.getDetails());
-            taskJson.put(AppConstant.STATUS, AppConstant.COMPLETED);
-            taskJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
+            if (selectedTask.getRepititionSchedule() == null || isLastTask) {
+                taskJson.put(AppConstant.STATUS, AppConstant.COMPLETED);
+                Utils.logDebug(TAG, "1 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
+            } else {
+                Utils.logDebug(TAG, "2 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
+            }
+            taskJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis() + offsetInMilliseconds);
             taskJson.put(AppConstant.ALLOWANCE, selectedTask.getAllowance());
 
             if (selectedTask.getGoal() == null)
@@ -247,14 +281,21 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             }
 
 
-            if (selectedTask.getRepititionSchedule() == null)
-                Utils.logDebug(TAG, "repeat is none");
+            if (selectedTask.getRepititionSchedule() == null || isLastTask)
+                Utils.logDebug(TAG, "repeat is none || ISlASTtASK");
             else {
+                Utils.logDebug(TAG, "repeat != N");
                 JSONObject repeatSchedule = new JSONObject();
                 repeatSchedule.put(AppConstant.ID, selectedTask.getRepititionSchedule().getId());
                 repeatSchedule.put(AppConstant.REPEAT, selectedTask.getRepititionSchedule().getRepeat());
+                JSONArray dayTaskStatuses = new JSONArray();
+                JSONObject dayTaskStatus = new JSONObject();
+                dayTaskStatus.put("createdDateTime", new DateTime(task.getDueDate() + offsetInMilliseconds).toString("MMM dd, yyyy hh:mm:ss a", Locale.US));
+                dayTaskStatus.put("status", AppConstant.COMPLETED);
+                Utils.logDebug(TAG, "!@dayTaskStatus = " + dayTaskStatus.toString());
+                dayTaskStatuses.put(dayTaskStatus);
+                repeatSchedule.put("dayTaskStatuses", dayTaskStatuses);
                 taskJson.put(AppConstant.REPITITION_SCHEDULE, repeatSchedule);
-
             }
 
             if (selectedTask.getPictureRequired())
@@ -266,8 +307,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             JSONArray taskCommentArray = new JSONArray();
             JSONObject taskCommentObject = new JSONObject();
             taskCommentObject.put(AppConstant.COMMENT, taskComments.getText());
-            taskCommentObject.put(AppConstant.CREATE_DATE, new DateTime().getMillis());
-            taskCommentObject.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
+            taskCommentObject.put(AppConstant.CREATE_DATE, new DateTime().getMillis() + offsetInMilliseconds);
+            taskCommentObject.put(AppConstant.UPDATE_DATE, new DateTime().getMillis() + offsetInMilliseconds);
             taskCommentObject.put(AppConstant.READ_STATUS, 0);
             taskCommentObject.put(AppConstant.PICTURE_URL, UrlOfImage);
             taskCommentArray.put(taskCommentObject);
@@ -278,8 +319,9 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
             httpClient.setBasicAuth(child.getEmail(), child.getPassword());
+            String url = AppConstant.BASE_URL + AppConstant.TASKS_API;
 
-            httpClient.put(requestTaskApproval, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+            httpClient.put(requestTaskApproval, url, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -289,14 +331,14 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 }
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    Utils.logDebug(TAG, " onFailure : "+  errorResponse.toString());
+                    Utils.logDebug(TAG, " onFailure : " + errorResponse == null ? "null" : errorResponse.toString());
                     unLockScreen();
 
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                    Utils.logDebug(TAG, " onFailure : "+  errorResponse.toString());
+                    Utils.logDebug(TAG, " onFailure : " + errorResponse == null ? "null" : errorResponse.toString());
                     unLockScreen();
                 }
 

@@ -22,8 +22,10 @@ import com.loopj.android.http.PersistentCookieStore;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.SharedPreference;
 import com.mobiledi.earnit.model.Child;
+import com.mobiledi.earnit.model.DayTaskStatus;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
+import com.mobiledi.earnit.model.RepititionSchedule;
 import com.mobiledi.earnit.model.TaskComment;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.model.getChild.Task;
@@ -44,6 +46,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
@@ -59,6 +62,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
     TextView tTaskName, taskDetails, taskDueDate, taskAllowance, taskRepeat, taskPicture, commentLabel;
     Child childObject, otherChildObject;
+    @NonNull
     Tasks taskObject;
     Parent parentObject;
     ParentTaskApproval parentTaskApproval;
@@ -72,6 +76,8 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
     ScreenSwitch screenSwitch;
     ArrayList<Tasks> completedTaskList;
     TaskComment taskComment;
+    RepititionSchedule repititionSchedule;
+    private long dueDate;
 
 
     @Override
@@ -88,35 +94,45 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         otherChildObject = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
         fromScreen = intent.getStringExtra(AppConstant.FROM_SCREEN);
-        taskComment =  (TaskComment) intent.getSerializableExtra(AppConstant.TASK_COMMENTS);
+        taskComment = (TaskComment) intent.getSerializableExtra(AppConstant.TASK_COMMENTS);
+        repititionSchedule = (RepititionSchedule) intent.getSerializableExtra(AppConstant.REPITITION_SCHEDULE);
         Utils.logDebug(TAG, "comming from >" + fromScreen);
+        dueDate = intent.getLongExtra(AppConstant.DUE_DATE_STRING, 0);
 
-      //  Log.e(TAG, "Task comment: "+taskCommentArrayList.getComment());
-      //  Log.e(TAG, "Task comment: "+taskCommentArrayList.getPictureUrl());
+        taskObject = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
+        taskObject.setRepititionSchedule(repititionSchedule);
+        dueDate = taskObject.getDueDate();
+        Log.d("asdljlahsdkj", "ParentTaskApproval task from getIntent = " + taskObject.toString());
 
-
-        if (intent.getSerializableExtra(AppConstant.TASK_OBJECT) != null) {
-
-            taskObject = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
-
-            Log.d("asdljlahsdkj", "\nnput Task: " + new Task().from(taskObject).toString() + "\ntaskObject: " + taskObject.toString());
-
-         //   Log.e(TAG, "Task Object: "+taskObject.getName());
+        //   Log.e(TAG, "Task Object: "+taskObject.getName());
         //    Log.e(TAG, "Task Object: "+taskObject.getGoal().getGoalName());
 
-            autoFillTaskDetails(taskObject);
-        } else {
-            try {
-                completedTaskList = fetchComletedTaskList(childObject);
+        autoFillTaskDetails(taskObject);
 
-                if (completedTaskList.size() > 0) {
-                    taskObject = completedTaskList.get(0);
-                    autoFillTaskDetails(taskObject);
-                } else
-                    screenSwitch.moveToParentDashboard(parentObject);
-            } catch (NullPointerException e) {
-            }
-        }
+
+//        if (intent.getSerializableExtra(AppConstant.TASK_OBJECT) != null) {
+//
+//            taskObject = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
+//            dueDate = taskObject.getDueDate();
+//
+////            Log.d("asdljlahsdkj", "\nnput Task: " + new Task().from(taskObject).toString() + "\ntaskObject: " + taskObject.toString());
+//
+//            //   Log.e(TAG, "Task Object: "+taskObject.getName());
+//            //    Log.e(TAG, "Task Object: "+taskObject.getGoal().getGoalName());
+//
+//            autoFillTaskDetails(taskObject);
+//        } else {
+//            try {
+//                completedTaskList = fetchComletedTaskList(childObject);
+//
+//                if (completedTaskList.size() > 0) {
+//                    taskObject = completedTaskList.get(0);
+//                    autoFillTaskDetails(taskObject);
+//                } else
+//                    screenSwitch.moveToParentDashboard(parentObject);
+//            } catch (NullPointerException ignored) {
+//            }
+//        }
     }
 
     public void settingViewIds() {
@@ -170,8 +186,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         } else
             taskRepeat.setText(AppConstant.NO);
 
-        if(task.getTaskComments()!=null)
-        {
+        if (task.getTaskComments() != null) {
             Log.e(TAG, "Task comment is not null");
             if (task.getTaskComments().size() > 0) {
                 TaskComment comment = task.getTaskComments().get(task.getTaskComments().size() - 1);
@@ -179,7 +194,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     postedImage.setVisibility(View.GONE);
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
-                    Picasso.with(parentTaskApproval).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" +comment.getPictureUrl()).into(postedImage, new Callback() {
+                    Picasso.with(parentTaskApproval).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + comment.getPictureUrl()).into(postedImage, new Callback() {
                         @Override
                         public void onSuccess() {
                             progressBar.setVisibility(View.GONE);
@@ -201,37 +216,34 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     commentBox.setKeyListener(null);
                 }
             }
-        }
+        } else {
 
-        else {
+            if (taskComment != null) {
+                if (taskComment.getPictureUrl().isEmpty()) {
+                    postedImage.setVisibility(View.GONE);
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+                    Picasso.with(parentTaskApproval).load(AppConstant.AMAZON_URL + taskComment.getPictureUrl()).into(postedImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            progressBar.setVisibility(View.GONE);
+                        }
 
-            if(taskComment!=null)
-            {
-                    if (taskComment.getPictureUrl().isEmpty()) {
-                        postedImage.setVisibility(View.GONE);
-                    } else {
-                        progressBar.setVisibility(View.VISIBLE);
-                        Picasso.with(parentTaskApproval).load(AppConstant.AMAZON_URL+taskComment.getPictureUrl()).into(postedImage, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                                progressBar.setVisibility(View.GONE);
-                            }
+                        @Override
+                        public void onError() {
+                            progressBar.setVisibility(View.GONE);
+                        }
 
-                            @Override
-                            public void onError() {
-                                progressBar.setVisibility(View.GONE);
-                            }
+                    });
+                }
 
-                        });
-                    }
-
-                    if (taskComment.getComment().isEmpty()) {
-                        commentBox.setVisibility(View.GONE);
-                        commentLabel.setVisibility(View.GONE);
-                    } else {
-                        commentBox.setText(taskComment.getComment());
-                        commentBox.setKeyListener(null);
-                    }
+                if (taskComment.getComment().isEmpty()) {
+                    commentBox.setVisibility(View.GONE);
+                    commentLabel.setVisibility(View.GONE);
+                } else {
+                    commentBox.setText(taskComment.getComment());
+                    commentBox.setKeyListener(null);
+                }
 
             }
 
@@ -250,7 +262,8 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_arrow:
-                goBack();
+//                goBack();
+                onBackPressed();
                 break;
 
             case R.id.decline:
@@ -258,17 +271,17 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                 break;
 
             case R.id.approve:
-         //       addEditGoal(taskObject);
+                //       addEditGoal(taskObject);
                 updateTaskStatus(taskObject, AppConstant.APPROVED);
         }
     }
 
-    private void updateTask(Tasks h, String status){
+    private void updateTask(Tasks h, String status) {
         Task task = new Task().from(h);
-        if (task.isRepeat()){
+        if (task.isRepeat()) {
             if (task.isLastTask())
                 task.setStatus(AppConstant.TASK_CLOSED);
-            else{
+            else {
 
             }
         } else {
@@ -297,16 +310,41 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         });
     }
 
+    private boolean isLastTask(Tasks task) {
+        if (task.getRepititionSchedule() != null && task.getRepititionSchedule().getSpecificDays() != null
+                && !task.getRepititionSchedule().getSpecificDays().isEmpty()) {
+            int i = -1;
+            try {
+                i = Integer.parseInt(task.getRepititionSchedule().getSpecificDays().get(task.getRepititionSchedule().getSpecificDays().size() - 1));
+            } catch (NumberFormatException ignored) {
+            }
+            if (i == new DateTime(dueDate).getDayOfMonth()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void updateTaskStatus(Tasks selectedTask, String changedStatus) {
+        Utils.logDebug(TAG, "updateTaskStatus. Task == " + selectedTask.toString());
         JSONObject taskJson = new JSONObject();
+        boolean isLastTask = isLastTask(selectedTask);
         try {
             taskJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, selectedTask.getChildId()));
             taskJson.put(AppConstant.ID, selectedTask.getId());
+            taskJson.put(AppConstant.ALLOWANCE, selectedTask.getAllowance());
+            taskJson.put(AppConstant.UPDATE_DATE, new DateTime().toString("MMM dd, yyyy HH:mm:ss a"));
             taskJson.put(AppConstant.NAME, selectedTask.getName());
-            taskJson.put(AppConstant.DUE_DATE, selectedTask.getDueDate());
+            taskJson.put(AppConstant.DUE_DATE, selectedTask.getRepititionSchedule() == null ? selectedTask.getDueDate() : selectedTask.getStartDate());
             taskJson.put(AppConstant.CREATE_DATE, selectedTask.getCreateDate());
             taskJson.put(AppConstant.DESCRIPTION, selectedTask.getDetails());
-            taskJson.put(AppConstant.STATUS, changedStatus);
+            if (selectedTask.getRepititionSchedule() == null || isLastTask) {
+                taskJson.put(AppConstant.STATUS, changedStatus);
+                Utils.logDebug(TAG, "1 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
+            } else {
+                taskJson.put(AppConstant.STATUS, selectedTask.getStatus());
+                Utils.logDebug(TAG, "2 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
+            }
             taskJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
             taskJson.put(AppConstant.ALLOWANCE, selectedTask.getAllowance());
 
@@ -316,8 +354,23 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                 JSONObject repeatSchedule = new JSONObject();
                 repeatSchedule.put(AppConstant.ID, selectedTask.getRepititionSchedule().getId());
                 repeatSchedule.put(AppConstant.REPEAT, selectedTask.getRepititionSchedule().getRepeat());
+                List<DayTaskStatus> dayTaskStatusesList = selectedTask.getRepititionSchedule().getDayTaskStatuses();
+                JSONArray dayTaskStatuses = new JSONArray();
+                for (DayTaskStatus dayStatus : dayTaskStatusesList){
+                    JSONObject dayTaskStatus = new JSONObject();
+                    dayTaskStatus.put("createdDateTime", dayStatus.getCreatedDateTime());
+                    DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM dd, yyyy HH:mm:ss a").withLocale(Locale.US);
+                    DateTime dt = formatter.parseDateTime(dayStatus.getCreatedDateTime());
+                    if (dt.withTimeAtStartOfDay().isEqual(new DateTime(selectedTask.getDueDate()).withTimeAtStartOfDay())){
+                        dayTaskStatus.put("status", changedStatus);
+                    } else {
+                        dayTaskStatus.put("status", dayStatus.getStatus());
+                    }
+                    dayTaskStatus.put("id", dayStatus.getId());
+                    dayTaskStatuses.put(dayTaskStatus);
+                }
+                repeatSchedule.put("dayTaskStatuses", dayTaskStatuses);
                 taskJson.put(AppConstant.REPITITION_SCHEDULE, repeatSchedule);
-
             }
 
             if (selectedTask.getPictureRequired())
@@ -330,7 +383,8 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
             if (selectedTask.getGoal() != null) {
                 taskJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, selectedTask.getGoal().getId()));
 
-            } Utils.logDebug(TAG, " child-update-task : " + taskJson.toString());
+            }
+            Utils.logDebug(TAG, "child-update-task : " + taskJson.toString());
             StringEntity entity = new StringEntity(taskJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
@@ -343,8 +397,8 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     Utils.logDebug(TAG, " onSuccessOU : " + response.toString());
                     progressBar.setVisibility(View.GONE);
                     lockScreen();
-                    if(isDeviceOnline())
-                    fetchChildTaskList();
+                    if (isDeviceOnline())
+                        fetchChildTaskList();
                 }
 
                 @Override
@@ -352,8 +406,8 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     Utils.logDebug(TAG, " onSuccessAU : " + response.toString());
                     progressBar.setVisibility(View.GONE);
                     lockScreen();
-                    if(isDeviceOnline())
-                    fetchChildTaskList();
+                    if (isDeviceOnline())
+                        fetchChildTaskList();
                 }
 
                 @Override
@@ -361,7 +415,6 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     showToast(getResources().getString(R.string.api_calling_failed));
                     Utils.logDebug(TAG, " onFailureU : " + errorResponse.toString());
                     unLockScreen();
-
                 }
 
                 @Override
@@ -369,15 +422,12 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     showToast(getResources().getString(R.string.api_calling_failed));
                     Utils.logDebug(TAG, " onFailureU : " + errorResponse.toString());
                     unLockScreen();
-
                 }
 
                 @Override
                 public void onStart() {
                     progressBar.setVisibility(View.VISIBLE);
                     lockScreen();
-
-
                 }
 
                 @Override
@@ -386,9 +436,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     unLockScreen();
                 }
             });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (JSONException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
@@ -396,7 +444,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        goBack();
+//        goBack();
     }
 
 
@@ -438,7 +486,8 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                             }
                             child.setTasksArrayList(taskList);
                             otherChild.setTasksArrayList(otherTaskList);
-                            new ScreenSwitch(parentTaskApproval).moveToTaskApproval(child, otherChild, parentObject, fromScreen, null);
+//                            new ScreenSwitch(parentTaskApproval).moveToTaskApproval(child, otherChild, parentObject, fromScreen, null);
+                            screenSwitch.moveToAllTaskScreen(childObject, otherChild, AppConstant.CHECKED_IN_SCREEN, parentObject, AppConstant.BALANCE_SCREEN);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -471,10 +520,25 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
     private ArrayList<Tasks> fetchComletedTaskList(Child child) {
         ArrayList<Tasks> toReturn = new ArrayList<>();
+        Log.d("sdfksdkfjh", "tasks size: " + child.getTasksArrayList().size());
         for (Tasks task : child.getTasksArrayList()) {
+            task.setStartDate(task.getDueDate());
             if (task.getStatus().equalsIgnoreCase(AppConstant.COMPLETED))
                 toReturn.add(task);
+            if (task.getRepititionSchedule() != null && task.getRepititionSchedule().getDayTaskStatuses() != null) {
+                List<DayTaskStatus> dayTaskStatuses = task.getRepititionSchedule().getDayTaskStatuses();
+                for (DayTaskStatus dayTaskStatus : dayTaskStatuses) {
+                    if (dayTaskStatus.getStatus().equalsIgnoreCase(AppConstant.COMPLETED)) {
+                        Tasks newTask = Tasks.from(task);
+                        DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM dd, yyyy HH:mm:ss a").withLocale(Locale.US);
+                        DateTime dt = formatter.parseDateTime(dayTaskStatus.getCreatedDateTime());
+                        newTask.setDueDate(dt.getMillis());
+                        toReturn.add(newTask);
+                    }
+                }
+            }
         }
+        Log.d("sdfksdkfjh", "return size: " + toReturn.size());
         return toReturn;
     }
 
@@ -483,15 +547,16 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         screenSwitch.moveToAllTaskScreen(childObject, childObject, fromScreen, parentObject, AppConstant.TASK_APPROVAL_SCREEN);
 
     }
+
     private void addEditGoal(Tasks taskObject) {
 
         JSONObject signInJson = new JSONObject();
         try {
-                signInJson.put(AppConstant.CREATE_DATE, new DateTime().getMillis());
+            signInJson.put(AppConstant.CREATE_DATE, new DateTime().getMillis());
 
             signInJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, childObject.getId()));
             signInJson.put(AppConstant.NAME, taskObject.getGoal().toString().trim());
-            signInJson.put(AppConstant.AMOUNT,  taskObject.getAllowance()+taskObject.getGoal().getAmount());
+            signInJson.put(AppConstant.AMOUNT, taskObject.getAllowance() + taskObject.getGoal().getAmount());
             StringEntity entity = new StringEntity(signInJson.toString());
             Utils.logDebug("GoalJson", signInJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
@@ -503,20 +568,20 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        showToast("Goal updated for " + childObject.getFirstName());
+                    showToast("Goal updated for " + childObject.getFirstName());
 
                 }
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        showToast("Goal updated for " + childObject.getFirstName());
+                    showToast("Goal updated for " + childObject.getFirstName());
 
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                 //   unLockScreen();
-                  //  showToast("Goal updated for " + childObject.getFirstName());
+                    //   unLockScreen();
+                    //  showToast("Goal updated for " + childObject.getFirstName());
                     showToast("Goal updated for " + statusCode);
 
 
@@ -524,7 +589,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                 //   unLockScreen();
+                    //   unLockScreen();
                     showToast("Goal updated for " + statusCode);
 
                 }

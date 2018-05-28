@@ -87,6 +87,16 @@ public class RepititionSchedule implements Serializable {
         this.repeat = repeat;
     }
 
+    public boolean monthlyRepeatHasNumbers(){
+        if (specificDays == null || specificDays.size() == 0) return false;
+        try{
+            Integer.parseInt(specificDays.get(0));
+        } catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "RepititionSchedule{" +

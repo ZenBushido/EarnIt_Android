@@ -41,7 +41,7 @@ public class RestCall {
     ScreenSwitch screenSwitch;
     Parent parent;
 
-    public RestCall(Activity activity){
+    public RestCall(Activity activity) {
         this.activity = activity;
         screenSwitch = new ScreenSwitch(this.activity);
     }
@@ -49,7 +49,7 @@ public class RestCall {
     public void authenticateUser(String username, final String password, final EditText editPassword, final String from, final RelativeLayout progressBar) {
 
         SharedPreferences shareToken = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
-        Utils.logDebug(TAG," GeneratedTokenI "+ shareToken.getString(AppConstant.TOKEN_ID, null) );
+        Utils.logDebug(TAG, " GeneratedTokenI " + shareToken.getString(AppConstant.TOKEN_ID, null));
         token = shareToken.getString(AppConstant.TOKEN_ID, null);
 
         JSONObject signInJson = new JSONObject();
@@ -61,20 +61,20 @@ public class RestCall {
             AsyncHttpClient httpClient = new AsyncHttpClient();
             PersistentCookieStore myCookieStore = new PersistentCookieStore(activity);
             httpClient.setCookieStore(myCookieStore);
-            httpClient.setMaxRetriesAndTimeout(3,3000);
-            Utils.logDebug(TAG," login-Rquest "+ AppConstant.BASE_URL + AppConstant.LOGIN_API );
-            Utils.logDebug(TAG, " login-Rquest "+ signInJson.toString());
+            httpClient.setMaxRetriesAndTimeout(3, 3000);
+            Utils.logDebug(TAG, " login-Rquest " + AppConstant.BASE_URL + AppConstant.LOGIN_API);
+            Utils.logDebug(TAG, " login-Rquest " + signInJson.toString());
             httpClient.post(activity, AppConstant.BASE_URL + AppConstant.LOGIN_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     try {
-                        Utils.logDebug(TAG, " login-Rquest onSuccess"+response.toString());
+                        Utils.logDebug(TAG, " login-Rquest onSuccess" + response.toString());
 
-                            SharedPreferences shareToken = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
-                            SharedPreferences.Editor editor = shareToken.edit();
-                            editor.putString(AppConstant.EMAIL, response.getString(AppConstant.EMAIL));
-                            editor.putString(AppConstant.PASSWORD, response.getString(AppConstant.PASSWORD));
-                            editor.commit();
+                        SharedPreferences shareToken = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = shareToken.edit();
+                        editor.putString(AppConstant.EMAIL, response.getString(AppConstant.EMAIL));
+                        editor.putString(AppConstant.PASSWORD, response.getString(AppConstant.PASSWORD));
+                        editor.commit();
 
                         Intent updateToken = new Intent(activity, UpdateFcmToken.class);
                         updateToken.putExtra(AppConstant.IS_LOGOUT, false);
@@ -89,17 +89,17 @@ public class RestCall {
                                 Utils.logDebug(TAG, " parent-FCM not available");
                                 updateToken.putExtra(AppConstant.FCM_TOKEN, token);
                                 activity.startService(updateToken);
-                            }else {
-                                if(!parent.getFcmToken().equalsIgnoreCase(token)){
+                            } else {
+                                if (!parent.getFcmToken().equalsIgnoreCase(token)) {
                                     Utils.logDebug(TAG, "parent-FCM updating");
                                     updateToken.putExtra(AppConstant.FCM_TOKEN, token);
                                     activity.startService(updateToken);
                                 }
                             }
 
-                            if(parent.getFirstName().isEmpty() || parent.getPhone().isEmpty()){
+                            if (parent.getFirstName().isEmpty() || parent.getPhone().isEmpty()) {
                                 screenSwitch.moveToInitialParentProfile(parent);
-                            }else{
+                            } else {
                                 screenSwitch.moveToParentDashboard(parent);
                             }
 
@@ -119,28 +119,28 @@ public class RestCall {
 
                             child.setTasksArrayList(taskList);
                             if (child.getMessage().isEmpty()) {
-                                updateToken.putExtra(AppConstant.PARENT_OBJECT,parent);
+                                updateToken.putExtra(AppConstant.PARENT_OBJECT, parent);
                                 updateToken.putExtra(AppConstant.CHILD_OBJECT, child);
                                 updateToken.putExtra(AppConstant.MODE, AppConstant.CHILD);
                                 if (child.getFcmToken().isEmpty()) {
-                                    Utils.logDebug(TAG,"child-FCM not available");
+                                    Utils.logDebug(TAG, "child-FCM not available");
                                     updateToken.putExtra(AppConstant.FCM_TOKEN, token);
                                     activity.startService(updateToken);
-                                }else {
-                                    if(!child.getFcmToken().equalsIgnoreCase(token)){
-                                        Utils.logDebug(TAG,"child-FCM updating");
+                                } else {
+                                    if (!child.getFcmToken().equalsIgnoreCase(token)) {
+                                        Utils.logDebug(TAG, "child-FCM updating");
                                         updateToken.putExtra(AppConstant.FCM_TOKEN, token);
                                         activity.startService(updateToken);
                                     }
                                 }
                                 //LOAD CHILD ACTIVITY
                                 screenSwitch.moveTOChildDashboard(child);
-                            }else {
-                                if (AppConstant.MESSAGE_STATUS){
+                            } else {
+                                if (AppConstant.MESSAGE_STATUS) {
                                     //LOAD message ACTIVITY
                                     screenSwitch.moveToMessage(child);
                                     AppConstant.MESSAGE_STATUS = false;
-                                }else {
+                                } else {
                                     screenSwitch.moveTOChildDashboard(child);
                                 }
                             }
@@ -148,7 +148,7 @@ public class RestCall {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -157,7 +157,8 @@ public class RestCall {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-
+                    Utils.logDebug(TAG, " login-Rquest onFailure JSONObject" + errorResponse);
+                    Utils.logDebug(TAG, " login-Rquest onFailure Throwable" + throwable.getLocalizedMessage());
                     clearEdittext(from, editPassword);
                     Utils.unLockScreen(activity.getWindow());
 
@@ -166,7 +167,7 @@ public class RestCall {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                    Utils.logDebug(TAG," login-Rquest onFailureA"+ errorResponse.toString());
+                    Utils.logDebug(TAG, " login-Rquest onFailureA" + errorResponse.toString());
                     clearEdittext(from, editPassword);
                     Utils.unLockScreen(activity.getWindow());
 
@@ -174,12 +175,12 @@ public class RestCall {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                    Utils.logDebug(TAG," login-Rquest onSuccessA"+response.toString());
+                    Utils.logDebug(TAG, " login-Rquest onSuccessA" + response.toString());
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                    Utils.logDebug(TAG," login-Rquest onFailureS"+ responseString.toString());
+                    Utils.logDebug(TAG, " login-Rquest onFailureS" + responseString.toString());
                     clearEdittext(from, editPassword);
                 }
 
@@ -200,73 +201,76 @@ public class RestCall {
         }
     }
 
-    public void clearEdittext(String from, EditText editPassword){
-        if(from.equalsIgnoreCase(AppConstant.LOGIN_SCREEN)){
+    public void clearEdittext(String from, EditText editPassword) {
+        if (from.equalsIgnoreCase(AppConstant.LOGIN_SCREEN)) {
             editPassword.setText("");
         }
         Utils.showToast(activity, activity.getResources().getString(R.string.login_failed));
-}
-    public void fetchUpdatedChild(final Parent parentObject , final String childEmail, final RelativeLayout progressBar, final String onScreen){
+    }
 
-            final AsyncHttpClient client = new AsyncHttpClient();
-            client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
-            client.get(AppConstant.BASE_URL + AppConstant.CHILDREN_API +parentObject.getAccount().getId(), null, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                    for (int i = 0; i < response.length(); i++) {
-                        try {
-                            JSONObject object = response.getJSONObject(i);
-                            if (object.getString(AppConstant.EMAIL).equals(childEmail)) {
-                                Child child = new GetObjectFromResponse().getChildObject(object);
-                                Child otherChild = new GetObjectFromResponse().getChildObject(object);
+    public void fetchUpdatedChild(final Parent parentObject, final String childEmail, final RelativeLayout progressBar, final String onScreen) {
 
-                                //TASKS
-                                ArrayList<Tasks> taskList = new ArrayList<>();
-                                ArrayList<Tasks> otherTaskList = new ArrayList<>();
-                                JSONArray taskArray = object.getJSONArray(AppConstant.TASKS);
-                                Utils.logDebug(TAG, "Fetch child list for "+ onScreen);
-                                if(onScreen.equalsIgnoreCase(AppConstant.CHECKED_IN_SCREEN) || onScreen.equalsIgnoreCase(AppConstant.CHECKED_IN_TASK_APPROVAL__SCREEN)){
-                                    for (int taskIndex = 0; taskIndex < taskArray.length(); taskIndex++) {
-                                        JSONObject taskObject = taskArray.getJSONObject(taskIndex);
-                                        if(!taskObject.getString(AppConstant.STATUS).equals(AppConstant.APPROVED)){
-                                            Tasks task = new GetObjectFromResponse().getTaskObject(taskObject,child.getId());
-                                            taskList.add(task);
-                                        }
+        final AsyncHttpClient client = new AsyncHttpClient();
+        client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+        client.get(AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getAccount().getId(), null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject object = response.getJSONObject(i);
+                        if (object.getString(AppConstant.EMAIL).equals(childEmail)) {
+                            Child child = new GetObjectFromResponse().getChildObject(object);
+                            Child otherChild = new GetObjectFromResponse().getChildObject(object);
 
-                                        JSONObject othertaskObject = taskArray.getJSONObject(taskIndex);
-                                        if(othertaskObject.getString(AppConstant.STATUS).equals(AppConstant.COMPLETED)){
-                                            Tasks task = new GetObjectFromResponse().getTaskObject(othertaskObject,child.getId());
-                                            otherTaskList.add(task);
-                                        }
+                            //TASKS
+                            ArrayList<Tasks> taskList = new ArrayList<>();
+                            ArrayList<Tasks> otherTaskList = new ArrayList<>();
+                            JSONArray taskArray = object.getJSONArray(AppConstant.TASKS);
+                            Utils.logDebug(TAG, "Fetch child list for " + onScreen);
+                            if (onScreen.equalsIgnoreCase(AppConstant.CHECKED_IN_SCREEN) || onScreen.equalsIgnoreCase(AppConstant.CHECKED_IN_TASK_APPROVAL__SCREEN)) {
+                                for (int taskIndex = 0; taskIndex < taskArray.length(); taskIndex++) {
+                                    JSONObject taskObject = taskArray.getJSONObject(taskIndex);
+                                    if (!taskObject.getString(AppConstant.STATUS).equals(AppConstant.APPROVED)) {
+                                        Tasks task = new GetObjectFromResponse().getTaskObject(taskObject, child.getId());
+                                        taskList.add(task);
+                                    }
+
+                                    JSONObject othertaskObject = taskArray.getJSONObject(taskIndex);
+                                    if (othertaskObject.getString(AppConstant.STATUS).equals(AppConstant.COMPLETED)) {
+                                        Tasks task = new GetObjectFromResponse().getTaskObject(othertaskObject, child.getId());
+                                        otherTaskList.add(task);
                                     }
                                 }
-                                child.setTasksArrayList(taskList);
-                                otherChild.setTasksArrayList(otherTaskList);
-                                screenSwitch.moveToAllTaskScreen( child, otherChild, onScreen, parentObject, onScreen);
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (Exception e){e.printStackTrace();}
+                            child.setTasksArrayList(taskList);
+                            otherChild.setTasksArrayList(otherTaskList);
+                            screenSwitch.moveToAllTaskScreen(child, otherChild, onScreen, parentObject, onScreen);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-
                 }
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    Utils.logDebug(TAG," Child error response:"+ errorResponse.toString());
+            }
 
-                }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Utils.logDebug(TAG, " Child error response:" + errorResponse.toString());
 
-                @Override
-                public void onStart() {
-                    progressBar.setVisibility(View.VISIBLE);
-                }
+            }
 
-                @Override
-                public void onFinish() {
-                    progressBar.setVisibility(View.GONE);
-                }
-            });
+            @Override
+            public void onStart() {
+                progressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFinish() {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
 
     }
 }

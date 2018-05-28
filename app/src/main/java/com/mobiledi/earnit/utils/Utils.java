@@ -120,7 +120,7 @@ public class Utils {
                 showToast(context, errorResponse.getJSONArray(AppConstant.MESSAGE).getString(0));
             else
                 showToast(context, context.getResources().getString(R.string.other_message));
-        }catch (JSONException e){e.printStackTrace();
+        }catch (Exception e){e.printStackTrace();
             showToast(context, context.getResources().getString(R.string.other_message));}
     }
 

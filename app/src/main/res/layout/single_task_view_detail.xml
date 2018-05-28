@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
     android:orientation="vertical">
 
@@ -31,6 +32,7 @@
             android:paddingLeft="10dp">
 
             <TextView
+                tools:text='djfhkjh'
                 android:id="@+id/child_task_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,6 +41,7 @@
                 android:textSize="@dimen/check_in_text_size" />
 
             <TextView
+                tools:text='djfhkjh'
                 android:id="@+id/child_task_due"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

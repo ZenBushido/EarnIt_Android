@@ -33,12 +33,16 @@ import com.mobiledi.earnit.utils.RestCall;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.Header;
@@ -186,9 +190,13 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
                                     taskApprovalList.add(task);
                                 }
                             }
+                            for (Tasks task : taskList){
+                                Log.e(TAG, "task = " + task.toString());
+                            }
                             child.setTasksArrayList(taskList);
                             childApprovalTask.setTasksArrayList(taskApprovalList);
                             childList.add(child);
+                            Log.e(TAG, "child = " + child.toString());
                             childApprovalList.add(childApprovalTask);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -214,7 +222,8 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Utils.logDebug(TAG, "Child error response: " );
+                Utils.logDebug(TAG, "Child error response: " + errorResponse.toString() );
+                Utils.logDebug(TAG, "Child error throwable: " + throwable.getLocalizedMessage());
 
             }
 

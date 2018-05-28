@@ -15,6 +15,7 @@ public final class AppConstant {
 
     public static final String REPETITION_SCHEDULE = "repititionSchedule";
     public static final String START_TIME = "startTime";
+    public static final String DAY_TASK_STATUSES = "dayTaskStatuses";
     public static final String END_TIME = "endTime" ;
     public static final String SPECIFIC_DAYS ="specificDays" ;
     public static String[] TITLE = {
@@ -44,7 +45,7 @@ public final class AppConstant {
     //public final static AddTaskModel addTaskModel = new AddTaskModel();
 
     public final static String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/";
-    public final static String BASE_URL_QA = "http://35.162.48.144:8080/earnit-api";
+    public final static String BASE_URL_QA = "http://159.65.68.220:8080/earnit-api";
     public final static String BASE_URL_PROD = "https://api.myearnitapp.com:8443/earnit-api";
     public static final String BASE_URL = BuildConfig.DEBUG ? BASE_URL_QA : BASE_URL_PROD;
 
@@ -75,6 +76,7 @@ public final class AppConstant {
     public final static String CHILD_TASK_list = "childTaskList";
     public final static String GOAL_OBJECT = "goalObject";
     public final static String ADD_TASK_MODEL = "add_task_model";
+    public final static String DUE_DATE_STRING = "due_date_string";
 
     //USER TYPES
     public final static String PARENT = "PARENT";

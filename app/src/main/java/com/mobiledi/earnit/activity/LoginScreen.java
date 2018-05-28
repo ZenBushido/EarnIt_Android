@@ -215,10 +215,9 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
             public void onClick(View view) {
                 showToast(resources.getString(R.string.child_sign_up_message));
                 dialog.dismiss();
-
             }
         });
-        Button acceptButton = (Button) dialog.findViewById(R.id.ok);
+        Button acceptButton = dialog.findViewById(R.id.ok);
         acceptButton.setText(AppConstant.YES);
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override

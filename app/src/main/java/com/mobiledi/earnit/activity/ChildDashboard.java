@@ -22,17 +22,24 @@ import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ChildViewDateAdapter;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
+import com.mobiledi.earnit.model.DayTaskStatus;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.RestCall;
+import com.mobiledi.earnit.utils.Utils;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -107,22 +114,18 @@ public class ChildDashboard extends BaseActivity {
         childTaskDateList.setItemAnimator(new DefaultItemAnimator());
         final AsyncHttpClient client = new AsyncHttpClient();
         client.setBasicAuth(childObject.getEmail(), childObject.getPassword());
+        Log.e(TAG, "API getChildTasks: " + AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId());
         client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
-
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);
-
-
                         Log.e(TAG, "OBJECT= "+object);
                         //TASKS
                         Tasks task = new GetObjectFromResponse().getTaskObject(object, childObject.getId());
+                        Log.e(TAG, "GetObjectFromResponse task: " + task.toString());
                         taskList.add(task);
-
-
                     } catch (Exception e) {
                         Log.e(TAG, "Error: "+e.getLocalizedMessage());
 
@@ -132,10 +135,14 @@ public class ChildDashboard extends BaseActivity {
             }
         });
         childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.CHILD, AppConstant.CHECKED_IN_SCREEN);
+        for (ChildsTaskObject childsTaskObject : childTaskObjects){
+            Utils.logDebug("aslkdjlk", "childTaskObjects = " + childsTaskObject.toString());
+        }
         MyApplication.getInstance().setChildsTaskObjects(childTaskObjects);
 
         if (childTaskObjects.size() > 0) {
             childViewDateAdapter = new ChildViewDateAdapter(childTaskObjects,parentObject,childObject,"child");
+            Log.d("dasagsdg", "childTaskObjects: " + childTaskObjects);
             childTaskDateList.setAdapter(childViewDateAdapter);
         } else showToast(getResources().getString(R.string.please_ask_parent_to_add_task));
         childImage.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +152,6 @@ public class ChildDashboard extends BaseActivity {
             }
         });
         callApi();
-
     }
 
 

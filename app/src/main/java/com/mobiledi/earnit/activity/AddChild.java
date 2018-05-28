@@ -448,7 +448,6 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
             httpClient.setCookieStore(myCookieStore);
             if (mode.equalsIgnoreCase(AppConstant.UPDATE))
                 httpClient.put(addChild, AppConstant.BASE_URL + AppConstant.UPDATE_CHILD, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
-
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         Utils.logDebug(TAG + " onSuccess", response.toString());

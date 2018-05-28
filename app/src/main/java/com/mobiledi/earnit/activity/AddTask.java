@@ -470,19 +470,19 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
                         Log.e(TAG, "Amount= " + amountTxt.getText().toString());
                         if (amountTxt.getText().toString().trim().length() > 0) {
-                            m = (MessageEvent)EventBus.getDefault().getStickyEvent(MessageEvent.class);
+                            m = (MessageEvent) EventBus.getDefault().getStickyEvent(MessageEvent.class);
 
                             Log.d("dosidoi", "getStickyEvent: " + m);
                             if (m != null) {
 //                                if (m.getResponse().onDay != null) {
 
-                                    if (m.getResponse().onDay.equals("") || m.getResponse().onFirst.equals("")) {
-                                        Log.e(TAG, "Both are empty");
-                                        saveTask();
-                                    } else {
-                                        Log.e(TAG, "Both are not empty");
-                                        saveTaskWithSelectedDays();
-                                    }
+                                if (m.getResponse().onDay.equals("") || m.getResponse().onFirst.equals("")) {
+                                    Log.e(TAG, "Both are empty");
+                                    saveTask();
+                                } else {
+                                    Log.e(TAG, "Both are not empty");
+                                    saveTaskWithSelectedDays();
+                                }
 //                                }
                             } else {
                                 Toast.makeText(getApplicationContext(), "Please add due date", Toast.LENGTH_LONG).show();
@@ -673,115 +673,112 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                     addTaskJson.put(AppConstant.REPITITION_SCHEDULE, repSchedule);
 
                 }
+            }
 
-                Log.e(TAG, "Add Task Value= : " + addTaskJson);
-                Utils.logDebug(TAG, "add_task_json :" + String.valueOf(addTaskJson));
+            Log.e(TAG, "Add Task Value= : " + addTaskJson);
+            Utils.logDebug(TAG, "add_task_json :" + String.valueOf(addTaskJson));
 
-                StringEntity entity = new StringEntity(addTaskJson.toString());
-                entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
-                AsyncHttpClient httpClient = new AsyncHttpClient();
-                httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
-                PersistentCookieStore myCookieStore = new PersistentCookieStore(addTask);
-                httpClient.setCookieStore(myCookieStore);
+            StringEntity entity = new StringEntity(addTaskJson.toString());
+            entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
+            AsyncHttpClient httpClient = new AsyncHttpClient();
+            httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+            PersistentCookieStore myCookieStore = new PersistentCookieStore(addTask);
+            httpClient.setCookieStore(myCookieStore);
 
-                if (IS_EDITING_TASK) {
-                    Utils.logDebug(TAG, "calling task edit api");
-                    Log.e("testing url", "" + AppConstant.BASE_URL + AppConstant.TASKS_API);
-                    httpClient.put(this, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+            if (IS_EDITING_TASK) {
+                Utils.logDebug(TAG, "calling task edit api");
+                Log.e("testing url", "" + AppConstant.BASE_URL + AppConstant.TASKS_API);
+                httpClient.put(this, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
 
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                            Utils.logDebug(TAG, "calling success : " + response);
-                            showDialogOnTaskAdded(childObject, otherChild);
-                        }
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        Utils.logDebug(TAG, "calling success : " + response);
+                        showDialogOnTaskAdded(childObject, otherChild);
+                    }
 
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                            Utils.logDebug(TAG, "calling success : " + response);
-                            showDialogOnTaskAdded(childObject, otherChild);
-                        }
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        Utils.logDebug(TAG, "calling success : " + response);
+                        showDialogOnTaskAdded(childObject, otherChild);
+                    }
 
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                            Utils.logDebug(TAG, "calling onFailure : " + errorResponse.toString());
-                            unLockScreen();
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Utils.logDebug(TAG, "calling onFailure : " + errorResponse.toString());
+                        unLockScreen();
 
-                        }
+                    }
 
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                            Utils.logDebug(TAG, "calling onFailure : " + errorResponse.toString());
-                            unLockScreen();
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                        Utils.logDebug(TAG, "calling onFailure : " + errorResponse.toString());
+                        unLockScreen();
 
-                        }
+                    }
 
-                        @Override
-                        public void onStart() {
-                            progressBar.setVisibility(View.VISIBLE);
-                            lockScreen();
-                        }
+                    @Override
+                    public void onStart() {
+                        progressBar.setVisibility(View.VISIBLE);
+                        lockScreen();
+                    }
 
-                        @Override
-                        public void onFinish() {
-                            progressBar.setVisibility(View.GONE);
-                            unLockScreen();
-                        }
-                    });
-                } else {
-                    Utils.logDebug(TAG, "calling task add api");
-                    Log.e(TAG, "testing url " + "" + AppConstant.BASE_URL + AppConstant.TASKS_API);
-                    Log.e(TAG, "JSON: " + entity);
+                    @Override
+                    public void onFinish() {
+                        progressBar.setVisibility(View.GONE);
+                        unLockScreen();
+                    }
+                });
+            } else {
+                Utils.logDebug(TAG, "calling task add api");
+                Log.e(TAG, "testing url " + "" + AppConstant.BASE_URL + AppConstant.TASKS_API);
+                Log.e(TAG, "JSON: " + entity);
 
-                    httpClient.post(this, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+                httpClient.post(this, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
 
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                            Utils.logDebug(TAG, "calling success : " + response);
-                            //    fetchChildTaskList();
-                            showDialogOnTaskAdded(childObject, otherChild);
-
-
-                        }
-
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                            Utils.logDebug(TAG, "calling success : " + response);
-                            //   fetchChildTaskList();
-                            showDialogOnTaskAdded(childObject, otherChild);
-
-                        }
-
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                            Utils.logDebug(TAG, "calling onFailure : " + errorResponse.toString());
-                            Utils.showToast(addTask, "Internal Server Error");
-                            unLockScreen();
-                        }
-
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                            Log.i(TAG, "calling onFailure : " + errorResponse.toString());
-                            unLockScreen();
-                        }
-
-                        @Override
-                        public void onStart() {
-                            progressBar.setVisibility(View.VISIBLE);
-                            lockScreen();
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            progressBar.setVisibility(View.GONE);
-                            unLockScreen();
-                        }
-                    });
-
-                }
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        Utils.logDebug(TAG, "calling success : " + response);
+                        //    fetchChildTaskList();
+                        showDialogOnTaskAdded(childObject, otherChild);
 
 
-            } else
-                Toast.makeText(getApplicationContext(), "Please add due date", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        Utils.logDebug(TAG, "calling success : " + response);
+                        //   fetchChildTaskList();
+                        showDialogOnTaskAdded(childObject, otherChild);
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Utils.logDebug(TAG, "calling onFailure : " + errorResponse.toString());
+                        Utils.showToast(addTask, "Internal Server Error");
+                        unLockScreen();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                        Log.i(TAG, "calling onFailure : " + errorResponse.toString());
+                        unLockScreen();
+                    }
+
+                    @Override
+                    public void onStart() {
+                        progressBar.setVisibility(View.VISIBLE);
+                        lockScreen();
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        progressBar.setVisibility(View.GONE);
+                        unLockScreen();
+                    }
+                });
+
+            }
         } catch (Exception e) {
             Log.d("dosidoi", "Exception");
             e.printStackTrace();

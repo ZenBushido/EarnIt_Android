@@ -2,30 +2,37 @@ package com.mobiledi.earnit.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import android.util.Log;
 
+import com.mobiledi.earnit.model.getChild.Task;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.Utils;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
  * Created by praks on 07/07/17.
  */
 
-public class Tasks implements Serializable, Parcelable {
+public class Tasks implements Serializable, Parcelable, Cloneable {
     private int id;
     private int childId;
     private double allowance;
     private long createDate;
     private long dueDate;
+    private long startDate;
     private String name;
-    private ArrayList<TaskComment> taskComments;
+    private ArrayList taskComments;
     private String details;
     private boolean pictureRequired;
     private String status;
@@ -37,23 +44,45 @@ public class Tasks implements Serializable, Parcelable {
 
     private ArrayList<DateTime> datesRepetitions;
 
+    public static long fakeDate = new DateTime().withYear(1980).withTimeAtStartOfDay().getMillis();
 
-    public Tasks() {
+    public boolean hasFewApprovalTasks() {
+        return repititionSchedule != null && repititionSchedule.getDayTaskStatuses() != null &&
+                repititionSchedule.getDayTaskStatuses().size() > 1 && fewDayTaskStatusesIsComplete();
     }
 
+    private boolean fewDayTaskStatusesIsComplete() {
+        int i = 0;
+        for (DayTaskStatus dayTaskStatus : repititionSchedule.getDayTaskStatuses()) {
+            if (dayTaskStatus.getStatus().equalsIgnoreCase(AppConstant.COMPLETED))
+                i++;
+        }
+        return i > 1;
+    }
 
-    protected Tasks(Parcel in) {
-        id = in.readInt();
-        childId = in.readInt();
-        allowance = in.readDouble();
-        createDate = in.readLong();
-        dueDate = in.readLong();
-        name = in.readString();
-        details = in.readString();
-        pictureRequired = in.readByte() != 0;
-        status = in.readString();
-        updateDate = in.readLong();
-        datenew = in.readString();
+    public Tasks getApprovalTask() {
+        Tasks newTask = null;
+        if (repititionSchedule == null || repititionSchedule.getDayTaskStatuses() == null ||
+                repititionSchedule.getDayTaskStatuses().size() == 0) {
+            return status.equalsIgnoreCase(AppConstant.COMPLETED) ? this : null;
+        } else {
+            if (hasFewApprovalTasks()) {
+                return null;
+            } else {
+                List<DayTaskStatus> dayTaskStatuses = getRepititionSchedule().getDayTaskStatuses();
+                for (DayTaskStatus dayTaskStatus : dayTaskStatuses) {
+                    if (dayTaskStatus.getStatus().equalsIgnoreCase(AppConstant.COMPLETED)) {
+                        newTask = Tasks.from(this);
+                        newTask.setStartDate(newTask.getDueDate());
+                        newTask.setStatus(dayTaskStatus.getStatus());
+                    }
+                }
+            }
+        }
+        return newTask;
+    }
+
+    public Tasks() {
     }
 
     public static final Creator<Tasks> CREATOR = new Creator<Tasks>() {
@@ -68,12 +97,36 @@ public class Tasks implements Serializable, Parcelable {
         }
     };
 
+    public boolean isCompleted() {
+        return status.equals(AppConstant.COMPLETED);
+    }
+
+    public boolean isApproved() {
+        return status.equals(AppConstant.APPROVED);
+    }
+
     public ArrayList<TaskComment> getTaskComments() {
         return taskComments;
     }
 
     public void setTaskComments(ArrayList<TaskComment> taskComments) {
         this.taskComments = taskComments;
+    }
+
+    public long getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(long startDate) {
+        this.startDate = startDate;
+    }
+
+    public long getFakeDate() {
+        if (status.equalsIgnoreCase(AppConstant.COMPLETED)) {
+            return fakeDate;
+        } else {
+            return dueDate;
+        }
     }
 
     public Goal getGoal() {
@@ -199,16 +252,18 @@ public class Tasks implements Serializable, Parcelable {
                 "id=" + id +
                 ", childId=" + childId +
                 ", allowance=" + allowance +
-                ", createDate=" + new DateTime(createDate).toString() +
-                ", dueDate=" + new DateTime(dueDate).toString() +
+                ", createDate=" + new DateTime(createDate).toString("dd.MM.yyyy HH:mm:ss") +
+                ", dueDate=" + new DateTime(dueDate).toString("dd.MM.yyyy HH:mm:ss") +
+                ", startDate=" + new DateTime(startDate).toString("dd.MM.yyyy HH:mm:ss") +
                 ", name='" + name + '\'' +
                 ", taskComments=" + taskComments +
-                ", goal=" + goal +
-                ", repititionSchedule=" + repititionSchedule +
                 ", details='" + details + '\'' +
                 ", pictureRequired=" + pictureRequired +
                 ", status='" + status + '\'' +
-                ", updateDate=" + new DateTime(updateDate).toString() +
+                ", updateDate=" + new DateTime(updateDate).toString("dd.MM.yyyy HH:mm:ss") +
+                ", goal=" + goal +
+                ", repititionSchedule=" + repititionSchedule +
+                ", datesRepetitions=" + datesRepetitions +
                 ", datenew='" + datenew + '\'' +
                 '}';
     }
@@ -225,7 +280,9 @@ public class Tasks implements Serializable, Parcelable {
         parcel.writeDouble(allowance);
         parcel.writeLong(createDate);
         parcel.writeLong(dueDate);
+        parcel.writeLong(startDate);
         parcel.writeString(name);
+        parcel.writeList(taskComments);
         parcel.writeString(details);
         parcel.writeByte((byte) (pictureRequired ? 1 : 0));
         parcel.writeString(status);
@@ -233,44 +290,134 @@ public class Tasks implements Serializable, Parcelable {
         parcel.writeString(datenew);
     }
 
-    public boolean datesEquals(DateTime dueDate){
-        DateTime thisDate = new DateTime(getDueDate());
-        return thisDate.getDayOfMonth() == dueDate.getDayOfMonth() &&thisDate.getMonthOfYear() == dueDate.getMonthOfYear() && thisDate.getYear() == dueDate.getYear();
+    protected Tasks(Parcel in) {
+        id = in.readInt();
+        childId = in.readInt();
+        allowance = in.readDouble();
+        createDate = in.readLong();
+        dueDate = in.readLong();
+        startDate = in.readLong();
+        name = in.readString();
+        taskComments = in.readArrayList(TaskComment.class.getClassLoader());
+        details = in.readString();
+        pictureRequired = in.readByte() != 0;
+        status = in.readString();
+        updateDate = in.readLong();
+        datenew = in.readString();
     }
 
-    public boolean containsDateRepitiions(DateTime dateTime){
-        if (repititionSchedule == null){
+    public boolean datesEquals(DateTime dueDate) {
+        DateTime thisDate = new DateTime(getDueDate());
+        return thisDate.getDayOfMonth() == dueDate.getDayOfMonth() && thisDate.getMonthOfYear() == dueDate.getMonthOfYear() && thisDate.getYear() == dueDate.getYear();
+    }
+
+    public boolean containsDateRepitiions(DateTime dateTime) {
+        if (repititionSchedule == null) {
             return false;
         }
-        for (DateTime date : datesRepetitions){
-            if (date.getDayOfMonth() == dateTime.getDayOfMonth() && date.getMonthOfYear() == dateTime.getMonthOfYear() && date.getYear() == dateTime.getYear()){
+        for (DateTime date : datesRepetitions) {
+            if (date.getDayOfMonth() == dateTime.getDayOfMonth() && date.getMonthOfYear() == dateTime.getMonthOfYear() && date.getYear() == dateTime.getYear()) {
                 return true;
             }
         }
         return false;
     }
 
-    public ArrayList<DateTime> getDatesRepetitions(){
+    public ArrayList<DateTime> getDatesRepetitions() {
         if (repititionSchedule == null) {
             return null;
         }
         ArrayList<DateTime> repetitionsDates = new ArrayList<>();
-        if (repititionSchedule.getRepeat().equalsIgnoreCase("daily")){
-            for (int i = 0; i <= AppConstant.DAILY_NUM_REPETITIONS; i++){
+        if (repititionSchedule.getRepeat().equalsIgnoreCase("daily")) {
+            for (int i = 0; i <= AppConstant.DAILY_NUM_REPETITIONS; i++) {
                 DateTime repeatDate = new DateTime(dueDate).plusDays(repititionSchedule.getEveryNRepeat() == 0 ? (i + 1) : repititionSchedule.everyNRepeat);
                 datesRepetitions.add(repeatDate);
             }
         }
-        if (repititionSchedule.getRepeat().equalsIgnoreCase("weekly")){
-            for (int i = 0; i <= AppConstant.WEEKLY_NUM_REPETITIONS; i++){
+        if (repititionSchedule.getRepeat().equalsIgnoreCase("weekly")) {
+            for (int i = 0; i <= AppConstant.WEEKLY_NUM_REPETITIONS; i++) {
                 DateTime repeatDate = new DateTime(dueDate).plusWeeks(repititionSchedule.getEveryNRepeat() == 0 ? (i + 1) : repititionSchedule.everyNRepeat);
                 datesRepetitions.add(repeatDate);
             }
         }
-        if (repititionSchedule.getRepeat().equalsIgnoreCase("monthly")){
+        if (repititionSchedule.getRepeat().equalsIgnoreCase("monthly")) {
 
         }
         return repetitionsDates;
+    }
+
+    @Nullable
+    public List<Tasks> getFakeDates() {
+        List<Tasks> tasks = new ArrayList<>();
+        if (repititionSchedule == null) {
+            return null;
+        } else {
+            if (repititionSchedule.getRepeat().equalsIgnoreCase("monthly")) {
+                for (int i = 0; i < repititionSchedule.getSpecificDays().size(); i++) {
+                    Tasks task = this;
+                    int every = i;
+                    if (new DateTime(task.getCreateDate()).withTimeAtStartOfDay().getMillis() < new DateTime().withTimeAtStartOfDay().getMillis()){
+                        every++;
+                    }
+                    String day = repititionSchedule.getSpecificDays().get(i);
+                    int specificDay;
+                    switch (day) {
+                        case "Sunday":
+                            specificDay = 6;
+                            break;
+                        case "sunday":
+                            specificDay = 6;
+                            break;
+                        case "monday":
+                            specificDay = 1;
+                            break;
+                        case "tuesday":
+                            specificDay = 2;
+                            break;
+                        case "wednesday":
+                            specificDay = 3;
+                            break;
+                        case "thursday":
+                            specificDay = 4;
+                            break;
+                        case "friday":
+                            specificDay = 5;
+                            break;
+                        case "saturday":
+                            specificDay = 6;
+                            break;
+                        default:
+                            specificDay = 1;
+                    }
+                    task.setDueDate(new DateTime(task.getDueDate()).plusMonths(1).getMillis());
+                }
+            }
+        }
+        return tasks;
+    }
+
+    private void updateStatuse(List<Tasks> tasks) {
+
+    }
+
+    public static Tasks from(Tasks task) {
+        Tasks newTask = new Tasks();
+        newTask.setDueDate(task.getDueDate());
+        newTask.setStartDate(task.getStartDate());
+        newTask.setAllowance(task.getAllowance());
+        newTask.setChildId(task.getChildId());
+        newTask.setCreateDate(task.getCreateDate());
+        newTask.setDatenew(task.getDatenew());
+        newTask.setDetails(task.getDetails());
+        newTask.setGoal(task.getGoal());
+        newTask.setId(task.getId());
+        newTask.setName(task.getName());
+        newTask.setPictureRequired(task.getPictureRequired());
+        newTask.setRepititionSchedule(task.getRepititionSchedule());
+        newTask.setStatus(task.getStatus());
+        newTask.setTaskComments(task.getTaskComments());
+        newTask.setUpdateDate(task.getUpdateDate());
+        return newTask;
     }
 
     @Override

@@ -413,7 +413,8 @@ goals.add(goal);
         if(tasks!=null)
         {
             Log.e(TAG, "Tasks is not null....");
-            moveToTaskApproval.putExtra(AppConstant.TASK_COMMENTS, (Serializable) tasks.getTaskComments().get(0));
+            moveToTaskApproval.putExtra(AppConstant.REPITITION_SCHEDULE, tasks.getRepititionSchedule());
+            moveToTaskApproval.putExtra(AppConstant.TASK_COMMENTS, tasks.getTaskComments().get(0));
         }
         else {
             Log.e(TAG, "TASK IS NULL.....");

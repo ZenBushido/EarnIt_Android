@@ -220,8 +220,9 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
                 break;
 
             case R.id.ivBackArrow:
-                screenSwitch.moveToParentDashboard(parentObject);
-                finish();
+//                screenSwitch.moveToParentDashboard(parentObject);
+//                finish();
+                onBackPressed();
                 break;
         }
     }

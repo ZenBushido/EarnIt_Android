@@ -2,6 +2,7 @@ package com.mobiledi.earnit.adapter;
 
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,7 @@ public class TaskAdapter extends BaseAdapter {
         }else{
             Tasks currentTask = getItem(position);
             String taskName = currentTask.getName();
+            Log.d("lskdjflsdkjf", "name = '" + taskName +"'");
             String task_name = taskName.substring(0, 1).toUpperCase() + taskName.substring(1);
             mViewHolder.taskName.setText(task_name);
 
