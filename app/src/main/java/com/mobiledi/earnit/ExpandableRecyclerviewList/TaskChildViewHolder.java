@@ -89,6 +89,7 @@ public class TaskChildViewHolder extends ChildViewHolder {
                     moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, (Serializable)parent);
                     moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, AppConstant.CHECKED_IN_SCREEN);
                     moveToTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
+                    moveToTaskApproval.putExtra(AppConstant.REPITITION_SCHEDULE, task.getRepititionSchedule());
                     Utils.logDebug(TAG, "2 Task == " + task);
                     if(task.getTaskComments()!=null)
                     moveToTaskApproval.putExtra(AppConstant.TASK_COMMENTS, (Serializable) task.getTaskComments().get(0));

@@ -278,12 +278,10 @@ public class FloatingMenu {
                     } else if (newTask.getStatus().equalsIgnoreCase("Completed")) {
                         tasksList.add(newTask);
                     }
-
-
                 }
                 if (tasksList.size() > 0) {
                     if (tasksList.size() > 1) {
-                        screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, AppConstant.TASK_APPROVAL_SCREEN);
+                        screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
                     } else {
                         screenSwitch.moveToTaskApproval(child, childWithAllTask, parent, fromScreen, tasksList.get(0));
                     }

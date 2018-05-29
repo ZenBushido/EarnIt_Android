@@ -290,6 +290,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 repeatSchedule.put(AppConstant.REPEAT, selectedTask.getRepititionSchedule().getRepeat());
                 JSONArray dayTaskStatuses = new JSONArray();
                 JSONObject dayTaskStatus = new JSONObject();
+                Utils.logDebug(TAG, "task.getDueDate() = " + new DateTime(task.getDueDate()));
+                Utils.logDebug(TAG, "task.getDueDate() + offsetInMilliseconds = " + new DateTime(task.getDueDate() + offsetInMilliseconds));
                 dayTaskStatus.put("createdDateTime", new DateTime(task.getDueDate() + offsetInMilliseconds).toString("MMM dd, yyyy hh:mm:ss a", Locale.US));
                 dayTaskStatus.put("status", AppConstant.COMPLETED);
                 Utils.logDebug(TAG, "!@dayTaskStatus = " + dayTaskStatus.toString());

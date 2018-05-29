@@ -100,7 +100,9 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         dueDate = intent.getLongExtra(AppConstant.DUE_DATE_STRING, 0);
 
         taskObject = (Tasks) intent.getSerializableExtra(AppConstant.TASK_OBJECT);
-        taskObject.setRepititionSchedule(repititionSchedule);
+        if (repititionSchedule != null) {
+            taskObject.setRepititionSchedule(repititionSchedule);
+        }
         dueDate = taskObject.getDueDate();
         Log.d("asdljlahsdkj", "ParentTaskApproval task from getIntent = " + taskObject.toString());
 
@@ -338,11 +340,11 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
             taskJson.put(AppConstant.DUE_DATE, selectedTask.getRepititionSchedule() == null ? selectedTask.getDueDate() : selectedTask.getStartDate());
             taskJson.put(AppConstant.CREATE_DATE, selectedTask.getCreateDate());
             taskJson.put(AppConstant.DESCRIPTION, selectedTask.getDetails());
-            if (selectedTask.getRepititionSchedule() == null || isLastTask) {
+            if (selectedTask.getRepititionSchedule() == null/* || isLastTask*/) {
                 taskJson.put(AppConstant.STATUS, changedStatus);
                 Utils.logDebug(TAG, "1 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
             } else {
-                taskJson.put(AppConstant.STATUS, selectedTask.getStatus());
+                taskJson.put(AppConstant.STATUS, "Created");
                 Utils.logDebug(TAG, "2 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
             }
             taskJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());

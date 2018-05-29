@@ -161,8 +161,7 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
                 childList.clear();
                 childApprovalList.clear();
 
-                if(response.length() != 0)
-                {
+                if(response.length() != 0){
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject childObject = response.getJSONObject(i);
@@ -180,13 +179,10 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
                                 JSONObject taskObject = taskArray.getJSONObject(taskIndex);
                                 if (!taskObject.getString(AppConstant.STATUS).equals(AppConstant.APPROVED)) {
                                     Tasks task = new GetObjectFromResponse().getTaskObject(taskObject, childObject.getInt(AppConstant.ID));
-
                                     taskList.add(task);
                                 }
-
                                 if (taskObject.getString(AppConstant.STATUS).equals(AppConstant.COMPLETED)) {
                                     Tasks task = new GetObjectFromResponse().getTaskObject(taskObject, childObject.getInt(AppConstant.ID));
-
                                     taskApprovalList.add(task);
                                 }
                             }
@@ -201,10 +197,7 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
                     }
-
                     mAdapter.notifyDataSetChanged();
                 }
 

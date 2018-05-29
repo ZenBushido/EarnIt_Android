@@ -151,6 +151,7 @@
                     android:orientation="horizontal">
 
                     <EditText
+                        android:text="9505415555"
                         android:id="@+id/child_phone"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -177,6 +178,7 @@
                     android:textColor="@color/main_font" />
 
                 <EditText
+                    android:text="dingo1987"
                     android:id="@+id/child_password"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/views_height"

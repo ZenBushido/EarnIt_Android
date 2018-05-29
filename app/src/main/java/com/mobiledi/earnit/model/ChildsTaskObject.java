@@ -52,9 +52,13 @@ public class ChildsTaskObject implements ParentListItem, Serializable {
 
     @Override
     public String toString() {
+        StringBuilder tasksString = new StringBuilder();
+        for (Tasks task : getTasks()){
+            tasksString.append(task.toString());
+        }
         return "{\"ChildsTaskObject\":{" +
                 "dueDate='" + dueDate + '\'' +
-                ", tasks=" + tasks +
+                ", tasks=" + tasksString +
                 "}}";
     }
 }
