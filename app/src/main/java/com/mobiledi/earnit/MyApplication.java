@@ -3,12 +3,15 @@ package com.mobiledi.earnit;
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.rollbar.android.Rollbar;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +25,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
+        Log.d("fjdjhf", "MyApplication onCreate()");
        instance = this;
         Iconify.with(new FontAwesomeModule());
         Rollbar.init(this, "09e5fe34de7f42cd8afae469f73c4597", "development");

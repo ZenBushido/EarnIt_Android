@@ -613,19 +613,19 @@ public final class R {
         public static final int abc_shareactionprovider_share_with = 0x7f0f001a;
         public static final int abc_shareactionprovider_share_with_application = 0x7f0f001b;
         public static final int abc_toolbar_collapse_description = 0x7f0f001c;
-        public static final int define_fastadapter = 0x7f0f0058;
-        public static final int library_fastadapter_author = 0x7f0f0087;
-        public static final int library_fastadapter_authorWebsite = 0x7f0f0088;
-        public static final int library_fastadapter_isOpenSource = 0x7f0f0089;
-        public static final int library_fastadapter_libraryDescription = 0x7f0f008a;
-        public static final int library_fastadapter_libraryName = 0x7f0f008b;
-        public static final int library_fastadapter_libraryVersion = 0x7f0f008c;
-        public static final int library_fastadapter_libraryWebsite = 0x7f0f008d;
-        public static final int library_fastadapter_licenseId = 0x7f0f008e;
-        public static final int library_fastadapter_owner = 0x7f0f008f;
-        public static final int library_fastadapter_repositoryLink = 0x7f0f0090;
-        public static final int library_fastadapter_year = 0x7f0f0091;
-        public static final int status_bar_notification_info_overflow = 0x7f0f0116;
+        public static final int define_fastadapter = 0x7f0f0059;
+        public static final int library_fastadapter_author = 0x7f0f0088;
+        public static final int library_fastadapter_authorWebsite = 0x7f0f0089;
+        public static final int library_fastadapter_isOpenSource = 0x7f0f008a;
+        public static final int library_fastadapter_libraryDescription = 0x7f0f008b;
+        public static final int library_fastadapter_libraryName = 0x7f0f008c;
+        public static final int library_fastadapter_libraryVersion = 0x7f0f008d;
+        public static final int library_fastadapter_libraryWebsite = 0x7f0f008e;
+        public static final int library_fastadapter_licenseId = 0x7f0f008f;
+        public static final int library_fastadapter_owner = 0x7f0f0090;
+        public static final int library_fastadapter_repositoryLink = 0x7f0f0091;
+        public static final int library_fastadapter_year = 0x7f0f0092;
+        public static final int status_bar_notification_info_overflow = 0x7f0f0117;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat = 0x7f100000;

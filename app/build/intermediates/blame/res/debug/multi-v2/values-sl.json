@@ -4,24 +4,7 @@
             "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sl\\values-sl.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-12.0.1.aar\\e93afc2787ce95fe69dd44be28934cc8\\res\\values-sl\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "198",
-                        "endOffsets": "445"
-                    },
-                    "to": {
-                        "startLines": "19",
-                        "startColumns": "4",
-                        "startOffsets": "1907",
-                        "endColumns": "198",
-                        "endOffsets": "2101"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\394525bb17c825ca3333a684d10633fc\\res\\values-sl\\values.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\894ab7458c528254fb1583ebdc3455b2\\res\\values-sl\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialdatetimepicker-3.2.2.aar\\ea7111be4529b122a31de612d1bc8ba4\\res\\values-sl\\values-sl.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-12.0.1.aar\\da6d8a25576740beeffa71de317c006f\\res\\values-sl\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "198",
+                        "endOffsets": "445"
+                    },
+                    "to": {
+                        "startLines": "19",
+                        "startColumns": "4",
+                        "startOffsets": "1907",
+                        "endColumns": "198",
+                        "endOffsets": "2101"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialdatetimepicker-3.2.2.aar\\a2fee26515862f52cf043efdca485481\\res\\values-sl\\values-sl.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,24 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\921c48ebdb3fbbb31bec3109e4057a8a\\res\\values-sl\\values-sl.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "35",
-                        "startColumns": "4",
-                        "startOffsets": "3534",
-                        "endColumns": "100",
-                        "endOffsets": "3630"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\0761e875f4ebf78b1e2c34d50c0848f7\\res\\values-sl\\values-sl.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\ac92d1c01f4f05b8f5cc7bcefd67f7a5\\res\\values-sl\\values-sl.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -86,6 +69,23 @@
                         "startOffsets": "105,212,319,427,514,617,736,821,905,989,1097,1206,1306,1419,1526,1630,1810,3451",
                         "endColumns": "106,106,107,86,102,118,84,83,83,107,108,99,112,106,103,179,96,82",
                         "endOffsets": "207,314,422,509,612,731,816,900,984,1092,1201,1301,1414,1521,1625,1805,1902,3529"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\f2922f7a554a36866ca3791c1a5aab17\\res\\values-sl\\values-sl.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "35",
+                        "startColumns": "4",
+                        "startOffsets": "3534",
+                        "endColumns": "100",
+                        "endOffsets": "3630"
                     }
                 }
             ]

@@ -11,6 +11,7 @@ import com.mobiledi.earnit.utils.Utils;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
+import org.joda.time.Months;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -18,7 +19,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
+
+import static com.mobiledi.earnit.utils.GetObjectFromResponse.PENDING_APPROVAL_DATE;
 
 /**
  * Created by praks on 07/07/17.
@@ -43,6 +48,8 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
     private RepititionSchedule repititionSchedule;
 
     private ArrayList<DateTime> datesRepetitions;
+
+    Map<String, ArrayList<Tasks>> map = new TreeMap<>();
 
     public static long fakeDate = new DateTime().withYear(1980).withTimeAtStartOfDay().getMillis();
 
@@ -102,7 +109,7 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
     }
 
     public boolean isApproved() {
-        return status.equals(AppConstant.APPROVED);
+        return status.equalsIgnoreCase(AppConstant.APPROVED);
     }
 
     public ArrayList<TaskComment> getTaskComments() {
@@ -347,57 +354,128 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
     }
 
     @Nullable
-    public List<Tasks> getFakeDates() {
-        List<Tasks> tasks = new ArrayList<>();
+    public List<ChildsTaskObject> getFakeDates() {
+        List<ChildsTaskObject> tasks = new ArrayList<>();
         if (repititionSchedule == null) {
             return null;
         } else {
             if (repititionSchedule.getRepeat().equalsIgnoreCase("monthly")) {
-                for (int i = 0; i < repititionSchedule.getSpecificDays().size(); i++) {
-                    Tasks task = this;
-                    int every = i;
-                    if (new DateTime(task.getCreateDate()).withTimeAtStartOfDay().getMillis() < new DateTime().withTimeAtStartOfDay().getMillis()){
-                        every++;
+                DateTime startDate = new DateTime(getDueDate());
+                DateTime endDate = new DateTime().plusMonths(AppConstant.MONTHLY_NUM_REPETITIONS);
+                int monthsInterval = Months.monthsBetween(startDate, endDate).getMonths();
+                for (int j = 0; j < monthsInterval; j++) {
+                    int plusMonts = j * getRepititionSchedule().getEveryNRepeat();
+                    if (getRepititionSchedule().monthlyRepeatHasNumbers()) {
+                        for (int i = 0; i < getRepititionSchedule().getSpecificDays().size(); i++) {
+                            Tasks newTask = from(this);
+                            int day = Integer.parseInt(getRepititionSchedule().getSpecificDays().get(i));
+                            newTask.setStartDate(newTask.getDueDate());
+                            DateTime fakeDate = new DateTime(newTask.getStartDate()).withDayOfMonth(day).plusMonths(plusMonts);
+                            Log.d("monthDSKASDK", "plusDays(" + j + " * " + getRepititionSchedule().getEveryNRepeat() + ")");
+                            Log.d("monthDSKASDK", "fakeDate: " + fakeDate.toString("dd.MM.yyyy HH:mm"));
+                            newTask.setDueDate(fakeDate.getMillis());
+                            setStatusForTask(newTask);
+                            Log.d("monthDSKASDK", "newTask = " + newTask);
+                            if (!new DateTime(newTask.getDueDate()).withDayOfMonth(day).plusMonths(j * newTask.getRepititionSchedule().everyNRepeat).withTimeAtStartOfDay().isBefore(new DateTime().plusDays(-1).withTimeAtStartOfDay()))
+                                if (!newTask.isApproved()) {
+                                    addToMap(newTask, new DateTime(newTask.getFakeDate()).toString());
+//                                        if (newTask.getStatus().equalsIgnoreCase(AppConstant.COMPLETED))
+//                                            addToMap(newTask, new DateTime(newTask.getFakeDate()).toString());
+//                                        addToMap(newTask, key);
+                                }
+                        }
+                    } else {
+                        for (int i = 0; i < getRepititionSchedule().getSpecificDays().size(); i++) {
+                            Tasks newTask = Tasks.from(this);
+
+                            Integer dayOfWeek = 1;
+
+                            switch (getRepititionSchedule().getSpecificDays().get(i)) {
+                                case "Sunday":
+                                    dayOfWeek = 7;
+                                    break;
+                                case "sunday":
+                                    dayOfWeek = 7;
+                                    break;
+                                case "monday":
+                                    dayOfWeek = 1;
+                                    break;
+                                case "tuesday":
+                                    dayOfWeek = 2;
+                                    break;
+                                case "wednesday":
+                                    dayOfWeek = 3;
+                                    break;
+                                case "thursday":
+                                    dayOfWeek = 4;
+                                    break;
+                                case "friday":
+                                    dayOfWeek = 5;
+                                    break;
+                                case "saturday":
+                                    dayOfWeek = 6;
+                                    break;
+                                default:
+                                    dayOfWeek = 1;
+                            }
+                            newTask.setStartDate(newTask.getDueDate());
+                            DateTime fakeDate = new DateTime(newTask.getStartDate()).withDayOfWeek(dayOfWeek).plusWeeks(j * dayOfWeek);
+                            Log.d("weekDSKASDK", "plusDays(" + j + " * " + dayOfWeek + ")");
+                            Log.d("weekDSKASDK", "fakeDate: " + fakeDate.toString("dd.MM.yyyy HH:mm"));
+                            newTask.setDueDate(fakeDate.getMillis());
+                            setStatusForTask(newTask);
+                            Log.d("weekDSKASDK", "newTask = " + newTask);
+                            if (!new DateTime(newTask.getDueDate()).withDayOfWeek(dayOfWeek).plusWeeks(j * newTask.getRepititionSchedule().everyNRepeat).withTimeAtStartOfDay().isBefore(new DateTime().plusDays(-1).withTimeAtStartOfDay()))
+                                if (!newTask.isApproved()) {
+                                    addToMap(newTask, new DateTime(newTask.getFakeDate()).toString());
+//                                        if (newTask.getStatus().equalsIgnoreCase(AppConstant.COMPLETED))
+//                                            addToMap(newTask, new DateTime(newTask.getFakeDate()).toString());
+//                                        addToMap(newTask, key);
+                                }
+                        }
+
                     }
-                    String day = repititionSchedule.getSpecificDays().get(i);
-                    int specificDay;
-                    switch (day) {
-                        case "Sunday":
-                            specificDay = 6;
-                            break;
-                        case "sunday":
-                            specificDay = 6;
-                            break;
-                        case "monday":
-                            specificDay = 1;
-                            break;
-                        case "tuesday":
-                            specificDay = 2;
-                            break;
-                        case "wednesday":
-                            specificDay = 3;
-                            break;
-                        case "thursday":
-                            specificDay = 4;
-                            break;
-                        case "friday":
-                            specificDay = 5;
-                            break;
-                        case "saturday":
-                            specificDay = 6;
-                            break;
-                        default:
-                            specificDay = 1;
-                    }
-                    task.setDueDate(new DateTime(task.getDueDate()).plusMonths(1).getMillis());
                 }
             }
+        }
+
+        for (String key : map.keySet()) {
+            tasks.add(new ChildsTaskObject(key, map.get(key)));
         }
         return tasks;
     }
 
-    private void updateStatuse(List<Tasks> tasks) {
+    private void addToMap(Tasks task, String key) {
+        if (!key.equals(PENDING_APPROVAL_DATE) && task.getStatus().equalsIgnoreCase(AppConstant.COMPLETED)) {
+            Log.d("dkfjhsdkfjh", "completed (((((((((((( + " + new DateTime(task.getDueDate()));
+            return;
+        }
 
+        if (!map.containsKey(key))
+            map.put(key, new ArrayList<Tasks>());
+        map.get(key).add(task);
+    }
+
+    private void setStatusForTask(Tasks task) {
+        Log.d("skdjfhjk", "setStatusForTask");
+        if (task.getRepititionSchedule() != null && task.getRepititionSchedule().getDayTaskStatuses() != null) {
+            DateTime fakeDate = new DateTime(task.getDueDate());
+            List<DayTaskStatus> dayTaskStatuses = task.getRepititionSchedule().getDayTaskStatuses();
+            for (DayTaskStatus dayTaskStatus : dayTaskStatuses) {
+                if (!dayTaskStatus.getCreatedDateTime().equalsIgnoreCase("null")) {
+                    DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM dd, yyyy HH:mm:ss a").withLocale(Locale.US);
+                    DateTime dt = formatter.parseDateTime(dayTaskStatus.getCreatedDateTime());
+                    Log.d("askjdlk", "1: " + fakeDate.withTimeAtStartOfDay().toString());
+                    Log.d("askjdlk", "2: " + dt.withTimeAtStartOfDay().toString());
+                    if (fakeDate.withTimeAtStartOfDay().isEqual(dt.withTimeAtStartOfDay()))
+                        if (dayTaskStatus.getStatus().equals(AppConstant.COMPLETED))
+                            task.setStatus(AppConstant.COMPLETED);
+                        else if (dayTaskStatus.getStatus().equals(AppConstant.APPROVED))
+                            task.setStatus(AppConstant.APPROVED);
+                    Log.d("skdjfhjk", "task: " + task.toString());
+                }
+            }
+        }
     }
 
     public static Tasks from(Tasks task) {

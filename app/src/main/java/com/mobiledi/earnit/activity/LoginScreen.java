@@ -33,6 +33,8 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
 
+import butterknife.OnClick;
+
 /**
  * Created by mradul on 7/4/17.
  */
@@ -72,7 +74,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
 
         loginScreen = this;
 
-        LoginRememberCheckStatus =false;
+        LoginRememberCheckStatus = false;
         loginRemember = (Button) findViewById(R.id.login_remember_checkbox);
         forgot = (TextView) findViewById(R.id.sign_forgot);
         username = (EditText) findViewById(R.id.input_email);
@@ -91,11 +93,11 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         callFirebaseService();
         preferences = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
 
-        try{
-        if(preferences.getString(AppConstant.EMAIL, null) != null && !preferences.getString(AppConstant.EMAIL, null).equals(null)){
-            new RestCall(loginScreen).authenticateUser(preferences.getString(AppConstant.EMAIL, null), preferences.getString(AppConstant.PASSWORD, null), password, AppConstant.LOGIN_SCREEN, progressBar);
-        }
-        }catch (NullPointerException e){
+        try {
+            if (preferences.getString(AppConstant.EMAIL, null) != null && !preferences.getString(AppConstant.EMAIL, null).equals(null)) {
+                new RestCall(loginScreen).authenticateUser(preferences.getString(AppConstant.EMAIL, null), preferences.getString(AppConstant.PASSWORD, null), password, AppConstant.LOGIN_SCREEN, progressBar);
+            }
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -104,21 +106,19 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
     }
 
     private void callFirebaseService() {
-        new AsyncTask<Void,Void,String>()
-        {
+        new AsyncTask<Void, Void, String>() {
             @Override
-            protected String doInBackground(Void... params)
-            {
+            protected String doInBackground(Void... params) {
                 String token = FirebaseInstanceId.getInstance().getToken();
-                while(token == null)//this is used to get firebase token until its null so it will save you from null pointer exeption
+                while (token == null)//this is used to get firebase token until its null so it will save you from null pointer exeption
                 {
                     token = FirebaseInstanceId.getInstance().getToken();
                 }
                 return token;
             }
+
             @Override
-            protected void onPostExecute(String result)
-            {
+            protected void onPostExecute(String result) {
                 SharedPreferences shareToken = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
                 SharedPreferences.Editor editor = shareToken.edit();
                 editor.putString(AppConstant.TOKEN_ID, result);
@@ -156,7 +156,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         }
     }
 
-    public void showRemeberMeDialog(){
+    public void showRemeberMeDialog() {
 
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -183,8 +183,8 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
 
     }
 
-    private void moveToPasswordReminder(){
-        Intent moveToPasswordReminder = new Intent(LoginScreen.this,PasswordReminder.class);
+    private void moveToPasswordReminder() {
+        Intent moveToPasswordReminder = new Intent(LoginScreen.this, PasswordReminder.class);
         moveToPasswordReminder.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(moveToPasswordReminder);
     }
@@ -200,7 +200,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
-        lp.alpha=0.9f;
+        lp.alpha = 0.9f;
         window.setAttributes(lp);
         window.setGravity(Gravity.CENTER);
         dialog.setContentView(R.layout.dialog_box);

@@ -4,7 +4,7 @@
             "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw720dp-v13\\values-sw720dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\lib-2.2.0.aar\\ba462bf79c94c174d27a1ff265062cfd\\res\\values-sw720dp\\values-sw720dp.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\lib-2.2.0.aar\\5757a98aaa83df841cdb2000e82cc957\\res\\values-sw720dp\\values-sw720dp.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",

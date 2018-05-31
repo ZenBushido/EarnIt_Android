@@ -265,6 +265,10 @@
             android:name="com.mobiledi.earnit.activity.RequestTransfer"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c3e5650f51470bf66bc04e193f3c0e0445303228" />
         <!--
              FirebaseMessagingService performs security checks at runtime,
              no need for explicit permissions despite exported="true"

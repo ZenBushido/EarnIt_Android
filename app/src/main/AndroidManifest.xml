@@ -250,6 +250,9 @@
         <activity android:name=".activity.RequestTransfer"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c3e5650f51470bf66bc04e193f3c0e0445303228" />
     </application>
 
 </manifest>

@@ -4,41 +4,7 @@
             "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-gu\\values-gu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\394525bb17c825ca3333a684d10633fc\\res\\values-gu\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "205",
-                        "endColumns": "99",
-                        "endOffsets": "304"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "2063",
-                        "endColumns": "103",
-                        "endOffsets": "2162"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\921c48ebdb3fbbb31bec3109e4057a8a\\res\\values-gu\\values-gu.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "22",
-                        "startColumns": "4",
-                        "startOffsets": "2247",
-                        "endColumns": "100",
-                        "endOffsets": "2343"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\0761e875f4ebf78b1e2c34d50c0848f7\\res\\values-gu\\values-gu.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\ac92d1c01f4f05b8f5cc7bcefd67f7a5\\res\\values-gu\\values-gu.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-12.0.1.aar\\e93afc2787ce95fe69dd44be28934cc8\\res\\values-gu\\values.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\894ab7458c528254fb1583ebdc3455b2\\res\\values-gu\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "205",
+                        "endColumns": "99",
+                        "endOffsets": "304"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "2063",
+                        "endColumns": "103",
+                        "endOffsets": "2162"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-12.0.1.aar\\da6d8a25576740beeffa71de317c006f\\res\\values-gu\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -69,6 +52,23 @@
                         "startOffsets": "1857",
                         "endColumns": "205",
                         "endOffsets": "2058"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\f2922f7a554a36866ca3791c1a5aab17\\res\\values-gu\\values-gu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "22",
+                        "startColumns": "4",
+                        "startOffsets": "2247",
+                        "endColumns": "100",
+                        "endOffsets": "2343"
                     }
                 }
             ]
