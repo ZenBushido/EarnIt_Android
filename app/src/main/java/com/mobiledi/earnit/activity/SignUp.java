@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.RestCall;
@@ -33,6 +34,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
@@ -105,7 +107,6 @@ public class SignUp extends BaseActivity implements OnClickListener, Validator.V
     }
 
     private void signUpParent() {
-
         try {
             JSONObject signUpJson = new JSONObject();
             signUpJson.put(AppConstant.EMAIL, email.getText().toString().trim());
@@ -113,6 +114,9 @@ public class SignUp extends BaseActivity implements OnClickListener, Validator.V
             StringEntity entity = new StringEntity(signUpJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.post(this, AppConstant.BASE_URL + AppConstant.SIGNUP_PARENT, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

@@ -210,46 +210,48 @@ public class BalanceActivity extends BaseActivity   {
             @Override
             public void onResponse(Call<List<GetAllGoalResponse>> call, Response<List<GetAllGoalResponse>> response) {
 
+                if (response.body() != null) {
 
-                if(response.body().isEmpty())
-                    isGoalAvailable = false;
-                else
-                    isGoalAvailable = true;
+                    if (response.body().isEmpty())
+                        isGoalAvailable = false;
+                    else
+                        isGoalAvailable = true;
 
-                Integer cashTotal = 0;
-                Integer goalTotal = 0;
-                Integer totalAccountBalance = 0;
+                    Integer cashTotal = 0;
+                    Integer goalTotal = 0;
+                    Integer totalAccountBalance = 0;
 
-                for (int i = 0; i < response.body().size(); i++)
-                {
-                    cashTotal += response.body().get(i).getCash();
+                    for (int i = 0; i < response.body().size(); i++) {
+                        cashTotal += response.body().get(i).getCash();
 
-                    for(int j=0; j<response.body().get(i).getAdjustments().size(); j++)
-                    {
-                        goalTotal+= response.body().get(i).getAdjustments().get(j).getAmount();
+                        for (int j = 0; j < response.body().get(i).getAdjustments().size(); j++) {
+                            goalTotal += response.body().get(i).getAdjustments().get(j).getAmount();
+                        }
+                        goalTotal += response.body().get(i).getAmount();
+
                     }
-                    goalTotal+= response.body().get(i).getAmount();
 
+                    totalAccountBalance += cashTotal + goalTotal;
+                    tv_cash.setText("$" + cashTotal.toString());
+
+
+                    totalBalance.setText("$" + totalAccountBalance.toString());
+                    totalGoal.setText("$" + goalTotal.toString());
+
+                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+                    recyclerView.setLayoutManager(mLayoutManager);
+                    adapter = new MyRecyclerViewAdapter(getApplicationContext(), response.body());
+                    recyclerView.setAdapter(adapter);
+                    progressBar.setVisibility(View.GONE);
+                } else {
+                    Log.e(TAG, "Balance response null");
                 }
-
-                totalAccountBalance += cashTotal+goalTotal;
-                tv_cash.setText("$" + cashTotal.toString());
-
-
-                totalBalance.setText("$" + totalAccountBalance.toString());
-                totalGoal.setText("$" + goalTotal.toString());
-
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-
-                recyclerView.setLayoutManager(mLayoutManager);
-                adapter = new MyRecyclerViewAdapter(getApplicationContext(), response.body());
-                recyclerView.setAdapter(adapter);
-                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<List<GetAllGoalResponse>> call, Throwable t) {
-
+                Log.e(TAG, "Throwable t: " + t.getLocalizedMessage());
             }
         });
     }

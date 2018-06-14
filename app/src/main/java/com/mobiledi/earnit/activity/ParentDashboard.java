@@ -21,6 +21,7 @@ import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ChildrenAdapter;
 import com.mobiledi.earnit.model.Child;
@@ -46,6 +47,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.extras.Base64;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -147,6 +149,9 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
 
         Log.e(TAG, "Getting Dashboard Data");
         AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.setMaxRetriesAndTimeout(3, 3000);
         Utils.logDebug(TAG, "Child response request: " +
@@ -264,7 +269,7 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
             public void run() {
 
                 try {
-                    new RestCall(parentDashboard).authenticateUser(parentObject.getEmail(), parentObject.getPassword()
+                    new RestCall(parentDashboard).authenticateUser(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword()
                             , null, AppConstant.PARENT_SCREEN, progressBar);
                 } catch (Exception e) {
                 }

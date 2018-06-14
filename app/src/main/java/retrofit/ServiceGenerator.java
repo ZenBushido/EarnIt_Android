@@ -2,6 +2,9 @@ package retrofit;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mobiledi.earnit.retrofit.BasicAuthInterceptor;
 import com.mobiledi.earnit.utils.AppConstant;
 
 import okhttp3.Credentials;
@@ -15,10 +18,14 @@ public class ServiceGenerator {
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
+    static Gson gson = new GsonBuilder()
+            .setLenient()
+            .create();
+
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(AppConstant.BASE_URL+"/")
-                    .addConverterFactory(GsonConverterFactory.create());
+                    .addConverterFactory(GsonConverterFactory.create(gson));
 
     private static Retrofit retrofit = builder.build();
 

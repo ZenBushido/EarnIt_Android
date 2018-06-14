@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.Utils;
@@ -20,6 +21,7 @@ import java.io.UnsupportedEncodingException;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
@@ -70,6 +72,9 @@ public class SendMessageService extends Service {
             StringEntity entity = new StringEntity(signInJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setBasicAuth(child.getEmail(), child.getPassword());
             PersistentCookieStore myCookieStore = new PersistentCookieStore(sendMessageService);
             httpClient.setCookieStore(myCookieStore);

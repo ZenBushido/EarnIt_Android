@@ -195,10 +195,10 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                 ScreenSwitch screenSwitch = new ScreenSwitch(ChildCalendarActivity.this);
                 Child child = getChild(childObject, new DateTime(selectedDate));
                 Log.d("askdjhhkj", "child = " + child);
-                for (ChildsTaskObject taskObject : childTaskObjects){
+                for (ChildsTaskObject taskObject : childTaskObjects) {
                     DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
                     DateTime dateTime2 = dtf.parseDateTime(taskObject.getDueDate());
-                    if (datesEquals(dateTime, dateTime2)){
+                    if (datesEquals(dateTime, dateTime2)) {
                         tasks.addAll(taskObject.getTasks());
                     }
                 }
@@ -212,6 +212,10 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                         Tasks task = tasks.get(0);
                         Intent requestTaskApproval = new Intent(ChildCalendarActivity.this, ChildRequestTaskApproval.class);
                         requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
+                        if (child != null)
+                            Log.d("sdasdvfdgdfh", "child = " + childObject.toString());
+                        else
+                            Log.d("sdasdvfdgdfh", "child = null");
                         requestTaskApproval.putExtra("previousActivityIsCalendar", true);
                         requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
                         requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
@@ -227,7 +231,7 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         getAllGoals();
     }
 
-    private boolean datesEquals(DateTime firstDate, DateTime secondDate){
+    private boolean datesEquals(DateTime firstDate, DateTime secondDate) {
         return secondDate.getDayOfMonth() == firstDate.getDayOfMonth() && secondDate.getMonthOfYear() == firstDate.getMonthOfYear() && secondDate.getYear() == firstDate.getYear();
     }
 
@@ -311,11 +315,11 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
 //            }
 //        }
 
-        for (ChildsTaskObject taskObject : childTasksObject){
+        for (ChildsTaskObject taskObject : childTasksObject) {
             //2018-04-21T00:00:00.000Z
             DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
             DateTime dateTime = dtf.parseDateTime(taskObject.getDueDate());
-            for (Tasks task : taskObject.getTasks()){
+            for (Tasks task : taskObject.getTasks()) {
                 Log.d("dbopc", "\nsetBadges. task status = " + task.getStatus() + ";    task.getDueDate() = " + new DateTime(task.getDueDate()).getMonthOfYear() + ";     calendarMonth = " + calendarMonth);
                 if (!task.getStatus().equals("Closed") && new DateTime(task.getDueDate()).getMonthOfYear() == calendarMonth) {
 
@@ -377,7 +381,7 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                             DateTime dateTime = new DateTime(task.getDueDate());
                             dateTime.plusDays(repeatDays * everyNDays);
                             monthlyTask.setDueDate(dateTime.getMillis());
-                            if (new DateTime(task.getDueDate()).getMonthOfYear() == calendarMonth){
+                            if (new DateTime(task.getDueDate()).getMonthOfYear() == calendarMonth) {
                                 t.add(monthlyTask);
                             }
                         }

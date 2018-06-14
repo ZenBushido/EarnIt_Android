@@ -13,7 +13,6 @@ import com.mobiledi.earnit.libmoduleExpandable.Adapter.ExpandableRecyclerAdapter
 import com.mobiledi.earnit.libmoduleExpandable.Model.ParentListItem;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
-import com.mobiledi.earnit.model.DayTaskStatus;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.utils.AppConstant;
@@ -25,6 +24,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,16 +33,18 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
     Child child;
     private String screenName;
 //    private String datedue;
-    private long dateLong;
     String TAG = ChildViewDateAdapter.class.getSimpleName();
     List<Tasks> tasksList = new ArrayList<>();
     public List<ChildsTaskObject> groups;
+    private DateTimeFormatter fmt;
 
     public ChildViewDateAdapter(@NonNull List<? extends ParentListItem> groups, Parent parent, Child child, String name) {
         super(groups);
+        Log.d("dasfgrrs", "ChildViewDateAdapter");
         this.parent = parent;
         this.child = child;
         screenName = name;
+        fmt = DateTimeFormat.forPattern("EEE MM/dd");
 
     }
 
@@ -63,58 +65,37 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
     public void onBindParentViewHolder(TaskGroupViewHolder taskGroupViewHolder, int position, ParentListItem parentListItem) {
         ChildsTaskObject childsTaskObject = (ChildsTaskObject) parentListItem;
 //        setTasksStartDate(childsTaskObject);
-        Log.d("dasfgrrs", "ChildsTaskObject: " + childsTaskObject.toString());
+//        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-ddTHH:mm:ss.SSS+Z").withLocale(Locale.US);
+//        DateTime dt = formatter.parseDateTime(childsTaskObject.getDueDate());
         DateTime dateTime = new DateTime(childsTaskObject.getDueDate()).withTimeAtStartOfDay();
-        dateLong = dateTime.getMillis();
-        if (dateTime.isEqual(Tasks.fakeDate)) {
-            Log.d("fsdkjhfkj", "PENDING_APPROVAL_DATE");
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
-            String toPrintDate = fmt.print(dateTime);
-//            datedue = toPrintDate;
+        Log.d("dasfgrrsdsds", "ChildsTaskObject: " + dateTime.toString());
+        if (dateTime.isEqual(new DateTime(Tasks.fakeDate).withTimeAtStartOfDay())) {
+            Log.d("fsdkjhfkj", "NON_COMPLETED_APPROVED: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
             taskGroupViewHolder.setDateHeader(AppConstant.NON_COMPLETED_APPROVED);
-        } else if (dateTime.equals(new DateTime(GetObjectFromResponse.PAST_DUE_DATE).withTimeAtStartOfDay())) {
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
+        } else if (dateTime.isBefore(new DateTime(GetObjectFromResponse.PAST_DUE_DATE).withTimeAtStartOfDay())) {
             String toPrintDate = fmt.print(dateTime);
-            Log.d("fsdkjhfkj", "NON_COMPLETED_APPROVED: " + toPrintDate);
-//            datedue = toPrintDate;
+            Log.d("fsdkjhfkj", "PAST_DUE: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
             taskGroupViewHolder.setDateHeader(AppConstant.PAST_DUE);
-        } else if (dateTime.equals(new DateTime().withTimeAtStartOfDay())) {
-            Log.d("fsdkjhfkj", "PAST_DUE");
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
-            String toPrintDate = fmt.print(dateTime);
-//            datedue = toPrintDate;
+        } else if (isToday(dateTime)) {
+            Log.d("fsdkjhfkj", "Today: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
             taskGroupViewHolder.setDateHeader("Today");
         } else {
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
             String toPrintDate = fmt.print(dateTime);
-            Log.d("fsdkjhfkj", "else: " + toPrintDate);
-//            datedue = toPrintDate;
+            Log.d("fsdkjhfkj", "Today: " + dateTime.toString("dd.MM.hh HH:mm:ss") + " toPrintDate: " + toPrintDate);
             taskGroupViewHolder.setDateHeader(toPrintDate);
         }
     }
 
-    private void setTasksStartDate(ChildsTaskObject childsTaskObject){
-        List<Tasks> tasks = childsTaskObject.getTasks();
-        for (Tasks task : tasks){
-            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-            DateTime dateTime = dtf.parseDateTime(childsTaskObject.getDueDate());
-            task.setStartDate(dateTime.getMillis());
-        }
+    private boolean isToday(DateTime first){
+        DateTime today = new DateTime();
+        return first.getYear() == today.getYear() && first.getMonthOfYear() == today.getMonthOfYear() && first.getDayOfMonth() == today.getDayOfMonth();
     }
 
     @Override
     public void onBindChildViewHolder(TaskChildViewHolder taskChildViewHolder, int position, Object childListItem) {
         Tasks childTask = (Tasks) childListItem;
         Log.d("dasagsdg", "childTask: " + childTask);
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
-        String toPrintDate = fmt.print(childTask.getDueDate());
-        Log.d("fsdkjhfkj", "else: " + toPrintDate);
-//        Log.d("fsdkjhfkj", "everyNRepeat: " + childTask.getRepititionSchedule().getEveryNRepeat());
-        Log.e(TAG, "Child Task= " + childTask.getName());
-        Log.e(TAG, "Child Task= " + childTask.getStatus());
-        //        Log.e(TAG, "Child Task= "+childTask.getGoal().getId());
-        //     Log.e(TAG, "Child Task= "+childTask.getGoal().getGoalName())
         Utils.logDebug(TAG, "&!!! Task == " + childTask);
-        taskChildViewHolder.onBind(childTask, dateLong, parent, child, screenName);
+        taskChildViewHolder.onBind(childTask, childTask.getDueDate(), parent, child, screenName);
     }
 }

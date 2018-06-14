@@ -44,6 +44,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.extras.Base64;
 
 
 public class ChildDashboard extends BaseActivity {
@@ -113,6 +114,9 @@ public class ChildDashboard extends BaseActivity {
         childTaskDateList.setLayoutManager(mLayoutManager);
         childTaskDateList.setItemAnimator(new DefaultItemAnimator());
         final AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(childObject.getEmail(), childObject.getPassword());
         Log.e(TAG, "API getChildTasks: " + AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId());
         client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
@@ -183,7 +187,7 @@ public class ChildDashboard extends BaseActivity {
             public void run() {
 
                 try {
-                    new RestCall(childDashboard).authenticateUser(childObject.getEmail(), childObject.getPassword()
+                    new RestCall(childDashboard).authenticateUser(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword()
                             , null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
                 } catch (Exception e) {
                 }

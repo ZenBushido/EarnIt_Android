@@ -1,8 +1,14 @@
 package com.mobiledi.earnit.model;
 
+import android.content.Context;
+
+import com.mobiledi.earnit.MyApplication;
+import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.Utils;
 
 import java.io.Serializable;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by mradul on 7/5/17.
@@ -76,7 +82,7 @@ public class Parent implements Serializable {
     }
 
     public String getPassword() {
-        return Utils.checkIsNUll(password);
+        return Utils.checkIsNUll(MyApplication.getInstance().getPassword());
     }
 
     public void setPassword(String password) {

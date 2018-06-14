@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.dialogfragment.PasswordReminderResultFragment;
 import com.mobiledi.earnit.utils.AppConstant;
@@ -31,6 +32,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
@@ -120,6 +122,9 @@ public class PasswordReminder extends BaseActivity implements View.OnClickListen
         StringEntity entity = new StringEntity(passwordReminderInJson.toString());
         entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
         AsyncHttpClient httpClient = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        httpClient.addHeader("Authorization", basicAuth);
 
         httpClient.post(this, AppConstant.BASE_URL + AppConstant.PASSWORD_REMINDER, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
 

@@ -94,7 +94,8 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         preferences = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
 
         try {
-            if (preferences.getString(AppConstant.EMAIL, null) != null && !preferences.getString(AppConstant.EMAIL, null).equals(null)) {
+            if (preferences.getString(AppConstant.EMAIL, null) != null && preferences.getString(AppConstant.PASSWORD, null) != null) {
+                Utils.logDebug(TAG, "AutoLogin: username = " + preferences.getString(AppConstant.EMAIL, null) + "; password = " + preferences.getString(AppConstant.PASSWORD, null));
                 new RestCall(loginScreen).authenticateUser(preferences.getString(AppConstant.EMAIL, null), preferences.getString(AppConstant.PASSWORD, null), password, AppConstant.LOGIN_SCREEN, progressBar);
             }
         } catch (NullPointerException e) {
@@ -230,6 +231,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
 
     @Override
     public void onValidationSucceeded() {
+        Utils.logDebug(TAG, "onValidationSucceeded: username = " + username.getText().toString().trim() + "; password = " + password.getText().toString().trim());
         new RestCall(loginScreen).authenticateUser(username.getText().toString().trim(), password.getText().toString().trim(), password, AppConstant.LOGIN_SCREEN, progressBar);
     }
 

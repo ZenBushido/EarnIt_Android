@@ -44,6 +44,8 @@ public final class AppConstant {
     public static boolean MESSAGE_STATUS = false;
     //public final static AddTaskModel addTaskModel = new AddTaskModel();
 
+    public final static String APP_USAGE_LAST_UPDATE = "app_usage_last_update";
+
     public final static String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/";
     public final static String BASE_URL_QA = "http://159.65.68.220:8080/earnit-api";
     public final static String BASE_URL_PROD = "https://api.myearnitapp.com:8443/earnit-api";
@@ -185,7 +187,9 @@ public final class AppConstant {
 
     //AWS CREDENTIALS
     public static final String ACCESS_KEY_KEY = "AKIAJUTCQ6DO36I6BXUQ";
+    public static final String ACCESS_KEY_KEY2 = "AKIAJIN35A42G33VAWQA";
     public static final String SECRET_ACCESS_KEY = "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";
+    public static final String SECRET_ACCESS_KEY2 = "MNbVWaeVhsAtR+X/85g+edL84CoU6EuLU2BSzLy8";
     public static final String BUCKET_NAME_PROD = "earnitapp";
     public static final String BUCKET_NAME_QA = "earnitapp-dev";
    // public static final String BUCKET_NAME = BuildConfig.DEBUG ? BUCKET_NAME_QA : BUCKET_NAME_PROD;

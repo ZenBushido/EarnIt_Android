@@ -127,6 +127,7 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("jdsahdkjh", "Open FloatingMenu. Child: " + child);
                 new FloatingMenu(activity).fetchAvatarDimension(holder.profileImage, child, child, parent, AppConstant.PARENT_DASHBOARD, progressBar,null);
             }
         };
@@ -189,87 +190,6 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
                 break;
         }
     }
-//    private void getDashBoardData() {
-//        AsyncHttpClient client = new AsyncHttpClient();
-//        client.setBasicAuth(parent.getEmail(), parent.getPassword());
-//        client.setMaxRetriesAndTimeout(3,3000);
-//
-//        Utils.logDebug(TAG, "Child response request: "+AppConstant.BASE_URL + AppConstant.CHILDREN_API + parent.getId());
-//        client.get(AppConstant.BASE_URL + AppConstant.CHILDREN_API + parent.getAccount().getId(), null, new JsonHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-//                Utils.logDebug(TAG, "Child Success response: "+response.toString());
-//
-//                Log.d("Child Respo", AppConstant.BASE_URL + AppConstant.CHILDREN_API);
-//
-//                childList= new ArrayList<>();
-//                childApprovalList= new ArrayList<>();
-//
-//                for (int i = 0; i < response.length(); i++) {
-//                    try {
-//                        JSONObject childObject = response.getJSONObject(i);
-//
-//                        //child with non-approval task
-//                        Child child = new GetObjectFromResponse().getChildObject(childObject);
-//
-//                        //child with approval task
-//                        Child childApprovalTask = new GetObjectFromResponse().getChildObject(childObject);
-//                        ArrayList<Tasks> taskList = new ArrayList<>();
-//                        ArrayList<Tasks> taskApprovalList = new ArrayList<>();
-//
-//                        JSONArray taskArray = response.getJSONObject(i).getJSONArray(AppConstant.TASKS);
-//                        for (int taskIndex = 0; taskIndex < taskArray.length(); taskIndex++) {
-//                            JSONObject taskObject = taskArray.getJSONObject(taskIndex);
-//                            if(!taskObject.getString(AppConstant.STATUS).equals(AppConstant.APPROVED)){
-//                                Tasks task = new GetObjectFromResponse().getTaskObject(taskObject,childObject.getInt(AppConstant.ID));
-//
-//                                taskList.add(task);
-//                            }
-//
-//                            if(taskObject.getString(AppConstant.STATUS).equals(AppConstant.COMPLETED)){
-//                                Tasks task = new GetObjectFromResponse().getTaskObject(taskObject,childObject.getInt(AppConstant.ID));
-//
-//                                taskApprovalList.add(task);
-//                            }
-//                        }
-//                        child.setTasksArrayList(taskList);
-//                        childApprovalTask.setTasksArrayList(taskApprovalList);
-//                        childList.add(child);
-//                        childApprovalList.add(childApprovalTask);
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                }
-//
-//                notifyDataSetChanged();
-//
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-//                Utils.logDebug(TAG, "Child error response: "+ throwable.getLocalizedMessage());
-//
-//            }
-//
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                Utils.logDebug(TAG, "Child JSONObject response" + response.toString());
-//
-//            }
-//
-//            @Override
-//            public void onStart() {
-//                progressBar.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                progressBar.setVisibility(View.GONE);
-//            }
-//        });
-//    }
 
 
 

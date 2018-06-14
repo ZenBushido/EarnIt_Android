@@ -73,7 +73,7 @@
                                 android:id="@+id/input_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/views_height"
-                                android:text="fessn14@gmail.com"
+                                android:text="lkj@lkj.com"
                                 android:background="@android:color/white"
                                 android:ems="10"
                                 android:focusable="true"
@@ -92,7 +92,7 @@
                             </EditText>
 
                             <EditText
-                                android:text="dingo1987"
+                                android:text="pppppp"
                                 android:layout_marginTop="0.5dp"
                                 android:id="@+id/input_password"
                                 android:layout_width="match_parent"

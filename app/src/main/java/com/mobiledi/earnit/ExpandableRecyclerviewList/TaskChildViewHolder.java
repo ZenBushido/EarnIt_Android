@@ -39,7 +39,6 @@ public class TaskChildViewHolder extends ChildViewHolder {
     private Button childTaskStatus;
     private ImageView thumbUp, right_arrow;
     private LinearLayout task_details_layout, task_description_layout;
-    public Tasks task;
     public Goal goal;
 
     String TAG = TaskChildViewHolder.class.getSimpleName();
@@ -57,11 +56,9 @@ public class TaskChildViewHolder extends ChildViewHolder {
     }
 
     public void onBind(final Tasks currentTask, final long title, final Parent parent, final Child child, final String isParentChild) {
-
-        task = currentTask;
-        Utils.logDebug(TAG, "!!!! Task == " + task.toString());
+        Utils.logDebug(TAG, "!!!! Task == " + currentTask.toString());
         childTaskDetail.setText(currentTask.getName());
-        childTaskDueDate.setText(new DateTime(task.getDueDate()).toString("MM/dd@ h:mm a", Locale.getDefault()));
+        childTaskDueDate.setText(new DateTime(currentTask.getDueDate()).toString("MM/dd@ h:mm a", Locale.US));
         DateTime currentDate = new DateTime();
         task_description_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,39 +67,39 @@ public class TaskChildViewHolder extends ChildViewHolder {
                 if (isParentChild.equals("Parent") && !currentTask.getStatus().equals(AppConstant.COMPLETED)) {
 
                     Intent addTask = new Intent(itemView.getContext(), EditTask.class);
-                    addTask.putExtra("title", "" + task.getName());
-                    addTask.putExtra("ID", task.getId());
+                    addTask.putExtra("title", "" + currentTask.getName());
+                    addTask.putExtra("ID", currentTask.getId());
                     addTask.putExtra(AppConstant.CHILD_OBJECT, child);
                     addTask.putExtra(AppConstant.OTHER_CHILD_OBJECT, child);
                     addTask.putExtra(AppConstant.PARENT_OBJECT, parent);
-                    addTask.putExtra(AppConstant.TO_EDIT, (Serializable) task);
-                    Utils.logDebug(TAG, "1 Task == " + task);
-                    addTask.putExtra(AppConstant.GOAL_OBJECT, (Serializable) task.getGoal() );
+                    addTask.putExtra(AppConstant.TO_EDIT, (Serializable) currentTask);
+                    addTask.putExtra(AppConstant.REPITITION_SCHEDULE, currentTask.getRepititionSchedule());
+                    Utils.logDebug(TAG, "1 Task == " + currentTask);
+                    addTask.putExtra(AppConstant.GOAL_OBJECT, (Serializable) currentTask.getGoal() );
                     addTask.putExtra(AppConstant.TASK_STATUS, AppConstant.EDIT);
                     itemView.getContext().startActivity(addTask);
                 } else if (isParentChild.equals("Parent") && currentTask.getStatus().equals(AppConstant.COMPLETED)) {
-
                     Intent moveToTaskApproval = new Intent(itemView.getContext(), ParentTaskApproval.class);
                     // moveToTaskApproval.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     moveToTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
                     moveToTaskApproval.putExtra(AppConstant.OTHER_CHILD_OBJECT, child);
                     moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, (Serializable)parent);
                     moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, AppConstant.CHECKED_IN_SCREEN);
-                    moveToTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
-                    moveToTaskApproval.putExtra(AppConstant.REPITITION_SCHEDULE, task.getRepititionSchedule());
-                    Utils.logDebug(TAG, "2 Task == " + task);
-                    if(task.getTaskComments()!=null)
-                    moveToTaskApproval.putExtra(AppConstant.TASK_COMMENTS, (Serializable) task.getTaskComments().get(0));
+                    moveToTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) currentTask);
+                    moveToTaskApproval.putExtra(AppConstant.REPITITION_SCHEDULE, currentTask.getRepititionSchedule());
+                    Utils.logDebug(TAG, "2 Task == " + currentTask);
+                    if(currentTask.getTaskComments()!=null)
+                    moveToTaskApproval.putExtra(AppConstant.TASK_COMMENTS, (Serializable) currentTask.getTaskComments().get(0));
                     itemView.getContext().startActivity(moveToTaskApproval);
 
 
                 } else if (!currentTask.getStatus().equals(AppConstant.COMPLETED)) {
                     Intent requestTaskApproval = new Intent(itemView.getContext(), ChildRequestTaskApproval.class);
                     requestTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
-                    requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) task);
-                    Utils.logDebug(TAG, "3! Task == " + task);
-                    requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
-                    requestTaskApproval.putExtra(AppConstant.REPETITION_SCHEDULE, task.getRepititionSchedule());
+                    requestTaskApproval.putExtra(AppConstant.TASK_OBJECT, (Serializable) currentTask);
+                    Utils.logDebug(TAG, "3! Task == " + currentTask);
+                    requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, currentTask.getGoal());
+                    requestTaskApproval.putExtra(AppConstant.REPETITION_SCHEDULE, currentTask.getRepititionSchedule());
                     requestTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parent);
                     requestTaskApproval.putExtra(AppConstant.DUE_DATE_STRING, title);
 

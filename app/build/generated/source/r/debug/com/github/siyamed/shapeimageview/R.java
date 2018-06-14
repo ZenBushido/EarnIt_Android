@@ -28,10 +28,10 @@ public final class R {
         public static final int fill = 0x7f0900ea;
         public static final int left = 0x7f090118;
         public static final int miter = 0x7f090180;
-        public static final int right = 0x7f0901dd;
-        public static final int round = 0x7f0901e2;
-        public static final int square = 0x7f09021d;
-        public static final int stroke = 0x7f090224;
+        public static final int right = 0x7f0901de;
+        public static final int round = 0x7f0901e3;
+        public static final int square = 0x7f09021e;
+        public static final int stroke = 0x7f090225;
     }
     public static final class raw {
         public static final int imgview_diamond = 0x7f0e0000;

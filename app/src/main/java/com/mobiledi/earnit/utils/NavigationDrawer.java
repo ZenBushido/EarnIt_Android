@@ -30,6 +30,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.activity.LoginScreen;
 import com.mobiledi.earnit.activity.ParentDashboard;
@@ -202,6 +203,7 @@ public class NavigationDrawer {
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.clear();
                                 editor.commit();
+                                MyApplication.getInstance().clearPassword();
                                 logoutParent(parentObject);
                                 Intent intentLogout = new Intent(context, LoginScreen.class);
                                 intentLogout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |

@@ -1,8 +1,8 @@
 package com.mobiledi.earnit.retrofit;
 
 
-
-
+import com.mobiledi.earnit.model.AppUsage;
+import com.mobiledi.earnit.model.AppUsageResponse;
 import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDay;
 import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDayResponse;
 import com.mobiledi.earnit.model.adjustBalance.AdjustBalanceResponse;
@@ -15,9 +15,9 @@ import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
 import com.mobiledi.earnit.model.task.GetAllTaskResponse;
 
 import java.util.List;
+import java.util.Map;
 
-
-import io.reactivex.Observer;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -26,6 +26,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 /**
  * Created by mac on 27/02/18.
@@ -69,5 +70,16 @@ public interface RetroInterface {
     @PUT("tasks")
     Call<EditTaskResponse>
     editTask(@Body EditTaskRequest editTaskRequest);
+
+    @PUT("mobileapplications")
+    Call<Response<ResponseBody>> createAppUsages(@Body List<AppUsage> ages);
+
+    @GET("mobileapplications/usage")
+    Call<List<AppUsageResponse>>
+    getAppsUsage(@QueryMap(encoded=true) Map<String, Integer> filters);
+
+//    @GET("mobileapplications/usage")
+//    Call<ResponseBody>
+//    getAppsUsage(@QueryMap(encoded=true) Map<String, Integer> filters);
 
 }

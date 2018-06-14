@@ -1,102 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center_vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/child_view_layput_bg"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/add_task_header1"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:gravity="center_horizontal" />
-
-        <TextView
-            android:id="@+id/add_task_header2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="top|center"
-            android:text="@string/daily_usage"
-            android:textColor="@color/check_in"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/add_task_header3"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:gravity="center_horizontal" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/sign_in_round"
-            android:id="@+id/button_open_usage_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/open_app_usage_setting"
-
-            />
-
         <LinearLayout
-            android:visibility="gone"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_span"
-                />
+            android:background="@drawable/child_view_layput_bg"
+            android:orientation="vertical">
 
-            <Spinner
-                android:popupElevation="0dp"
-                style="@style/Widget.AppCompat.Spinner.DropDown"
-                android:popupTheme="@style/Widget.AppCompat.Spinner.DropDown"
-                android:popupBackground="@color/list_header_bd"
-                android:layout_marginLeft="10dp"
-                android:spinnerMode="dropdown"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/white"
-                android:id="@+id/spinner_time_span"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/add_task_header1"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/add_task_header2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|center"
+                android:text="@string/daily_usage"
+                android:textColor="@color/check_in"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/add_task_header3"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:gravity="center_horizontal" />
+
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="10dp"
-            android:id="@+id/recyclerview_app_usage"
-            android:scrollbars="vertical"
-            android:drawSelectorOnTop="true"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="LinearLayoutManager"
-            />
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_open_usage_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sign_in_round"
+                android:text="@string/open_app_usage_setting"
+                android:textColor="@color/white"
+
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time_span"
+                    android:textColor="@color/white" />
+
+                <Spinner
+                    android:id="@+id/spinner_time_span"
+                    style="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:backgroundTint="@color/white"
+                    android:popupBackground="@color/list_header_bd"
+                    android:popupElevation="0dp"
+                    android:popupTheme="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_app_usage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:drawSelectorOnTop="true"
+                android:scrollbars="vertical"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
 
+        </LinearLayout>
 
 
     </LinearLayout>
 
+    <ProgressBar
+        android:layout_centerInParent="true"
+        android:id="@+id/pb"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
 
-</LinearLayout>
+</RelativeLayout>

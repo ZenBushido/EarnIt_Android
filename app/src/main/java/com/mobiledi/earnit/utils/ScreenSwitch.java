@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.activity.AddChild;
 import com.mobiledi.earnit.activity.AddTask;
@@ -52,6 +53,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.extras.Base64;
 import retrofit.GetGoalsFromChildInterface;
 import retrofit.ServiceGenerator;
 import retrofit2.Call;
@@ -135,6 +137,7 @@ public class ScreenSwitch {
             addTask.putExtra(AppConstant.FROM_SCREEN, screen);
             addTask.putExtra(AppConstant.PARENT_OBJECT, parent);
             addTask.putExtra(AppConstant.TO_EDIT, (Serializable) tasks);
+            addTask.putExtra(AppConstant.REPITITION_SCHEDULE, tasks.getRepititionSchedule());
             addTask.putExtra(AppConstant.TASK_STATUS, AppConstant.EDIT);
             addTask.putExtra("testing", "Edit");
 
@@ -156,6 +159,9 @@ public class ScreenSwitch {
 
         try {
             AsyncHttpClient client = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            client.addHeader("Authorization", basicAuth);
             client.setBasicAuth(parent.getEmail(), parent.getPassword());
             client.get(AppConstant.BASE_URL + AppConstant.GOAL_API + child.getId(), null, new JsonHttpResponseHandler() {
 
@@ -323,7 +329,7 @@ goals.add(goal);
 
 
     public void moveToChildDashboard(Child childObject, RelativeLayout progressBar) {
-        new RestCall(activity).authenticateUser(childObject.getEmail(), childObject.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progressBar);
+        new RestCall(activity).authenticateUser(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progressBar);
 
     }
 
@@ -430,7 +436,7 @@ goals.add(goal);
 
         Intent moveToTaskApproval = new Intent(activity, AppUsageStatisticsActivity.class);
         // moveToTaskApproval.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
+        Log.d("jdsahdkjh", "ScreenSwitch. Child: " + child);
         moveToTaskApproval.putExtra(AppConstant.CHILD_OBJECT, child);
         moveToTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parent);
         moveToTaskApproval.putExtra(AppConstant.FROM_SCREEN, fromScreen);

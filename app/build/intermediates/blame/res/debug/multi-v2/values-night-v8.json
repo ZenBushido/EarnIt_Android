@@ -4,17 +4,7 @@
             "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialize-0.8.8.aar\\5b949f93cf090d0201ee086d283b8e7c\\res\\values-night-v8\\values-night-v8.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,141,263,361,495,573,687,753",
-                        "endColumns": "85,121,97,133,77,113,65,101",
-                        "endOffsets": "136,258,356,490,568,682,748,850"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\ac92d1c01f4f05b8f5cc7bcefd67f7a5\\res\\values-night-v8\\values-night-v8.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\9073eade02d37828669609c88fd521d7\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",
@@ -28,6 +18,16 @@
                         "startOffsets": "855,925,1009,1093,1189,1291,1393",
                         "endColumns": "69,83,83,95,101,101,93",
                         "endOffsets": "920,1004,1088,1184,1286,1388,1482"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialize-0.8.8.aar\\130aacf50cec20643199f79dc762e67e\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,141,263,361,495,573,687,753",
+                        "endColumns": "85,121,97,133,77,113,65,101",
+                        "endOffsets": "136,258,356,490,568,682,748,850"
                     }
                 }
             ]

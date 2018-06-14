@@ -34,6 +34,7 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ChildListAdapter;
 import com.mobiledi.earnit.model.Child;
@@ -69,6 +70,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
@@ -375,6 +377,9 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
             StringEntity entity = new StringEntity(signInJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
             PersistentCookieStore myCookieStore = new PersistentCookieStore(profile);
             httpClient.setCookieStore(myCookieStore);
@@ -482,6 +487,9 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
 
     public void fetchChildList() {
         AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setMaxRetriesAndTimeout(3, 3000);
 
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());

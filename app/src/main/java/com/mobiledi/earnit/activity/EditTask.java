@@ -42,13 +42,16 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ItemAdapter;
 import com.mobiledi.earnit.model.AddTaskModel;
 import com.mobiledi.earnit.model.Child;
+import com.mobiledi.earnit.model.DayTaskStatus;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Item;
 import com.mobiledi.earnit.model.Parent;
+import com.mobiledi.earnit.model.RepititionSchedule;
 import com.mobiledi.earnit.model.TaskV2Model;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.model.deleteTask.DeleteTaskResponse;
@@ -92,6 +95,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import retrofit.ServiceGenerator;
@@ -147,6 +151,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     ArrayList<String> list;
     ArrayList<Goal> goalList = new ArrayList<>();
     Tasks currentTask;
+    RepititionSchedule repititionSchedule;
     DateTimeFormatter fmt;
     ScreenSwitch screenSwitch;
     ArrayList<Item> repeatList, goalsList;
@@ -167,6 +172,8 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     ImageButton approveButton;
     @BindView(R.id.add_task_header2)
     TextView textView;
+
+    private long dueDate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -192,7 +199,6 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         goalObject = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
-
         fetchCHildId = childObject.getId();
         NavigationDrawer navigationDrawer = new NavigationDrawer(addTask, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
         navigationDrawer.setOnDrawerToggeled(this);
@@ -274,6 +280,12 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
             }
         });
         currentTask = (Tasks) intent.getSerializableExtra(AppConstant.TO_EDIT);
+        repititionSchedule = (RepititionSchedule) intent.getSerializableExtra(AppConstant.REPITITION_SCHEDULE);
+        if (repititionSchedule != null){
+            currentTask.setRepititionSchedule(repititionSchedule);
+        }
+
+        dueDate = currentTask.getDueDate();
         fetchCHildId = childObject.getId();
         autoFill(currentTask);
         if (goalObject != null) {
@@ -654,6 +666,9 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
             StringEntity entity = new StringEntity(signInJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
             PersistentCookieStore myCookieStore = new PersistentCookieStore(addTask);
             httpClient.setCookieStore(myCookieStore);
@@ -724,6 +739,9 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     private void chechUserTasks() {
 
         final AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
             @Override
@@ -758,6 +776,9 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
         try {
             AsyncHttpClient client = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            client.addHeader("Authorization", basicAuth);
             client.setMaxRetriesAndTimeout(3, 3000);
             client.setBasicAuth(email, password);
             client.get(AppConstant.BASE_URL + AppConstant.GOAL_API + childId, null, new JsonHttpResponseHandler() {
@@ -966,6 +987,9 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     public void fetchChildList() {
 
         final AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.get(AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getAccount().getId(), null, new JsonHttpResponseHandler() {
             @Override
@@ -1034,16 +1058,41 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
     }
 
+    private boolean isLastTask(Tasks task) {
+        if (task.getRepititionSchedule() != null && task.getRepititionSchedule().getSpecificDays() != null
+                && !task.getRepititionSchedule().getSpecificDays().isEmpty()) {
+            int i = -1;
+            try {
+                i = Integer.parseInt(task.getRepititionSchedule().getSpecificDays().get(task.getRepititionSchedule().getSpecificDays().size() - 1));
+            } catch (NumberFormatException ignored) {
+            }
+            if (i == new DateTime(dueDate).getDayOfMonth()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void updateTaskStatus(Tasks selectedTask, String changedStatus) {
+        Utils.logDebug(TAG, "updateTaskStatus. Task == " + selectedTask.toString());
         JSONObject taskJson = new JSONObject();
+        boolean isLastTask = isLastTask(selectedTask);
         try {
             taskJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, selectedTask.getChildId()));
             taskJson.put(AppConstant.ID, selectedTask.getId());
+            taskJson.put(AppConstant.ALLOWANCE, selectedTask.getAllowance());
+            taskJson.put(AppConstant.UPDATE_DATE, new DateTime().toString("MMM dd, yyyy HH:mm:ss a"));
             taskJson.put(AppConstant.NAME, selectedTask.getName());
-            taskJson.put(AppConstant.DUE_DATE, selectedTask.getDueDate());
+            taskJson.put(AppConstant.DUE_DATE, selectedTask.getRepititionSchedule() == null ? selectedTask.getDueDate() : selectedTask.getStartDate());
             taskJson.put(AppConstant.CREATE_DATE, selectedTask.getCreateDate());
             taskJson.put(AppConstant.DESCRIPTION, selectedTask.getDetails());
-            taskJson.put(AppConstant.STATUS, changedStatus);
+            if (selectedTask.getRepititionSchedule() == null/* || isLastTask*/) {
+                taskJson.put(AppConstant.STATUS, changedStatus);
+                Utils.logDebug(TAG, "1 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
+            } else {
+                taskJson.put(AppConstant.STATUS, "Created");
+                Utils.logDebug(TAG, "2 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
+            }
             taskJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
             taskJson.put(AppConstant.ALLOWANCE, selectedTask.getAllowance());
 
@@ -1053,8 +1102,28 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                 JSONObject repeatSchedule = new JSONObject();
                 repeatSchedule.put(AppConstant.ID, selectedTask.getRepititionSchedule().getId());
                 repeatSchedule.put(AppConstant.REPEAT, selectedTask.getRepititionSchedule().getRepeat());
+                List<DayTaskStatus> dayTaskStatusesList = selectedTask.getRepititionSchedule().getDayTaskStatuses();
+                JSONArray dayTaskStatuses = new JSONArray();
+                for (DayTaskStatus dayStatus : dayTaskStatusesList){
+                    JSONObject dayTaskStatus = new JSONObject();
+                    dayTaskStatus.put("createdDateTime", dayStatus.getCreatedDateTime());
+                    DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM dd, yyyy HH:mm:ss a").withLocale(Locale.US);
+                    DateTime dt = formatter.parseDateTime(dayStatus.getCreatedDateTime());
+                    if (dt.withTimeAtStartOfDay().isEqual(new DateTime(selectedTask.getDueDate()).withTimeAtStartOfDay())){
+                        dayTaskStatus.put("status", changedStatus);
+                    } else {
+                        dayTaskStatus.put("status", dayStatus.getStatus());
+                    }
+                    dayTaskStatus.put("id", dayStatus.getId());
+                    dayTaskStatuses.put(dayTaskStatus);
+                }
+                JSONObject dayTaskStatus = new JSONObject();
+                dayTaskStatus.put("createdDateTime", new DateTime(selectedTask.getDueDate()).toString("MMM dd, yyyy HH:mm:ss a", Locale.US));
+                dayTaskStatus.put("status", changedStatus);
+//                dayTaskStatus.put("id", dayStatus.getId());
+                dayTaskStatuses.put(dayTaskStatus);
+                repeatSchedule.put("dayTaskStatuses", dayTaskStatuses);
                 taskJson.put(AppConstant.REPITITION_SCHEDULE, repeatSchedule);
-
             }
 
             if (selectedTask.getPictureRequired())
@@ -1067,10 +1136,14 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
             if (selectedTask.getGoal() != null) {
                 taskJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, selectedTask.getGoal().getId()));
 
-            } Utils.logDebug(TAG, " child-update-task : " + taskJson.toString());
+            }
+            Utils.logDebug(TAG, "child-update-task : " + taskJson.toString());
             StringEntity entity = new StringEntity(taskJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
 
             httpClient.put(addTask, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
@@ -1080,34 +1153,8 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                     Utils.logDebug(TAG, " onSuccessOU : " + response.toString());
                     progressBar.setVisibility(View.GONE);
                     lockScreen();
-
-                    final AsyncHttpClient client = new AsyncHttpClient();
-                    client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
-                    client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                            ArrayList<Tasks> taskList = new ArrayList<>();
-
-                            for (int i = 0; i < response.length(); i++) {
-                                try {
-                                    JSONObject object = response.getJSONObject(i);
-                                    //TASKS
-                                    Tasks task = new GetObjectFromResponse().getTaskObject(object, childObject.getId());
-                                    taskList.add(task);
-
-
-                                } catch (Exception e) {
-
-                                }
-                                childObject.setTasksArrayList(taskList);
-                                screenSwitch.moveToAllTaskScreen(childObject, childObject, AppConstant.CHECKED_IN_SCREEN, parentObject, screen_name);
-                                //screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
-                            }
-                        }
-                    });
-
-                    //if(isDeviceOnline())
-                      //  fetchChildTaskList();
+                    if (isDeviceOnline())
+                        fetchChildTaskList();
                 }
 
                 @Override
@@ -1115,9 +1162,8 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                     Utils.logDebug(TAG, " onSuccessAU : " + response.toString());
                     progressBar.setVisibility(View.GONE);
                     lockScreen();
-                    screenSwitch.moveToAllTaskScreen(childObject, childObject, AppConstant.CHECKED_IN_SCREEN, parentObject, screen_name);
-                  //  if(isDeviceOnline())
-                    //    fetchChildTaskList();
+                    if (isDeviceOnline())
+                        fetchChildTaskList();
                 }
 
                 @Override
@@ -1125,7 +1171,6 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                     showToast(getResources().getString(R.string.api_calling_failed));
                     Utils.logDebug(TAG, " onFailureU : " + errorResponse.toString());
                     unLockScreen();
-
                 }
 
                 @Override
@@ -1133,15 +1178,12 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                     showToast(getResources().getString(R.string.api_calling_failed));
                     Utils.logDebug(TAG, " onFailureU : " + errorResponse.toString());
                     unLockScreen();
-
                 }
 
                 @Override
                 public void onStart() {
                     progressBar.setVisibility(View.VISIBLE);
                     lockScreen();
-
-
                 }
 
                 @Override
@@ -1150,10 +1192,211 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                     unLockScreen();
                 }
             });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (JSONException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
+
+
+    public void fetchChildTaskList() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
+        client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+        client.setMaxRetriesAndTimeout(3, 3000);
+
+        client.get(AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getAccount().getId(), null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                unLockScreen();
+                Utils.logDebug(TAG, "Child Success response: " + response.toString());
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject childObj = response.getJSONObject(i);
+
+                        //child with non-approval task
+                        if (childObj.getInt(AppConstant.ID) == childObject.getId()) {
+                            Child child = new GetObjectFromResponse().getChildObject(childObj);
+                            Child otherChild = new GetObjectFromResponse().getChildObject(childObj);
+
+                            //TASKS
+                            ArrayList<Tasks> taskList = new ArrayList<>();
+                            ArrayList<Tasks> otherTaskList = new ArrayList<>();
+                            JSONArray taskArray = childObj.getJSONArray(AppConstant.TASKS);
+                            for (int taskIndex = 0; taskIndex < taskArray.length(); taskIndex++) {
+                                JSONObject taskObject = taskArray.getJSONObject(taskIndex);
+                                if (taskObject.getString(AppConstant.STATUS).equals(AppConstant.COMPLETED)) {
+                                    Tasks task = new GetObjectFromResponse().getTaskObject(taskObject, child.getId());
+                                    taskList.add(task);
+                                }
+
+                                JSONObject othertaskObject = taskArray.getJSONObject(taskIndex);
+                                if (!othertaskObject.getString(AppConstant.STATUS).equals(AppConstant.APPROVED)) {
+                                    Tasks task = new GetObjectFromResponse().getTaskObject(othertaskObject, child.getId());
+                                    otherTaskList.add(task);
+                                }
+                            }
+                            child.setTasksArrayList(taskList);
+                            otherChild.setTasksArrayList(otherTaskList);
+//                            new ScreenSwitch(parentTaskApproval).moveToTaskApproval(child, otherChild, parentObject, fromScreen, null);
+                            screenSwitch.moveToAllTaskScreen(childObject, otherChild, AppConstant.CHECKED_IN_SCREEN, parentObject, AppConstant.BALANCE_SCREEN);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Utils.logDebug(TAG, "Child error response: " + errorResponse.toString());
+                unLockScreen();
+            }
+
+            @Override
+            public void onStart() {
+                progressBar.setVisibility(View.VISIBLE);
+                lockScreen();
+            }
+
+            @Override
+            public void onFinish() {
+                progressBar.setVisibility(View.GONE);
+                unLockScreen();
+            }
+        });
+
+    }
+
+//    private void updateTaskStatus(Tasks selectedTask, String changedStatus) {
+//        JSONObject taskJson = new JSONObject();
+//        try {
+//            taskJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, selectedTask.getChildId()));
+//            taskJson.put(AppConstant.ID, selectedTask.getId());
+//            taskJson.put(AppConstant.NAME, selectedTask.getName());
+//            taskJson.put(AppConstant.DUE_DATE, selectedTask.getDueDate());
+//            taskJson.put(AppConstant.CREATE_DATE, selectedTask.getCreateDate());
+//            taskJson.put(AppConstant.DESCRIPTION, selectedTask.getDetails());
+//            taskJson.put(AppConstant.STATUS, changedStatus);
+//            taskJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
+//            taskJson.put(AppConstant.ALLOWANCE, selectedTask.getAllowance());
+//
+//            if (selectedTask.getRepititionSchedule() == null)
+//                Utils.logDebug(TAG, "repeat is none");
+//            else {
+//                JSONObject repeatSchedule = new JSONObject();
+//                repeatSchedule.put(AppConstant.ID, selectedTask.getRepititionSchedule().getId());
+//                repeatSchedule.put(AppConstant.REPEAT, selectedTask.getRepititionSchedule().getRepeat());
+//                taskJson.put(AppConstant.REPITITION_SCHEDULE, repeatSchedule);
+//
+//            }
+//
+//            if (selectedTask.getPictureRequired())
+//                taskJson.put(AppConstant.PICTURE_REQUIRED, selectedTask.getPictureRequired());
+//            else {
+//                taskJson.put(AppConstant.PICTURE_REQUIRED, 0);
+//                Utils.logDebug(TAG, "picture required not checked");
+//            }
+//
+//            if (selectedTask.getGoal() != null) {
+//                taskJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, selectedTask.getGoal().getId()));
+//
+//            } Utils.logDebug(TAG, " child-update-task : " + taskJson.toString());
+//            StringEntity entity = new StringEntity(taskJson.toString());
+//            entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
+//            AsyncHttpClient httpClient = new AsyncHttpClient();
+//            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+//            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+//            httpClient.addHeader("Authorization", basicAuth);
+//            httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+//
+//            httpClient.put(addTask, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+//
+//                @Override
+//                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                    Utils.logDebug(TAG, " onSuccessOU : " + response.toString());
+//                    progressBar.setVisibility(View.GONE);
+//                    lockScreen();
+//
+//                    final AsyncHttpClient client = new AsyncHttpClient();
+//                    String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+//                    final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+//                    client.addHeader("Authorization", basicAuth);
+//                    client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+//                    client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
+//                        @Override
+//                        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+//                            ArrayList<Tasks> taskList = new ArrayList<>();
+//
+//                            for (int i = 0; i < response.length(); i++) {
+//                                try {
+//                                    JSONObject object = response.getJSONObject(i);
+//                                    //TASKS
+//                                    Tasks task = new GetObjectFromResponse().getTaskObject(object, childObject.getId());
+//                                    taskList.add(task);
+//
+//
+//                                } catch (Exception e) {
+//
+//                                }
+//                                childObject.setTasksArrayList(taskList);
+//                                screenSwitch.moveToAllTaskScreen(childObject, childObject, AppConstant.CHECKED_IN_SCREEN, parentObject, screen_name);
+//                                //screenSwitch.moveToAllTaskScreen(child, child, fromScreen, parentObject, fromScreen);
+//                            }
+//                        }
+//                    });
+//
+//                    //if(isDeviceOnline())
+//                      //  fetchChildTaskList();
+//                }
+//
+//                @Override
+//                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+//                    Utils.logDebug(TAG, " onSuccessAU : " + response.toString());
+//                    progressBar.setVisibility(View.GONE);
+//                    lockScreen();
+//                    screenSwitch.moveToAllTaskScreen(childObject, childObject, AppConstant.CHECKED_IN_SCREEN, parentObject, screen_name);
+//                  //  if(isDeviceOnline())
+//                    //    fetchChildTaskList();
+//                }
+//
+//                @Override
+//                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+//                    showToast(getResources().getString(R.string.api_calling_failed));
+//                    Utils.logDebug(TAG, " onFailureU : " + errorResponse.toString());
+//                    unLockScreen();
+//
+//                }
+//
+//                @Override
+//                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                    showToast(getResources().getString(R.string.api_calling_failed));
+//                    Utils.logDebug(TAG, " onFailureU : " + errorResponse.toString());
+//                    unLockScreen();
+//
+//                }
+//
+//                @Override
+//                public void onStart() {
+//                    progressBar.setVisibility(View.VISIBLE);
+//                    lockScreen();
+//
+//
+//                }
+//
+//                @Override
+//                public void onFinish() {
+//                    progressBar.setVisibility(View.GONE);
+//                    unLockScreen();
+//                }
+//            });
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

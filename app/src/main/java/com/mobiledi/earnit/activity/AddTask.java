@@ -37,6 +37,7 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ItemAdapter;
 import com.mobiledi.earnit.model.AddTaskModel;
@@ -89,6 +90,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import io.reactivex.Observable;
@@ -681,6 +683,9 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             StringEntity entity = new StringEntity(addTaskJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
             PersistentCookieStore myCookieStore = new PersistentCookieStore(addTask);
             httpClient.setCookieStore(myCookieStore);
@@ -823,6 +828,9 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
         try {
             AsyncHttpClient client = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            client.addHeader("Authorization", basicAuth);
             client.setBasicAuth(email, password);
             client.get(AppConstant.BASE_URL + AppConstant.GOAL_API + childId, null, new JsonHttpResponseHandler() {
 
@@ -1005,6 +1013,9 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     public void fetchChildList() {
 
         AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.setMaxRetriesAndTimeout(3, 3000);
 
@@ -1069,6 +1080,9 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     private void chechUserTasks() {
         retry = 0;
         final AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
             @Override

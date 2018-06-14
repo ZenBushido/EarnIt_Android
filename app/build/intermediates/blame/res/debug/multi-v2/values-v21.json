@@ -40,64 +40,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialize-0.8.8.aar\\5b949f93cf090d0201ee086d283b8e7c\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,3,7,12,16,21,26,30,35,40",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,107,283,606,794,1153,1488,1700,2039,2354",
-                        "endLines": "2,6,11,15,20,25,29,34,39,44",
-                        "endColumns": "51,12,12,12,12,12,12,12,12,12",
-                        "endOffsets": "102,278,601,789,1148,1483,1695,2034,2349,2652"
-                    },
-                    "to": {
-                        "startLines": "7,231,235,240,244,249,254,258,263,268",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "451,17373,17549,17872,18060,18419,18754,18966,19305,19620",
-                        "endLines": "7,234,239,243,248,253,257,262,267,272",
-                        "endColumns": "51,12,12,12,12,12,12,12,12,12",
-                        "endOffsets": "498,17544,17867,18055,18414,18749,18961,19300,19615,19918"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.0.2.aar\\0160c77dbffc22fefe001a5b266d570f\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,5",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,266",
-                        "endLines": "4,5",
-                        "endColumns": "12,96",
-                        "endOffsets": "261,358"
-                    },
-                    "to": {
-                        "startLines": "166,230",
-                        "startColumns": "4,4",
-                        "startOffsets": "12726,17276",
-                        "endLines": "168,230",
-                        "endColumns": "12,96",
-                        "endOffsets": "12932,17368"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\f2922f7a554a36866ca3791c1a5aab17\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,223,290,354,470,596,722,850,1022",
-                        "endLines": "2,3,4,5,6,7,8,9,12,17",
-                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
-                        "endOffsets": "154,218,285,349,465,591,717,845,1017,1355"
-                    },
-                    "to": {
-                        "startLines": "2,4,5,6,311,312,319,323,351,354",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "100,256,320,387,22272,22388,22845,23139,24455,24627",
-                        "endLines": "2,4,5,6,311,312,319,323,353,358",
-                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
-                        "endOffsets": "199,315,382,446,22383,22509,22966,23262,24622,24960"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\ac92d1c01f4f05b8f5cc7bcefd67f7a5\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\9073eade02d37828669609c88fd521d7\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,19,20,21,22,24,26,27,28,29,30,32,34,36,38,40,42,43,48,50,52,53,54,56,58,59,60,61,62,63,107,110,154,157,160,162,164,166,169,171,174,175,176,179,180,181,182,183,184,187,188,190,192,194,196,200,202,203,204,205,207,211,213,215,216,217,218,219,221,222,223,233,234,235,247",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -116,7 +59,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\d7c3746fbabfd12511334574c927b415\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\ef2a04aea4af8156ec3ef4ce86886c23\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,5,8,11",
                         "startColumns": "4,4,4,4",
@@ -132,6 +75,63 @@
                         "endLines": "315,318,322,326",
                         "endColumns": "12,12,12,12",
                         "endOffsets": "22677,22840,23134,23429"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.0.2.aar\\3d412e8e29bc1ef6306a6aca86a4b49a\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,5",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,266",
+                        "endLines": "4,5",
+                        "endColumns": "12,96",
+                        "endOffsets": "261,358"
+                    },
+                    "to": {
+                        "startLines": "166,230",
+                        "startColumns": "4,4",
+                        "startOffsets": "12726,17276",
+                        "endLines": "168,230",
+                        "endColumns": "12,96",
+                        "endOffsets": "12932,17368"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\aeb6af3159ca64c8a6614bda60343752\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,223,290,354,470,596,722,850,1022",
+                        "endLines": "2,3,4,5,6,7,8,9,12,17",
+                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "154,218,285,349,465,591,717,845,1017,1355"
+                    },
+                    "to": {
+                        "startLines": "2,4,5,6,311,312,319,323,351,354",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "100,256,320,387,22272,22388,22845,23139,24455,24627",
+                        "endLines": "2,4,5,6,311,312,319,323,353,358",
+                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "199,315,382,446,22383,22509,22966,23262,24622,24960"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialize-0.8.8.aar\\130aacf50cec20643199f79dc762e67e\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,3,7,12,16,21,26,30,35,40",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,107,283,606,794,1153,1488,1700,2039,2354",
+                        "endLines": "2,6,11,15,20,25,29,34,39,44",
+                        "endColumns": "51,12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "102,278,601,789,1148,1483,1695,2034,2349,2652"
+                    },
+                    "to": {
+                        "startLines": "7,231,235,240,244,249,254,258,263,268",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "451,17373,17549,17872,18060,18419,18754,18966,19305,19620",
+                        "endLines": "7,234,239,243,248,253,257,262,267,272",
+                        "endColumns": "51,12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "498,17544,17867,18055,18414,18749,18961,19300,19615,19918"
                     }
                 }
             ]

@@ -3,6 +3,10 @@ package com.mobiledi.earnit.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -12,21 +16,28 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
+import com.mobiledi.earnit.model.AppUsage;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.service.UpdateFcmToken;
 
+import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.entity.StringEntity;
-import cz.msebera.android.httpclient.message.BasicHeader;
-import cz.msebera.android.httpclient.protocol.HTTP;
+import cz.msebera.android.httpclient.extras.Base64;
+import okhttp3.ResponseBody;
+import retrofit.ServiceGenerator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -40,41 +51,43 @@ public class RestCall {
     final String TAG = "RestCall";
     ScreenSwitch screenSwitch;
     Parent parent;
+    private SharedPreferences sp;
 
     public RestCall(Activity activity) {
         this.activity = activity;
         screenSwitch = new ScreenSwitch(this.activity);
     }
 
-    public void authenticateUser(String username, final String password, final EditText editPassword, final String from, final RelativeLayout progressBar) {
+    public void authenticateUser(final String username, final String password, final EditText editPassword, final String from, final RelativeLayout progressBar) {
+        Utils.logDebug(TAG, "authenticateUser: username = " + username + "; password = " + password);
 
-        SharedPreferences shareToken = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
-        Utils.logDebug(TAG, " GeneratedTokenI " + shareToken.getString(AppConstant.TOKEN_ID, null));
-        token = shareToken.getString(AppConstant.TOKEN_ID, null);
+        sp = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
+        Utils.logDebug(TAG, " GeneratedTokenI " + sp.getString(AppConstant.TOKEN_ID, null));
+        token = sp.getString(AppConstant.TOKEN_ID, null);
 
-        JSONObject signInJson = new JSONObject();
         try {
-            signInJson.put(AppConstant.EMAIL, username.trim());
-            signInJson.put(AppConstant.PASSWORD, password.trim());
-            StringEntity entity = new StringEntity(signInJson.toString());
-            entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
             PersistentCookieStore myCookieStore = new PersistentCookieStore(activity);
             httpClient.setCookieStore(myCookieStore);
+            String namePassword = username.trim() + ":" + password.trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setMaxRetriesAndTimeout(3, 3000);
             Utils.logDebug(TAG, " login-Rquest " + AppConstant.BASE_URL + AppConstant.LOGIN_API);
-            Utils.logDebug(TAG, " login-Rquest " + signInJson.toString());
-            httpClient.post(activity, AppConstant.BASE_URL + AppConstant.LOGIN_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+            Utils.logDebug(TAG, " login-Rquest Header: " + namePassword);
+            Utils.logDebug(TAG, " login-Rquest encoded Header: " + basicAuth);
+            httpClient.get(activity, AppConstant.BASE_URL + AppConstant.LOGIN_API, null, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     try {
                         Utils.logDebug(TAG, " login-Rquest onSuccess" + response.toString());
 
-                        SharedPreferences shareToken = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
-                        SharedPreferences.Editor editor = shareToken.edit();
-                        editor.putString(AppConstant.EMAIL, response.getString(AppConstant.EMAIL));
-                        editor.putString(AppConstant.PASSWORD, response.getString(AppConstant.PASSWORD));
-                        editor.commit();
+                        MyApplication.getInstance().setPassword(password);
+                        MyApplication.getInstance().setEmail(username);
+                        sp.edit()
+                                .putString(AppConstant.EMAIL, response.getString(AppConstant.EMAIL))
+                                .putString(AppConstant.PASSWORD, password)
+                                .apply();
 
                         Intent updateToken = new Intent(activity, UpdateFcmToken.class);
                         updateToken.putExtra(AppConstant.IS_LOGOUT, false);
@@ -104,6 +117,9 @@ public class RestCall {
                             }
 
                         } else if (response.getString(AppConstant.TYPE).equals(AppConstant.CHILD)) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1 /*&& !isAlreadySentAppUsage()*/) {
+                                updateAppsUsage();
+                            }
                             MyApplication.getInstance().setUserType(AppConstant.CHILD);
 
                             Child child = new GetObjectFromResponse().getChildObject(response);
@@ -157,8 +173,16 @@ public class RestCall {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    Utils.logDebug(TAG, " login-Rquest onFailure JSONObject" + errorResponse);
-                    Utils.logDebug(TAG, " login-Rquest onFailure Throwable" + throwable.getLocalizedMessage());
+                    Utils.logDebug(TAG, " login-Rquest onFailure. JSONObject errorResponse: " + errorResponse);
+                    Utils.logDebug(TAG, " login-Rquest onFailure. Throwable: " + throwable.getLocalizedMessage());
+                    Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.toString(): " + throwable.toString());
+                    Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.getMessage(): " + throwable.getMessage());
+                    Utils.logDebug(TAG, " login-Rquest onFailure. statusCode: " + statusCode);
+                    int i = 0;
+//                    for (Header header : headers){
+//                        i++;
+//                        Utils.logDebug(TAG, i + " lHeader: " + header.toString());
+//                    }
                     clearEdittext(from, editPassword);
                     Utils.unLockScreen(activity.getWindow());
 
@@ -180,7 +204,16 @@ public class RestCall {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                    Utils.logDebug(TAG, " login-Rquest onFailureS" + responseString.toString());
+                    Utils.logDebug(TAG, " login-Rquest onFailureS" + responseString);
+                    Utils.logDebug(TAG, " login-Rquest onFailure. Throwable: " + throwable.getLocalizedMessage());
+                    Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.toString(): " + throwable.toString());
+                    Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.getMessage(): " + throwable.getMessage());
+                    Utils.logDebug(TAG, " login-Rquest onFailure. statusCode: " + statusCode);
+                    int i = 0;
+                    for (Header header : headers) {
+                        i++;
+                        Utils.logDebug(TAG, i + " lHeader: " + header.toString());
+                    }
                     clearEdittext(from, editPassword);
                 }
 
@@ -201,6 +234,22 @@ public class RestCall {
         }
     }
 
+    private boolean isAlreadySentAppUsage() {
+        long lastUpdate = sp.getLong(AppConstant.APP_USAGE_LAST_UPDATE, -1);
+        if (lastUpdate == -1)
+            return false;
+        else
+            return isToday(lastUpdate);
+    }
+
+    private boolean isToday(long lastUpdateMillis) {
+        DateTime today = new DateTime();
+        DateTime lastUpdate = new DateTime(lastUpdateMillis);
+        return today.getDayOfMonth() == lastUpdate.getDayOfMonth()
+                && today.getMonthOfYear() == lastUpdate.getMonthOfYear()
+                && today.getYear() == lastUpdate.getYear();
+    }
+
     public void clearEdittext(String from, EditText editPassword) {
         if (from.equalsIgnoreCase(AppConstant.LOGIN_SCREEN)) {
             editPassword.setText("");
@@ -211,6 +260,9 @@ public class RestCall {
     public void fetchUpdatedChild(final Parent parentObject, final String childEmail, final RelativeLayout progressBar, final String onScreen) {
 
         final AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.get(AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getAccount().getId(), null, new JsonHttpResponseHandler() {
             @Override
@@ -257,7 +309,10 @@ public class RestCall {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Utils.logDebug(TAG, " Child error response:" + errorResponse.toString());
+                if (errorResponse != null)
+                    Utils.logDebug(TAG, " Child error response:" + errorResponse.toString());
+                else
+                    Utils.logDebug(TAG, " Child error response = null. Throwable: " + throwable.getLocalizedMessage());
 
             }
 
@@ -272,5 +327,30 @@ public class RestCall {
             }
         });
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void updateAppsUsage() {
+        AppsUsageHelper appsUsageHelper = new AppsUsageHelper(activity);
+        List<AppUsage> list = appsUsageHelper.getAppUsages();
+        for (AppUsage appUsage : list) {
+            Log.d("kdfjhkjh", "appUsage: " + appUsage.toString());
+        }
+        Log.d("kdfjhkjh", "Credentials: \nEmail: '" + sp.getString(AppConstant.EMAIL, "") + "'\nPassword: '" + sp.getString(AppConstant.PASSWORD, "") + "'");
+        RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, sp.getString(AppConstant.EMAIL, ""), sp.getString(AppConstant.PASSWORD, ""));
+        Call<Response<ResponseBody>> createAppsUsage = retroInterface.createAppUsages(list);
+        createAppsUsage.enqueue(new Callback<Response<ResponseBody>>() {
+            @Override
+            public void onResponse(@NonNull Call<Response<ResponseBody>> call, @NonNull Response<Response<ResponseBody>> response) {
+                Log.d("kdfjhkjh", "Response body: " + response.body());
+                Log.d("kdfjhkjh", "Response code: " + response.code());
+                sp.edit().putLong(AppConstant.APP_USAGE_LAST_UPDATE, new DateTime().getMillis()).apply();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response<ResponseBody>> call, @NonNull Throwable t) {
+                Log.d("kdfjhkjh", "onFailure: " + t.getMessage());
+            }
+        });
     }
 }

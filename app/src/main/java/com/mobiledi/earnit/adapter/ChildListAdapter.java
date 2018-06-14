@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Parent;
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.extras.Base64;
 
 import static com.mobiledi.earnit.activity.ParentDashboard.parentObject;
 
@@ -131,6 +133,9 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Chil
 
     private void deleteChildFromAccount(Child child, final int position) {
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        asyncHttpClient.addHeader("Authorization", basicAuth);
         asyncHttpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         asyncHttpClient.delete(activity, AppConstant.BASE_URL + AppConstant.CHILDREN_API + child.getId(), new JsonHttpResponseHandler() {
 

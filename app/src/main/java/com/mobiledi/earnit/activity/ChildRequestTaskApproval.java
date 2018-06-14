@@ -22,19 +22,20 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
-import com.google.gson.JsonArray;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
-import com.mobiledi.earnit.model.DayTaskStatus;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.RepititionSchedule;
@@ -48,11 +49,9 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -63,6 +62,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
@@ -74,16 +74,26 @@ import id.zelory.compressor.Compressor;
 public class ChildRequestTaskApproval extends UploadRuntimePermission implements View.OnClickListener {
     final int PERMISSIONS_REQUEST = 12;
     public Intent in = null;
-    @BindView(R.id.task_name) TextView taskName;
-    @BindView(R.id.task_description) TextView taskDetails;
-    @BindView(R.id.upload_task_image_text) TextView uploadImageTextHeader;
-    @BindView(R.id.task_due_date) TextView taskDueDate;
-    @BindView(R.id.task_repeat) TextView repeats;
-    @BindView(R.id.comment_box) EditText taskComments;
-    @BindView(R.id.child_avatar) CircularImageView childAvatar;
-    @BindView(R.id.back_arrow) ImageButton backArrow;
-    @BindView(R.id.upload_task_image) ImageView uploadImage;
-    @BindView(R.id.request_approval) Button submit;
+    @BindView(R.id.task_name)
+    TextView taskName;
+    @BindView(R.id.task_description)
+    TextView taskDetails;
+    @BindView(R.id.upload_task_image_text)
+    TextView uploadImageTextHeader;
+    @BindView(R.id.task_due_date)
+    TextView taskDueDate;
+    @BindView(R.id.task_repeat)
+    TextView repeats;
+    @BindView(R.id.comment_box)
+    EditText taskComments;
+    @BindView(R.id.child_avatar)
+    CircularImageView childAvatar;
+    @BindView(R.id.back_arrow)
+    ImageButton backArrow;
+    @BindView(R.id.upload_task_image)
+    ImageView uploadImage;
+    @BindView(R.id.request_approval)
+    Button submit;
     final String TAG = "ChildReqTaskApproval";
     ChildRequestTaskApproval requestTaskApproval;
     Child child;
@@ -92,7 +102,8 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     private long dueDate;
     Goal goal;
     Parent parentObject;
-    @BindView(R.id.loadingPanel) RelativeLayout progress;
+    @BindView(R.id.loadingPanel)
+    RelativeLayout progress;
 
     private ArrayList<ChildsTaskObject> childTasksObjects;
 
@@ -121,12 +132,13 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         Utils.logDebug(TAG, "Task == " + task);
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.override(350,350);
+        requestOptions.override(350, 350);
         requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
         requestOptions.placeholder(R.drawable.default_avatar);
         requestOptions.error(R.drawable.default_avatar);
 
-        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar()).into(childAvatar);
+        if (child != null)
+            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + child.getAvatar()).into(childAvatar);
 
         setViewData();
         requestRequiredApplicationPermission(new String[]{Manifest.permission.CAMERA,
@@ -138,7 +150,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         taskName.setText(task.getName());
         taskDetails.setText(task.getDetails());
         taskDueDate.setText(DateTimeFormat.forPattern(AppConstant.DATE_FORMAT).print(new DateTime(dueDate)));
-        if(goal!=null)
+        if (goal != null)
 
             tv_applies_to.setText(goal.getGoalName());
 
@@ -163,17 +175,17 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             String repeatFrequency = repititionSchedule.getRepeat();
 
             Log.e(TAG, "Repeat is not null");
-            Log.e(TAG, "Repeat Freq= "+repeatFrequency);
+            Log.e(TAG, "Repeat Freq= " + repeatFrequency);
             if (repeatFrequency.isEmpty()) {
                 Toast.makeText(this, "Submit task for Approval.", Toast.LENGTH_SHORT).show();
             } else {
                 repeats.setText(repeatFrequency.substring(0, 1).toUpperCase() + repeatFrequency.substring(1));
             }
 
-        } else
-        {
+        } else {
             Log.e(TAG, "Repetition is null");
-            repeats.setText(AppConstant.NO);}
+            repeats.setText(AppConstant.NO);
+        }
     }
 
     public void setViewIds() {
@@ -200,12 +212,12 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 if (task.getPictureRequired()) {
                     if (UrlOfImage != null) {
                         progress.setVisibility(View.VISIBLE);
+                        Log.d("dsfjklsdlmf", "fileName = " + gFileName);
                         new ProfileAsyncTask().execute(gFileName);
                     } else {
                         showToast(getResources().getString(R.string.please_upload_picture));
                     }
-                }
-                else {
+                } else {
                     updateTaskStatus(task, null);
                 }
                 break;
@@ -219,24 +231,25 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     }
 
     @OnClick(R.id.child_avatar)
-    void floatingMenu()
-    {
+    void floatingMenu() {
         new FloatingMenu(requestTaskApproval).fetchAvatarDimension252(childTasksObjects, childAvatar, child, parentObject, AppConstant.CHILD_DASHBOARD_SCREEN, progress, previousActivityIsCalendar, task);
     }
+
     @Override
     public void onBackPressed() {
 //        new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
         super.onBackPressed();
     }
 
-    private boolean isLastTask(Tasks task){
+    private boolean isLastTask(Tasks task) {
         if (task.getRepititionSchedule() != null && task.getRepititionSchedule().getSpecificDays() != null
-                && !task.getRepititionSchedule().getSpecificDays().isEmpty()){
+                && !task.getRepititionSchedule().getSpecificDays().isEmpty()) {
             int i = -1;
-            try{
+            try {
                 i = Integer.parseInt(task.getRepititionSchedule().getSpecificDays().get(task.getRepititionSchedule().getSpecificDays().size() - 1));
-            } catch (NumberFormatException ignored){}
-            if (i == new DateTime(dueDate).getDayOfMonth()){
+            } catch (NumberFormatException ignored) {
+            }
+            if (i == new DateTime(dueDate).getDayOfMonth()) {
                 return true;
             }
         }
@@ -261,7 +274,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             taskJson.put(AppConstant.DUE_DATE, selectedTask.getRepititionSchedule() == null ? selectedTask.getDueDate() + offsetInMilliseconds : selectedTask.getStartDate() + offsetInMilliseconds);
             taskJson.put(AppConstant.CREATE_DATE, selectedTask.getCreateDate() + offsetInMilliseconds);
             taskJson.put(AppConstant.DESCRIPTION, selectedTask.getDetails());
-            if (selectedTask.getRepititionSchedule() == null || isLastTask) {
+            if (selectedTask.getRepititionSchedule() == null /*|| isLastTask*/) {
                 taskJson.put(AppConstant.STATUS, AppConstant.COMPLETED);
                 Utils.logDebug(TAG, "1 getRepititionSchedule() == " + selectedTask.getRepititionSchedule() + ".  isLastTask = " + isLastTask);
             } else {
@@ -272,16 +285,15 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
 
             if (selectedTask.getGoal() == null)
                 Utils.logDebug(TAG, "Goal is not available");
-            else
-            {
+            else {
                 taskJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, selectedTask.getGoal().getId()));
                 Utils.logDebug(TAG, "Goal is available");
-                Utils.logDebug(TAG, "Goal ID= "+selectedTask.getGoal().getId());
-                Utils.logDebug(TAG, "Goal ID= "+selectedTask.getGoal().getGoalName());
+                Utils.logDebug(TAG, "Goal ID= " + selectedTask.getGoal().getId());
+                Utils.logDebug(TAG, "Goal ID= " + selectedTask.getGoal().getGoalName());
             }
 
 
-            if (selectedTask.getRepititionSchedule() == null || isLastTask)
+            if (selectedTask.getRepititionSchedule() == null/* || isLastTask*/)
                 Utils.logDebug(TAG, "repeat is none || ISlASTtASK");
             else {
                 Utils.logDebug(TAG, "repeat != N");
@@ -316,26 +328,27 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             taskCommentArray.put(taskCommentObject);
             taskJson.put(AppConstant.TASK_COMMENTS, taskCommentArray);
 
-            Utils.logDebug(TAG, " child-update-task : "+  taskJson.toString());
             StringEntity entity = new StringEntity(taskJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            Utils.logDebug(TAG, "child-update-task: " + taskJson.toString() + "\nCredentials: " + namePassword);
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
             AsyncHttpClient httpClient = new AsyncHttpClient();
             httpClient.setBasicAuth(child.getEmail(), child.getPassword());
+            httpClient.addHeader("Authorization", basicAuth);
             String url = AppConstant.BASE_URL + AppConstant.TASKS_API;
 
             httpClient.put(requestTaskApproval, url, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
-
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    Utils.logDebug(TAG, " onSuccess : "+  response.toString());
-                        new RestCall(requestTaskApproval).authenticateUser(child.getEmail(), child.getPassword(),null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
-
+                    Utils.logDebug(TAG, " onSuccess : " + response.toString());
+                    new RestCall(requestTaskApproval).authenticateUser(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
                 }
+
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                     Utils.logDebug(TAG, " onFailure : " + errorResponse == null ? "null" : errorResponse.toString());
                     unLockScreen();
-
                 }
 
                 @Override
@@ -348,7 +361,6 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 public void onStart() {
                     progress.setVisibility(View.VISIBLE);
                     lockScreen();
-
                 }
 
                 @Override
@@ -357,11 +369,9 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                     unLockScreen();
                 }
             });
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (Exception e){e.printStackTrace();}
+        }
     }
 
     public class ProfileAsyncTask extends AsyncTask<String, Void, String> {
@@ -371,14 +381,22 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 AmazonS3Client s3 = new AmazonS3Client(new BasicAWSCredentials(AppConstant.ACCESS_KEY_KEY, AppConstant.SECRET_ACCESS_KEY));
                 s3.setRegion(Region.getRegion(Regions.US_WEST_2));
 
+                Bucket bucket;
+                final String bucketName = "earnitapp-dev/new/";
+                bucket = s3.createBucket(new CreateBucketRequest(bucketName));
+
                 File filePath = new File(params[0]);
                 File compressedImageFile = new Compressor(requestTaskApproval).compressToFile(filePath);
                 String fileName = AppConstant.TASK_IMAGE_FOLDER + AppConstant.SUFFIX + String.valueOf(new SimpleDateFormat(AppConstant.IMAGE_DATE_FORMAT).format(new Date()));
+                Log.d("ChildReqTaskApproval", "1");
                 s3.putObject(new PutObjectRequest(AppConstant.BUCKET_NAME, fileName, compressedImageFile).withCannedAcl(CannedAccessControlList.PublicRead));
+                Log.d("ChildReqTaskApproval", "2");
                 String profileUrl = String.valueOf(s3.getResourceUrl(AppConstant.BUCKET_NAME, fileName));
+                Log.d("ChildReqTaskApproval", "3");
                 return profileUrl;
 
             } catch (Exception e) {
+                Log.d("ChildReqTaskApproval", "Error: " + e);
                 e.printStackTrace();
             }
             return null;
@@ -386,12 +404,13 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
 
         @Override
         protected void onPostExecute(String uploadedPicture) {
-            updateTaskStatus(task,uploadedPicture);
+            Log.d("ChildReqTaskApproval", "onPostExecute(): " + uploadedPicture);
+            updateTaskStatus(task, uploadedPicture);
         }
 
         @Override
         protected void onPreExecute() {
-
+            Log.d("ChildReqTaskApproval", "onPreExecute()");
         }
 
     }

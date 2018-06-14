@@ -6,12 +6,15 @@ import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,29 +26,47 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
+import com.mobiledi.earnit.model.AppUsage;
+import com.mobiledi.earnit.model.AppUsageResponse;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.utils.AppConstant;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit.ServiceGenerator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
 
-public class AppUsageStatisticsFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+public class AppUsageStatisticsFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = AppUsageStatisticsFragment.class.getSimpleName();
-
 
     UsageStatsManager mUsageStatsManager;
     UsageListAdapter mUsageListAdapter;
@@ -56,9 +77,22 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
     Button button_open_usage;
     @BindView(R.id.spinner_time_span)
     Spinner mSpinner;
+    @BindView(R.id.pb)
+    ProgressBar pb;
 
+    public interface OnViewReady{
+        void onReady();
+    }
 
-    public static AppUsageStatisticsFragment newInstance() {
+    private static OnViewReady onViewReady;
+
+    private static Context sContext;
+
+    public static AppUsageStatisticsFragment newInstance(OnViewReady onViewReadys) {
+        onViewReady = onViewReadys;
+        if (onViewReadys instanceof AppUsageStatisticsActivity) {
+            sContext = (Context) onViewReadys;
+        }
         AppUsageStatisticsFragment fragment = new AppUsageStatisticsFragment();
         return fragment;
     }
@@ -67,12 +101,74 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
         // Required empty public constructor
     }
 
+//    public void updateRecyclerView(List<AppUsageResponse> appsUsageResponse){
+//        List<CustomUsageStats> appUsages = new ArrayList<>();
+//        for (AppUsageResponse appUsageResponse : appsUsageResponse){
+//            appUsages.add(new CustomUsageStats().from(appUsageResponse));
+//        }
+//        mUsageListAdapter = new UsageListAdapter(sContext, appUsages);
+//        mRecyclerView.setAdapter(mUsageListAdapter);
+//    }
+
+    public void updateRecyclerView(){
+        SharedPreferences sp = getActivity().getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
+        RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, sp.getString(AppConstant.EMAIL, ""), sp.getString(AppConstant.PASSWORD, ""));
+        Map<String, Integer> options = new HashMap<>();
+        options.put("childid", MyApplication.getInstance().getChildId());
+        options.put("days", 7);
+        Call<List<AppUsageResponse>> getAppsUsage = retroInterface.getAppsUsage(options);
+        getAppsUsage.enqueue(new Callback<List<AppUsageResponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<AppUsageResponse>> call, @NonNull Response<List<AppUsageResponse>> response) {
+                pb.setVisibility(View.GONE);
+                if (response.body() != null) {
+                    long totalTime = 0;
+                    Log.d("sdlfkjslk", "body != null. size = " + response.body().size());
+                    List<CustomUsageStats> appUsages = new ArrayList<>();
+                    for (AppUsageResponse appUsageResponse : response.body()){
+                        totalTime += appUsageResponse.getTimeUsedMinutes();
+                        Log.d("sdlfkjslk", "appUsageResponse: " + appUsageResponse.toString());
+                        appUsages.add(new CustomUsageStats().from(appUsageResponse));
+                    }
+                    Log.d("sdlfkjslk", "totalTime minutes: " + totalTime);
+                    totalTime = TimeUnit.MINUTES.toMillis(totalTime);
+                    Log.d("sdlfkjslk", "totalTime millis: " + totalTime);
+                    mUsageListAdapter = new UsageListAdapter(sContext, sortingList(appUsages), totalTime);
+                    mRecyclerView.setAdapter(mUsageListAdapter);
+                } else {
+                    Log.d("sdlfkjslk", "body == null");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<AppUsageResponse>> call, @NonNull Throwable t) {
+                pb.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private List<CustomUsageStats> sortingList(List<CustomUsageStats> list) {
+        Collections.sort(list, new Comparator<CustomUsageStats>() {
+            public int compare(CustomUsageStats obj1, CustomUsageStats obj2) {
+                // ## Ascending order
+                return Long.compare(obj1.getTotalTimeInForeground(), obj2.getTotalTimeInForeground());
+            }
+        });
+        List<CustomUsageStats> sortedList = new ArrayList<>();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            CustomUsageStats customUsageStats = list.get(i);
+            if (customUsageStats.getTotalTimeInForeground() > 0)
+                sortedList.add(customUsageStats);
+        }
+        return sortedList;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mUsageStatsManager = (UsageStatsManager) getActivity()
-                .getSystemService(Context.USAGE_STATS_SERVICE ); //Context.USAGE_STATS_SERVICE // "usagestats"
+        mUsageStatsManager = (UsageStatsManager) sContext
+                .getSystemService(Context.USAGE_STATS_SERVICE); //Context.USAGE_STATS_SERVICE // "usagestats"
     }
 
     @Override
@@ -84,41 +180,42 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
     @Override
     public void onViewCreated(View rootView, Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
-        ButterKnife.bind(this , rootView);
+        ButterKnife.bind(this, rootView);
 
-        mUsageListAdapter = new UsageListAdapter(getActivity());
+        Log.d("sdlfkjslk", "onViewCreated");
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), 0));
         mLayoutManager = mRecyclerView.getLayoutManager();
         mRecyclerView.scrollToPosition(0);
-        mRecyclerView.setAdapter(mUsageListAdapter);
+//        mRecyclerView.setAdapter(mUsageListAdapter);
 
         SpinnerAdapter spinnerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.action_list, R.layout.item_spinner);
         mSpinner.setAdapter(spinnerAdapter);
-        if(checkUsageStatEnable())
-        {
+        if (checkUsageStatEnable()) {
             button_open_usage.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             button_open_usage.setVisibility(View.VISIBLE);
         }
         mSpinner.setOnItemSelectedListener(this);
 
-        String[] strings = getResources().getStringArray(R.array.action_list);
+//        String[] strings = getResources().getStringArray(R.array.action_list);
+//
+//        StatsUsageInterval statsUsageInterval = StatsUsageInterval
+//                .getValue(strings[0]);
+//
+//        if (statsUsageInterval != null) {
+//            List<UsageStats> usageStatsList =
+//                    getUsageStatistics(statsUsageInterval.mInterval);
+//
+//            updateAppsList(usageStatsList);
+//        }
 
-        StatsUsageInterval statsUsageInterval = StatsUsageInterval
-                .getValue(strings[0]);
-
-        if (statsUsageInterval != null) {
-            List<UsageStats> usageStatsList =
-                    getUsageStatistics(statsUsageInterval.mInterval);
-
-            SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
-            updateAppsList(usageStatsList);
+        if (onViewReady!= null) {
+            Log.d("sdlfkjslk", "onViewReady!= null");
+            onViewReady.onReady();
         }
-
+        updateRecyclerView();
     }
 
     private boolean checkUsageStatEnable() {
@@ -136,35 +233,13 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
     }
 
     @OnClick(R.id.button_open_usage_setting)
-    void usageStatSetting()
-    {
+    void usageStatSetting() {
         Log.e(TAG, "Clicked");
         startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
     }
 
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public List<UsageStats> getUsageStatistics(int intervalType) {
-        // Get the app statistics since one year ago from the current time.
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.YEAR, -1);
-
-        List<UsageStats> queryUsageStats = mUsageStatsManager
-                .queryUsageStats(intervalType, cal.getTimeInMillis(),
-                        System.currentTimeMillis());
-
-        if (queryUsageStats.size() == 0) {
-            Log.i(TAG, "The user may not allow the access to apps usage. ");
-            Toast.makeText(getActivity(),
-                    getString(R.string.explanation_access_to_appusage_is_not_enabled),
-                    Toast.LENGTH_LONG).show();
-
-        }
-        return queryUsageStats;
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public List<UsageStats> getUsageStatistics2(int intervalType) {
         // Get the app statistics since one year ago from the current time.
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, -1);
@@ -206,19 +281,22 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
 
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     void updateAppsList(List<UsageStats> usageStatsList) {
         List<CustomUsageStats> customUsageStatsList = new ArrayList<>();
         for (int i = 0; i < usageStatsList.size(); i++) {
-            CustomUsageStats customUsageStats = new CustomUsageStats();
-            customUsageStats.usageStats = usageStatsList.get(i);
-            customUsageStatsList.add(customUsageStats);
+            CustomUsageStats customUsageStats;
+            try {
+                customUsageStats = new CustomUsageStats(getActivity(), usageStatsList.get(i));
+                customUsageStats.usageStats = usageStatsList.get(i);
+                customUsageStatsList.add(customUsageStats);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        mUsageListAdapter.setCustomUsageStatsList(customUsageStatsList);
-        mUsageListAdapter.notifyDataSetChanged();
+//        mUsageListAdapter.setCustomUsageStatsList(customUsageStatsList);
+//        mUsageListAdapter.notifyDataSetChanged();
         mRecyclerView.scrollToPosition(0);
     }
-
 
 
     enum StatsUsageInterval {

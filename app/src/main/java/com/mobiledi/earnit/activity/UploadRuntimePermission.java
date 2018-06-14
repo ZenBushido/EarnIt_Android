@@ -406,8 +406,9 @@ public class UploadRuntimePermission extends Activity {
     }
 
     private void uploadImageToAWS(String selectedImagePath) {
+        gFileName = selectedImagePath;
         Log.e(TAG, "UPLoading to AWS");
-        Log.e(TAG, "Path ="+selectedImagePath);
+        Log.e(TAG, "Path ="+selectedImagePath + " " + new File(selectedImagePath).exists());
         if (selectedImagePath == null) {
             Toast.makeText(this, "Could not find the filepath of the selected file", Toast.LENGTH_LONG).show();
 

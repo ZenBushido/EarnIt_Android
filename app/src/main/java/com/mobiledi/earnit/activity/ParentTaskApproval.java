@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.SharedPreference;
 import com.mobiledi.earnit.model.Child;
@@ -50,6 +51,7 @@ import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import retrofit.GetGoalsFromChildInterface;
@@ -390,6 +392,9 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
             StringEntity entity = new StringEntity(taskJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
 
             httpClient.put(parentTaskApproval, AppConstant.BASE_URL + AppConstant.TASKS_API, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
@@ -452,6 +457,9 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
     public void fetchChildTaskList() {
         AsyncHttpClient client = new AsyncHttpClient();
+        String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+        final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.setMaxRetriesAndTimeout(3, 3000);
 
@@ -563,6 +571,9 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
             Utils.logDebug("GoalJson", signInJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
             PersistentCookieStore myCookieStore = new PersistentCookieStore(parentTaskApproval);
             httpClient.setCookieStore(myCookieStore);

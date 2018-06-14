@@ -8,6 +8,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.telecom.Call;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -58,6 +59,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.extras.Base64;
 import retrofit.ServiceGenerator;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -143,6 +145,9 @@ public class FloatingMenu {
         TextView goal = layout.findViewById(R.id.fb_goal);
         TextView message = layout.findViewById(R.id.fb_message);
         TextView app_monitor = layout.findViewById(R.id.app_monitor);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
+            app_monitor.setVisibility(View.GONE);
+        }
         addTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_plus_circle)
                 .colorRes(R.color.check_in).sizeDp(AppConstant.FEB_ICON_SIZE)), null, null, null);
         allTask.setCompoundDrawablesRelativeWithIntrinsicBounds((new IconDrawable(layout.getContext(), FontAwesomeIcons.fa_file_text_o)
@@ -200,6 +205,9 @@ public class FloatingMenu {
                 progressBar.setVisibility(View.VISIBLE);
                 popup.dismiss();
                 final AsyncHttpClient client = new AsyncHttpClient();
+                String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+                final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+                client.addHeader("Authorization", basicAuth);
                 client.setBasicAuth(parent.getEmail(), parent.getPassword());
                 Log.e(TAG, "URL = " + AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId());
                 client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId(), null, new JsonHttpResponseHandler() {
@@ -325,7 +333,7 @@ public class FloatingMenu {
         app_monitor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("jdsahdkjh", "click app_monitor ");
+                Log.d("jdsahdkjh", "click app_monitor. Child: " + child);
                 screenSwitch.usageStats(parent, AppConstant.PARENT, child);
                 popup.dismiss();
             }
@@ -424,7 +432,7 @@ public class FloatingMenu {
         viewTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new RestCall(view).authenticateUser(childObject.getEmail(), childObject.getPassword()
+                new RestCall(view).authenticateUser(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword()
                         , null, onScreen, progress);
             }
         });
@@ -476,6 +484,7 @@ public class FloatingMenu {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
+                MyApplication.getInstance().clearPassword();
                 updateDeviceFCM();
                 Intent intentLogout = new Intent(activity, LoginScreen.class);
                 intentLogout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

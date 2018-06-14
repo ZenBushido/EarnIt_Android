@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,6 +51,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
@@ -189,7 +192,8 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
                 progressBar.setVisibility(View.VISIBLE);
                 new ProfileAsyncTask().execute(gFileName);
             } else {
-                updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), parentObject.getAvatar(), parentObject.getEmail(), phone.getText().toString().trim(), parentObject.getPassword()
+                updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), parentObject.getAvatar(), parentObject.getEmail(), phone.getText().toString().trim(),
+                        parentObject.getPassword()
                         , parentObject.getCreateDate());
             }
         } else {
@@ -241,7 +245,8 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
         @Override
         protected void onPostExecute(String userImage) {
             gFileName = null;
-            updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), userImage, parentObject.getEmail(), phone.getText().toString().trim(), parentObject.getPassword()
+            updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), userImage, parentObject.getEmail(), phone.getText().toString().trim(),
+                    getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE).getString(AppConstant.PASSWORD, "")
                     , parentObject.getCreateDate());
         }
 
@@ -268,14 +273,20 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
             //signInJson.put(AppConstant.LAST_NAME, lastName);
             signInJson.put(AppConstant.CREATE_DATE, new DateTime(createDate).getMillis());
             signInJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
-            signInJson.put(AppConstant.PASSWORD, password);
+            signInJson.put(AppConstant.PASSWORD, PreferenceManager.getDefaultSharedPreferences(this).getString(AppConstant.PASSWORD, ""));
             signInJson.put(AppConstant.TYPE, parentObject.getUserType());
             signInJson.put(AppConstant.FCM_TOKEN, getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE).getString(AppConstant.TOKEN_ID, null));
             Utils.logDebug(TAG, "profile-Json : " + signInJson.toString());
             StringEntity entity = new StringEntity(signInJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
+            String userPassword = (parentObject.getEmail() + ":" + parentObject.getPassword());
+            final String basicAuth = "Basic " + Base64.encodeToString(userPassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
             httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+            Log.d("dkasjdlk", "request userPassword = " + userPassword);
+            Log.d("dkasjdlk", "request encoded userPassword = " + basicAuth);
+            Log.d("dkasjdlk", "request json = " + signInJson.toString());
             PersistentCookieStore myCookieStore = new PersistentCookieStore(profile);
             httpClient.setCookieStore(myCookieStore);
             httpClient.put(profile, AppConstant.BASE_URL + AppConstant.UPDATE_PARENT, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
@@ -299,12 +310,14 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Log.d("dkasjdlk", "1errorResponse = " + errorResponse + ". Status code = " + statusCode);
                     unLockScreen();
                     josnError(errorResponse);
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                    Log.d("dkasjdlk", "errorResponse = " + errorResponse + ". Status code = " + statusCode);
                     unLockScreen();
 
                 }

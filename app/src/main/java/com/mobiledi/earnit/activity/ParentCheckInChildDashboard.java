@@ -216,6 +216,7 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
                 break;
 
             case R.id.user_image:
+                Log.d("jdsahdkjh", "Call AppUsage. Child: " + childObject.toString());
                 new FloatingMenu(parentCheckInChildDashboard).fetchAvatarDimension(tChildImage, childObject, otherChild, parentObject, onScreen, progressBar, null);
                 break;
 

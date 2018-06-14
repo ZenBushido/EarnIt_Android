@@ -4,24 +4,41 @@
             "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialdatetimepicker-3.2.2.aar\\a2fee26515862f52cf043efdca485481\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\9073eade02d37828669609c88fd521d7\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,107,161,226,291,352,422,490,542,603,654,706,764,827,889,942,1008,1068,1125,1188,1239,1308,1368,1429,1489,1543,1595,1657,1722,1778,1832",
-                        "endColumns": "51,53,64,64,60,69,67,51,60,50,51,57,62,61,52,65,59,56,62,50,68,59,60,59,53,51,61,64,55,53,56",
-                        "endOffsets": "102,156,221,286,347,417,485,537,598,649,701,759,822,884,937,1003,1063,1120,1183,1234,1303,1363,1424,1484,1538,1590,1652,1717,1773,1827,1884"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
                     },
                     "to": {
-                        "startLines": "21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1356,1408,1462,1527,1592,1653,1723,1791,1843,1904,1955,2007,2065,2128,2190,2243,2309,2369,2426,2489,2540,2609,2669,2730,2790,2844,2896,2958,3023,3079,3133",
-                        "endColumns": "51,53,64,64,60,69,67,51,60,50,51,57,62,61,52,65,59,56,62,50,68,59,60,59,53,51,61,64,55,53,56",
-                        "endOffsets": "1403,1457,1522,1587,1648,1718,1786,1838,1899,1950,2002,2060,2123,2185,2238,2304,2364,2421,2484,2535,2604,2664,2725,2785,2839,2891,2953,3018,3074,3128,3185"
+                        "startLines": "3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "122,191,260,330,404,480,539,610",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "186,255,325,399,475,534,605,673"
                     }
                 },
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.0.2.aar\\0160c77dbffc22fefe001a5b266d570f\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialdrawer-5.2.0.aar\\b4c182a38ba34aff1ce67df42aaaa3b7\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "63",
+                        "endOffsets": "114"
+                    },
+                    "to": {
+                        "startLines": "19",
+                        "startColumns": "4",
+                        "startOffsets": "1237",
+                        "endColumns": "63",
+                        "endOffsets": "1296"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.0.2.aar\\3d412e8e29bc1ef6306a6aca86a4b49a\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -40,58 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialdrawer-5.2.0.aar\\effdcf56f3a695ef470fb37b7f57d392\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "63",
-                        "endOffsets": "114"
-                    },
-                    "to": {
-                        "startLines": "19",
-                        "startColumns": "4",
-                        "startOffsets": "1237",
-                        "endColumns": "63",
-                        "endOffsets": "1296"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\lib-2.2.0.aar\\5757a98aaa83df841cdb2000e82cc957\\res\\values-sw600dp\\values-sw600dp.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "195",
-                        "endColumns": "66",
-                        "endOffsets": "257"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\ac92d1c01f4f05b8f5cc7bcefd67f7a5\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,124,193,263,337,413,472,543",
-                        "endColumns": "68,68,69,73,75,58,70,67",
-                        "endOffsets": "119,188,258,332,408,467,538,606"
-                    },
-                    "to": {
-                        "startLines": "3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "122,191,260,330,404,480,539,610",
-                        "endColumns": "68,68,69,73,75,58,70,67",
-                        "endOffsets": "186,255,325,399,475,534,605,673"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialize-0.8.8.aar\\5b949f93cf090d0201ee086d283b8e7c\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialize-0.8.8.aar\\130aacf50cec20643199f79dc762e67e\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -105,6 +71,40 @@
                         "startOffsets": "1301",
                         "endColumns": "54",
                         "endOffsets": "1351"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\materialdatetimepicker-3.2.2.aar\\2c1e3458eccc6fa55f355e2199713ca7\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,107,161,226,291,352,422,490,542,603,654,706,764,827,889,942,1008,1068,1125,1188,1239,1308,1368,1429,1489,1543,1595,1657,1722,1778,1832",
+                        "endColumns": "51,53,64,64,60,69,67,51,60,50,51,57,62,61,52,65,59,56,62,50,68,59,60,59,53,51,61,64,55,53,56",
+                        "endOffsets": "102,156,221,286,347,417,485,537,598,649,701,759,822,884,937,1003,1063,1120,1183,1234,1303,1363,1424,1484,1538,1590,1652,1717,1773,1827,1884"
+                    },
+                    "to": {
+                        "startLines": "21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1356,1408,1462,1527,1592,1653,1723,1791,1843,1904,1955,2007,2065,2128,2190,2243,2309,2369,2426,2489,2540,2609,2669,2730,2790,2844,2896,2958,3023,3079,3133",
+                        "endColumns": "51,53,64,64,60,69,67,51,60,50,51,57,62,61,52,65,59,56,62,50,68,59,60,59,53,51,61,64,55,53,56",
+                        "endOffsets": "1403,1457,1522,1587,1648,1718,1786,1838,1899,1950,2002,2060,2123,2185,2238,2304,2364,2421,2484,2535,2604,2664,2725,2785,2839,2891,2953,3018,3074,3128,3185"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\lib-2.2.0.aar\\d4549c237a5cba7f17585ed4624d82c3\\res\\values-sw600dp\\values-sw600dp.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "195",
+                        "endColumns": "66",
+                        "endOffsets": "257"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
                     }
                 }
             ]

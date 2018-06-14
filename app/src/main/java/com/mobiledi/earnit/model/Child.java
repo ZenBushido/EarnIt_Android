@@ -158,7 +158,13 @@ public class Child implements Serializable {
     @Override
     public String toString() {
         return "Child{" +
-                "tasksArrayList=" + tasksArrayList +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userType='" + userType + '\'' +
+                ", tasksArrayList=" + tasksArrayList +
                 '}';
     }
 }
