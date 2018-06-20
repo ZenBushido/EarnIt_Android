@@ -9,21 +9,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class AddTaskWithSelecteDay {
 
-    public AddTaskWithSelecteDay(Double allowance, String dueDate, String name, Boolean pictureRequired,  Children children, Goal goal, RepititionSchedule repititionSchedule, String description, Boolean isDeleted, Boolean shouldLockAppsIfTaskOverdue) {
-
-        this.allowance = allowance;
-        this.dueDate = dueDate;
-        this.name = name;
-        this.pictureRequired = pictureRequired;
-        this.children = children;
-        this.goal = goal;
-        this.repititionSchedule = repititionSchedule;
-        this.description = description;
-        this.isDeleted = isDeleted;
-        this.shouldLockAppsIfTaskOverdue = shouldLockAppsIfTaskOverdue;
-
-    }
-
     @SerializedName("allowance")
     @Expose
     private Double allowance;
@@ -54,6 +39,21 @@ public class AddTaskWithSelecteDay {
     @SerializedName("shouldLockAppsIfTaskOverdue")
     @Expose
     private Boolean shouldLockAppsIfTaskOverdue;
+
+    public AddTaskWithSelecteDay(Double allowance, String dueDate, String name, Boolean pictureRequired,  Children children, Goal goal, RepititionSchedule repititionSchedule, String description, Boolean isDeleted, Boolean shouldLockAppsIfTaskOverdue) {
+
+        this.allowance = allowance;
+        this.dueDate = dueDate;
+        this.name = name;
+        this.pictureRequired = pictureRequired;
+        this.children = children;
+        this.goal = goal;
+        this.repititionSchedule = repititionSchedule;
+        this.description = description;
+        this.isDeleted = isDeleted;
+        this.shouldLockAppsIfTaskOverdue = shouldLockAppsIfTaskOverdue;
+
+    }
 
 
     public Double getAllowance() {
@@ -145,6 +145,19 @@ public class AddTaskWithSelecteDay {
         isDeleted = deleted;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "AddTaskWithSelecteDay{" +
+                "allowance=" + allowance +
+                ", dueDate='" + dueDate + '\'' +
+                ", name='" + name + '\'' +
+                ", pictureRequired=" + pictureRequired +
+                ", children=" + children +
+                ", goal=" + goal +
+                ", repititionSchedule=" + repititionSchedule +
+                ", description='" + description + '\'' +
+                ", isDeleted=" + isDeleted +
+                ", shouldLockAppsIfTaskOverdue=" + shouldLockAppsIfTaskOverdue +
+                '}';
+    }
 }

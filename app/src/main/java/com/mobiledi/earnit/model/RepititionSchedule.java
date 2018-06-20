@@ -15,9 +15,18 @@ public class RepititionSchedule implements Serializable {
     private String repeat;
     public String startTime ;
     public String endTime ;
+    public String performTaskOnTheNSpecifiedDay ;
     public int everyNRepeat = 0;
     public List<String> specificDays ;
     public List<DayTaskStatus> dayTaskStatuses ;
+
+    public String getPerformTaskOnTheNSpecifiedDay() {
+        return performTaskOnTheNSpecifiedDay;
+    }
+
+    public void setPerformTaskOnTheNSpecifiedDay(String performTaskOnTheNSpecifiedDay) {
+        this.performTaskOnTheNSpecifiedDay = performTaskOnTheNSpecifiedDay;
+    }
 
     public String getStartTime() {
         return startTime;
@@ -105,6 +114,7 @@ public class RepititionSchedule implements Serializable {
                 ", repeat='" + repeat + '\'' +
                 ", startTime='" + startTime + '\'' +
                 ", endTime='" + endTime + '\'' +
+                ", performTaskOnTheNSpecifiedDay='" + performTaskOnTheNSpecifiedDay + '\'' +
                 ", everyNRepeat=" + everyNRepeat +
                 ", specificDays=" + specificDays +
                 ", dayTaskStatuses=" + dayTaskStatuses +

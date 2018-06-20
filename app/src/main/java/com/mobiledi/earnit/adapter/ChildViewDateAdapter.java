@@ -72,13 +72,12 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
         if (dateTime.isEqual(new DateTime(Tasks.fakeDate).withTimeAtStartOfDay())) {
             Log.d("fsdkjhfkj", "NON_COMPLETED_APPROVED: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
             taskGroupViewHolder.setDateHeader(AppConstant.NON_COMPLETED_APPROVED);
-        } else if (dateTime.isBefore(new DateTime(GetObjectFromResponse.PAST_DUE_DATE).withTimeAtStartOfDay())) {
-            String toPrintDate = fmt.print(dateTime);
-            Log.d("fsdkjhfkj", "PAST_DUE: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
-            taskGroupViewHolder.setDateHeader(AppConstant.PAST_DUE);
         } else if (isToday(dateTime)) {
             Log.d("fsdkjhfkj", "Today: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
             taskGroupViewHolder.setDateHeader("Today");
+        } else if (dateTime.isBefore(new DateTime().withTimeAtStartOfDay())) {
+            Log.d("fsdkjhfkj", "PAST_DUE: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
+            taskGroupViewHolder.setDateHeader(AppConstant.PAST_DUE);
         } else {
             String toPrintDate = fmt.print(dateTime);
             Log.d("fsdkjhfkj", "Today: " + dateTime.toString("dd.MM.hh HH:mm:ss") + " toPrintDate: " + toPrintDate);

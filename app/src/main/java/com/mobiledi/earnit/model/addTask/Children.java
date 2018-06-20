@@ -21,4 +21,10 @@ public class Children {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Children{" +
+                "id=" + id +
+                '}';
+    }
 }

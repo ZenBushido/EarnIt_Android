@@ -156,7 +156,8 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         setSupportActionBar(goalToolbar);
         getSupportActionBar().setTitle(null);
 
-        finalDate = new DateTime().toString("MM/dd/yyyy");
+        finalDate = new DateTime().toString("MM/dd/yyyy", Locale.US);
+        Log.e("AddTaskk", "1 final date = " + finalDate);
         presenter.addCalendarView();
         presenter.animate();
 
@@ -334,16 +335,17 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
                     sdf.format(new Date());
                     response.endTime = startTimer.getText().toString();
-                    response.startTime = sdf.format(new Date());
+//                    response.startTime = sdf.format(new Date());
+                    response.startTime = new DateTime().toString("HH:mm:ss a");
 
                     if (onFirst != null){
-                        Log.e(TAG, "On first is not null");
-                        Log.e(TAG, onFirst);
-                        Log.e(TAG, onDay);
+                        Log.e("AddTaskk", "On first is not null");
+                        Log.e("AddTaskk", onFirst);
+                        Log.e("AddTaskk", onDay);
                         response.onFirst = onFirst;
                         response.onDay = onDay;
                     } else {
-                        Log.e(TAG, "On first is null");
+                        Log.e("AddTaskk", "On first is null");
                         //Log.e(TAG, onFirst);
                         // Log.e(TAG, onDay);
                         response.onFirst = "";
@@ -365,7 +367,6 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     finish();
 
                 } else {
-
                     AddTaskModel.repititionSchedule response = new AddTaskModel.repititionSchedule();
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
                     sdf.format(new Date());
@@ -420,7 +421,6 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                         checkValue = "none";
                         break;
                     case 1: {
-
                         checkValue = "daily";
                         dayOfWeek = null;
                         MyDialogFragment dialogFrag = new MyDialogFragment();
@@ -507,7 +507,8 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             @Override
             public void onDateClick(@NonNull Date selectedDate) {
                 Log.d("dosidoi", "onDateClick date = " + new DateTime(selectedDate).toString("MM/dd/yyyy"));
-                finalDate = new DateTime(selectedDate).toString("MM/dd/yyyy");
+                finalDate = new DateTime(selectedDate).toString("MM/dd/yyyy", Locale.US);
+                Log.e("AddTaskk", "2 final date = " + finalDate);
 
             }
         });
@@ -516,7 +517,8 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             public void onMonthChange(@NonNull Date monthDate) {
 
                 Log.d("dosidoi", "onMonthChange date = " + new DateTime(monthDate).toString("MM/dd/yyyy"));
-                finalDate = new DateTime(monthDate).toString("MM/dd/yyyy");
+                finalDate = new DateTime(monthDate).toString("MM/dd/yyyy", Locale.US);
+                Log.e("AddTaskk", "3 final date = " + finalDate);
             }
         });
         calendarView.setOnDateLongClickListener(new CalendarView.OnDateLongClickListener() {

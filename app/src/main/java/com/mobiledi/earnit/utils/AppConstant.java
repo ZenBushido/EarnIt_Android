@@ -47,7 +47,7 @@ public final class AppConstant {
     public final static String APP_USAGE_LAST_UPDATE = "app_usage_last_update";
 
     public final static String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/";
-    public final static String BASE_URL_QA = "http://159.65.68.220:8080/earnit-api";
+    public final static String BASE_URL_QA = "http://159.65.239.6:8080/earnit-api";
     public final static String BASE_URL_PROD = "https://api.myearnitapp.com:8443/earnit-api";
     public static final String BASE_URL = BuildConfig.DEBUG ? BASE_URL_QA : BASE_URL_PROD;
 

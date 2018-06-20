@@ -122,6 +122,7 @@ public class ChildDashboard extends BaseActivity {
         client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                Log.d("fksdjhfo", "response = " + response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);
@@ -138,7 +139,7 @@ public class ChildDashboard extends BaseActivity {
                 }
             }
         });
-        childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.CHILD, AppConstant.CHECKED_IN_SCREEN);
+        childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject);
         for (ChildsTaskObject childsTaskObject : childTaskObjects){
             Utils.logDebug("aslkdjlk", "childTaskObjects = " + childsTaskObject.toString());
         }

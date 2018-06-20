@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -470,19 +471,19 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 if (taskName.getText().toString().trim().length() > 0) {
                     if (taskName.getText().toString().trim().length() <= TASK_NAME_LENGTH) {
 
-                        Log.e(TAG, "Amount= " + amountTxt.getText().toString());
+                        Log.e("AddTaskk", "Amount= " + amountTxt.getText().toString());
                         if (amountTxt.getText().toString().trim().length() > 0) {
                             m = (MessageEvent) EventBus.getDefault().getStickyEvent(MessageEvent.class);
 
-                            Log.d("dosidoi", "getStickyEvent: " + m);
+                            Log.d("AddTaskk", "getStickyEvent: " + m);
                             if (m != null) {
 //                                if (m.getResponse().onDay != null) {
 
                                 if (m.getResponse().onDay.equals("") || m.getResponse().onFirst.equals("")) {
-                                    Log.e(TAG, "Both are empty");
+                                    Log.e("AddTaskk", "Both are empty");
                                     saveTask();
                                 } else {
-                                    Log.e(TAG, "Both are not empty");
+                                    Log.e("AddTaskk", "Both are not empty");
                                     saveTaskWithSelectedDays();
                                 }
 //                                }
@@ -534,27 +535,23 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             arrayList.add(m.getResponse().onDay);
 
             long offsetInMilliseconds = tz.getOffset(instant);
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/DD/yyyy hh:mm:ss aaa", Locale.getDefault());
+            DateTimeFormatter formatterDateTime = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss a").withLocale(Locale.US);
+            Log.e("AddTaskk", "repititionSchedule.getDate() = " + repititionSchedule.getDate());
+            Log.e("AddTaskk", "repititionSchedule.getEndTime() = " + repititionSchedule.getEndTime());
+            DateTime dateTime = formatterDateTime.parseDateTime(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime()).plus(offsetInMilliseconds);
+//            long dueTime = dateTime.getMillis() + offsetInMilliseconds;
+//            SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy hh:mm:ss aaa");
+//            String dateString = formatter.format(new Date(dueTime));
 
-            simpleDateFormat.setTimeZone(TimeZone.getDefault());
-
-            Date date = (Date) simpleDateFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
-            DateTime dateTime = new DateTime(date);
-            long dueTime = dateTime.getMillis() + offsetInMilliseconds;
-            //"yyyyy.MMMMM.dd GGG hh:mm aaa"
-            //"EEE, d MMM yyyy HH:mm:ss Z"
-            SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy hh:mm:ss aaa");
-            String dateString = formatter.format(new Date(dueTime));
-
-            Log.e(TAG, "Date String = " + dateString);
-            Log.e(TAG, "EVERY N DAY: " + m.getResponse().getEveryNday());
+            Log.e("AddTaskk", "Date String = " + dateTime.toString("MMM d, yyyy hh:mm:ss aaa"));
+            Log.e("AddTaskk", "EVERY N DAY: " + m.getResponse().getEveryNday());
             RepititionSchedule repititionSchedule = new RepititionSchedule(m.getResponse().startTime,
                     m.getResponse().endTime, m.getResponse().repeat, m.getResponse().everyNday,
                     m.getResponse().onFirst, arrayList);
 
             com.mobiledi.earnit.model.addTask.Children child = new com.mobiledi.earnit.model.addTask.Children();
             childID = childObject.getId();
-            Log.e(TAG, "ChildID= " + childID);
+            Log.e("AddTaskk", "ChildID= " + childID);
             child.setId(childID);
             com.mobiledi.earnit.model.addTask.Goal goal = new com.mobiledi.earnit.model.addTask.Goal();
             if (fetchGoalId != 0) {
@@ -565,11 +562,11 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             double value = Double.parseDouble(amountTxt.getText().toString());
 
             AddTaskWithSelecteDay addTaskWithSelecteDay = new AddTaskWithSelecteDay(value,
-                    dateString, taskName.getText().toString().trim(), checkboxStatus, child, goal,
+                    dateTime.toString("MMM d, yyyy hh:mm:ss aaa", Locale.US), taskName.getText().toString().trim(), checkboxStatus, child, goal,
                     repititionSchedule, taskDetails.getText().toString(), false,
-                    checkboxStatusLock
+                    checkboxStatusLock);
 
-            );
+            Log.e("AddTaskk", "AddTaskWithSelecteDay: " + addTaskWithSelecteDay.toString());
 
 
             RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(),
@@ -579,8 +576,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             Call<AddTaskWithSelecteDayResponse> call = retroInterface.addTAskWithSelectedDay(addTaskWithSelecteDay);
             call.enqueue(new Callback<AddTaskWithSelecteDayResponse>() {
                 @Override
-                public void onResponse(Call<AddTaskWithSelecteDayResponse> call, Response<AddTaskWithSelecteDayResponse> response) {
-                    // Log.e(TAG, "Response: "+response.body().getName());
+                public void onResponse(@NonNull Call<AddTaskWithSelecteDayResponse> call, @NonNull Response<AddTaskWithSelecteDayResponse> response) {
 
                     if (response.code() == 201)
                         showDialogOnTaskAdded(childObject, otherChild);
@@ -589,13 +585,14 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 }
 
                 @Override
-                public void onFailure(Call<AddTaskWithSelecteDayResponse> call, Throwable t) {
-                    Log.e(TAG, "Error: " + t.getLocalizedMessage());
+                public void onFailure(@NonNull Call<AddTaskWithSelecteDayResponse> call, @NonNull Throwable t) {
+                    Log.e("AddTaskk", "Error: " + t.getLocalizedMessage());
                 }
             });
 
         } catch (Exception e) {
-            Log.e(TAG, "ERROR: : " + e.getLocalizedMessage());
+            Log.e("AddTaskk", "ERROR: : " + e.getLocalizedMessage());
+            e.printStackTrace();
         }
 
 

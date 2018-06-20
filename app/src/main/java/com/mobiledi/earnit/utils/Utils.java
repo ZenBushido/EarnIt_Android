@@ -21,7 +21,9 @@ import com.mobiledi.earnit.BuildConfig;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.activity.InitialParentProfile;
 import com.mobiledi.earnit.adapter.CountryAdapter;
+import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Country;
+import com.mobiledi.earnit.model.Tasks;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +32,7 @@ import org.json.JSONObject;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mobile-di on 27/10/17.
@@ -46,7 +49,6 @@ public class Utils {
     public static void unLockScreen(Window window) {
         window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
-
 
     // Check null value
 

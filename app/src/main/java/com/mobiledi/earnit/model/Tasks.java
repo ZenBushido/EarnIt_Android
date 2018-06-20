@@ -248,20 +248,20 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
         return "Tasks{" +
                 "id=" + id +
                 ", childId=" + childId +
-                ", allowance=" + allowance +
+                /*", allowance=" + allowance +*/
                 ", createDate=" + new DateTime(createDate).toString("dd.MM.yyyy HH:mm:ss") +
                 ", dueDate=" + new DateTime(dueDate).toString("dd.MM.yyyy HH:mm:ss") +
                 ", startDate=" + new DateTime(startDate).toString("dd.MM.yyyy HH:mm:ss") +
                 ", name='" + name + '\'' +
-                ", taskComments=" + taskComments +
+                /*", taskComments=" + taskComments +
                 ", details='" + details + '\'' +
-                ", pictureRequired=" + pictureRequired +
+                ", pictureRequired=" + pictureRequired +*/
                 ", status='" + status + '\'' +
                 ", updateDate=" + new DateTime(updateDate).toString("dd.MM.yyyy HH:mm:ss") +
-                ", goal=" + goal +
+                /*", goal=" + goal +*/
                 ", repititionSchedule=" + repititionSchedule +
-                ", datesRepetitions=" + datesRepetitions +
-                ", datenew='" + datenew + '\'' +
+                /*", datesRepetitions=" + datesRepetitions +
+                ", datenew='" + datenew + '\'' +*/
                 '}';
     }
 

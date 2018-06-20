@@ -166,7 +166,7 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         SimpleDateFormat sdf = new SimpleDateFormat("EEE MM/dd", Locale.getDefault());
         finalDate = sdf.format(new Date());
         tasksList.clear();
-        final List<ChildsTaskObject> childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.CHILD, AppConstant.CHECKED_IN_SCREEN);
+        final List<ChildsTaskObject> childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject);
         for (int i = 0; i < childTaskObjects.size(); i++) {
             DateTime dateTime = new DateTime(childTaskObjects.get(i).getDueDate()).withTimeAtStartOfDay();
             DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
@@ -452,15 +452,13 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                 SimpleDateFormat sdf = new SimpleDateFormat("EEE MM/dd");
                 finalDate = sdf.format(selectedDate);
                 tasksList.clear();
-                List<ChildsTaskObject> childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.CHILD, AppConstant.CHECKED_IN_SCREEN);
+                List<ChildsTaskObject> childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject);
                 for (int i = 0; i < childTaskObjects.size(); i++) {
                     DateTime dateTime = new DateTime(childTaskObjects.get(i).getDueDate()).withTimeAtStartOfDay();
                     DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE MM/dd");
                     String toPrintDate = fmt.print(dateTime);
                     if (toPrintDate.equals(finalDate))
                         tasksList.addAll(childTaskObjects.get(i).getChildItemList());
-
-
                 }
             }
         });

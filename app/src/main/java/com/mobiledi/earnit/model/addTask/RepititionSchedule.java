@@ -84,4 +84,15 @@ public class RepititionSchedule {
         this.specificDays = specificDays;
     }
 
+    @Override
+    public String toString() {
+        return "RepititionSchedule{" +
+                "startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", repeat='" + repeat + '\'' +
+                ", everyNRepeat=" + everyNRepeat +
+                ", performTaskOnTheNSpecifiedDay='" + performTaskOnTheNSpecifiedDay + '\'' +
+                ", specificDays=" + specificDays +
+                '}';
+    }
 }

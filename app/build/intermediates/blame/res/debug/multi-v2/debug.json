@@ -499,6 +499,79 @@
             ]
         },
         {
+            "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\res\\merged\\debug\\values-lo_values-lo.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\85c1a02817e13ad2a7f40762d9e74c39\\res\\values-lo\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "205",
+                        "endColumns": "99",
+                        "endOffsets": "304"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "2007",
+                        "endColumns": "103",
+                        "endOffsets": "2106"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-12.0.1.aar\\3f17d8adc32284754c5278e92632175f\\res\\values-lo\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "190",
+                        "endOffsets": "437"
+                    },
+                    "to": {
+                        "startLines": "19",
+                        "startColumns": "4",
+                        "startOffsets": "1816",
+                        "endColumns": "190",
+                        "endOffsets": "2002"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\aeb6af3159ca64c8a6614bda60343752\\res\\values-lo\\values-lo.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "22",
+                        "startColumns": "4",
+                        "startOffsets": "2192",
+                        "endColumns": "100",
+                        "endOffsets": "2288"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\9073eade02d37828669609c88fd521d7\\res\\values-lo\\values-lo.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,208,305,412,497,602,714,791,869,949,1056,1153,1251,1356,1459,1563,1720,1816",
+                        "endColumns": "102,96,106,84,104,111,76,77,79,106,96,97,104,102,103,156,95,80",
+                        "endOffsets": "203,300,407,492,597,709,786,864,944,1051,1148,1246,1351,1454,1558,1715,1811,1892"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,208,305,412,497,602,714,791,869,949,1056,1153,1251,1356,1459,1563,1720,2111",
+                        "endColumns": "102,96,106,84,104,111,76,77,79,106,96,97,104,102,103,156,95,80",
+                        "endOffsets": "203,300,407,492,597,709,786,864,944,1051,1148,1246,1351,1454,1558,1715,1811,2187"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\res\\merged\\debug\\values-th_values-th.arsc.flat",
             "map": [
                 {
@@ -584,79 +657,6 @@
                         "startOffsets": "105,210,308,416,505,607,717,794,872,953,1061,1165,1263,1371,1476,1577,1730,3335",
                         "endColumns": "104,97,107,88,101,109,76,77,80,107,103,97,107,104,100,152,94,80",
                         "endOffsets": "205,303,411,500,602,712,789,867,948,1056,1160,1258,1366,1471,1572,1725,1820,3411"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\Android\\Projects\\EarnIt\\app\\build\\intermediates\\res\\merged\\debug\\values-lo_values-lo.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\85c1a02817e13ad2a7f40762d9e74c39\\res\\values-lo\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "205",
-                        "endColumns": "99",
-                        "endOffsets": "304"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "2007",
-                        "endColumns": "103",
-                        "endOffsets": "2106"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-12.0.1.aar\\3f17d8adc32284754c5278e92632175f\\res\\values-lo\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "190",
-                        "endOffsets": "437"
-                    },
-                    "to": {
-                        "startLines": "19",
-                        "startColumns": "4",
-                        "startOffsets": "1816",
-                        "endColumns": "190",
-                        "endOffsets": "2002"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\aeb6af3159ca64c8a6614bda60343752\\res\\values-lo\\values-lo.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "22",
-                        "startColumns": "4",
-                        "startOffsets": "2192",
-                        "endColumns": "100",
-                        "endOffsets": "2288"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fess\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\9073eade02d37828669609c88fd521d7\\res\\values-lo\\values-lo.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,208,305,412,497,602,714,791,869,949,1056,1153,1251,1356,1459,1563,1720,1816",
-                        "endColumns": "102,96,106,84,104,111,76,77,79,106,96,97,104,102,103,156,95,80",
-                        "endOffsets": "203,300,407,492,597,709,786,864,944,1051,1148,1246,1351,1454,1558,1715,1811,1892"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,208,305,412,497,602,714,791,869,949,1056,1153,1251,1356,1459,1563,1720,2111",
-                        "endColumns": "102,96,106,84,104,111,76,77,79,106,96,97,104,102,103,156,95,80",
-                        "endOffsets": "203,300,407,492,597,709,786,864,944,1051,1148,1246,1351,1454,1558,1715,1811,2187"
                     }
                 }
             ]

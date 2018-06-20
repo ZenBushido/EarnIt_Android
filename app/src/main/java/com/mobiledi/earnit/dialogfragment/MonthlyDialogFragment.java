@@ -29,13 +29,13 @@ import static com.mobiledi.earnit.dialogfragment.WeeklyDialogFragment.weekList;
 
 
 public class MonthlyDialogFragment extends DialogFragment implements AdapterView.OnItemSelectedListener {
-     EditText repeat_monthly_check;
+    EditText repeat_monthly_check;
     String TAG = MonthlyDialogFragment.class.getSimpleName();
     public static List<String> monthList = new ArrayList<>();
     public String onFirst;
     public String onDay;
-     RadioButton onButton;
-MonthlyDialogListener monthlyDialogListener;
+    MonthlyDialogListener monthlyDialogListener;
+
     @Override
     public void onAttach(Activity context) {
         super.onAttach(context);
@@ -116,7 +116,7 @@ MonthlyDialogListener monthlyDialogListener;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.v(LOG_TAG, "onCreateView");
         onThe = new ArrayList<String>();
-        monthList= new ArrayList<String>();
+        monthList = new ArrayList<String>();
         onThe.add("First");
         onThe.add("Second");
         onThe.add("Third");
@@ -219,25 +219,24 @@ MonthlyDialogListener monthlyDialogListener;
 
 
         final RadioButton eachButton = (RadioButton) dialogView.findViewById(R.id.repeatmonthly_eachradio);
- onButton = (RadioButton) dialogView.findViewById(R.id.repeatmonthly_ontheradio);
+        final RadioButton onTheButton = (RadioButton) dialogView.findViewById(R.id.repeatmonthly_ontheradio);
         repeat_monthly_first.setEnabled(false);
         repeat_monthly_last.setEnabled(false);
         eachButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (eachButton.isChecked()) {
-                    onButton.setChecked(false);
+                    onTheButton.setChecked(false);
                     selectSwitch = true;
                     repeat_monthly_first.setEnabled(false);
                     repeat_monthly_last.setEnabled(false);
-
                 }
             }
         });
-        onButton.setOnClickListener(new View.OnClickListener() {
+        onTheButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onButton.isChecked()) {
+                if (onTheButton.isChecked()) {
                     selectSwitch = false;
                     eachButton.setChecked(false);
                     repeat_monthly_first.setEnabled(true);
@@ -990,39 +989,33 @@ MonthlyDialogListener monthlyDialogListener;
             }
         });
 
-
-        // "Got it" button
         Button buttonPos = (Button) dialogView.findViewById(R.id.repeatmonthly_ok);
         buttonPos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "Testing");
-                Log.e(TAG, "check text= "+ repeat_monthly_check.getText().toString());
-                if(!onButton.isChecked()) {
+                Log.e(TAG, "check text= " + repeat_monthly_check.getText().toString());
+                if (!onTheButton.isChecked()) {
                     Log.e(TAG, "on check is false");
                     if (Objects.equals(repeat_monthly_check.getText().toString(), "00") || Objects.equals(repeat_monthly_check.getText().toString(), "0") || Objects.equals(repeat_monthly_check.getText().toString(), "") || monthList.size() < 1)
                         Toast.makeText(getActivity(), "Insert correct data", Toast.LENGTH_LONG).show();
-                    else
-                    {
+                    else {
                         dismiss();
                         monthlyDialogListener.updateResult2(monthList, repeat_monthly_check.getText().toString());
                     }
 
 
-                }
-                else
-                {
+                } else {
                     Log.e(TAG, "on check is true");
-                    if (Objects.equals(repeat_monthly_check.getText().toString(), "00") || Objects.equals(repeat_monthly_check.getText().toString(), "0") || Objects.equals(repeat_monthly_check.getText().toString(), "") )
+                    if (Objects.equals(repeat_monthly_check.getText().toString(), "00") || Objects.equals(repeat_monthly_check.getText().toString(), "0") || Objects.equals(repeat_monthly_check.getText().toString(), ""))
                         Toast.makeText(getActivity(), "Insert correct data", Toast.LENGTH_LONG).show();
 
                     else
 
                     {
                         dismiss();
-                        monthlyDialogListener.updateOnDay(onFirst, onDay,  repeat_monthly_check.getText().toString());
+                        monthlyDialogListener.updateOnDay(onFirst, onDay, repeat_monthly_check.getText().toString());
                     }
-
 
 
                 }
@@ -1030,7 +1023,7 @@ MonthlyDialogListener monthlyDialogListener;
         });
 
         // "Cancel" button
-        Button buttonNeg =  dialogView.findViewById(R.id.repeatmonthly_cancel);
+        Button buttonNeg = dialogView.findViewById(R.id.repeatmonthly_cancel);
         buttonNeg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1087,15 +1080,12 @@ MonthlyDialogListener monthlyDialogListener;
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         Spinner spinner = (Spinner) parent;
-        if(spinner.getId() == R.id.repeat_monthly_first)
-        {
-                     onFirst = String.valueOf(parent.getItemAtPosition(position)) ;
-            Log.e(TAG, "onDay+ "+onFirst);
-        }
-        else if(spinner.getId() == R.id.repeat_monthly_last)
-        {
+        if (spinner.getId() == R.id.repeat_monthly_first) {
+            onFirst = String.valueOf(parent.getItemAtPosition(position));
+            Log.e(TAG, "onDay+ " + onFirst);
+        } else if (spinner.getId() == R.id.repeat_monthly_last) {
             onDay = String.valueOf(parent.getItemAtPosition(position));
-            Log.e(TAG, "onDay+ "+onDay);
+            Log.e(TAG, "onDay+ " + onDay);
         }
 
     }
@@ -1138,7 +1128,6 @@ MonthlyDialogListener monthlyDialogListener;
      }*/
     public interface MonthlyDialogListener {
         void updateResult2(List<String> inputText, String integer);
-
 
 
         void updateOnDay(String onFirst, String onDay, String s);

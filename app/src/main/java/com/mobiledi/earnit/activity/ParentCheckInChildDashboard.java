@@ -133,7 +133,7 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
 
         parentCheckinRecycler.setLayoutManager(mLayoutManager);
         parentCheckinRecycler.setItemAnimator(new DefaultItemAnimator());
-        List<ChildsTaskObject> childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(otherChild, AppConstant.PARENT, onScreen);
+        List<ChildsTaskObject> childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(otherChild);
 
         parentCheckInTaskAdapter = new ChildViewDateAdapter(childTaskObjects, parentObject, childObject, "Parent");
         // else
@@ -265,7 +265,7 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
     }
 
     public List<ChildsTaskObject> removeDeclineTask() {
-        List<ChildsTaskObject> fetchTaskList = new GetObjectFromResponse().getChildTaskListObject(childObject, AppConstant.PARENT, onScreen);
+        List<ChildsTaskObject> fetchTaskList = new GetObjectFromResponse().getChildTaskListObject(childObject);
         int approvalTaskCount = 0;
         for (int i = 0; i < fetchTaskList.size(); i++) {
             ChildsTaskObject taskObject = fetchTaskList.get(i);

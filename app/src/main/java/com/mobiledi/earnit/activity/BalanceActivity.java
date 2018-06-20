@@ -14,11 +14,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.MyRecyclerViewAdapter;
 import com.mobiledi.earnit.model.Child;
@@ -203,7 +205,7 @@ public class BalanceActivity extends BaseActivity   {
 
     private void getAllGoals() {
 
-        RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
+        RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
         Call<List<GetAllGoalResponse>> response = retroInterface.getGoals(childObject.getId());
 
         response.enqueue(new Callback<List<GetAllGoalResponse>>() {
@@ -246,6 +248,7 @@ public class BalanceActivity extends BaseActivity   {
                     progressBar.setVisibility(View.GONE);
                 } else {
                     Log.e(TAG, "Balance response null");
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 
