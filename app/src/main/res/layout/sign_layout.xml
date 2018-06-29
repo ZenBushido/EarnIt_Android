@@ -73,7 +73,7 @@
                                 android:id="@+id/input_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/views_height"
-                                android:text="lkj@lkj.com"
+                                android:text="ppo@ppo.com"
                                 android:background="@android:color/white"
                                 android:ems="10"
                                 android:focusable="true"

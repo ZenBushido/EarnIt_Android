@@ -17,14 +17,18 @@ import com.mobiledi.earnit.model.task.GetAllTaskResponse;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
@@ -72,14 +76,20 @@ public interface RetroInterface {
     editTask(@Body EditTaskRequest editTaskRequest);
 
     @PUT("mobileapplications")
-    Call<Response<ResponseBody>> createAppUsages(@Body List<AppUsage> ages);
+    Call<ResponseBody> createAppUsages(@Body List<AppUsage> ages);
 
     @GET("mobileapplications/usage")
     Call<List<AppUsageResponse>>
     getAppsUsage(@QueryMap(encoded=true) Map<String, Integer> filters);
 
-//    @GET("mobileapplications/usage")
-//    Call<ResponseBody>
-//    getAppsUsage(@QueryMap(encoded=true) Map<String, Integer> filters);
+    @Multipart
+    @POST("parents/children/{CHILD_ID}/profile/images")
+    Call<Response<String>>
+    uploadChildrenProfilePictureByParent(@Path("CHILD_ID") int id, @Part MultipartBody.Part filePart);
+
+    @Multipart
+    @POST("parents/profile/images")
+    Call<String>
+    uploadParentProfilePicture(@Part MultipartBody.Part filePart);
 
 }

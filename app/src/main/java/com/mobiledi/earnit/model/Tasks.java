@@ -8,6 +8,7 @@ import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.Utils;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -55,6 +56,70 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
                 i++;
         }
         return i > 1;
+    }
+
+    public int getWeekAsInt(String dayOfTheWeek){
+        int week = -1;
+        if (getRepititionSchedule() != null && !getRepititionSchedule().monthlyRepeatHasNumbers()){
+            switch (dayOfTheWeek) {
+                case "Sunday":
+                    week = DateTimeConstants.SUNDAY;
+                    break;
+                case "sunday":
+                    week = DateTimeConstants.SUNDAY;
+                    break;
+                case "monday":
+                    week = DateTimeConstants.MONDAY;
+                    break;
+                case "tuesday":
+                    week = DateTimeConstants.TUESDAY;
+                    break;
+                case "wednesday":
+                    week = DateTimeConstants.WEDNESDAY;
+                    break;
+                case "thursday":
+                    week = DateTimeConstants.THURSDAY;
+                    break;
+                case "friday":
+                    week = DateTimeConstants.FRIDAY;
+                    break;
+                case "saturday":
+                    week = DateTimeConstants.SATURDAY;
+                    break;
+                default:
+                    week = 1;
+            }
+        }
+        return week;
+    }
+
+    public int getPerformTaskOnTheNSpecifiedDay(){
+        int performTaskOnTheNSpecifiedDay = -1;
+        if (getRepititionSchedule() != null && !getRepititionSchedule().monthlyRepeatHasNumbers()) {
+            switch (getRepititionSchedule().getPerformTaskOnTheNSpecifiedDay()) {
+                case "First":
+                    performTaskOnTheNSpecifiedDay = 1;
+                    break;
+                case "Second":
+                    performTaskOnTheNSpecifiedDay = 2;
+                    break;
+                case "Third":
+                    performTaskOnTheNSpecifiedDay = 3;
+                    break;
+                case "Fourth":
+                    performTaskOnTheNSpecifiedDay = 4;
+                    break;
+                case "Fifth":
+                    performTaskOnTheNSpecifiedDay = 5;
+                    break;
+                case "Last":
+                    performTaskOnTheNSpecifiedDay = -1;
+                    break;
+                default:
+                    performTaskOnTheNSpecifiedDay = 1;
+            }
+        }
+        return performTaskOnTheNSpecifiedDay;
     }
 
     public Tasks getApprovalTask() {

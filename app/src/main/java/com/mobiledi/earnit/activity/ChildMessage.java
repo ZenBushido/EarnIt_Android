@@ -77,7 +77,7 @@ public class ChildMessage extends BaseActivity implements View.OnClickListener {
             case R.id.message_close:
                 screenSwitch.updateFCMToken(child, token);
                 //LOAD CHILD ACTIVITY
-                screenSwitch.moveTOChildDashboard(child);
+                screenSwitch.moveTOChildDashboard(child, false);
                 break;
         }
     }

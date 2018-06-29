@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -39,6 +38,7 @@ import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -103,6 +103,8 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
     private List<TextView> badgesTextViews;
     private ArrayList<ChildsTaskObject> childTasksObject;
     private int calendarMonth;
+
+    private ArrayList<Tasks> allTasksForCurrentMonth;
 
     String TAG = ChildCalendarActivity.class.getSimpleName();
 
@@ -177,15 +179,9 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
 
 
         }
-        setBadges(true, -1);
-        calendarView.setOnMonthChangeListener(new CalendarView.OnMonthChangeListener() {
-            @Override
-            public void onMonthChange(@NonNull Date monthDate) {
-                calendarMonth = new DateTime(monthDate).getMonthOfYear();
-                Log.d("dbopc", "\nonMonthChange. calendarMonth = " + calendarMonth);
-                setBadges(false, calendarMonth);
-            }
-        });
+        DateTime today = DateTime.now();
+        setBadges(today.getMonthOfYear(), today.getYear());
+        calendarView.setOnMonthChangeListener(calendarMonthListener());
 
         calendarView.setOnDateClickListener(new CalendarView.OnDateClickListener() {
             @Override
@@ -193,20 +189,17 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                 ArrayList<Tasks> tasks = new ArrayList<>();
                 DateTime dateTime = new DateTime(selectedDate);
                 ScreenSwitch screenSwitch = new ScreenSwitch(ChildCalendarActivity.this);
-                Child child = getChild(childObject, new DateTime(selectedDate));
-                Log.d("askdjhhkj", "child = " + child);
-                for (ChildsTaskObject taskObject : childTaskObjects) {
-                    DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-                    DateTime dateTime2 = dtf.parseDateTime(taskObject.getDueDate());
-                    if (datesEquals(dateTime, dateTime2)) {
-                        tasks.addAll(taskObject.getTasks());
+                Child child = getChild(childObject, dateTime);
+                for (Tasks task : allTasksForCurrentMonth){
+                    if (isToday(task, dateTime)){
+                        tasks.add(task);
                     }
                 }
                 if (tasks.size() != 0) {
                     Log.d("dsjfhkj", "size() != 0");
                     if (tasks.size() > 1) {
                         Log.d("dsjfhkj", "size() > 1");
-                        screenSwitch.moveTOChildDashboard(getChild(childObject, new DateTime(selectedDate)));
+                        screenSwitch.moveTOChildDashboard(getChild(childObject, new DateTime(selectedDate)), true);
                     } else {
                         Log.d("dsjfhkj", "size() == 1");
                         Tasks task = tasks.get(0);
@@ -221,6 +214,7 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                         requestTaskApproval.putExtra(AppConstant.GOAL_OBJECT, task.getGoal());
                         requestTaskApproval.putExtra(AppConstant.REPETITION_SCHEDULE, task.getRepititionSchedule());
                         requestTaskApproval.putExtra(AppConstant.PARENT_OBJECT, parentObject);
+                        requestTaskApproval.putExtra(AppConstant.DUE_DATE_STRING, task.getDueDate());
                         startActivity(requestTaskApproval);
                     }
                 } else {
@@ -229,6 +223,190 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
             }
         });
         getAllGoals();
+    }
+
+    private boolean isToday(Tasks task, DateTime selectedDay){
+        DateTime taskDate = new DateTime(task.getDueDate());
+        return taskDate.withTimeAtStartOfDay().isEqual(selectedDay.withTimeAtStartOfDay());
+    }
+
+    private CalendarView.OnMonthChangeListener calendarMonthListener() {
+        return new CalendarView.OnMonthChangeListener() {
+            @Override
+            public void onMonthChange(@NonNull Date monthDate) {
+                DateTime currentMonth = new DateTime(monthDate);
+                calendarMonth = currentMonth.getMonthOfYear();
+//                setBadges(false, calendarMonth);
+                setBadges(currentMonth.getMonthOfYear(), currentMonth.getYear());
+            }
+        };
+    }
+
+    private void clearBadges() {
+        badges.clear();
+        for (TextView tv : badgesTextViews) {
+            RelativeLayout rl = ((RelativeLayout) tv.getParent());
+            if (rl != null)
+                rl.removeView(tv);
+        }
+    }
+
+    private boolean dateNear(int month, int year, DateTime dateTime) {
+        return dateTime.getYear() == year && dateTime.getMonthOfYear() == month;
+    }
+
+    private void setBadges(int month, int year) {
+        clearBadges();
+
+        allTasksForCurrentMonth = new ArrayList<>();
+
+        for (Tasks task : childObject.getTasksArrayList()) {
+            DateTime taskDate = new DateTime(task.getDueDate());
+            if (task.getRepititionSchedule() == null) {
+                if (dateNear(month, year, taskDate)) {
+                    allTasksForCurrentMonth.add(task);
+                }
+            } else {
+                DateTime endDate = new DateTime().withYear(year).withMonthOfYear(month).withDayOfMonth(1).plusMonths(1);
+                DateTime fakeDate = new DateTime(task.getDueDate());
+                Log.d("dkfjhdkj", "endDate = " + endDate.toString("dd.MM.yyyy HH:mm:ss"));
+                Log.d("dkfjhdkj", "fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
+
+                if (fakeDate.isBefore(endDate)) {
+                    int interval = 0;
+
+                    do {
+                        switch (task.getRepititionSchedule().getRepeat()) {
+                            case "daily":
+                                fakeDate = fakeDate.plusDays(interval * task.getRepititionSchedule().getEveryNRepeat());
+                                Log.d("dkfjhdkj", "daily date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss") + "; (" + interval + " * " + task.getRepititionSchedule().getEveryNRepeat() + ")");
+                                break;
+                            case "weekly":
+                                if (task.getRepititionSchedule().getSpecificDays() != null &&
+                                        task.getRepititionSchedule().getSpecificDays().size() > 0){
+                                    for (int i = 0; i < task.getRepititionSchedule().getSpecificDays().size(); i++) {
+                                        Tasks newTask = Tasks.from(task);
+                                        int day = newTask.getWeekAsInt(task.getRepititionSchedule().getSpecificDays().get(i));
+                                        newTask.setStartDate(newTask.getDueDate());
+                                        fakeDate = fakeDate.plusWeeks(interval * task.getRepititionSchedule().getEveryNRepeat()).withDayOfWeek(day);
+                                        if (!fakeDate.isBefore(new DateTime(newTask.getStartDate()))) {
+                                            newTask.setDueDate(fakeDate.getMillis());
+                                            GetObjectFromResponse.setStatusForTask(newTask);
+                                            if (newTask.getStatus().equalsIgnoreCase("created") && dateNear(month, year, fakeDate))
+                                                allTasksForCurrentMonth.add(newTask);
+                                        }
+                                    }
+                                }
+                                Log.d("dkfjhdkj", "weekly date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
+                                break;
+                            case "monthly":
+                                if (task.getRepititionSchedule().monthlyRepeatHasNumbers()) {
+                                    Log.d("dkfjhdkj", "monthlyRepeatHasNumbers");
+                                    fakeDate = fakeDate.plusMonths(interval * task.getRepititionSchedule().getEveryNRepeat());
+                                    for (int i = 0; i < task.getRepititionSchedule().getSpecificDays().size(); i++) {
+                                        Tasks newTask = Tasks.from(task);
+                                        int day = Integer.parseInt(task.getRepititionSchedule().getSpecificDays().get(i));
+                                        newTask.setStartDate(newTask.getDueDate());
+                                        fakeDate = fakeDate.withDayOfMonth(day);
+                                        newTask.setDueDate(fakeDate.getMillis());
+                                        GetObjectFromResponse.setStatusForTask(newTask);
+                                        if (newTask.getStatus().equalsIgnoreCase("created")
+                                                && dateNear(month, year, fakeDate)
+                                                && task.getDueDate() < newTask.getDueDate())
+                                            allTasksForCurrentMonth.add(newTask);
+                                    }
+                                } else {
+                                    Log.d("dkfjhdkj", "!!!!monthlyRepeatHasNumbers");
+                                    Tasks newTask = Tasks.from(task);
+                                    newTask.setStartDate(newTask.getDueDate());
+
+                                    int week = newTask.getWeekAsInt(newTask.getRepititionSchedule().getSpecificDays().get(0));
+                                    int performTaskOnTheNSpecifiedDay = newTask.getPerformTaskOnTheNSpecifiedDay();
+
+//                                    if (interval == 0) {
+//                                        DateTime dayOfWeek = new DateTime(newTask.getStartDate()).withDayOfMonth(1).plusWeeks(performTaskOnTheNSpecifiedDay).withDayOfWeek(week).withTimeAtStartOfDay();
+//                                        Log.d("weekDSKASDK", "dayOfWeek = " + dayOfWeek.toString("dd.MM.yyyy HH:mm:ss"));
+//                                        Log.d("weekDSKASDK", "getStartDate = " + new DateTime(newTask.getStartDate()).withTimeAtStartOfDay().toString("dd.MM.yyyy HH:mm:ss"));
+//                                        if (dayOfWeek.isBefore(new DateTime(task.getStartDate()).withTimeAtStartOfDay())
+//                                                || dayOfWeek.isEqual(new DateTime(task.getStartDate()).withTimeAtStartOfDay())) {
+//                                            Log.d("weekDSKASDK", "plusMonth++");
+//                                            interval++;
+//                                        }
+//                                    }
+
+                                    LocalTime localTime = new LocalTime(fakeDate.getMillis());
+
+                                    fakeDate = fakeDate.plusMonths(interval * newTask.getRepititionSchedule().getEveryNRepeat())
+                                            .withDayOfMonth(1)
+                                            .minusDays(1)
+                                            .withDayOfWeek(week)
+                                            .plusWeeks(performTaskOnTheNSpecifiedDay);
+                                    Log.d("sdlkjfhskj", "1 fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss") + "; performTaskOnTheNSpecifiedDay = " + performTaskOnTheNSpecifiedDay);
+                                    if (performTaskOnTheNSpecifiedDay == -1) {
+                                        Log.d("sdlkjfhskj", "2 fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
+                                        fakeDate = fakeDate.withDayOfMonth(1).minusDays(-1 - 7).withDayOfWeek(week);
+                                    }
+                                    newTask.setDueDate(fakeDate.getMillis());
+                                    GetObjectFromResponse.setStatusForTask(newTask);
+                                    Log.d("weekDSKASDK", "newTask = " + newTask);
+                                    if (newTask.getStatus().equalsIgnoreCase("created")
+                                            && dateNear(month, year, fakeDate)
+                                            && task.getDueDate() < newTask.getDueDate())
+                                        allTasksForCurrentMonth.add(newTask);
+                                }
+                                Log.d("dkfjhdkj", "monthly date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
+                                break;
+                        }
+                        interval++;
+                        if (interval > 1)
+                            interval = 1;
+                        if (dateNear(month, year, fakeDate) && !task.getRepititionSchedule().getRepeat().equalsIgnoreCase("monthly")
+                                && !task.getRepititionSchedule().getRepeat().equalsIgnoreCase("weekly")) {
+
+                            Tasks newTask = Tasks.from(task);
+                            newTask.setStartDate(task.getDueDate());
+                            newTask.setDueDate(fakeDate.getMillis());
+                            allTasksForCurrentMonth.add(newTask);
+                        }
+                    } while (fakeDate.isBefore(endDate));
+                }
+            }
+        }
+
+        addViews(allTasksForCurrentMonth);
+    }
+
+    private void addViews(ArrayList<Tasks> t) {
+        if (t.size() > 0) {
+            for (Tasks task : t) {
+                int i = 1;
+                DateTime taskDate = new DateTime(task.getDueDate());
+                Log.d("dsjfhkj", "taskDate.getMonthOfYear() = " + taskDate.getMonthOfYear());
+                TextView tvCount;
+                Log.d("dsjfhkj", "Task: " + task.getName() + "; taskDate = " + taskDate.toString());
+                DayView dayView = calendarView.findViewByDate(taskDate.toDate());
+                RelativeLayout parent = (RelativeLayout) dayView.getParent();
+                if (badges.containsKey(taskDate.toString("dd/MM/yyyy"))) {
+                    Log.d("dsjfhkj", "Contains");
+                    tvCount = parent.findViewWithTag("tvCount");
+                    i = badges.get(taskDate.toString("dd/MM/yyyy")) + 1;
+                    badges.put(taskDate.toString("dd/MM/yyyy"), i);
+                } else {
+                    Log.d("dsjfhkj", "NOT Contains");
+                    tvCount = createNewTextView();
+                    badges.put(taskDate.toString("dd/MM/yyyy"), i);
+                }
+                tvCount.setText(String.valueOf(i));
+                try {
+                    parent.addView(tvCount);
+                } catch (IllegalStateException e) {
+                    parent.removeView(tvCount);
+                    parent.addView(tvCount);
+                }
+                badgesTextViews.add(tvCount);
+            }
+        }
+        Log.d("dsjfhkj", "badges size = " + badges.size());
     }
 
     private boolean datesEquals(DateTime firstDate, DateTime secondDate) {
@@ -277,13 +455,9 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         returnChild.setUpdateDate(child.getUpdateDate());
         returnChild.setUserType(child.getUserType());
         ArrayList<Tasks> emptyTasks = new ArrayList<>();
-        for (Tasks task : child.getTasksArrayList()) {
-            DateTime datesArray = new DateTime(task.getDueDate());
-            Log.d("dsdsd", taskDate.toString("dd/MM") + " AND " + datesArray.toString("dd/MM"));
-            if (datesArray.getMonthOfYear() == taskDate.getMonthOfYear() &&
-                    datesArray.getYear() == taskDate.getYear() &&
-                    datesArray.getDayOfMonth() == taskDate.getDayOfMonth()) {
-                Log.d("dsjfhkj", "emptyTasks.add(task);");
+        for (Tasks task : allTasksForCurrentMonth) {
+            if (isToday(task, taskDate)) {
+                Log.d("absdnb", "add task: " + new DateTime(task.getDueDate()).toString("dd.MM.yyyy HH:mm:ss"));
                 emptyTasks.add(task);
             }
         }
@@ -293,74 +467,6 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
             return null;
         }
         return returnChild;
-    }
-
-    private void setBadges(boolean firstCall, int month) {
-        badges.clear();
-        for (TextView tv : badgesTextViews) {
-            RelativeLayout rl = ((RelativeLayout) tv.getParent());
-            if (rl != null)
-                rl.removeView(tv);
-        }
-        //add badges not repeat
-
-//        ArrayList<Tasks> t = addRepeatedTasks(childObject.getTasksArrayList());
-        ArrayList<Tasks> t = new ArrayList<>();
-
-//        for (Tasks task : childObject.getTasksArrayList()){
-//            Log.d("dbopc", "\nsetBadges. task status = " + task.getStatus() + ";    task.getDueDate() = " + new DateTime(task.getDueDate()).getMonthOfYear() + ";     calendarMonth = " + calendarMonth);
-//            if (!task.getStatus().equals("Closed") && new DateTime(task.getDueDate()).getMonthOfYear() == calendarMonth) {
-//                t.add(task);
-////                addRepeatedTasks(t, childObject.getTasksArrayList());
-//            }
-//        }
-
-        for (ChildsTaskObject taskObject : childTasksObject) {
-            //2018-04-21T00:00:00.000Z
-            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-            DateTime dateTime = dtf.parseDateTime(taskObject.getDueDate());
-            for (Tasks task : taskObject.getTasks()) {
-                Log.d("dbopc", "\nsetBadges. task status = " + task.getStatus() + ";    task.getDueDate() = " + new DateTime(task.getDueDate()).getMonthOfYear() + ";     calendarMonth = " + calendarMonth);
-                if (!task.getStatus().equals("Closed") && new DateTime(task.getDueDate()).getMonthOfYear() == calendarMonth) {
-
-                    task.setDueDate(dateTime.getMillis());
-                    t.add(task);
-                }
-            }
-        }
-
-        if (t.size() > 0) {
-            for (Tasks task : t) {
-                int i = 1;
-                DateTime taskDate = new DateTime(task.getDueDate());
-                Log.d("dsjfhkj", "firsstCall = " + firstCall + "; taskDate.getMonthOfYear() = " + taskDate.getMonthOfYear() + "; month = " + month);
-                if (firstCall || taskDate.getMonthOfYear() == month) {
-                    TextView tvCount;
-                    Log.d("dsjfhkj", "Task: " + task.getName() + "; taskDate = " + taskDate.toString());
-                    DayView dayView = calendarView.findViewByDate(taskDate.toDate());
-                    RelativeLayout parent = (RelativeLayout) dayView.getParent();
-                    if (badges.containsKey(taskDate.toString("dd/MM/yyyy"))) {
-                        Log.d("dsjfhkj", "Contains");
-                        tvCount = parent.findViewWithTag("tvCount");
-                        i = badges.get(taskDate.toString("dd/MM/yyyy")) + 1;
-                        badges.put(taskDate.toString("dd/MM/yyyy"), i);
-                    } else {
-                        Log.d("dsjfhkj", "NOT Contains");
-                        tvCount = createNewTextView();
-                        badges.put(taskDate.toString("dd/MM/yyyy"), i);
-                    }
-                    tvCount.setText(String.valueOf(i));
-                    try {
-                        parent.addView(tvCount);
-                    } catch (IllegalStateException e) {
-                        parent.removeView(tvCount);
-                        parent.addView(tvCount);
-                    }
-                    badgesTextViews.add(tvCount);
-                }
-            }
-        }
-        Log.d("dsjfhkj", "badges size = " + badges.size());
     }
 
     private ArrayList<Tasks> addRepeatedTasks(ArrayList<Tasks> baseTasks) {

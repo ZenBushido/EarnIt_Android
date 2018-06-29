@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -73,12 +74,12 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
     @BindView(R.id.recyclerview_app_usage)
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
-    @BindView(R.id.button_open_usage_setting)
-    Button button_open_usage;
     @BindView(R.id.spinner_time_span)
     Spinner mSpinner;
     @BindView(R.id.pb)
     ProgressBar pb;
+    @BindView(R.id.tvListIsEmpty)
+    TextView tvListIsEmpty;
 
     public interface OnViewReady{
         void onReady();
@@ -130,18 +131,24 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
                         Log.d("sdlfkjslk", "appUsageResponse: " + appUsageResponse.toString());
                         appUsages.add(new CustomUsageStats().from(appUsageResponse));
                     }
-                    Log.d("sdlfkjslk", "totalTime minutes: " + totalTime);
-                    totalTime = TimeUnit.MINUTES.toMillis(totalTime);
-                    Log.d("sdlfkjslk", "totalTime millis: " + totalTime);
-                    mUsageListAdapter = new UsageListAdapter(sContext, sortingList(appUsages), totalTime);
-                    mRecyclerView.setAdapter(mUsageListAdapter);
+                    if (appUsages.isEmpty()){
+                        tvListIsEmpty.setVisibility(View.VISIBLE);
+                    } else {
+                        Log.d("sdlfkjslk", "totalTime minutes: " + totalTime);
+                        totalTime = TimeUnit.MINUTES.toMillis(totalTime);
+                        Log.d("sdlfkjslk", "totalTime millis: " + totalTime);
+                        mUsageListAdapter = new UsageListAdapter(sContext, sortingList(appUsages), totalTime);
+                        mRecyclerView.setAdapter(mUsageListAdapter);
+                    }
                 } else {
+                    tvListIsEmpty.setVisibility(View.VISIBLE);
                     Log.d("sdlfkjslk", "body == null");
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<List<AppUsageResponse>> call, @NonNull Throwable t) {
+                tvListIsEmpty.setVisibility(View.VISIBLE);
                 pb.setVisibility(View.GONE);
             }
         });
@@ -192,11 +199,6 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
         SpinnerAdapter spinnerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.action_list, R.layout.item_spinner);
         mSpinner.setAdapter(spinnerAdapter);
-        if (checkUsageStatEnable()) {
-            button_open_usage.setVisibility(View.GONE);
-        } else {
-            button_open_usage.setVisibility(View.VISIBLE);
-        }
         mSpinner.setOnItemSelectedListener(this);
 
 //        String[] strings = getResources().getStringArray(R.array.action_list);
@@ -216,26 +218,6 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
             onViewReady.onReady();
         }
         updateRecyclerView();
-    }
-
-    private boolean checkUsageStatEnable() {
-
-        try {
-            PackageManager packageManager = getActivity().getPackageManager();
-            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(getActivity().getPackageName(), 0);
-            AppOpsManager appOpsManager = (AppOpsManager) getActivity().getSystemService(Context.APP_OPS_SERVICE);
-            int mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, applicationInfo.uid, applicationInfo.packageName);
-            return (mode == AppOpsManager.MODE_ALLOWED);
-
-        } catch (PackageManager.NameNotFoundException e) {
-            return false;
-        }
-    }
-
-    @OnClick(R.id.button_open_usage_setting)
-    void usageStatSetting() {
-        Log.e(TAG, "Clicked");
-        startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
     }
 
 

@@ -1,8 +1,15 @@
 package com.mobiledi.earnit.activity;
 
+import android.app.AppOpsManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,19 +58,25 @@ public class ChildDashboard extends BaseActivity {
     private static final int FEB_ICON_SIZE = 15;
     ChildDashboard childDashboard;
     private Child childObject;
-    @BindView(R.id.child_task_date_list) RecyclerView childTaskDateList;
-    @BindView(R.id.child_dashboard_avatar) CircularImageView childImage;
+    @BindView(R.id.child_task_date_list)
+    RecyclerView childTaskDateList;
+    @BindView(R.id.child_dashboard_avatar)
+    CircularImageView childImage;
     private ChildViewDateAdapter childViewDateAdapter;
-    @BindView(R.id.loadingPanel) RelativeLayout progress;
-    @BindView(R.id.child_dashboard_header) TextView childDashboardHeader;
+    @BindView(R.id.loadingPanel)
+    RelativeLayout progress;
+    @BindView(R.id.child_dashboard_header)
+    TextView childDashboardHeader;
     int bCount = 0;
     long time;
     Handler handler;
     Runnable runnable;
     private Parent parentObject;
     String TAG = ChildDashboard.class.getSimpleName();
-    ArrayList<Tasks> taskList ;
+    ArrayList<Tasks> taskList;
     private ArrayList<ChildsTaskObject> childTaskObjects;
+    private boolean openFromCalendar = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,30 +88,30 @@ public class ChildDashboard extends BaseActivity {
         Intent intent = getIntent();
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
+        openFromCalendar = intent.getBooleanExtra("openFromCalendar", false);
         //SET PROFILE IMAGE
 
         childDashboardHeader.setText(getResources().getString(R.string.my_task));
         Log.e(TAG, "Child objcet getting");
-        Log.e(TAG, "CHILD ID= "+childObject.getId());
+        Log.e(TAG, "CHILD ID= " + childObject.getId());
 
         if (childObject != null) {
 
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.override(350,350);
+            requestOptions.override(350, 350);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
             requestOptions.placeholder(R.drawable.default_avatar);
             requestOptions.error(R.drawable.default_avatar);
-            Log.e(TAG, AppConstant.AMAZON_URL+childObject.getAvatar());
+            Log.e(TAG, AppConstant.AMAZON_URL + childObject.getAvatar());
 
-            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar())
+            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + childObject.getAvatar())
                     .into(childImage);
 
             Log.e(TAG, "Child objcet is not null");
-            Log.e(TAG, AppConstant.AMAZON_URL+childObject.getAvatar());
-            Log.e(TAG, AppConstant.AMAZON_URL+childObject);
+            Log.e(TAG, AppConstant.AMAZON_URL + childObject.getAvatar());
+            Log.e(TAG, AppConstant.AMAZON_URL + childObject);
             Log.e(TAG, childObject.getAvatar());
-        }
-        else
+        } else
             Log.e(TAG, "Child objcet is null.......");
 
     /*    try {
@@ -108,7 +121,7 @@ public class ChildDashboard extends BaseActivity {
             Picasso.with(childDashboard.getApplicationContext()).load(R.drawable.default_avatar).into(childImage);
         }*/
 
-       // callRetrofit();
+        // callRetrofit();
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         childTaskDateList.setLayoutManager(mLayoutManager);
@@ -126,27 +139,42 @@ public class ChildDashboard extends BaseActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);
-                        Log.e(TAG, "OBJECT= "+object);
+                        Log.e(TAG, "OBJECT= " + object);
                         //TASKS
                         Tasks task = new GetObjectFromResponse().getTaskObject(object, childObject.getId());
                         Log.e(TAG, "GetObjectFromResponse task: " + task.toString());
                         taskList.add(task);
                     } catch (Exception e) {
-                        Log.e(TAG, "Error: "+e.getLocalizedMessage());
+                        Log.e(TAG, "Error: " + e.getLocalizedMessage());
 
                     }
                     childObject.setTasksArrayList(taskList);
                 }
             }
         });
-        childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject);
-        for (ChildsTaskObject childsTaskObject : childTaskObjects){
+        if (openFromCalendar) {
+            Log.d("fdslfjj", "openFromCalendar");
+            childTaskObjects = new ArrayList<>();
+            ChildsTaskObject childsTaskObject = new ChildsTaskObject();
+            ArrayList<Tasks> tasksList = new ArrayList<>();
+            for (Tasks task : childObject.getTasksArrayList()) {
+                Log.d("fdslfjj", "addTask: " + task.toString());
+                tasksList.add(task);
+                childsTaskObject.setDueDate(new DateTime(task.getDueDate()).toString());
+            }
+            childsTaskObject.setTasks(tasksList);
+            childTaskObjects.add(childsTaskObject);
+        } else {
+            Log.d("fdslfjj", "open NE FromCalendar");
+            childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject);
+        }
+        for (ChildsTaskObject childsTaskObject : childTaskObjects) {
             Utils.logDebug("aslkdjlk", "childTaskObjects = " + childsTaskObject.toString());
         }
         MyApplication.getInstance().setChildsTaskObjects(childTaskObjects);
 
         if (childTaskObjects.size() > 0) {
-            childViewDateAdapter = new ChildViewDateAdapter(childTaskObjects,parentObject,childObject,"child");
+            childViewDateAdapter = new ChildViewDateAdapter(childTaskObjects, parentObject, childObject, "child");
             Log.d("dasagsdg", "childTaskObjects: " + childTaskObjects);
             childTaskDateList.setAdapter(childViewDateAdapter);
         } else showToast(getResources().getString(R.string.please_ask_parent_to_add_task));
@@ -159,7 +187,52 @@ public class ChildDashboard extends BaseActivity {
         callApi();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            Log.d("sdjfhkj", "onResume(); isAlreadySentAppUsage = " + RestCall.isAlreadySentAppUsage() + "; isPermissionEnabled = " + isPermissionEnabled());
+            if (!isPermissionEnabled()) {
+                Log.d("sdjfhkj", "showAlertDialog()");
+                showAlertDialog();
+            }
+//            if (!RestCall.isAlreadySentAppUsage() && isPermissionEnabled()) {
+//                Log.d("sdjfhkj", "dddddd()");
+//                RestCall.updateAppsUsage();
+//            }
+            RestCall.updateAppsUsage();
+        }
+    }
 
+    private void showAlertDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.enable_apps_usage_permission);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
+
+    }
+
+    private boolean isPermissionEnabled() {
+        AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+        assert appOps != null;
+        int mode = appOps.checkOpNoThrow("android:get_usage_stats",
+                android.os.Process.myUid(), getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED;
+    }
 
     @Override
     public void onBackPressed() {

@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.mobiledi.earnit.AppLockConstants;
 import com.mobiledi.earnit.receiver.AlarmReceiver;
@@ -34,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        /****************************** too much important don't miss it *****************************/
+        Log.d("ldfgl", "SplashActivity.onCreate()");
         startService(new Intent(SplashActivity.this, AppCheckServices.class));
 
         try {

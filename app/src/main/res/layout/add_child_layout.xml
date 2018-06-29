@@ -178,7 +178,7 @@
                     android:textColor="@color/main_font" />
 
                 <EditText
-                    android:text="dingo1987"
+                    android:text="pppppp"
                     android:id="@+id/child_password"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/views_height"

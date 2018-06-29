@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,9 @@ import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Country;
 import com.mobiledi.earnit.model.Parent;
+import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
@@ -64,6 +68,12 @@ import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by mradul on 8/4/17.
@@ -256,17 +266,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
     @Override
     public void onValidationSucceeded() {
         if (Utils.validatePhoneNumber(phone.getText().toString()) && phone.getText().toString().trim().length() == 10) {
-            if (gFileName != null) {
-                progressBar.setVisibility(View.VISIBLE);
-                new ProfileAsyncTask().execute(gFileName);
-            } else if (mode.equalsIgnoreCase(AppConstant.UPDATE)) {
-                if (child.getAvatar().isEmpty())
-                    addChild(null);
-                else
-                    addChild(child.getAvatar());
-            } else {
-                addChild(null);
-            }
+            addChild(null);
         } else {
             phone.setError("Please enter 10 digit number only");
         }
@@ -425,7 +425,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
     }
 
     private void addChild(String childImage) {
-
+        Log.d("ldsfjjlk", "addChild");
         final JSONObject signInJson = new JSONObject();
         try {
             signInJson.put(AppConstant.ACCOUNT, new JSONObject().put(AppConstant.ID, parentObject.getAccount().getId()));
@@ -458,6 +458,8 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                 httpClient.put(addChild, AppConstant.BASE_URL + AppConstant.UPDATE_CHILD, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        Log.d("ldsfjjlk", "onSuccess 1");
+                        sendAvatar();
                         Utils.logDebug(TAG + " onSuccess", response.toString());
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
                             showToast(firstName.getText() + " updated");
@@ -469,6 +471,8 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        Log.d("ldsfjjlk", "onSuccess 2");
+                        sendAvatar();
                         Utils.logDebug(TAG + " onSuccess", response.toString());
 
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
@@ -481,6 +485,8 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Log.d("ldsfjjlk", "onFailure throwable: " + throwable.getLocalizedMessage());
+                        Log.d("ldsfjjlk", "onFailure errorResponse: " + errorResponse.toString());
                         Utils.logDebug(TAG + " onFailure", throwable.toString());
                         unLockScreen();
                         josnError(errorResponse);
@@ -489,6 +495,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onStart() {
+                        Log.d("ldsfjjlk", "onStart");
                         progressBar.setVisibility(View.VISIBLE);
                         lockScreen();
 
@@ -496,6 +503,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onFinish() {
+                        Log.d("ldsfjjlk", "onFinish");
                         progressBar.setVisibility(View.GONE);
                         unLockScreen();
 
@@ -506,6 +514,8 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        Log.d("ldsfjjlk", "2 onSuccess 1");
+                        sendAvatar();
                         Utils.logDebug(TAG + " onSuccess", response.toString());
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
                             showToast(firstName.getText() + " updated");
@@ -518,6 +528,8 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        Log.d("ldsfjjlk", "2 onSuccess 2");
+                        sendAvatar();
                         Utils.logDebug(TAG + " onSuccess", response.toString());
 
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
@@ -531,6 +543,8 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Log.d("ldsfjjlk", "2 onFailure throwable: " + throwable.getLocalizedMessage());
+                        Log.d("ldsfjjlk", "2 onFailure errorResponse: " + errorResponse.toString());
                         Utils.logDebug(TAG + " onFailure", throwable.toString());
                         Toast.makeText(addChild, getResources().getString(R.string.user_already_exists), Toast.LENGTH_LONG).show();
                         unLockScreen();
@@ -539,6 +553,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onStart() {
+                        Log.d("ldsfjjlk", "2 onStart");
                         progressBar.setVisibility(View.VISIBLE);
                         lockScreen();
 
@@ -546,6 +561,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onFinish() {
+                        Log.d("ldsfjjlk", "2 onFinish");
                         progressBar.setVisibility(View.GONE);
                         unLockScreen();
 
@@ -559,6 +575,29 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         }
     }
 
+    private void sendAvatar(){
+        Log.d("ldsfjjlk", "sendAvatar");
+        if (gFileName == null) {
+            Log.d("ldsfjjlk", "gFileName == null");
+            return;
+        }
+        Log.d("ldsfjjlk", "gFileName != null");
+        File file = new File(gFileName);
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+        RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
+        Call<Response<String>> call = retroInterface.uploadChildrenProfilePictureByParent(childId, filePart);
+        call.enqueue(new Callback<Response<String>>() {
+            @Override
+            public void onResponse(@NonNull Call<Response<String>> call, @NonNull Response<Response<String>> response) {
+                Log.d("ldsfjjlk", "response: " + response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response<String>> call, @NonNull Throwable t) {
+                Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
+            }
+        });
+    }
 
     public class ProfileAsyncTask extends AsyncTask<String, Void, String> {
         @Override

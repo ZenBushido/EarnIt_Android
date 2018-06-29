@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,10 +25,13 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.CountryAdapter;
 import com.mobiledi.earnit.model.Country;
 import com.mobiledi.earnit.model.Parent;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
@@ -55,6 +59,12 @@ import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -82,6 +92,7 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
     Parent parentObject, updateParent;
     RelativeLayout progressBar;
     ScreenSwitch screenSwitch;
+    private String passw;
     int bCount = 0;
     long time;
     Validator validator;
@@ -100,6 +111,7 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
         setCursorPosition();
         screenSwitch = new ScreenSwitch(profile);
         parentObject = (Parent) getIntent().getSerializableExtra(AppConstant.PARENT_OBJECT);
+        passw = getIntent().getStringExtra(AppConstant.PASSWORD);
         setParentDetils();
         validator = new Validator(profile);
         countries = new ArrayList<>();
@@ -188,14 +200,14 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
     public void onValidationSucceeded() {
 
         if (Utils.validatePhoneNumber(phone.getText().toString()) && phone.getText().toString().trim().length() == 10) {
-            if (gFileName != null) {
+            /*if (gFileName != null) {
                 progressBar.setVisibility(View.VISIBLE);
                 new ProfileAsyncTask().execute(gFileName);
-            } else {
+            } else {*/
                 updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), parentObject.getAvatar(), parentObject.getEmail(), phone.getText().toString().trim(),
                         parentObject.getPassword()
                         , parentObject.getCreateDate());
-            }
+            //}
         } else {
             phone.setError("Please enter 10 digit number only");
         }
@@ -256,7 +268,7 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
         }
     }
 
-    private void updateParentProfile(int accountId, int parentId, String firstName, String avatar, String email, String phone, final String password, String createDate) {
+    private void updateParentProfile(int accountId, int parentId, String firstName, String avatar, final String email, String phone, final String password, String createDate) {
 
         JSONObject signInJson = new JSONObject();
         try {
@@ -292,15 +304,34 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
             httpClient.put(profile, AppConstant.BASE_URL + AppConstant.UPDATE_PARENT, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
 
                 @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
                     try {
                         updateAutoLoginCredential(response.getString(AppConstant.EMAIL), response.getString(AppConstant.PASSWORD));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    unLockScreen();
-                    updateParent = new GetObjectFromResponse().getParentObject(response);
-                    moveToParentDashboard(updateParent);
+                    if  (gFileName != null){
+                        File file = new File(gFileName);
+                        Log.d("ldsfjjlk", "gFileName: " + gFileName);
+                        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+                        RetroInterface retroInterface = RetrofitClient.getApiServices(email, passw);
+                        Log.d("ldsfjjlk", "credentials: " + email + "; pass = " + passw);
+                        Call<String> call = retroInterface.uploadParentProfilePicture(filePart);
+                        call.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response2) {
+                                Log.d("ldsfjjlk", "response: " + response2.body());
+                                unLockScreen();
+                                updateParent = new GetObjectFromResponse().getParentObject(response);
+                                moveToParentDashboard(updateParent);
+                            }
+
+                            @Override
+                            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                                Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
+                            }
+                        });
+                    }
                 }
 
                 @Override

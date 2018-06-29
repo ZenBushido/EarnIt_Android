@@ -114,9 +114,6 @@ public class SignUp extends BaseActivity implements OnClickListener, Validator.V
             StringEntity entity = new StringEntity(signUpJson.toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
             AsyncHttpClient httpClient = new AsyncHttpClient();
-            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
-            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
-            httpClient.addHeader("Authorization", basicAuth);
             httpClient.post(this, AppConstant.BASE_URL + AppConstant.SIGNUP_PARENT, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

@@ -64,7 +64,7 @@ public class SharedPreference {
                     String[].class);
 
             locked = Arrays.asList(lockedItems);
-            locked = new ArrayList<String>(locked);
+            locked = new ArrayList<>(locked);
         } else
             return null;
         return (ArrayList<String>) locked;

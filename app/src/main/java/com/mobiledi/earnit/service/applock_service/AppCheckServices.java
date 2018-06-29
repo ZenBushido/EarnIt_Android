@@ -54,6 +54,7 @@ public class AppCheckServices extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d("ldfgl", "AppCheckServices.onCreate()");
 
         context = getApplicationContext();
 
@@ -63,7 +64,9 @@ public class AppCheckServices extends Service {
         }
         timer = new Timer("AppCheckServices");
         timer.schedule(updateTask, 1000L, 1000L);
-
+//        for (String packages : pakageName){
+//            Log.d("ldfgl", "Package: " + packages);
+//        }
         try
         {
             windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);

@@ -26,7 +26,7 @@ public class AppsUsageHelper {
     private Context mContext;
     private UsageStatsManager mUsageStatsManager;
     private List<CustomUsageStats> mCustomUsageStatsList = new ArrayList<>();
-    private List<AppUsage> mAppUsages = new ArrayList<>();
+    private List<AppUsage> mAppUsages;
 
     private long totalTime;
 

@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.mobiledi.earnit.R;
+import com.mobiledi.earnit.activity.applock.SplashActivity;
+import com.mobiledi.earnit.service.applock_service.AppCheckServices;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.RestCall;
 import com.mobiledi.earnit.utils.Utils;
@@ -63,6 +66,8 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_layout);
 
+        Log.d("ldfgl", "LoginScreen.onCreate()");
+//        startService(new Intent(LoginScreen.this, AppCheckServices.class));
         /*This method is used to catch the exception in an Application.*/
         FirebaseCrash.report(new Exception());
 

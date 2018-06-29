@@ -149,7 +149,9 @@
     <string name="adjust">Adjust</string>
     <string name="comments">Comments:</string>
     <string name="open_app_usage_setting">Usage access settings</string>
+    <string name="no_apps">No apps</string>
     <string name="time_span">Time span:</string>
+    <string name="enable_apps_usage_permission">Enable the permission to collect application usage statistics. To control the operation of these applications from the device of the parent.</string>
 
     <string-array name="action_list">
         <item>Daily</item>

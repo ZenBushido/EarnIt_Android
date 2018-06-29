@@ -69,7 +69,8 @@ public final class AppConstant {
     public final static String DATE_FORMAT = "MM/dd @ h:mm a";
     public final static String IMAGE_DATE_FORMAT = "yyyyMMdd_HHmmss";
 
-    //OBJECT IDENTIFIER
+    //OBJECT IDENTIFIER,
+
     public final static String PARENT_OBJECT = "ParentObject";
     public final static String CHILD_OBJECT = "childObject";
     public final static String OTHER_CHILD_OBJECT = "otherChildObject";

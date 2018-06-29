@@ -1,5 +1,6 @@
 package com.mobiledi.earnit.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.mobiledi.earnit.activity.usageStats.CustomUsageStats;
 
@@ -22,6 +23,8 @@ public class AppUsage {
 
     @SerializedName("usage")
     private List<UsageTime> usage;
+
+    private transient String mDateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ";
 
     public AppUsage from(CustomUsageStats customUsageStats){
         name = customUsageStats.getAppName();
@@ -98,8 +101,6 @@ public class AppUsage {
             this.startDateTimeWithZone = startDateTimeWithZone;
             this.endDateTimeWithZone = endDateTimeWithZone;
         }
-
-        private String mDateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ";
 
         public String getStartDateTimeWithZone() {
             return startDateTimeWithZone;

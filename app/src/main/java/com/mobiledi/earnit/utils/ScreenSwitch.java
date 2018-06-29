@@ -351,10 +351,11 @@ goals.add(goal);
         activity.startService(updateToken);
     }
 
-    public void moveTOChildDashboard(Child child) {
+    public void moveTOChildDashboard(Child child, boolean openFromCalendar) {
         Intent childDashboard = new Intent(activity, ChildDashboard.class);
         childDashboard.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         childDashboard.putExtra(AppConstant.CHILD_OBJECT, child);
+        childDashboard.putExtra("openFromCalendar", openFromCalendar);
         activity.startActivity(childDashboard);
     }
 
@@ -390,9 +391,10 @@ goals.add(goal);
         activity.startActivity(moveToaddtask);
     }
 
-    public void moveToInitialParentProfile(Parent parent) {
+    public void moveToInitialParentProfile(Parent parent, String password) {
         Intent intent = new Intent(activity, InitialParentProfile.class);
         intent.putExtra(AppConstant.PARENT_OBJECT, parent);
+        intent.putExtra(AppConstant.PASSWORD, password);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }

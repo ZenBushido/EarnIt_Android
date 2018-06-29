@@ -46,12 +46,12 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class RestCall {
-    private Activity activity;
+    private static Activity activity;
     String token;
     final String TAG = "RestCall";
     ScreenSwitch screenSwitch;
     Parent parent;
-    private SharedPreferences sp;
+    private static SharedPreferences sp;
 
     public RestCall(Activity activity) {
         this.activity = activity;
@@ -111,13 +111,14 @@ public class RestCall {
                             }
 
                             if (parent.getFirstName().isEmpty() || parent.getPhone().isEmpty()) {
-                                screenSwitch.moveToInitialParentProfile(parent);
+                                screenSwitch.moveToInitialParentProfile(parent, password);
                             } else {
                                 screenSwitch.moveToParentDashboard(parent);
                             }
 
                         } else if (response.getString(AppConstant.TYPE).equals(AppConstant.CHILD)) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1 /*&& !isAlreadySentAppUsage()*/) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1 && !isAlreadySentAppUsage()) {
+                                Log.d("sadasd", "http://159.65.239.6:8080/earnit-api/mobileapplicationsdasdasdassdasdasd@@@@@@@@@@@@@@@@@@@@@@@@@");
                                 updateAppsUsage();
                             }
                             MyApplication.getInstance().setUserType(AppConstant.CHILD);
@@ -150,14 +151,14 @@ public class RestCall {
                                     }
                                 }
                                 //LOAD CHILD ACTIVITY
-                                screenSwitch.moveTOChildDashboard(child);
+                                screenSwitch.moveTOChildDashboard(child, false);
                             } else {
                                 if (AppConstant.MESSAGE_STATUS) {
                                     //LOAD message ACTIVITY
                                     screenSwitch.moveToMessage(child);
                                     AppConstant.MESSAGE_STATUS = false;
                                 } else {
-                                    screenSwitch.moveTOChildDashboard(child);
+                                    screenSwitch.moveTOChildDashboard(child, false);
                                 }
                             }
                         }
@@ -173,6 +174,7 @@ public class RestCall {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Utils.showToast(activity, "errorResponse: " + errorResponse);
                     Utils.logDebug(TAG, " login-Rquest onFailure. JSONObject errorResponse: " + errorResponse);
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable: " + throwable.getLocalizedMessage());
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.toString(): " + throwable.toString());
@@ -234,15 +236,16 @@ public class RestCall {
         }
     }
 
-    private boolean isAlreadySentAppUsage() {
+    public static boolean isAlreadySentAppUsage() {
         long lastUpdate = sp.getLong(AppConstant.APP_USAGE_LAST_UPDATE, -1);
+        Log.d("sdjfhkj", "isAlreadySentAppUsage; lastUpdate = " + lastUpdate + "; isToday = " + isToday(lastUpdate));
         if (lastUpdate == -1)
             return false;
         else
             return isToday(lastUpdate);
     }
 
-    private boolean isToday(long lastUpdateMillis) {
+    private static boolean isToday(long lastUpdateMillis) {
         DateTime today = new DateTime();
         DateTime lastUpdate = new DateTime(lastUpdateMillis);
         return today.getDayOfMonth() == lastUpdate.getDayOfMonth()
@@ -329,27 +332,58 @@ public class RestCall {
 
     }
 
+//    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+//    public static void updateAppsUsage() {
+//        Log.d("sdjfhkj", "updateAppsUsage()");
+//        AppsUsageHelper appsUsageHelper = new AppsUsageHelper(activity);
+//        List<AppUsage> list = appsUsageHelper.getAppUsages();
+//        Log.d("kdfjhkjh", "Credentials: \nEmail: '" + sp.getString(AppConstant.EMAIL, "") + "'\nPassword: '" + sp.getString(AppConstant.PASSWORD, "") + "'");
+//        for (AppUsage appUsage : list) {
+//            Log.d("kdfjhkjh", "appUsage: " + appUsage.toString());
+//        }
+//        RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, sp.getString(AppConstant.EMAIL, ""), sp.getString(AppConstant.PASSWORD, ""));
+//        Call<Response<ResponseBody>> createAppsUsage = retroInterface.createAppUsages(list);
+//        createAppsUsage.enqueue(new Callback<Response<ResponseBody>>() {
+//            @Override
+//            public void onResponse(@NonNull Call<Response<ResponseBody>> call, @NonNull Response<Response<ResponseBody>> response) {
+//                Log.d("sdjfhkj", "Response body: " + response.body());
+//                Log.d("sdjfhkj", "Response code: " + response.code());
+//                sp.edit().putLong(AppConstant.APP_USAGE_LAST_UPDATE, new DateTime().getMillis()).apply();
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<Response<ResponseBody>> call, @NonNull Throwable t) {
+//                // TODO: 23.06.2018
+//                // return: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $
+//                Log.d("sdjfhkj", "onFailure: " + t.getMessage());
+//            }
+//        });
+//    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
-    private void updateAppsUsage() {
+    public static void updateAppsUsage() {
+        Log.d("sdjfhkj", "updateAppsUsage()");
         AppsUsageHelper appsUsageHelper = new AppsUsageHelper(activity);
         List<AppUsage> list = appsUsageHelper.getAppUsages();
+        Log.d("kdfjhkjh", "Credentials: \nEmail: '" + sp.getString(AppConstant.EMAIL, "") + "'\nPassword: '" + sp.getString(AppConstant.PASSWORD, "") + "'");
         for (AppUsage appUsage : list) {
             Log.d("kdfjhkjh", "appUsage: " + appUsage.toString());
         }
-        Log.d("kdfjhkjh", "Credentials: \nEmail: '" + sp.getString(AppConstant.EMAIL, "") + "'\nPassword: '" + sp.getString(AppConstant.PASSWORD, "") + "'");
         RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, sp.getString(AppConstant.EMAIL, ""), sp.getString(AppConstant.PASSWORD, ""));
-        Call<Response<ResponseBody>> createAppsUsage = retroInterface.createAppUsages(list);
-        createAppsUsage.enqueue(new Callback<Response<ResponseBody>>() {
+        Call<ResponseBody> createAppsUsage = retroInterface.createAppUsages(list);
+        createAppsUsage.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NonNull Call<Response<ResponseBody>> call, @NonNull Response<Response<ResponseBody>> response) {
-                Log.d("kdfjhkjh", "Response body: " + response.body());
-                Log.d("kdfjhkjh", "Response code: " + response.code());
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                Log.d("sdjfhkj", "Response body: " + response.body());
+                Log.d("sdjfhkj", "Response code: " + response.code());
                 sp.edit().putLong(AppConstant.APP_USAGE_LAST_UPDATE, new DateTime().getMillis()).apply();
             }
 
             @Override
-            public void onFailure(@NonNull Call<Response<ResponseBody>> call, @NonNull Throwable t) {
-                Log.d("kdfjhkjh", "onFailure: " + t.getMessage());
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                // TODO: 23.06.2018
+                // return: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $
+                Log.d("sdjfhkj", "onFailure: " + t.getMessage());
             }
         });
     }

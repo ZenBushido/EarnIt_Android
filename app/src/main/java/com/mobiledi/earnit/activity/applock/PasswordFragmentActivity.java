@@ -56,7 +56,6 @@ public class PasswordFragmentActivity extends AppCompatActivity {
                 Intent i = new Intent(PasswordFragmentActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
-
             }
         });
         retryButton.setOnClickListener(new View.OnClickListener() {

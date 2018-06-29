@@ -223,15 +223,21 @@ public class BalanceActivity extends BaseActivity   {
                     Integer goalTotal = 0;
                     Integer totalAccountBalance = 0;
 
-                    for (int i = 0; i < response.body().size(); i++) {
-                        cashTotal += response.body().get(i).getCash();
+                    try {
+                        for (int i = 0; i < response.body().size(); i++) {
+                            cashTotal +=
+                                    response
+                                            .body()
+                                            .get(i)
+                                            .getCash();
 
-                        for (int j = 0; j < response.body().get(i).getAdjustments().size(); j++) {
-                            goalTotal += response.body().get(i).getAdjustments().get(j).getAmount();
+                            for (int j = 0; j < response.body().get(i).getAdjustments().size(); j++) {
+                                goalTotal += response.body().get(i).getAdjustments().get(j).getAmount();
+                            }
+                            goalTotal += response.body().get(i).getAmount();
+
                         }
-                        goalTotal += response.body().get(i).getAmount();
-
-                    }
+                    } catch (NullPointerException ignored){}
 
                     totalAccountBalance += cashTotal + goalTotal;
                     tv_cash.setText("$" + cashTotal.toString());

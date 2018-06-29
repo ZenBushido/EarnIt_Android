@@ -29,9 +29,13 @@ import com.mobiledi.earnit.utils.NavigationDrawer;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,6 +65,7 @@ public class AppUsageStatisticsActivity extends AppCompatActivity implements App
     RelativeLayout progressBar;
     String TAG = AppUsageStatisticsActivity.class.getSimpleName();
     private AppUsageStatisticsFragment appUsageStatisticsFragment;
+    private UsageListAdapter mUsageListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +106,21 @@ public class AppUsageStatisticsActivity extends AppCompatActivity implements App
         new FloatingMenu(this).fetchAvatarDimension(childAvatar, childObject, childObject, parent, AppConstant.ADD_TASK, progressBar, null);
     }
 
+    private List<CustomUsageStats> sortingList(List<CustomUsageStats> list) {
+        Collections.sort(list, new Comparator<CustomUsageStats>() {
+            public int compare(CustomUsageStats obj1, CustomUsageStats obj2) {
+                // ## Ascending order
+                return Long.compare(obj1.getTotalTimeInForeground(), obj2.getTotalTimeInForeground());
+            }
+        });
+        List<CustomUsageStats> sortedList = new ArrayList<>();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            CustomUsageStats customUsageStats = list.get(i);
+            if (customUsageStats.getTotalTimeInForeground() > 0)
+                sortedList.add(customUsageStats);
+        }
+        return sortedList;
+    }
 //    private void updateRecyclerView() {
 //        SharedPreferences sp = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
 //        RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, sp.getString(AppConstant.EMAIL, ""), sp.getString(AppConstant.PASSWORD, ""));
