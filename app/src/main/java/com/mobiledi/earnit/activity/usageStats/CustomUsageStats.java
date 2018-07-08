@@ -22,6 +22,7 @@ public class CustomUsageStats {
     private final static String API_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZZ";
 
     private String appName;
+    private String packageName;
     private long firstTimeStamp;
     private long lastTimeStamp;
     private long lastTimeUsed;
@@ -34,7 +35,8 @@ public class CustomUsageStats {
     public CustomUsageStats(Context context, UsageStats usageStats) throws PackageManager.NameNotFoundException {
         PackageManager packageManager = context.getPackageManager();
         this.usageStats = usageStats;
-        this.appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(usageStats.getPackageName(), PackageManager.GET_META_DATA));;
+        this.appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(usageStats.getPackageName(), PackageManager.GET_META_DATA));
+        this.packageName = usageStats.getPackageName();
         this.firstTimeStamp = usageStats.getFirstTimeStamp();
         this.lastTimeStamp = usageStats.getLastTimeStamp();
         this.lastTimeUsed = usageStats.getLastTimeUsed();
@@ -53,6 +55,14 @@ public class CustomUsageStats {
 
     public void setAppName(String appName) {
         this.appName = appName;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
 
     public long getFirstTimeStamp() {
@@ -109,5 +119,13 @@ public class CustomUsageStats {
         Log.d("sdlfkjslk", "from() MILLIS: " + totalTimeInForeground);
 //        totalTimeInForeground = appUsageResponse.getTimeUsedMinutes();
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomUsageStats{" +
+                "appName='" + appName + '\'' +
+                ", packageName='" + packageName + '\'' +
+                '}';
     }
 }

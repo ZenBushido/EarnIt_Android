@@ -53,4 +53,14 @@ public class Adjustment {
     public void setCreatedDateTime(String createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
+
+    @Override
+    public String toString() {
+        return "Adjustment{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", reason='" + reason + '\'' +
+                ", createdDateTime='" + createdDateTime + '\'' +
+                '}';
+    }
 }

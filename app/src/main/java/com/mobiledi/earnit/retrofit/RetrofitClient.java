@@ -14,6 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 /**
@@ -22,18 +23,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    public static Retrofit createService(
+    private static Retrofit createService(
             String username, String password) {
         String authToken = Credentials.basic(username, password);
         return createService(authToken);
     }
 
-    public static Retrofit createService(final String authToken) {
+    private static Retrofit createService(final String authToken) {
         AuthenticationInterceptor interceptor = null;
         if (!TextUtils.isEmpty(authToken))
-            interceptor =    new AuthenticationInterceptor(authToken);
-
-
+            interceptor = new AuthenticationInterceptor(authToken);
 
 
         Gson gson = new GsonBuilder()
@@ -47,19 +46,19 @@ public class RetrofitClient {
                 .addInterceptor(logging)
                 .retryOnConnectionFailure(true)
                 .readTimeout(30, TimeUnit.SECONDS)
-                .connectTimeout(30, TimeUnit.SECONDS).build();
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .build();
 
         return new Retrofit.Builder()
-                .baseUrl(AppConstant.BASE_URL+"/")
+                .baseUrl(AppConstant.BASE_URL + "/")
                 .client(client)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(new ToStringConverterFactory())
                 .build();
-
-
     }
 
-    public static RetroInterface getApiServices(String user_name, String passowrd) {
-        return createService(user_name, passowrd).create(RetroInterface.class);
+    public static RetroInterface getApiServices(String user_name, String password) {
+        return createService(user_name, password).create(RetroInterface.class);
     }
 }

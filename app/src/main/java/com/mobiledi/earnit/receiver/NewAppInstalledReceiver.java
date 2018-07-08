@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Window;
@@ -28,6 +29,7 @@ public class NewAppInstalledReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         context.startService(new Intent(context, AppCheckServices.class));
         sharedPreference = new SharedPreference();
+        Log.d("ksdjfhk", "install app onReceive");
 
         if (!intent.getAction().equals(Intent.ACTION_PACKAGE_REPLACED) && intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)) {
             return;
@@ -36,6 +38,7 @@ public class NewAppInstalledReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.PACKAGE_ADDED")) {
             String[] a = intent.getDataString().split(":");
             String packageName = a[a.length - 1];
+            Log.d("ksdjfhk", "install app: " + packageName);
             if (sharedPreference != null) {
                 if (!sharedPreference.getPassword(context).isEmpty()) {
                     showDialogToAskForNewAppInstalled(context, appName(context, packageName), packageName);
@@ -46,6 +49,7 @@ public class NewAppInstalledReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.PACKAGE_REMOVED")) {
             String[] a = intent.getDataString().split(":");
             String packageName = a[a.length - 1];
+            Log.d("ksdjfhk", "remove app: " + packageName);
             sharedPreference.removeLocked(context, packageName);
         }
     }
@@ -62,7 +66,7 @@ public class NewAppInstalledReceiver extends BroadcastReceiver {
         return "";
     }
 
-    public void showDialogToAskForNewAppInstalled(final Context context, String appName, final String packageName) {
+    public void showDialogToAskForNewAppInstalled(final Context context, final String appName, final String packageName) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 // Add the buttons
 
@@ -72,7 +76,7 @@ public class NewAppInstalledReceiver extends BroadcastReceiver {
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked OK button
-                        sharedPreference.addLocked(context, packageName);
+                        sharedPreference.addLocked(context, packageName + "#" + appName);
                     }
                 });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

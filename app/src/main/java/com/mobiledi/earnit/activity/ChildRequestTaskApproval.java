@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
@@ -40,6 +41,8 @@ import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.RepititionSchedule;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.RestCall;
@@ -66,6 +69,12 @@ import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by mobile-di on 23/8/17.
@@ -212,8 +221,9 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 if (task.getPictureRequired()) {
                     if (UrlOfImage != null) {
                         progress.setVisibility(View.VISIBLE);
-                        Log.d("dsfjklsdlmf", "fileName = " + gFileName);
-                        new ProfileAsyncTask().execute(gFileName);
+                        Log.d("ldkfjglkj", "fileName = " + gFileName);
+                        //new ProfileAsyncTask().execute(gFileName);
+                        uploadPicture(task.getId());
                     } else {
                         showToast(getResources().getString(R.string.please_upload_picture));
                     }
@@ -228,6 +238,25 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 break;
         }
 
+    }
+
+    private void uploadPicture(int taskId){
+        Log.d("ldkfjglkj", "uploadPicture()");
+        File file = new File(gFileName);
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+        RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
+        Call<String> call = retroInterface.uploadTaskPicture(taskId, filePart);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                updateTaskStatus(task, "");
+                Log.d("ldkfjglkj", "response: " + response.body());
+            }
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.d("ldkfjglkj", "Throwable: " + t.getLocalizedMessage());
+            }
+        });
     }
 
     @OnClick(R.id.child_avatar)

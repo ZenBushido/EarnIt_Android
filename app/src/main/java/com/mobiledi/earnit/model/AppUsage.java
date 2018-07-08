@@ -27,7 +27,7 @@ public class AppUsage {
     private transient String mDateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ";
 
     public AppUsage from(CustomUsageStats customUsageStats){
-        name = customUsageStats.getAppName();
+        name = customUsageStats.getPackageName() + "#" + customUsageStats.getAppName();
         usage = new ArrayList<>();
         String[] timeUsage = customUsageStats.getUsingTimeAsString();
         usage.add(new UsageTime(timeUsage[0], timeUsage[1]));

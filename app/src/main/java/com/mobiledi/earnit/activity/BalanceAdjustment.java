@@ -237,7 +237,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
                                                             double mBalance = Double.parseDouble(adjustBalance);
                                                             adjustGoalData = new AdjustGoalData(mBalance, task_detailedt.getText().toString(), goal );
 
-                                                            RetroInterface retroInterface = RetrofitClient.getApiServices(parentObject.getEmail(), parentObject.getPassword());
+                                                            RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
                                                             Call<AdjustBalanceResponse> call = retroInterface.adjustBalance(adjustGoalData);
 
                                                             call.enqueue(new Callback<AdjustBalanceResponse>() {
@@ -444,7 +444,7 @@ public class BalanceAdjustment extends BaseActivity implements View.OnClickListe
 
     private void getAllGoals() {
 
-        RetroInterface retroInterface = RetrofitClient.getApiServices(childObject.getEmail(), childObject.getPassword());
+        RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
         Call<List<GetAllGoalResponse>> response = retroInterface.getGoals(childObject.getId());
 
 

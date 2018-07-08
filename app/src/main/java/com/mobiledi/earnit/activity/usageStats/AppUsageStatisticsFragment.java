@@ -1,23 +1,16 @@
 package com.mobiledi.earnit.activity.usageStats;
 
-import android.annotation.TargetApi;
-import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,22 +18,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
-import com.mobiledi.earnit.model.AppUsage;
 import com.mobiledi.earnit.model.AppUsageResponse;
 import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.utils.AppConstant;
-
-import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,8 +43,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import retrofit.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -154,7 +140,7 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
         });
     }
 
-    private List<CustomUsageStats> sortingList(List<CustomUsageStats> list) {
+    public static List<CustomUsageStats> sortingList(List<CustomUsageStats> list) {
         Collections.sort(list, new Comparator<CustomUsageStats>() {
             public int compare(CustomUsageStats obj1, CustomUsageStats obj2) {
                 // ## Ascending order

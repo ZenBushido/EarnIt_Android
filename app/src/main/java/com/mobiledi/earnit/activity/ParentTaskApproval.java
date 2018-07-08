@@ -198,17 +198,16 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     postedImage.setVisibility(View.GONE);
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
-                    Picasso.with(parentTaskApproval).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + comment.getPictureUrl()).into(postedImage, new Callback() {
+                    Picasso.get().load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + comment.getPictureUrl()).into(postedImage, new Callback() {
                         @Override
                         public void onSuccess() {
                             progressBar.setVisibility(View.GONE);
                         }
 
                         @Override
-                        public void onError() {
+                        public void onError(Exception e) {
                             progressBar.setVisibility(View.GONE);
                         }
-
                     });
                 }
 
@@ -227,14 +226,14 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     postedImage.setVisibility(View.GONE);
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
-                    Picasso.with(parentTaskApproval).load(AppConstant.AMAZON_URL + taskComment.getPictureUrl()).into(postedImage, new Callback() {
+                    Picasso.get().load(AppConstant.AMAZON_URL + taskComment.getPictureUrl()).into(postedImage, new Callback() {
                         @Override
                         public void onSuccess() {
                             progressBar.setVisibility(View.GONE);
                         }
 
                         @Override
-                        public void onError() {
+                        public void onError(Exception e) {
                             progressBar.setVisibility(View.GONE);
                         }
 

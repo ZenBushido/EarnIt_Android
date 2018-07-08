@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +60,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -157,8 +159,6 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
             requestOptions.placeholder(R.drawable.default_avatar);
             requestOptions.error(R.drawable.default_avatar);
 
-            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar()).into(childAvatar);
-
             /*try {
                 Picasso.with(addChild).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + child.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
             } catch (Exception e) {
@@ -202,6 +202,27 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         validator = new Validator(addChild);
         validator.setValidationListener(addChild);
         setCursorPosition();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (gFileName == null) {
+            updateAvatar();
+        }
+    }
+
+    private void updateAvatar() {
+        String url = AppConstant.AMAZON_URL + child.getAvatar();
+        Log.d("fsdfhkj", "updateAvatar: " + url);
+        Log.d("fsdfhkj", "child id: " + child.getId());
+
+        Picasso
+                .get()
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .into(childAvatar);
     }
 
     private void setViewId() {

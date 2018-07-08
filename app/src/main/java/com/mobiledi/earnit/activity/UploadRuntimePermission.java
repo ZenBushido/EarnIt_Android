@@ -3,12 +3,17 @@ package com.mobiledi.earnit.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,36 +29,18 @@ import android.util.SparseIntArray;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.Protocol;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.mobiledi.earnit.AppLockConstants;
 import com.mobiledi.earnit.R;
-import com.mobiledi.earnit.interfaces.ImageSelection;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.ScalingUtilities;
 import com.mobiledi.earnit.utils.Utils;
 
-import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.UUID;
 
 /**
  * Created by mobile-di on 12/8/17.
@@ -62,6 +49,8 @@ import java.util.UUID;
 public class UploadRuntimePermission extends Activity {
     Button selectButton;
     public String UrlOfImage;
+    private ContentValues values;
+    private Uri imageUri;
 
     private static final String MY_PICTURE_BUCKET = "mybucket";
     SparseIntArray sparseIntArray;
@@ -205,19 +194,20 @@ public class UploadRuntimePermission extends Activity {
     }
 
     public void fromCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File f = new File(android.os.Environment.getExternalStorageDirectory(), "newTest.jpg");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-        startActivityForResult(intent, 1);
+        values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Picture");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
+        imageUri = getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        Intent intentPhoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intentPhoto.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        startActivityForResult(intentPhoto, 1);
     }
-
 
     public void fromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, SELECTED_PICTURE);
-
-
     }
 
     @Override
@@ -225,100 +215,196 @@ public class UploadRuntimePermission extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-                File f = new File(Environment.getExternalStorageDirectory().toString());
-                for (File newTest : f.listFiles()) {
-                    if (newTest.getName().equals("newTest.jpg")) {
-                        f = newTest;
-                        break;
-                    }
-                }
-                try {
-                    Bitmap bitmap = null;
-
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                    try {
-                        bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
-                        Log.e(TAG, "Bitmap: "+bitmap);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                        Log.e(TAG, e.getLocalizedMessage());
-                    }
-
-                   // AppConstant.bitmap = bitmap;
-                  //  AppConstant.isImageCaptured = true;
-                    uploadView.setImageBitmap(bitmap);
-
-                    File path = Environment
-                            .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-                    f.delete();
-                    OutputStream outFile = null;
-                    final File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                    try {
-                        outFile = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
-                        outFile.flush();
-                        outFile.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    final String pat = getRealPathFromURI(Uri.fromFile(file).toString());
-                    Log.e("PRINTPATH", pat);
-
-                    Thread thread = new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            try {
-
-                                uploadImageToAWS(pat);
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-                    thread.start();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e(TAG, "Error: "+e.getLocalizedMessage());
-                }
+                setImage(uploadView, imageUri);
+                gFileName = getRealPathFromURI(imageUri);
+                Log.e(TAG, "camera gFileName = " + gFileName);
+                Log.e(TAG, "camera imageUri = " + imageUri);
             } else if (requestCode == 2) {
-
-                Log.e(TAG, "SElecting picture from gallery");
                 Uri selectedImage = data.getData();
                 String[] filePath = {MediaStore.Images.Media.DATA};
                 Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
                 c.moveToFirst();
                 int columnIndex = c.getColumnIndex(filePath[0]);
-                final String picturePath = c.getString(columnIndex);
+                gFileName = c.getString(columnIndex);
                 c.close();
-                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                Bitmap thumbnail = (BitmapFactory.decodeFile(gFileName));
                 uploadView.setImageBitmap(thumbnail);
-                Thread thread = new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        try {
-
-                            uploadImageToAWS(picturePath);
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                thread.start();
+                Log.e(TAG, "gallery gFileName = " + gFileName);
+                Log.e(TAG, "gallery thumbnail = " + thumbnail);
             }
         }
+    }
+
+    public void setImage(ImageView imageView, Uri path) {
+        Bitmap myBitmap = BitmapFactory.decodeFile(compressImage(path));
+//                    Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
+//                            getContentResolver(), imageUri);
+        Matrix matrix = new Matrix();
+        Bitmap rotated = null;
+        if (myBitmap != null) {
+            rotated = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(), myBitmap.getHeight(), matrix, true);
+        }
+        imageView.setImageBitmap(rotated);
+    }
+
+    private String compressImage(Uri imageUri) {
+
+        String filePath = getRealPathFromURI(imageUri);
+        Bitmap scaledBitmap = null;
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+
+//      by setting this field as true, the actual bitmap pixels are not loaded in the memory. Just the bounds are loaded. If
+//      you try the use the bitmap here, you will get null.
+        options.inJustDecodeBounds = true;
+        Bitmap bmp = BitmapFactory.decodeFile(filePath, options);
+
+        int actualHeight = options.outHeight;
+        int actualWidth = options.outWidth;
+
+//      max Height and width values of the compressed image is taken as 816x612
+
+        float maxHeight = 800.0f;
+        float maxWidth = 600.0f;
+        float imgRatio = actualWidth / actualHeight;
+        float maxRatio = maxWidth / maxHeight;
+
+//      width and height values are set maintaining the aspect ratio of the image
+
+        if (actualHeight > maxHeight || actualWidth > maxWidth) {
+            if (imgRatio < maxRatio) {
+                imgRatio = maxHeight / actualHeight;
+                actualWidth = (int) (imgRatio * actualWidth);
+                actualHeight = (int) maxHeight;
+            } else if (imgRatio > maxRatio) {
+                imgRatio = maxWidth / actualWidth;
+                actualHeight = (int) (imgRatio * actualHeight);
+                actualWidth = (int) maxWidth;
+            } else {
+                actualHeight = (int) maxHeight;
+                actualWidth = (int) maxWidth;
+
+            }
+        }
+
+//      setting inSampleSize value allows to load a scaled down version of the original image
+
+        options.inSampleSize = calculateInSampleSize(options, actualWidth, actualHeight);
+
+//      inJustDecodeBounds set to false to load the actual bitmap
+        options.inJustDecodeBounds = false;
+
+//      this options allow android to claim the bitmap memory if it runs low on memory
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inTempStorage = new byte[16 * 1024];
+
+        try {
+//          load the bitmap from its path
+            bmp = BitmapFactory.decodeFile(filePath, options);
+        } catch (OutOfMemoryError exception) {
+            exception.printStackTrace();
+
+        }
+        try {
+            scaledBitmap = Bitmap.createBitmap(actualWidth, actualHeight, Bitmap.Config.ARGB_8888);
+        } catch (OutOfMemoryError exception) {
+            exception.printStackTrace();
+        }
+
+        float ratioX = actualWidth / (float) options.outWidth;
+        float ratioY = actualHeight / (float) options.outHeight;
+        float middleX = actualWidth / 2.0f;
+        float middleY = actualHeight / 2.0f;
+
+        Matrix scaleMatrix = new Matrix();
+        scaleMatrix.setScale(ratioX, ratioY, middleX, middleY);
+
+        Canvas canvas = new Canvas(scaledBitmap);
+        canvas.setMatrix(scaleMatrix);
+        canvas.drawBitmap(bmp, middleX - bmp.getWidth() / 2, middleY - bmp.getHeight() / 2, new Paint(Paint.FILTER_BITMAP_FLAG));
+
+//      check the rotation of the image and display it properly
+        ExifInterface exif;
+        try {
+            exif = new ExifInterface(filePath);
+
+            int orientation = exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION, 0);
+            Log.d("EXIF", "Exif: " + orientation);
+            Matrix matrix = new Matrix();
+            if (orientation == 6) {
+                matrix.postRotate(90);
+                Log.d("EXIF", "Exif: " + orientation);
+            } else if (orientation == 3) {
+                matrix.postRotate(180);
+                Log.d("EXIF", "Exif: " + orientation);
+            } else if (orientation == 8) {
+                matrix.postRotate(270);
+                Log.d("EXIF", "Exif: " + orientation);
+            }
+            scaledBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0,
+                    scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix,
+                    true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FileOutputStream out = null;
+        String filename = getFilename();
+        try {
+            out = new FileOutputStream(filename);
+
+//          write the compressed bitmap at the destination specified by filename.
+            scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 80, out);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if (scaledBitmap != null)
+            scaledBitmap.recycle();
+        if (bmp != null)
+            bmp.recycle();
+        return filename;
+    }
+
+    private int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        final float totalPixels = width * height;
+        final float totalReqPixelsCap = reqWidth * reqHeight * 2;
+        while (totalPixels / (inSampleSize * inSampleSize) > totalReqPixelsCap) {
+            inSampleSize++;
+        }
+
+        return inSampleSize;
+    }
+
+    private String getFilename() {
+        File file = new File(Environment.getExternalStorageDirectory().getPath(), "MyFolder/Images");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        String uriSting = (file.getAbsolutePath() + "/" + System.currentTimeMillis() + ".jpg");
+        return uriSting;
+
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     public void ImageCropFunction() {
@@ -402,90 +488,6 @@ public class UploadRuntimePermission extends Activity {
             return path;
         }
         return strMyImagePath;
-
-    }
-
-    private void uploadImageToAWS(String selectedImagePath) {
-        gFileName = selectedImagePath;
-        Log.e(TAG, "UPLoading to AWS");
-        Log.e(TAG, "Path ="+selectedImagePath + " " + new File(selectedImagePath).exists());
-        if (selectedImagePath == null) {
-            Toast.makeText(this, "Could not find the filepath of the selected file", Toast.LENGTH_LONG).show();
-
-// to make sure that file is not emapty or null
-            return;
-        }
-
-        File file = new File(selectedImagePath);
-
-        AmazonS3 s3Client = null;
-
-        if (s3Client == null) {
-
-            ClientConfiguration clientConfig = new ClientConfiguration();
-
-            clientConfig.setProtocol(Protocol.HTTP);
-
-            clientConfig.setMaxErrorRetry(0);
-
-            clientConfig.setSocketTimeout(60000);
-
-            BasicAWSCredentials credentials = new BasicAWSCredentials(AppConstant.ACCESS_KEY_KEY, AppConstant.SECRET_ACCESS_KEY);
-
-            s3Client = new AmazonS3Client(credentials, clientConfig);
-
-            s3Client.setRegion(Region.getRegion(Regions.US_WEST_2));
-        }
-
-        FileInputStream stream = null;
-
-        try {
-
-            stream = new FileInputStream(file);
-
-            ObjectMetadata objectMetadata = new ObjectMetadata();
-
-            Log.e("messge", "converting to bytes");
-
-            objectMetadata.setContentLength(file.length());
-
-            String[] s = selectedImagePath.split("\\.");
-
-            String extenstion = s[s.length - 1];
-
-            Log.e("messge", "set content length : " + file.length() + "sss" + extenstion);
-
-            String fileName = UUID.randomUUID().toString();
-
-            PutObjectRequest putObjectRequest = new PutObjectRequest(AppConstant.BUCKET_NAME, "new/" + fileName + "." + extenstion, stream, objectMetadata)
-
-                    .withCannedAcl(CannedAccessControlList.PublicRead);
-// above line is  making the request to the aws  server for the specific place to upload the image were aws_bucket is the main folder  name and inside that is the profiles folder and there the file will be get uploaded
-            UrlOfImage = fileName + "." + extenstion;
-
-            PutObjectResult result = s3Client.putObject(putObjectRequest);
-
-// this will  add the image to the specified path in the aws bucket.
-
-            if (result == null) {
-
-                Log.e("RESULT", "NULL");
-
-            } else {
-
-                Log.e("RESULT", result.toString());
-
-            }
-
-        } catch (Exception e) {
-
-            Log.d("ERRORR", " " + e.getMessage());
-
-            e.printStackTrace();
-
-//            Log.e("ERROR",e.getMessage());
-
-        }
 
     }
 

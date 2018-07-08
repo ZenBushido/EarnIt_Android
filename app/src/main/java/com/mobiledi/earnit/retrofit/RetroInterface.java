@@ -82,6 +82,10 @@ public interface RetroInterface {
     Call<List<AppUsageResponse>>
     getAppsUsage(@QueryMap(encoded=true) Map<String, Integer> filters);
 
+    @GET("parents/{PARENT_ID}/profile/images/{IMAGE_NAME} ")
+    Call<String>
+    getParentPhoto(@Path("PARENT_ID") int id, @Path("IMAGE_NAME") String imageName);
+
     @Multipart
     @POST("parents/children/{CHILD_ID}/profile/images")
     Call<Response<String>>
@@ -91,5 +95,10 @@ public interface RetroInterface {
     @POST("parents/profile/images")
     Call<String>
     uploadParentProfilePicture(@Part MultipartBody.Part filePart);
+
+    @Multipart
+    @POST("tasks/{TASK_ID}/images")
+    Call<String>
+    uploadTaskPicture(@Path("TASK_ID") int id, @Part MultipartBody.Part filePart);
 
 }

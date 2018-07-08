@@ -5,20 +5,46 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.mobiledi.earnit.App;
 import com.mobiledi.earnit.AppLockConstants;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
+import com.mobiledi.earnit.activity.usageStats.AppUsageStatisticsFragment;
+import com.mobiledi.earnit.activity.usageStats.CustomUsageStats;
+import com.mobiledi.earnit.activity.usageStats.UsageListAdapter;
 import com.mobiledi.earnit.adapter.applock_adapter.ApplicationListAdapter;
+import com.mobiledi.earnit.model.AppUsageResponse;
 import com.mobiledi.earnit.model.Data.AppInfo;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.utils.AppConstant;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit.ServiceGenerator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
 public class MainActivity extends AppCompatActivity {
 
     Context context;
@@ -32,11 +58,19 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private String requiredTypes;
     private Toolbar toolbar;
+    private UsageListAdapter mUsageListAdapter;
+    private List<CustomUsageStats> mCustomUsageStats;
+
+    @BindView(R.id.pb)
+    ProgressBar pb;
+    @BindView(R.id.tvListIsEmpty)
+    TextView tvListIsEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         context = getApplicationContext();
         sharedPreferences = getSharedPreferences(AppLockConstants.MyPREFERENCES, MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -60,8 +94,63 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new ApplicationListAdapter(MainActivity.getListOfInstalledApp(this), this, requiredTypes);
-        mRecyclerView.setAdapter(mAdapter);
+//        mAdapter = new ApplicationListAdapter(MainActivity.getListOfInstalledApp(this), this, requiredTypes);
+//        mRecyclerView.setAdapter(mAdapter);
+        updateRecyclerView();
+    }
+
+    private List<AppInfo> convertList(List<CustomUsageStats> customUsageStats){
+        List<AppInfo> returnList = new ArrayList<>();
+        for (CustomUsageStats cus : customUsageStats){
+            Log.d("dsfsdh","cus: " + cus.toString());
+            returnList.add(AppInfo.from(cus));
+        }
+        return returnList;
+    }
+
+
+    public void updateRecyclerView() {
+        pb.setVisibility(View.VISIBLE);
+        SharedPreferences sp = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
+        RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, sp.getString(AppConstant.EMAIL, ""), sp.getString(AppConstant.PASSWORD, ""));
+        Map<String, Integer> options = new HashMap<>();
+        options.put("childid", MyApplication.getInstance().getChildId());
+        options.put("days", 7);
+        Call<List<AppUsageResponse>> getAppsUsage = retroInterface.getAppsUsage(options);
+        getAppsUsage.enqueue(new Callback<List<AppUsageResponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<AppUsageResponse>> call, @NonNull Response<List<AppUsageResponse>> response) {
+                pb.setVisibility(View.GONE);
+                if (response.body() != null) {
+                    long totalTime = 0;
+                    Log.d("sdlfkjslk", "body != null. size = " + response.body().size());
+                    List<CustomUsageStats> appUsages = new ArrayList<>();
+                    for (AppUsageResponse appUsageResponse : response.body()) {
+                        totalTime += appUsageResponse.getTimeUsedMinutes();
+                        Log.d("sdlfkjslk", "appUsageResponse: " + appUsageResponse.toString());
+                        appUsages.add(new CustomUsageStats().from(appUsageResponse));
+                    }
+                    if (appUsages.isEmpty()) {
+                        tvListIsEmpty.setVisibility(View.VISIBLE);
+                    } else {
+                        Log.d("sdlfkjslk", "totalTime minutes: " + totalTime);
+                        totalTime = TimeUnit.MINUTES.toMillis(totalTime);
+                        Log.d("sdlfkjslk", "totalTime millis: " + totalTime);
+                        mAdapter = new ApplicationListAdapter(convertList(AppUsageStatisticsFragment.sortingList(appUsages)), MainActivity.this, requiredTypes);
+                        mRecyclerView.setAdapter(mAdapter);
+                    }
+                } else {
+                    tvListIsEmpty.setVisibility(View.VISIBLE);
+                    Log.d("sdlfkjslk", "body == null");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<AppUsageResponse>> call, @NonNull Throwable t) {
+                tvListIsEmpty.setVisibility(View.VISIBLE);
+                pb.setVisibility(View.GONE);
+            }
+        });
     }
 
     public static List<AppInfo> getListOfInstalledApp(Context context) {

@@ -151,6 +151,8 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
         AsyncHttpClient client = new AsyncHttpClient();
         String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
         final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+        Utils.logDebug(TAG, "namePassword: " + namePassword);
+        Utils.logDebug(TAG, "basicAuth: " + basicAuth);
         client.addHeader("Authorization", basicAuth);
         client.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
         client.setMaxRetriesAndTimeout(3, 3000);

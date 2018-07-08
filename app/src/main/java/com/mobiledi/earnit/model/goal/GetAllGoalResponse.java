@@ -31,7 +31,7 @@ public class GetAllGoalResponse {
     private Integer tally;
     @SerializedName("tallyPercent")
     @Expose
-    private Integer tallyPercent;
+    private Double tallyPercent;
     @SerializedName("cash")
     @Expose
     private Integer cash;
@@ -90,11 +90,11 @@ public class GetAllGoalResponse {
         this.tally = tally;
     }
 
-    public Integer getTallyPercent() {
+    public Double getTallyPercent() {
         return tallyPercent;
     }
 
-    public void setTallyPercent(Integer tallyPercent) {
+    public void setTallyPercent(Double tallyPercent) {
         this.tallyPercent = tallyPercent;
     }
 
@@ -120,5 +120,21 @@ public class GetAllGoalResponse {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    @Override
+    public String toString() {
+        return "GetAllGoalResponse{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", createDate='" + createDate + '\'' +
+                ", name='" + name + '\'' +
+                ", updateDate=" + updateDate +
+                ", tally=" + tally +
+                ", tallyPercent=" + tallyPercent +
+                ", cash=" + cash +
+                ", adjustments=" + adjustments +
+                ", deleted=" + deleted +
+                '}';
     }
 }

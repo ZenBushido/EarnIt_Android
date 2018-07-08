@@ -6,6 +6,7 @@ package com.mobiledi.earnit;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -35,11 +36,24 @@ public class SharedPreference {
     }
 
     public void addLocked(Context context, String app) {
+        Log.d("dsfsdh", "addLocked; app = " + app);
+        List<String> locked = getLocked(context);
+        Log.d("dsfsdh", "before");
+        for (String name : locked) {
+            Log.d("dsfsdh", "name = " + name);
+        }
+
         List<String> lockedApp = getLocked(context);
         if (lockedApp == null)
-            lockedApp = new ArrayList<String>();
+            lockedApp = new ArrayList<>();
         lockedApp.add(app);
         saveLocked(context, lockedApp);
+
+        List<String> locked2 = getLocked(context);
+        Log.d("dsfsdh", "after");
+        for (String name : locked2) {
+            Log.d("dsfsdh", "name = " + name);
+        }
     }
 
     public void removeLocked(Context context, String app) {

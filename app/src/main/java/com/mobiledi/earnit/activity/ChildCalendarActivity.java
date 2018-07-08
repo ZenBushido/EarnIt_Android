@@ -261,67 +261,70 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         allTasksForCurrentMonth = new ArrayList<>();
 
         for (Tasks task : childObject.getTasksArrayList()) {
-            DateTime taskDate = new DateTime(task.getDueDate());
-            if (task.getRepititionSchedule() == null) {
-                if (dateNear(month, year, taskDate)) {
-                    allTasksForCurrentMonth.add(task);
-                }
-            } else {
-                DateTime endDate = new DateTime().withYear(year).withMonthOfYear(month).withDayOfMonth(1).plusMonths(1);
-                DateTime fakeDate = new DateTime(task.getDueDate());
-                Log.d("dkfjhdkj", "endDate = " + endDate.toString("dd.MM.yyyy HH:mm:ss"));
-                Log.d("dkfjhdkj", "fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
+            if (!task.getStatus().equalsIgnoreCase(AppConstant.APPROVED)
+                    && !task.getStatus().equalsIgnoreCase("deleted")) {
+                Log.d("fdksjhflkj", "Task: " + task.toString());
+                DateTime taskDate = new DateTime(task.getDueDate());
+                if (task.getRepititionSchedule() == null) {
+                    if (dateNear(month, year, taskDate)) {
+                        allTasksForCurrentMonth.add(task);
+                    }
+                } else {
+                    DateTime endDate = new DateTime().withYear(year).withMonthOfYear(month).withDayOfMonth(1).plusMonths(1);
+                    DateTime fakeDate = new DateTime(task.getDueDate());
+                    Log.d("dkfjhdkj", "endDate = " + endDate.toString("dd.MM.yyyy HH:mm:ss"));
+                    Log.d("dkfjhdkj", "fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
 
-                if (fakeDate.isBefore(endDate)) {
-                    int interval = 0;
+                    if (fakeDate.isBefore(endDate)) {
+                        int interval = 0;
 
-                    do {
-                        switch (task.getRepititionSchedule().getRepeat()) {
-                            case "daily":
-                                fakeDate = fakeDate.plusDays(interval * task.getRepititionSchedule().getEveryNRepeat());
-                                Log.d("dkfjhdkj", "daily date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss") + "; (" + interval + " * " + task.getRepititionSchedule().getEveryNRepeat() + ")");
-                                break;
-                            case "weekly":
-                                if (task.getRepititionSchedule().getSpecificDays() != null &&
-                                        task.getRepititionSchedule().getSpecificDays().size() > 0){
-                                    for (int i = 0; i < task.getRepititionSchedule().getSpecificDays().size(); i++) {
-                                        Tasks newTask = Tasks.from(task);
-                                        int day = newTask.getWeekAsInt(task.getRepititionSchedule().getSpecificDays().get(i));
-                                        newTask.setStartDate(newTask.getDueDate());
-                                        fakeDate = fakeDate.plusWeeks(interval * task.getRepititionSchedule().getEveryNRepeat()).withDayOfWeek(day);
-                                        if (!fakeDate.isBefore(new DateTime(newTask.getStartDate()))) {
-                                            newTask.setDueDate(fakeDate.getMillis());
-                                            GetObjectFromResponse.setStatusForTask(newTask);
-                                            if (newTask.getStatus().equalsIgnoreCase("created") && dateNear(month, year, fakeDate))
-                                                allTasksForCurrentMonth.add(newTask);
+                        do {
+                            switch (task.getRepititionSchedule().getRepeat()) {
+                                case "daily":
+                                    fakeDate = fakeDate.plusDays(interval * task.getRepititionSchedule().getEveryNRepeat());
+                                    Log.d("dkfjhdkj", "daily date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss") + "; (" + interval + " * " + task.getRepititionSchedule().getEveryNRepeat() + ")");
+                                    break;
+                                case "weekly":
+                                    if (task.getRepititionSchedule().getSpecificDays() != null &&
+                                            task.getRepititionSchedule().getSpecificDays().size() > 0) {
+                                        for (int i = 0; i < task.getRepititionSchedule().getSpecificDays().size(); i++) {
+                                            Tasks newTask = Tasks.from(task);
+                                            int day = newTask.getWeekAsInt(task.getRepititionSchedule().getSpecificDays().get(i));
+                                            newTask.setStartDate(newTask.getDueDate());
+                                            fakeDate = fakeDate.plusWeeks(interval * task.getRepititionSchedule().getEveryNRepeat()).withDayOfWeek(day);
+                                            if (!fakeDate.isBefore(new DateTime(newTask.getStartDate()))) {
+                                                newTask.setDueDate(fakeDate.getMillis());
+                                                GetObjectFromResponse.setStatusForTask(newTask);
+                                                if (newTask.getStatus().equalsIgnoreCase("created") && dateNear(month, year, fakeDate))
+                                                    allTasksForCurrentMonth.add(newTask);
+                                            }
                                         }
                                     }
-                                }
-                                Log.d("dkfjhdkj", "weekly date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
-                                break;
-                            case "monthly":
-                                if (task.getRepititionSchedule().monthlyRepeatHasNumbers()) {
-                                    Log.d("dkfjhdkj", "monthlyRepeatHasNumbers");
-                                    fakeDate = fakeDate.plusMonths(interval * task.getRepititionSchedule().getEveryNRepeat());
-                                    for (int i = 0; i < task.getRepititionSchedule().getSpecificDays().size(); i++) {
+                                    Log.d("dkfjhdkj", "weekly date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
+                                    break;
+                                case "monthly":
+                                    if (task.getRepititionSchedule().monthlyRepeatHasNumbers()) {
+                                        Log.d("dkfjhdkj", "monthlyRepeatHasNumbers");
+                                        fakeDate = fakeDate.plusMonths(interval * task.getRepititionSchedule().getEveryNRepeat());
+                                        for (int i = 0; i < task.getRepititionSchedule().getSpecificDays().size(); i++) {
+                                            Tasks newTask = Tasks.from(task);
+                                            int day = Integer.parseInt(task.getRepititionSchedule().getSpecificDays().get(i));
+                                            newTask.setStartDate(newTask.getDueDate());
+                                            fakeDate = fakeDate.withDayOfMonth(day);
+                                            newTask.setDueDate(fakeDate.getMillis());
+                                            GetObjectFromResponse.setStatusForTask(newTask);
+                                            if (newTask.getStatus().equalsIgnoreCase("created")
+                                                    && dateNear(month, year, fakeDate)
+                                                    && task.getDueDate() < newTask.getDueDate())
+                                                allTasksForCurrentMonth.add(newTask);
+                                        }
+                                    } else {
+                                        Log.d("dkfjhdkj", "!!!!monthlyRepeatHasNumbers");
                                         Tasks newTask = Tasks.from(task);
-                                        int day = Integer.parseInt(task.getRepititionSchedule().getSpecificDays().get(i));
                                         newTask.setStartDate(newTask.getDueDate());
-                                        fakeDate = fakeDate.withDayOfMonth(day);
-                                        newTask.setDueDate(fakeDate.getMillis());
-                                        GetObjectFromResponse.setStatusForTask(newTask);
-                                        if (newTask.getStatus().equalsIgnoreCase("created")
-                                                && dateNear(month, year, fakeDate)
-                                                && task.getDueDate() < newTask.getDueDate())
-                                            allTasksForCurrentMonth.add(newTask);
-                                    }
-                                } else {
-                                    Log.d("dkfjhdkj", "!!!!monthlyRepeatHasNumbers");
-                                    Tasks newTask = Tasks.from(task);
-                                    newTask.setStartDate(newTask.getDueDate());
 
-                                    int week = newTask.getWeekAsInt(newTask.getRepititionSchedule().getSpecificDays().get(0));
-                                    int performTaskOnTheNSpecifiedDay = newTask.getPerformTaskOnTheNSpecifiedDay();
+                                        int week = newTask.getWeekAsInt(newTask.getRepititionSchedule().getSpecificDays().get(0));
+                                        int performTaskOnTheNSpecifiedDay = newTask.getPerformTaskOnTheNSpecifiedDay();
 
 //                                    if (interval == 0) {
 //                                        DateTime dayOfWeek = new DateTime(newTask.getStartDate()).withDayOfMonth(1).plusWeeks(performTaskOnTheNSpecifiedDay).withDayOfWeek(week).withTimeAtStartOfDay();
@@ -334,41 +337,42 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
 //                                        }
 //                                    }
 
-                                    LocalTime localTime = new LocalTime(fakeDate.getMillis());
+                                        LocalTime localTime = new LocalTime(fakeDate.getMillis());
 
-                                    fakeDate = fakeDate.plusMonths(interval * newTask.getRepititionSchedule().getEveryNRepeat())
-                                            .withDayOfMonth(1)
-                                            .minusDays(1)
-                                            .withDayOfWeek(week)
-                                            .plusWeeks(performTaskOnTheNSpecifiedDay);
-                                    Log.d("sdlkjfhskj", "1 fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss") + "; performTaskOnTheNSpecifiedDay = " + performTaskOnTheNSpecifiedDay);
-                                    if (performTaskOnTheNSpecifiedDay == -1) {
-                                        Log.d("sdlkjfhskj", "2 fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
-                                        fakeDate = fakeDate.withDayOfMonth(1).minusDays(-1 - 7).withDayOfWeek(week);
+                                        fakeDate = fakeDate.plusMonths(interval * newTask.getRepititionSchedule().getEveryNRepeat())
+                                                .withDayOfMonth(1)
+                                                .minusDays(1)
+                                                .withDayOfWeek(week)
+                                                .plusWeeks(performTaskOnTheNSpecifiedDay);
+                                        Log.d("sdlkjfhskj", "1 fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss") + "; performTaskOnTheNSpecifiedDay = " + performTaskOnTheNSpecifiedDay);
+                                        if (performTaskOnTheNSpecifiedDay == -1) {
+                                            Log.d("sdlkjfhskj", "2 fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
+                                            fakeDate = fakeDate.withDayOfMonth(1).minusDays(-1 - 7).withDayOfWeek(week);
+                                        }
+                                        newTask.setDueDate(fakeDate.getMillis());
+                                        GetObjectFromResponse.setStatusForTask(newTask);
+                                        Log.d("weekDSKASDK", "newTask = " + newTask);
+                                        if (newTask.getStatus().equalsIgnoreCase("created")
+                                                && dateNear(month, year, fakeDate)
+                                                && task.getDueDate() < newTask.getDueDate())
+                                            allTasksForCurrentMonth.add(newTask);
                                     }
-                                    newTask.setDueDate(fakeDate.getMillis());
-                                    GetObjectFromResponse.setStatusForTask(newTask);
-                                    Log.d("weekDSKASDK", "newTask = " + newTask);
-                                    if (newTask.getStatus().equalsIgnoreCase("created")
-                                            && dateNear(month, year, fakeDate)
-                                            && task.getDueDate() < newTask.getDueDate())
-                                        allTasksForCurrentMonth.add(newTask);
-                                }
-                                Log.d("dkfjhdkj", "monthly date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
-                                break;
-                        }
-                        interval++;
-                        if (interval > 1)
-                            interval = 1;
-                        if (dateNear(month, year, fakeDate) && !task.getRepititionSchedule().getRepeat().equalsIgnoreCase("monthly")
-                                && !task.getRepititionSchedule().getRepeat().equalsIgnoreCase("weekly")) {
+                                    Log.d("dkfjhdkj", "monthly date: " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
+                                    break;
+                            }
+                            interval++;
+                            if (interval > 1)
+                                interval = 1;
+                            if (dateNear(month, year, fakeDate) && !task.getRepititionSchedule().getRepeat().equalsIgnoreCase("monthly")
+                                    && !task.getRepititionSchedule().getRepeat().equalsIgnoreCase("weekly")) {
 
-                            Tasks newTask = Tasks.from(task);
-                            newTask.setStartDate(task.getDueDate());
-                            newTask.setDueDate(fakeDate.getMillis());
-                            allTasksForCurrentMonth.add(newTask);
-                        }
-                    } while (fakeDate.isBefore(endDate));
+                                Tasks newTask = Tasks.from(task);
+                                newTask.setStartDate(task.getDueDate());
+                                newTask.setDueDate(fakeDate.getMillis());
+                                allTasksForCurrentMonth.add(newTask);
+                            }
+                        } while (fakeDate.isBefore(endDate));
+                    }
                 }
             }
         }

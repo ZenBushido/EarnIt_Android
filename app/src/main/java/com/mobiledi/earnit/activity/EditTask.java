@@ -70,6 +70,7 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
@@ -212,7 +213,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         goalsList.add(new Item(0, NONE));
 
         if(isDeviceOnline())
-        callGoalService(parentObject.getEmail(), parentObject.getPassword(), childID);
+        callGoalService(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword(), childID);
 
 
         RequestOptions requestOptions = new RequestOptions();
@@ -557,6 +558,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
             signInJson.put(AppConstant.CHILDREN, new JSONObject().put(AppConstant.ID, childID));
             if (fetchGoalId > 0)
                 signInJson.put(AppConstant.GOAL, new JSONObject().put(AppConstant.ID, fetchGoalId));
+            Utils.logDebug(TAG, "fetchGoalId = " + fetchGoalId);
             signInJson.put(AppConstant.CREATE_DATE, new DateTime().getMillis());
 
 
@@ -567,6 +569,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
             signInJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
             signInJson.put(AppConstant.TASK_COMMENTS, new JSONArray());
             signInJson.put(AppConstant.EXPIRY_DATE, new DateTime().getMillis());
+            signInJson.put(AppConstant.ALLOWANCE, amountTxt.getText().toString());
             JSONObject repSchedule = new JSONObject();
             MessageEvent m = EventBus.getDefault().getStickyEvent(MessageEvent.class);
             EventBus.getDefault().removeAllStickyEvents();
@@ -619,7 +622,10 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                 }
             } else {
                     JSONObject repeatObject = new JSONObject();
-                signInJson.put(AppConstant.DUE_DATE, currentTask.getDueDate());
+                DateTimeZone tz = DateTimeZone.getDefault();
+                Long instant = DateTime.now().getMillis();
+                long offsetInMilliseconds = tz.getOffset(instant);
+                signInJson.put(AppConstant.DUE_DATE, currentTask.getDueDate() + offsetInMilliseconds);
 
                 if (currentTask.getRepititionSchedule() != null) {
 
@@ -883,21 +889,27 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
 
     private void showBottomSheetDialog(ArrayList<Item> items, final TextView dropDownView, final String type) {
+        Utils.logDebug(TAG, "showBottomSheetDialog");
 
         mBottomSheetDialog = new BottomSheetDialog(this);
         final View view = getLayoutInflater().inflate(R.layout.sheet, null);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ItemAdapter(items, new ItemAdapter.ItemListener() {
             @Override
             public void onItemClick(Item item) {
+                Utils.logDebug(TAG, "onItemClick: " + item.toString());
                 if (type.equalsIgnoreCase(AppConstant.GOAL)) {
+                    Utils.logDebug(TAG, "it is goal");
                     for (int i = 0; i < goalList.size(); i++) {
                         if (item.getId() != 0) {
-                            if (item.getId() - 1 == goalList.get(i).getId()) {
-                                fetchGoalId = goalList.get(i).getId();
-                            }
+                            Utils.logDebug(TAG, "item.getId() - 1 = " + (item.getId() - 1));
+                            Utils.logDebug(TAG, "goalList.get(i).getId() = " + goalList.get(i).getId());
+//                            if (item.getId() - 1 == goalList.get(i).getId()) {
+//                                fetchGoalId = goalList.get(i).getId();
+//                            }
+                            fetchGoalId = item.getId();
                         }
 
                     }
@@ -934,9 +946,10 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     }
 
     private void showBottomSheetAssignDialog(ArrayList<Item> items, final TextView dropDownView, final String type) {
+        Utils.logDebug(TAG, "showBottomSheetAssignDialog");
         mBottomSheetDialog = new BottomSheetDialog(this);
         final View view = getLayoutInflater().inflate(R.layout.sheet, null);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ItemAdapter(items, new ItemAdapter.ItemListener() {
@@ -1024,14 +1037,11 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
                             otherChildFromResponse.setTasksArrayList(otherTaskList);
                         }
                         childList.add(cList);
-                        Log.i("child -> ", cList.getId() + cList.getFirstName());
+                        repeatList.add(new Item(cList.getId(), childList.get(i).getFirstName()));
+                        Log.i("FDSFGSDGFH", cList.getId() + cList.getFirstName());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-                for (int i = 0; i < childList.size(); i++) {
-                    repeatList.add(new Item(childsCounter++, childList.get(i).getFirstName()));
-
                 }
             }
 

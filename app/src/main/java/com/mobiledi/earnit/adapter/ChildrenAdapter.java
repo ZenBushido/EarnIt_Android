@@ -38,6 +38,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
@@ -118,9 +120,23 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
             holder.firstName.setOnClickListener(onChildClick(holder, child));
             holder.profileImage.setOnClickListener(onChildClick(holder, child));
             //TaskLIST
-            taskAdapter = new TaskAdapter(activity, child.getTasksArrayList(), child, child, parent);
+            taskAdapter = new TaskAdapter(activity, sortingTasks(child.getTasksArrayList()), child, child, parent);
             holder.taskListView.setAdapter(taskAdapter);
             holder.taskListView.setDivider(null);
+    }
+
+    private ArrayList<Tasks> sortingTasks(ArrayList<Tasks> inputTasks){
+        Collections.sort(inputTasks, new CustomComparator());
+        return inputTasks;
+    }
+
+    public class CustomComparator implements Comparator<Tasks> {
+        @Override
+        public int compare(Tasks o1, Tasks o2) {
+            Long dueDate1 = o1.getDueDate();
+            Long dueDate2 = o2.getDueDate();
+            return dueDate2.compareTo(dueDate1);
+        }
     }
 
     private View.OnClickListener onChildClick(final MyViewHolder holder, final Child child){

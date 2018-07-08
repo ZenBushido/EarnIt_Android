@@ -63,12 +63,14 @@ public class UsageListAdapter extends RecyclerView.Adapter<UsageListAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         CustomUsageStats customUsageStats = mCustomUsageStatsList.get(position);
+        String[] packageAndName = customUsageStats.getAppName().split("#");
+        String appName = packageAndName[1];
         int percent = (int) (100 * customUsageStats.getTotalTimeInForeground() / (totalTime == 0 ? 1 : totalTime));
         Log.d("sdlfkjslk", "1 getTotalTimeInForeground: " + customUsageStats.getTotalTimeInForeground());
         Log.d("sdlfkjslk", "1 totalTime: " + totalTime);
         Log.d("sdlfkjslk", "1 percent: " + percent);
         viewHolder.rl_main.setVisibility(View.VISIBLE);
-        viewHolder.getPackageName().setText(customUsageStats.getAppName());
+        viewHolder.getPackageName().setText(appName);
         viewHolder.getLastTimeUsed().setText(percent + "%");
         viewHolder.mProgressBar.setProgress(percent);
     }

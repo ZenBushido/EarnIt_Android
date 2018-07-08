@@ -97,4 +97,14 @@ public class Goal implements Serializable{
         this.adjustments = adjustments;
     }
 
+    @Override
+    public String toString() {
+        return "Goal{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", cash=" + cash +
+                ", goal='" + goal + '\'' +
+                ", adjustments=" + adjustments +
+                '}';
+    }
 }

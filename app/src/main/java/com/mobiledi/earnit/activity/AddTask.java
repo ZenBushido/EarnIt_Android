@@ -1047,13 +1047,11 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                             otherChildFromResponse.setTasksArrayList(otherTaskList);
                         }
                         childList.add(cList);
+                        Log.d("dfjhsdkfjh", "@@@Item: " + cList.toString());
+                        repeatList.add(new Item(cList.getId(), childList.get(i).getFirstName()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-                for (int i = 0; i < childList.size(); i++) {
-                    repeatList.add(new Item(childsCounter++, childList.get(i).getFirstName()));
-
                 }
             }
 

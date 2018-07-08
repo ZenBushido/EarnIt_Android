@@ -34,4 +34,12 @@ public class Item {
     public String getTitle() {
         return mTitle;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "mTitle='" + mTitle + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

@@ -269,6 +269,11 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c3e5650f51470bf66bc04e193f3c0e0445303228" />
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:authorities="com.mobiledi.earnit.com.squareup.picasso"
+            android:exported="false" />
         <!--
              FirebaseMessagingService performs security checks at runtime,
              no need for explicit permissions despite exported="true"

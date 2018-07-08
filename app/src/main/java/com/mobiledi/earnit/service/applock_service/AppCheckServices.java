@@ -234,7 +234,7 @@ public class AppCheckServices extends Service {
             String mpackageName = manager.getRunningAppProcesses().get(0).processName;
             UsageStatsManager usage = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
             long time = System.currentTimeMillis();
-            List<UsageStats> stats = usage.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, 0, time);
+            List<UsageStats> stats = usage.queryUsageStats(UsageStatsManager.INTERVAL_WEEKLY, 0, time);
             if (stats != null) {
                 SortedMap<Long, UsageStats> runningTask = new TreeMap<Long, UsageStats>();
                 for (UsageStats usageStats : stats) {

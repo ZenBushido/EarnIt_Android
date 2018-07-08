@@ -66,7 +66,7 @@ public class NavigationDrawer {
             @Override
             public void set(ImageView imageView, Uri uri, Drawable placeholder) {
                 try {
-                    Picasso.with(imageView.getContext()).load(uri).error(R.drawable.default_avatar).into(imageView);
+                    Picasso.get().load(uri).error(R.drawable.default_avatar).into(imageView);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -74,7 +74,7 @@ public class NavigationDrawer {
 
             @Override
             public void cancel(ImageView imageView) {
-                Picasso.with(imageView.getContext()).cancelRequest(imageView);
+                Picasso.get().cancelRequest(imageView);
             }
 
         });
@@ -189,6 +189,7 @@ public class NavigationDrawer {
                             if (position == 2) {
                                 Intent intent = new Intent(context, ParentProfile.class);
                                 intent.putExtra(AppConstant.PARENT_OBJECT, parentObject);
+                                intent.putExtra("firstOpen", true);
                                 intent.putExtra(AppConstant.SCREEN, screen);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                                         Intent.FLAG_ACTIVITY_CLEAR_TASK);

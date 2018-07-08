@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +43,8 @@ import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Country;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.retrofit.RetroInterface;
+import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
@@ -59,11 +63,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,6 +81,19 @@ import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
+import okhttp3.Authenticator;
+import okhttp3.Credentials;
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import okhttp3.Route;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by mradul on 8/4/17.
@@ -88,14 +108,16 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
 
     @Pattern(regex = "[a-zA-Z]+(\\\\s+[a-zA-Z]+)*", message = "Please enter valid First name")
     @Length(max = 12, min = 2, message = "")
-    @BindView(R.id.parent_first_name) EditText firstName;
-
+    @BindView(R.id.parent_first_name)
+    EditText firstName;
 
     @NotEmpty
     @Email
-    @BindView(R.id.parent_email) EditText email;
+    @BindView(R.id.parent_email)
+    EditText email;
 
-    @BindView(R.id.parent_phone) EditText phone;
+    @BindView(R.id.parent_phone)
+    EditText phone;
 
     EditText currentPassword;
 
@@ -103,25 +125,34 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
 
     EditText confirmPassword;
 
-    @BindView(R.id.parent_password) TextView changePassword;
-    @BindView(R.id.parent_add_child) TextView addChild;
-    @BindView(R.id.save_button) Button save;
-    @BindView(R.id.cancel_button) Button cancel;
+    @BindView(R.id.parent_password)
+    TextView changePassword;
+    @BindView(R.id.parent_add_child)
+    TextView addChild;
+    @BindView(R.id.save_button)
+    Button save;
+    @BindView(R.id.cancel_button)
+    Button cancel;
     ParentProfile profile;
     Parent parentObject;
     Child child, otherChild;
     int childID;
     Validator validator;
-    @BindView(R.id.loadingPanel) RelativeLayout progressBar;
+    @BindView(R.id.loadingPanel)
+    RelativeLayout progressBar;
     Parent updateParent;
-    @BindView(R.id.user_image) CircularImageView parentAvatar;
-    @BindView(R.id.child_list_id) RecyclerView childListView;
-    @BindView(R.id.chil_list_layout) TextView recyclerLayout;
+    @BindView(R.id.user_image)
+    CircularImageView parentAvatar;
+    @BindView(R.id.child_list_id)
+    RecyclerView childListView;
+    @BindView(R.id.chil_list_layout)
+    TextView recyclerLayout;
     boolean isParentUpdate = false;
     String switchFrom;
     ScreenSwitch screenSwitch;
     ArrayList<Country> countries;
-    @BindView(R.id.ivBackArrow) ImageButton mBackArrow;
+    @BindView(R.id.ivBackArrow)
+    ImageButton mBackArrow;
     //TextView countryName, countryDial;
 
     @Override
@@ -134,18 +165,10 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
         countries = new ArrayList<>();
         countries = Utils.loadCountryData(TAG);
         parentObject = (Parent) getIntent().getSerializableExtra(AppConstant.PARENT_OBJECT);
+        Log.d("dlsjfhl", "parent = " + parentObject.toString());
         switchFrom = getIntent().getStringExtra(AppConstant.SCREEN);
         if (switchFrom.equalsIgnoreCase(AppConstant.CHECKED_IN_SCREEN) || switchFrom.equalsIgnoreCase(AppConstant.CHECKED_IN_TASK_APPROVAL__SCREEN))
             childID = getIntent().getIntExtra(AppConstant.CHILD_ID, 0);
-
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.override(350,350);
-        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-        requestOptions.placeholder(R.drawable.default_avatar);
-        requestOptions.error(R.drawable.default_avatar);
-
-        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+parentObject.getAvatar())
-                .into(parentAvatar);
 
 
       /*  try {
@@ -193,7 +216,33 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
         childListView.setLayoutManager(mLayoutManager);
         childListView.setItemAnimator(new DefaultItemAnimator());
         setCursorPosition();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("fsdfhkj", "onResume. gFileName = " + gFileName);
+        if (gFileName == null) {
+            updateAvatar();
+        }
+    }
+
+    private void updateAvatar() {
+        String url = AppConstant.BASE_URL + "/" + parentObject.getAvatar();
+        Log.d("fsdfhkj", "updateAvatar. url = " + url);
+        RequestOptions requestOptions = new RequestOptions()
+                .override(350, 350)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.default_avatar)
+                .error(R.drawable.default_avatar);
+        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(url)
+                .into(parentAvatar);
+//        Picasso
+//                .get()
+//                .load(url)
+//                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+//                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+//                .into(parentAvatar);
     }
 
     private void setCursorPosition() {
@@ -205,53 +254,42 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
     //-------------------- TODO OnClick Methods ----------------------
 
     @OnClick(R.id.cancel_button)
-    void cancel()
-    {
+    void cancel() {
         if (isParentUpdate)
             moveToParentDashboard(updateParent);
         else
             moveToParentDashboard(parentObject);
     }
 
-     @OnClick(R.id.save_button)
-    void save()
-     {
-         if (firstName.getText().toString().trim().length() == 0)
-             firstName.setError("Please enter valid String");
-         else validator.validate();
-     }
+    @OnClick(R.id.save_button)
+    void save() {
+        if (firstName.getText().toString().trim().length() == 0)
+            firstName.setError("Please enter valid String");
+        else validator.validate();
+    }
 
-     @OnClick(R.id.parent_add_child)
-             void addChild()
-     {
-         screenSwitch.moveToAddChild(parentObject, childID, switchFrom, AppConstant.ADD, null);
-     }
+    @OnClick(R.id.parent_add_child)
+    void addChild() {
+        screenSwitch.moveToAddChild(parentObject, childID, switchFrom, AppConstant.ADD, null);
+    }
 
 
-    @OnClick (R.id.parent_password)
-    void parentPassword()
-    {
+    @OnClick(R.id.parent_password)
+    void parentPassword() {
         if (progressBar.getVisibility() == View.GONE)
             showDialogOnCheckBox();
     }
 
     @OnClick(R.id.user_image)
-    void userImage()
-    {
+    void userImage() {
         vRuntimePermission(parentAvatar);
         selectImage();
     }
 
     @OnClick(R.id.ivBackArrow)
-    void backArrow()
-    {
+    void backArrow() {
         onBackPressed();
     }
-
-
-
-
-
 
     public void showDialogOnCheckBox() {
         final Dialog dialog = new Dialog(profile);
@@ -283,8 +321,16 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
                     if (currentPassword.getText().toString().equals(parentObject.getPassword())) {
                         if (newPassword.getText().toString().trim().equals(confirmPassword.getText().toString().trim())) {
                             dialog.dismiss();
-                            updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), parentObject.getFirstName(), parentObject.getAvatar(), parentObject.getEmail(), parentObject.getPhone(), newPassword.getText().toString().trim()
-                                    , parentObject.getCreateDate(), true);
+                            updateParentProfile(
+                                    parentObject.getAccount().getId(),
+                                    parentObject.getId(),
+                                    parentObject.getFirstName(),
+                                    parentObject.getAvatar(),
+                                    MyApplication.getInstance().getEmail(),
+                                    parentObject.getPhone(),
+                                    newPassword.getText().toString().trim(),
+                                    parentObject.getCreateDate(),
+                                    true);
                         } else {
                             showToast("new password doesn't match");
                             newPassword.setText("");
@@ -324,7 +370,8 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
         if (Utils.validatePhoneNumber(phone.getText().toString()) && phone.getText().toString().trim().length() == 10) {
             if (gFileName != null) {
                 progressBar.setVisibility(View.VISIBLE);
-                new ProfileAsyncTask().execute(gFileName);
+                //new ProfileAsyncTask().execute(gFileName);
+                uploadParentPhoto();
             } else {
                 /*updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), parentObject.getAvatar(), email.getText().toString().trim(), phone.getText().toString().trim(), parentObject.getPassword()
                         , parentObject.getCreateDate(), false);*/
@@ -335,6 +382,38 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
         } else {
             phone.setError("Please enter 10 digit number only");
         }
+    }
+
+    private void uploadParentPhoto() {
+        File file = new File(gFileName);
+        Log.d("ldsfjjlk", "gFileName: " + gFileName);
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+        RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
+        Call<String> call = retroInterface.uploadParentProfilePicture(filePart);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                progressBar.setVisibility(View.GONE);
+                Log.d("ldsfjjlk", "response response.message(): " + response.body());
+                gFileName = null;
+                String urlImage = response.body();
+                updateParentProfile(
+                        parentObject.getAccount().getId(),
+                        parentObject.getId(),
+                        firstName.getText().toString().trim(),
+                        urlImage, email.getText().toString().trim(),
+                        phone.getText().toString().trim(),
+                        MyApplication.getInstance().getPassword(),
+                        parentObject.getCreateDate(),
+                        false);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
+            }
+        });
     }
 
     @Override
@@ -361,10 +440,10 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
             accountObject.put(AppConstant.CREATE_DATE, new DateTime(parentObject.getAccount().getCreateDate()).getMillis());
             signInJson.put(AppConstant.ACCOUNT, accountObject);
             signInJson.put(AppConstant.ID, parentId);
-            if(UrlOfImage!=null)
-            signInJson.put(AppConstant.AVATAR, UrlOfImage);
+            if (UrlOfImage != null)
+                signInJson.put(AppConstant.AVATAR, UrlOfImage);
             else
-            signInJson.put(AppConstant.AVATAR, parentObject.getAvatar());
+                signInJson.put(AppConstant.AVATAR, parentObject.getAvatar());
             signInJson.put(AppConstant.EMAIL, email);
             signInJson.put(AppConstant.PHONE, phone);
             signInJson.put(AppConstant.FIRST_NAME, firstName);
@@ -387,7 +466,7 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     try {
-                        updateAutoLoginCredential(response.getString(AppConstant.EMAIL), response.getString(AppConstant.PASSWORD));
+                        updateAutoLoginCredential(response.getString(AppConstant.EMAIL), MyApplication.getInstance().getPassword());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -444,48 +523,49 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
             moveToParentDashboard(parentObject);
     }
 
-    public class ProfileAsyncTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                Log.e("testing on pre","onBackgroudn Called");
-                AmazonS3Client s3 = new AmazonS3Client(new BasicAWSCredentials(AppConstant.ACCESS_KEY_KEY, AppConstant.SECRET_ACCESS_KEY));
-                s3.setRegion(Region.getRegion(Regions.US_WEST_2));
-
-                File filePath = new File(gFileName);
-                File compressedImageFile = new Compressor(profile).compressToFile(filePath);
-                String fileName = AppConstant.PARENT_IMAGE_FOLDER + AppConstant.SUFFIX + String.valueOf(new SimpleDateFormat(AppConstant.IMAGE_DATE_FORMAT).format(new Date()));
-                s3.putObject(new PutObjectRequest(AppConstant.BUCKET_NAME, fileName, compressedImageFile).withCannedAcl(CannedAccessControlList.PublicRead));
-                String profileUrl = String.valueOf(s3.getResourceUrl(AppConstant.BUCKET_NAME, fileName));
-                return profileUrl;
-
-            } catch (Exception e) {
-                e.printStackTrace();
-               Log.e("testing exception",""+e.getMessage());
-
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String userImage) {
-            gFileName = null;
-            updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), userImage, email.getText().toString().trim(), phone.getText().toString().trim(), parentObject.getPassword()
-                    , parentObject.getCreateDate(), false);
-        }
-
-        @Override
-        protected void onPreExecute() {
-
-
-         Log.e("testing on pre","onPre Called");
-
-        }
-
-    }
+//    public class ProfileAsyncTask extends AsyncTask<String, Void, String> {
+//
+//        @Override
+//        protected String doInBackground(String... params) {
+//            try {
+//                Log.e("testing on pre", "onBackgroudn Called");
+//                AmazonS3Client s3 = new AmazonS3Client(new BasicAWSCredentials(AppConstant.ACCESS_KEY_KEY, AppConstant.SECRET_ACCESS_KEY));
+//                s3.setRegion(Region.getRegion(Regions.US_WEST_2));
+//
+//                File filePath = new File(gFileName);
+//                File compressedImageFile = new Compressor(profile).compressToFile(filePath);
+//                String fileName = AppConstant.PARENT_IMAGE_FOLDER + AppConstant.SUFFIX + String.valueOf(new SimpleDateFormat(AppConstant.IMAGE_DATE_FORMAT).format(new Date()));
+//                s3.putObject(new PutObjectRequest(AppConstant.BUCKET_NAME, fileName, compressedImageFile).withCannedAcl(CannedAccessControlList.PublicRead));
+//                String profileUrl = String.valueOf(s3.getResourceUrl(AppConstant.BUCKET_NAME, fileName));
+//                return profileUrl;
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                Log.e("testing exception", "" + e.getMessage());
+//
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String userImage) {
+//            gFileName = null;
+//            updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), userImage, email.getText().toString().trim(), phone.getText().toString().trim(), parentObject.getPassword()
+//                    , parentObject.getCreateDate(), false);
+//        }
+//
+//        @Override
+//        protected void onPreExecute() {
+//
+//
+//            Log.e("testing on pre", "onPre Called");
+//
+//        }
+//
+//    }
 
     public void fetchChildList() {
+        Log.d("sdlfkjs", "fetchChildList " + parentObject.getAccount().getId());
         AsyncHttpClient client = new AsyncHttpClient();
         String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
         final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
@@ -496,6 +576,7 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
         client.get(AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getAccount().getId(), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                Log.d("sdlfkjs", "fetchChildList response: " + response.toString());
                 childList.clear();
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -538,21 +619,22 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-
+                Log.d("sdlfkjs", "fetchChildList errorResponse: " + errorResponse.toString());
             }
 
             @Override
             public void onStart() {
+                Log.d("sdlfkjs", "fetchChildList onStart");
                 progressBar.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFinish() {
+                Log.d("sdlfkjs", "fetchChildList onFinish");
                 progressBar.setVisibility(View.GONE);
             }
         });
     }
-
 
 
     public void updateAutoLoginCredential(String email, String password) {

@@ -50,9 +50,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             for(int j=0; j<mData.get(position).getAdjustments().size(); j++)
             {
                 goalTotal+= mData.get(position).getAdjustments().get(j).getAmount();
+                Log.d("dlfjhsdkhj", "amount: " + goalTotal);
             }
 
             goalTotal = goalTotal+ mData.get(position).getAmount();
+            Log.d("dlfjhsdkhj", "total amount: " + goalTotal);
             goalPercentageStr = "$"+goalTotal+ " of " +"$"+ mData.get(position).getAmount();
             holder.tv_amount.setText(goalPercentageStr);
 

@@ -26,13 +26,6 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp">
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                tools:ignore="ContentDescription" />
-
             <TextView
                 android:id="@+id/applicationName"
                 android:layout_width="0dp"

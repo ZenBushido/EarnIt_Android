@@ -174,17 +174,11 @@ public class RestCall {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    Utils.showToast(activity, "errorResponse: " + errorResponse);
                     Utils.logDebug(TAG, " login-Rquest onFailure. JSONObject errorResponse: " + errorResponse);
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable: " + throwable.getLocalizedMessage());
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.toString(): " + throwable.toString());
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.getMessage(): " + throwable.getMessage());
                     Utils.logDebug(TAG, " login-Rquest onFailure. statusCode: " + statusCode);
-                    int i = 0;
-//                    for (Header header : headers){
-//                        i++;
-//                        Utils.logDebug(TAG, i + " lHeader: " + header.toString());
-//                    }
                     clearEdittext(from, editPassword);
                     Utils.unLockScreen(activity.getWindow());
 
@@ -374,7 +368,7 @@ public class RestCall {
         createAppsUsage.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                Log.d("sdjfhkj", "Response body: " + response.body());
+                Log.d("sdjfhkj", "Response body: " + response.message());
                 Log.d("sdjfhkj", "Response code: " + response.code());
                 sp.edit().putLong(AppConstant.APP_USAGE_LAST_UPDATE, new DateTime().getMillis()).apply();
             }

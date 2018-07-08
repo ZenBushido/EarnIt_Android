@@ -27,6 +27,7 @@ import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.model.goal.Adjustment;
 import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
 import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.retrofit.RetrofitClient;
@@ -207,10 +208,17 @@ public class BalanceActivity extends BaseActivity   {
 
         RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
         Call<List<GetAllGoalResponse>> response = retroInterface.getGoals(childObject.getId());
+        Log.d("fkldsfk", "childObject.getId(): " + childObject.getId());
 
         response.enqueue(new Callback<List<GetAllGoalResponse>>() {
             @Override
             public void onResponse(Call<List<GetAllGoalResponse>> call, Response<List<GetAllGoalResponse>> response) {
+                Log.d("fkldsfk", "onResponse: " + response.message());
+//                List<GetAllGoalResponse> list = response.body();
+//                for (GetAllGoalResponse getAllGoal
+// Response : list){
+//                    Log.d("fkldsfk", "getAllGoalResponse: " + getAllGoalResponse.toString());
+//                }
 
                 if (response.body() != null) {
 
@@ -240,11 +248,20 @@ public class BalanceActivity extends BaseActivity   {
                     } catch (NullPointerException ignored){}
 
                     totalAccountBalance += cashTotal + goalTotal;
+                    totalAccountBalance += cashTotal + goalTotal;
                     tv_cash.setText("$" + cashTotal.toString());
 
 
                     totalBalance.setText("$" + totalAccountBalance.toString());
-                    totalGoal.setText("$" + goalTotal.toString());
+                    int goalAmount = 0;
+                    for (GetAllGoalResponse goal : response.body()){
+                        goalAmount += goal.getAmount();
+                        Log.d("dlfjhsdkhj", "Goal: " + goal);
+                        for (Adjustment adjustment : goal.getAdjustments()){
+                            goalAmount += adjustment.getAmount();
+                        }
+                    }
+                    totalGoal.setText("$" + goalAmount);
 
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 
@@ -260,7 +277,7 @@ public class BalanceActivity extends BaseActivity   {
 
             @Override
             public void onFailure(Call<List<GetAllGoalResponse>> call, Throwable t) {
-                Log.e(TAG, "Throwable t: " + t.getLocalizedMessage());
+                Log.e("fkldsfk", "Throwable t: " + t.getLocalizedMessage());
             }
         });
     }

@@ -444,7 +444,7 @@ public class GetObjectFromResponse {
                                         week = 1;
                                 }
                                 newTask.setStartDate(newTask.getDueDate());
-                                DateTime fakeDate = new DateTime(newTask.getStartDate()).withDayOfWeek(week).plusWeeks(j * week);
+                                DateTime fakeDate = new DateTime(newTask.getStartDate()).withDayOfWeek(week).plusWeeks(j/* * week*/);
                                 if (!fakeDate.isBefore(new DateTime(newTask.getStartDate()))) {
                                     if (fakeDate.withTimeAtStartOfDay().isBefore(new DateTime().withTimeAtStartOfDay())) {
                                         fakeDate.plusWeeks(1);
