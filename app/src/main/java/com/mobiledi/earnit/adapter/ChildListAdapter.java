@@ -3,6 +3,7 @@ package com.mobiledi.earnit.adapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,16 +27,22 @@ import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.ScreenSwitch;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.extras.Base64;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 import static com.mobiledi.earnit.activity.ParentDashboard.parentObject;
 
@@ -77,8 +85,10 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Chil
         requestOptions.placeholder(R.drawable.default_avatar);
         requestOptions.error(R.drawable.default_avatar);
 
-        Glide.with(activity).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar())
-                .into(holder.childImage);
+//        Glide.with(activity).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar())
+//                .into(holder.childImage);
+
+        updateAvatar(child, holder.childImage);
       /*  try {
             Picasso.with(activity).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + child.getAvatar()).error(R.drawable.default_avatar).into(holder.childImage);
         } catch (Exception e) {
@@ -100,6 +110,33 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Chil
                 showDeleteChild(child, position);
             }
         });
+    }
+
+    private void updateAvatar(Child child, ImageView imageView) {
+        String url = AppConstant.BASE_URL + "/" + child.getAvatar();
+        Log.d("fsdfhkj", "list updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(activity)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.default_avatar)))
+                .into(imageView);
     }
 
     public void showDeleteChild(final Child child, final int position) {

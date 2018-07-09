@@ -88,7 +88,7 @@ public interface RetroInterface {
 
     @Multipart
     @POST("parents/children/{CHILD_ID}/profile/images")
-    Call<Response<String>>
+    Call<ResponseBody>
     uploadChildrenProfilePictureByParent(@Path("CHILD_ID") int id, @Part MultipartBody.Part filePart);
 
     @Multipart

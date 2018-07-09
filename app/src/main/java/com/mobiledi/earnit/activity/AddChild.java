@@ -47,6 +47,7 @@ import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
@@ -55,6 +56,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,9 +72,13 @@ import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
+import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -141,7 +147,11 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         screenSwitch = new ScreenSwitch(addChild);
         parentObject = (Parent) getIntent().getSerializableExtra(AppConstant.PARENT_OBJECT);
         child = (Child) getIntent().getSerializableExtra(AppConstant.CHILD_OBJECT);
-        childId = getIntent().getIntExtra(AppConstant.CHILD_ID, 0);
+        if (child != null) {
+            childId = child.getId();
+        }
+        Log.d("sdfksjdh", "childId = " + childId);
+        Log.d("sdfksjdh", "child = " + child);
         mode = getIntent().getStringExtra(AppConstant.MODE);
         switchFrom = getIntent().getStringExtra(AppConstant.SCREEN);
 
@@ -154,7 +164,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
 
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.override(350,350);
+            requestOptions.override(350, 350);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
             requestOptions.placeholder(R.drawable.default_avatar);
             requestOptions.error(R.drawable.default_avatar);
@@ -168,7 +178,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
             email.setText(child.getEmail());
             firstName.setText(child.getFirstName().substring(0, 1) + child.getFirstName().substring(1));
             password.setText(child.getPassword());
-           // confirmPassword.setText(child.getPassword());
+            // confirmPassword.setText(child.getPassword());
 
             if (!child.getPhone().isEmpty()) {
                 if (child.getPhone().length() > 10) {
@@ -207,23 +217,50 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
-        if (gFileName == null) {
+        if (gFileName == null && child != null) {
             updateAvatar();
         }
     }
 
     private void updateAvatar() {
-        String url = AppConstant.AMAZON_URL + child.getAvatar();
-        Log.d("fsdfhkj", "updateAvatar: " + url);
-        Log.d("fsdfhkj", "child id: " + child.getId());
+        String url = AppConstant.BASE_URL + "/" + child.getAvatar();
+        Log.d("fsdfhkj", "updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
 
-        Picasso
-                .get()
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
                 .load(url)
                 .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
                 .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
                 .into(childAvatar);
     }
+
+//    private void updateAvatar() {
+//        String url = AppConstant.AMAZON_URL + child.getAvatar();
+//        Log.d("fsdfhkj", "updateAvatar: " + url);
+//        Log.d("fsdfhkj", "child id: " + child.getId());
+//
+//        Picasso
+//                .get()
+//                .load(url)
+//                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+//                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+//                .into(childAvatar);
+//    }
 
     private void setViewId() {
 
@@ -243,7 +280,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         Utils.SetCursorPosition(email);
         Utils.SetCursorPosition(phone);
         Utils.SetCursorPosition(password);
-       // Utils.SetCursorPosition(confirmPassword);
+        // Utils.SetCursorPosition(confirmPassword);
     }
 
     @Override
@@ -445,8 +482,80 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         }
     }
 
-    private void addChild(String childImage) {
+    private void updateChildProfile(Child child, String imageUrl){
         Log.d("ldsfjjlk", "addChild");
+        final JSONObject signInJson = new JSONObject();
+        try {
+            if (child.getAccount() != null) {
+                signInJson.put(AppConstant.ACCOUNT, child.getAccount().getId());
+            }
+            signInJson.put(AppConstant.EMAIL, child.getEmail());
+            signInJson.put(AppConstant.FIRST_NAME, child.getEmail());
+            signInJson.put(AppConstant.LAST_NAME, child.getLastName());
+            signInJson.put(AppConstant.PASSWORD, child.getPassword());
+            signInJson.put(AppConstant.PHONE, child.getPhone());
+            signInJson.put(AppConstant.CREATE_DATE, child.getCreateDate());
+            signInJson.put(AppConstant.UPDATE_DATE, child.getUpdateDate());
+
+            if (mode.equalsIgnoreCase(AppConstant.UPDATE)) {
+                signInJson.put(AppConstant.ID, child.getId());
+                signInJson.put(AppConstant.FCM_TOKEN, child.getFcmToken());
+            }
+
+                signInJson.put(AppConstant.AVATAR, imageUrl);
+
+            Utils.logDebug(TAG + " add-child-json", signInJson.toString());
+            StringEntity entity = new StringEntity(signInJson.toString());
+            entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, AppConstant.APPLICATION_JSON));
+            AsyncHttpClient httpClient = new AsyncHttpClient();
+            String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+            final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+            httpClient.addHeader("Authorization", basicAuth);
+            httpClient.setBasicAuth(parentObject.getEmail(), parentObject.getPassword());
+            PersistentCookieStore myCookieStore = new PersistentCookieStore(addChild);
+            httpClient.setCookieStore(myCookieStore);
+            if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                httpClient.put(addChild, AppConstant.BASE_URL + AppConstant.UPDATE_CHILD, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        Log.d("ldsfjjlkd", "onSuccess. Response: " + response.toString());
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        Log.d("ldsfjjlkd", "onSuccess. Response: " + response.toString());
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        unLockScreen();
+
+                    }
+
+                    @Override
+                    public void onStart() {
+                        Log.d("ldsfjjlkd", "onStart");
+                        progressBar.setVisibility(View.VISIBLE);
+                        lockScreen();
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        Log.d("ldsfjjlkd", "onFinish");
+                        progressBar.setVisibility(View.GONE);
+                        unLockScreen();
+
+                    }
+                });
+        } catch (JSONException | UnsupportedEncodingException e){
+            Log.d("ldsfjjlkd", "Exception e: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void addChild(final String childImage) {
+        Log.d("ldsfjjlkd", "addChild");
         final JSONObject signInJson = new JSONObject();
         try {
             signInJson.put(AppConstant.ACCOUNT, new JSONObject().put(AppConstant.ID, parentObject.getAccount().getId()));
@@ -480,7 +589,14 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         Log.d("ldsfjjlk", "onSuccess 1");
-                        sendAvatar();
+                        try {
+                            childId = response.getInt("id");
+                            Log.d("ldsfjjlk", "childId 1 = " + childId);
+                        } catch (JSONException e) {
+                            Log.d("ldsfjjlk", "childId 1  e = " + e.getLocalizedMessage());
+                            e.printStackTrace();
+                        }
+                        sendAvatar(childId);
                         Utils.logDebug(TAG + " onSuccess", response.toString());
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
                             showToast(firstName.getText() + " updated");
@@ -493,7 +609,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                         Log.d("ldsfjjlk", "onSuccess 2");
-                        sendAvatar();
+                        sendAvatar(childId);
                         Utils.logDebug(TAG + " onSuccess", response.toString());
 
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
@@ -536,7 +652,14 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         Log.d("ldsfjjlk", "2 onSuccess 1");
-                        sendAvatar();
+                        try {
+                            childId = response.getInt("id");
+                            Log.d("ldsfjjlk", "childId 1 = " + childId);
+                        } catch (JSONException e) {
+                            Log.d("ldsfjjlk", "childId 1  e = " + e.getLocalizedMessage());
+                            e.printStackTrace();
+                        }
+                        sendAvatar(childId);
                         Utils.logDebug(TAG + " onSuccess", response.toString());
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
                             showToast(firstName.getText() + " updated");
@@ -550,7 +673,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                         Log.d("ldsfjjlk", "2 onSuccess 2");
-                        sendAvatar();
+                        sendAvatar(childId);
                         Utils.logDebug(TAG + " onSuccess", response.toString());
 
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
@@ -596,7 +719,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         }
     }
 
-    private void sendAvatar(){
+    private void sendAvatar(int childId) {
         Log.d("ldsfjjlk", "sendAvatar");
         if (gFileName == null) {
             Log.d("ldsfjjlk", "gFileName == null");
@@ -606,15 +729,25 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         File file = new File(gFileName);
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
-        Call<Response<String>> call = retroInterface.uploadChildrenProfilePictureByParent(childId, filePart);
-        call.enqueue(new Callback<Response<String>>() {
+        Call<ResponseBody> call = retroInterface.uploadChildrenProfilePictureByParent(childId, filePart);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NonNull Call<Response<String>> call, @NonNull Response<Response<String>> response) {
-                Log.d("ldsfjjlk", "response: " + response.body());
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    try {
+                        updateChildProfile(child, response.body().string());
+                        Log.d("ldsfjjlk", "response: " + response.body().string());
+                        Log.d("ldsfjjlk", "response: " + response.body().toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Log.d("ldsfjjlk", "response: null");
+                }
             }
 
             @Override
-            public void onFailure(@NonNull Call<Response<String>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
             }
         });

@@ -163,6 +163,7 @@ public class Child implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", userType='" + userType + '\'' +
                 ", tasksArrayList=" + tasksArrayList +
                 '}';
