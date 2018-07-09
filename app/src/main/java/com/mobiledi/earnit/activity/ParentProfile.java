@@ -55,6 +55,7 @@ import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
@@ -230,19 +231,28 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
     private void updateAvatar() {
         String url = AppConstant.BASE_URL + "/" + parentObject.getAvatar();
         Log.d("fsdfhkj", "updateAvatar. url = " + url);
-        RequestOptions requestOptions = new RequestOptions()
-                .override(350, 350)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.default_avatar)
-                .error(R.drawable.default_avatar);
-        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(url)
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
                 .into(parentAvatar);
-//        Picasso
-//                .get()
-//                .load(url)
-//                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
-//                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
-//                .into(parentAvatar);
     }
 
     private void setCursorPosition() {

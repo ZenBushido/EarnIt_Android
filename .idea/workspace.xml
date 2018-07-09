@@ -23,72 +23,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f43b9ab9-e657-4e1c-8c87-631f84ed6ac4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_2_jar.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_scalars_2_4_0_jar.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_4_0_jar.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/ToStringConverterFactory.java" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_27_0_2_jar.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_1_jar.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_5_2_jar.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_3_0_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_4_0_jar.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_3_0_jar.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_item_list.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_item_list.xml.flat" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_simple_list_recyclerview.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_simple_list_recyclerview.xml.flat" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" afterPath="$PROJECT_DIR$/app/release/app-release.apk" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/SharedPreference.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/SharedPreference.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddChild.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddChild.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/BalanceActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/BalanceActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/BalanceAdjustment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/BalanceAdjustment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/InitialParentProfile.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/InitialParentProfile.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentDashboard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentDashboard.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentTaskApproval.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentTaskApproval.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/UploadRuntimePermission.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/UploadRuntimePermission.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/MainActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsFragment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/CustomUsageStats.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/CustomUsageStats.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/UsageListAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/MyRecyclerViewAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/MyRecyclerViewAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/applock_adapter/ApplicationListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/applock_adapter/ApplicationListAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/AppUsage.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/AppUsage.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Data/AppInfo.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Data/AppInfo.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Goal.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Goal.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Item.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Item.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Parent.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Parent.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/Adjustment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/Adjustment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/GetAllGoalResponse.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/GetAllGoalResponse.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/NewAppInstalledReceiver.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/NewAppInstalledReceiver.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetrofitClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetrofitClient.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/NavigationDrawer.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/NavigationDrawer.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/RestCall.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/RestCall.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_list.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/simple_list_recyclerview.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/simple_list_recyclerview.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -124,22 +69,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ParentProfile.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ParentProfile.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="234" column="57" lean-forward="false" selection-start-line="234" selection-start-column="57" selection-end-line="234" selection-end-column="57" />
+            <state relative-caret-position="312">
+              <caret line="254" column="36" lean-forward="false" selection-start-line="254" selection-start-column="36" selection-end-line="254" selection-end-column="36" />
               <folding>
-                <element signature="e#7970#7982#0" expanded="true" />
-                <element signature="e#10729#10730#0" expanded="true" />
-                <element signature="e#10760#10761#0" expanded="true" />
-                <element signature="e#11580#11734#0" expanded="true" />
-                <element signature="e#11733#11734#0" expanded="true" />
-                <element signature="e#11846#13567#0" expanded="true" />
-                <element signature="e#13566#13567#0" expanded="true" />
-                <element signature="e#13933#13985#0" expanded="true" />
-                <element signature="e#14282#14337#0" expanded="true" />
-                <element signature="e#21600#21648#0" expanded="true" />
+                <element signature="e#11289#11290#0" expanded="true" />
+                <element signature="e#11320#11321#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,7 +104,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetObjectFromResponse.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GetObjectFromResponse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -317,8 +254,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Glide</find>
-      <find>Glid</find>
       <find>pica</find>
       <find>save_button</find>
       <find>logging</find>
@@ -347,6 +282,8 @@
       <find>AutoLogin: username</find>
       <find>balanceChildList</find>
       <find>tv_goal_amount</find>
+      <find>Base64</find>
+      <find>total amount</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -3850,13 +3787,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/add_child_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddChild.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/UploadRuntimePermission.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/simple_list_recyclerview.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetrofitClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/goal/Adjustment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/MyRecyclerViewAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/BalanceActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java" />
       </list>
     </option>
   </component>
@@ -3965,7 +3902,7 @@
     <property name="android.project.structure.last.selected" value="materialcalendarview" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1531092981740" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1531094435173" />
     <property name="ExportApk.ApkPath" value="D:\Android\Projects\EarnIt\app" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="debug" />
@@ -4502,20 +4439,26 @@
       <option name="project" value="LOCAL" />
       <updated>1530279773609</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="1) Balance screen - bug with goals amount fixed&#10;2) Bug with weekly tasks fixed">
+      <created>1531093138936</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1531093138936</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1673774" sideWeight="0.50567263" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.375" sideWeight="0.5079957" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4423913" sideWeight="0.49200428" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4423913" sideWeight="0.49200428" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31847826" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31847826" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889125" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39935064" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4601,7 +4544,8 @@
     <MESSAGE value="Fixed bugs:&#10;1) Monthly Calendar Repeat(days of the week)&#10;2) Fixed application crash when BalanceActivity is opened&#10;3) Changed headers order in the task view" />
     <MESSAGE value="Milestone:&#10;1) Milestone &quot;Child Device Usage&quot; ;&#10;Bugs:&#10;2) Fix bug &quot;Limited number of repetitions of tasks in the list (7 times)&quot;;&#10;3) Fix bug &quot;Monthly tasks are not added.&quot;;&#10;4) Fix bug &quot;Monthly jobs are not displayed correctly in the list.&quot;;&#10;Changes:&#10;5) Changes related to uploading photos." />
     <MESSAGE value="1) Balance screen - bug with goals amount fixed&#10;2) Bug with weekly tasks fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="1) Balance screen - bug with goals amount fixed&#10;2) Bug with weekly tasks fixed" />
+    <MESSAGE value="1) Parent photo bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="1) Parent photo bug fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -5106,25 +5050,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="234" column="57" lean-forward="false" selection-start-line="234" selection-start-column="57" selection-end-line="234" selection-end-column="57" />
-          <folding>
-            <element signature="e#7970#7982#0" expanded="true" />
-            <element signature="e#10729#10730#0" expanded="true" />
-            <element signature="e#10760#10761#0" expanded="true" />
-            <element signature="e#11580#11734#0" expanded="true" />
-            <element signature="e#11733#11734#0" expanded="true" />
-            <element signature="e#11846#13567#0" expanded="true" />
-            <element signature="e#13566#13567#0" expanded="true" />
-            <element signature="e#13933#13985#0" expanded="true" />
-            <element signature="e#14282#14337#0" expanded="true" />
-            <element signature="e#21600#21648#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetrofitClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -5192,6 +5117,17 @@
         <state relative-caret-position="255">
           <caret line="446" column="131" lean-forward="false" selection-start-line="446" selection-start-column="131" selection-end-line="446" selection-end-column="131" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="254" column="36" lean-forward="false" selection-start-line="254" selection-start-column="36" selection-end-line="254" selection-end-column="36" />
+          <folding>
+            <element signature="e#11289#11290#0" expanded="true" />
+            <element signature="e#11320#11321#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
