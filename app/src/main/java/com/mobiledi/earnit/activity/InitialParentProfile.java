@@ -202,14 +202,14 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
     public void onValidationSucceeded() {
 
         if (Utils.validatePhoneNumber(phone.getText().toString()) && phone.getText().toString().trim().length() == 10) {
-            /*if (gFileName != null) {
-                progressBar.setVisibility(View.VISIBLE);
-                new ProfileAsyncTask().execute(gFileName);
-            } else {*/
+            progressBar.setVisibility(View.VISIBLE);
+            if (gFileName != null) {
+                uploadParentPhoto(parentObject.getEmail());
+            } else {
                 updateParentProfile(parentObject.getAccount().getId(), parentObject.getId(), firstName.getText().toString().trim(), parentObject.getAvatar(), parentObject.getEmail(), phone.getText().toString().trim(),
                         parentObject.getPassword()
                         , parentObject.getCreateDate());
-            //}
+            }
         } else {
             phone.setError("Please enter 10 digit number only");
         }
@@ -304,7 +304,6 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
             PersistentCookieStore myCookieStore = new PersistentCookieStore(profile);
             httpClient.setCookieStore(myCookieStore);
             httpClient.put(profile, AppConstant.BASE_URL + AppConstant.UPDATE_PARENT, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
-
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
                     try {
@@ -312,28 +311,10 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    if  (gFileName != null){
-                        File file = new File(gFileName);
-                        Log.d("ldsfjjlk", "gFileName: " + gFileName);
-                        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
-                        RetroInterface retroInterface = RetrofitClient.getApiServices(email, passw);
-                        Log.d("ldsfjjlk", "credentials: " + email + "; pass = " + passw);
-                        Call<String> call = retroInterface.uploadParentProfilePicture(filePart);
-                        call.enqueue(new Callback<String>() {
-                            @Override
-                            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response2) {
-                                Log.d("ldsfjjlk", "response: " + response2.body());
-                                unLockScreen();
-                                updateParent = new GetObjectFromResponse().getParentObject(response);
-                                moveToParentDashboard(updateParent);
-                            }
-
-                            @Override
-                            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                                Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
-                            }
-                        });
-                    }
+                    progressBar.setVisibility(View.GONE);
+                    unLockScreen();
+                    updateParent = new GetObjectFromResponse().getParentObject(response);
+                    moveToParentDashboard(updateParent);
                 }
 
                 @Override
@@ -344,6 +325,7 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                     Log.d("dkasjdlk", "1errorResponse = " + errorResponse + ". Status code = " + statusCode);
+                    progressBar.setVisibility(View.GONE);
                     unLockScreen();
                     josnError(errorResponse);
                 }
@@ -351,13 +333,13 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
                     Log.d("dkasjdlk", "errorResponse = " + errorResponse + ". Status code = " + statusCode);
+                    progressBar.setVisibility(View.GONE);
                     unLockScreen();
 
                 }
 
                 @Override
                 public void onStart() {
-                    progressBar.setVisibility(View.VISIBLE);
                     lockScreen();
 
                 }
@@ -367,6 +349,7 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
                     progressBar.setVisibility(View.GONE);
                     unLockScreen();
 
+
                 }
             });
         } catch (JSONException e) {
@@ -374,6 +357,45 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+    }
+
+    private void uploadParentPhoto(final String email) {
+        File file = new File(gFileName);
+        Log.d("ldsfjjlk", "gFileName: " + gFileName);
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+        RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
+        Call<ResponseBody> call = retroInterface.uploadParentProfilePicture(filePart);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                progressBar.setVisibility(View.GONE);
+                Log.d("ldsfjjlk", "response response.message(): " + response.body());
+                gFileName = null;
+                if (response.body() != null){
+                    String urlImage = "";
+                    try {
+                        urlImage = response.body().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("ldsfjjlk", "urlImage: " + urlImage);
+                    updateParentProfile(
+                            parentObject.getAccount().getId(),
+                            parentObject.getId(),
+                            firstName.getText().toString().trim(),
+                            urlImage, email.trim(),
+                            phone.getText().toString().trim(),
+                            MyApplication.getInstance().getPassword(),
+                            parentObject.getCreateDate());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
+            }
+        });
     }
 
     public void updateAutoLoginCredential(String email, String password) {

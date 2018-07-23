@@ -214,7 +214,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Chil
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Log.d("Failure Code", String.valueOf(statusCode));
-                Log.d("Failure Response", errorResponse.toString());
+                Log.d("Failure Response", throwable.toString());
                 super.onFailure(statusCode, headers, throwable, errorResponse);
             }
 

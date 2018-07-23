@@ -5,16 +5,21 @@ apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'abcdefg1987'
+            storeFile file('D:/Android/keystore/keystore.jks')
+            storePassword 'abcdefg1987'
+        }
+    }
     compileSdkVersion 26
-
-
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -39,9 +44,8 @@ retrolambda {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'

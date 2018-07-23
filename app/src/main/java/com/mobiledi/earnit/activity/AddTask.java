@@ -183,7 +183,6 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         ButterKnife.bind(this);
         setSupportActionBar(goalToolbar);
         //getSupportActionBar().setTitle(null);
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

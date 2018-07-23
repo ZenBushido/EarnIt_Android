@@ -38,6 +38,7 @@ import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
 import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
+import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -483,7 +484,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
     }
 
     private void updateChildProfile(Child child, String imageUrl){
-        Log.d("ldsfjjlk", "addChild");
+        Log.d("ldsfjjlk", "updateChildProfile");
         final JSONObject signInJson = new JSONObject();
         try {
             if (child.getAccount() != null) {
@@ -518,23 +519,38 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                 httpClient.put(addChild, AppConstant.BASE_URL + AppConstant.UPDATE_CHILD, entity, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        Log.d("ldsfjjlkd", "onSuccess. Response: " + response.toString());
+                        Log.d("ldsfjjlk", "onSuccess. Response: " + response.toString());
+                        Utils.logDebug(TAG + " onSuccess", response.toString());
+                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                            showToast(firstName.getText() + " updated");
+                        else
+                            showToast(firstName.getText() + " added");
+
+                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
                     }
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        Log.d("ldsfjjlkd", "onSuccess. Response: " + response.toString());
+                        Log.d("ldsfjjlk", "updateChildProfile onSuccess. Response: " + response.toString());
+                        Utils.logDebug(TAG + " onSuccess", response.toString());
+                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                            showToast(firstName.getText() + " updated");
+                        else
+                            showToast(firstName.getText() + " added");
+
+                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Log.d("ldsfjjlk", "updateChildProfile onFailure: " + throwable.toString());
                         unLockScreen();
 
                     }
 
                     @Override
                     public void onStart() {
-                        Log.d("ldsfjjlkd", "onStart");
+                        Log.d("ldsfjjlk", "updateChildProfile onStart");
                         progressBar.setVisibility(View.VISIBLE);
                         lockScreen();
 
@@ -542,14 +558,14 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onFinish() {
-                        Log.d("ldsfjjlkd", "onFinish");
+                        Log.d("ldsfjjlk", "updateChildProfile onFinish");
                         progressBar.setVisibility(View.GONE);
                         unLockScreen();
 
                     }
                 });
         } catch (JSONException | UnsupportedEncodingException e){
-            Log.d("ldsfjjlkd", "Exception e: " + e.getMessage());
+            Log.d("ldsfjjlk", "Exception e: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -591,12 +607,14 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                         Log.d("ldsfjjlk", "onSuccess 1");
                         try {
                             childId = response.getInt("id");
+//                            ПОЛУЧИТЬ CHILD ИЗ ОТВЕТА
                             Log.d("ldsfjjlk", "childId 1 = " + childId);
                         } catch (JSONException e) {
                             Log.d("ldsfjjlk", "childId 1  e = " + e.getLocalizedMessage());
                             e.printStackTrace();
                         }
-                        sendAvatar(childId);
+                        Child child = new GetObjectFromResponse().getChildObject(response);
+                        sendAvatar(childId, child);
                         Utils.logDebug(TAG + " onSuccess", response.toString());
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
                             showToast(firstName.getText() + " updated");
@@ -609,7 +627,8 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                         Log.d("ldsfjjlk", "onSuccess 2");
-                        sendAvatar(childId);
+//                        Child child = new GetObjectFromResponse().getChildObject(response);
+                        sendAvatar(childId, null);
                         Utils.logDebug(TAG + " onSuccess", response.toString());
 
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
@@ -659,21 +678,25 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                             Log.d("ldsfjjlk", "childId 1  e = " + e.getLocalizedMessage());
                             e.printStackTrace();
                         }
-                        sendAvatar(childId);
-                        Utils.logDebug(TAG + " onSuccess", response.toString());
-                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
-                            showToast(firstName.getText() + " updated");
-                        else
-                            showToast(firstName.getText() + " added");
+                        if (gFileName != null){
+                            Child child = new GetObjectFromResponse().getChildObject(response);
+                            sendAvatar(childId, child);
+                        } else {
+                            Utils.logDebug(TAG + " onSuccess", response.toString());
+                            if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                                showToast(firstName.getText() + " updated");
+                            else
+                                showToast(firstName.getText() + " added");
 
-                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
+                            screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
+                        }
 
                     }
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                         Log.d("ldsfjjlk", "2 onSuccess 2");
-                        sendAvatar(childId);
+                        sendAvatar(childId, null);
                         Utils.logDebug(TAG + " onSuccess", response.toString());
 
                         if (mode.equalsIgnoreCase(AppConstant.UPDATE))
@@ -719,7 +742,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         }
     }
 
-    private void sendAvatar(int childId) {
+    private void sendAvatar(final int childId, final Child child1) {
         Log.d("ldsfjjlk", "sendAvatar");
         if (gFileName == null) {
             Log.d("ldsfjjlk", "gFileName == null");
@@ -729,25 +752,27 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         File file = new File(gFileName);
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
-        Call<ResponseBody> call = retroInterface.uploadChildrenProfilePictureByParent(childId, filePart);
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<String> call = retroInterface.uploadChildrenProfilePictureByParent(childId, filePart);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.body() != null) {
-                    try {
-                        updateChildProfile(child, response.body().string());
-                        Log.d("ldsfjjlk", "response: " + response.body().string());
-                        Log.d("ldsfjjlk", "response: " + response.body().toString());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Child ch = child1 == null ? child : child1;
+                    Log.d("ldsfjjlk", "child: " + ch);
+                    updateChildProfile(ch, response.body());
+                    Log.d("ldsfjjlk", "response1: " + response.body());
+                    Log.d("ldsfjjlk", "response2: " + response.body().toString());
                 } else {
-                    Log.d("ldsfjjlk", "response: null");
+                    Log.d("ldsfjjlk", "response.errorBody(): " + response.errorBody());
+                    Log.d("ldsfjjlk", "response.toString(): " + response.toString());
+                    Log.d("ldsfjjlk", "response.message(): " + response.message());
+                    Log.d("ldsfjjlk", "response.isSuccessful(): " + response.isSuccessful());
+                    Log.d("ldsfjjlk", "response.body(): null");
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
             }
         });

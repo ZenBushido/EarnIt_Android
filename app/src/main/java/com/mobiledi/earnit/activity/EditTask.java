@@ -126,6 +126,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     @BindView(R.id.add_task_header) TextView childName;
     @BindView(R.id.assign_to_id) TextView assignTo;
     @BindView(R.id.add_task_avatar) CircularImageView childAvatar;
+
     int childsCounter = 0;
 
 
@@ -181,6 +182,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_task_layout);
         ButterKnife.bind(this);
+
         Intent intent = getIntent();
         textView.setText(intent.getStringExtra("title"));
 

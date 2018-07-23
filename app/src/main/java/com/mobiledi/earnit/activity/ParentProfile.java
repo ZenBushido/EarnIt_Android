@@ -399,14 +399,20 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
         Log.d("ldsfjjlk", "gFileName: " + gFileName);
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
-        Call<String> call = retroInterface.uploadParentProfilePicture(filePart);
-        call.enqueue(new Callback<String>() {
+        Call<ResponseBody> call = retroInterface.uploadParentProfilePicture(filePart);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 progressBar.setVisibility(View.GONE);
                 Log.d("ldsfjjlk", "response response.message(): " + response.body());
                 gFileName = null;
-                String urlImage = response.body();
+                String urlImage = "";
+                try {
+                    urlImage = response.body().string();
+                } catch (IOException | NullPointerException e) {
+                    e.printStackTrace();
+                }
+                Log.d("ldsfjjlk", "urlImage: " + urlImage);
                 updateParentProfile(
                         parentObject.getAccount().getId(),
                         parentObject.getId(),
@@ -419,7 +425,7 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
             }
 
             @Override
-            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
             }

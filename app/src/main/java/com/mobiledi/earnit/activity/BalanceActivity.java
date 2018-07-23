@@ -247,12 +247,9 @@ public class BalanceActivity extends BaseActivity   {
                         }
                     } catch (NullPointerException ignored){}
 
-                    totalAccountBalance += cashTotal + goalTotal;
-                    totalAccountBalance += cashTotal + goalTotal;
                     tv_cash.setText("$" + cashTotal.toString());
 
 
-                    totalBalance.setText("$" + totalAccountBalance.toString());
                     int goalAmount = 0;
                     for (GetAllGoalResponse goal : response.body()){
                         goalAmount += goal.getAmount();
@@ -262,6 +259,9 @@ public class BalanceActivity extends BaseActivity   {
                         }
                     }
                     totalGoal.setText("$" + goalAmount);
+                    Log.d("dkfkgsi", "cashTotal = " + cashTotal + "; goalAmount = " + goalAmount);
+                    totalAccountBalance += cashTotal + goalAmount;
+                    totalBalance.setText("$" + totalAccountBalance.toString());
 
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 

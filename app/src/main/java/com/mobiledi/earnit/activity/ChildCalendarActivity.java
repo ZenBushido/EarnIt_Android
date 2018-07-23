@@ -236,7 +236,6 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
             public void onMonthChange(@NonNull Date monthDate) {
                 DateTime currentMonth = new DateTime(monthDate);
                 calendarMonth = currentMonth.getMonthOfYear();
-//                setBadges(false, calendarMonth);
                 setBadges(currentMonth.getMonthOfYear(), currentMonth.getYear());
             }
         };
@@ -266,11 +265,12 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                 Log.d("fdksjhflkj", "Task: " + task.toString());
                 DateTime taskDate = new DateTime(task.getDueDate());
                 if (task.getRepititionSchedule() == null) {
-                    if (dateNear(month, year, taskDate)) {
+                    if (task.getStatus().equalsIgnoreCase("created") &&
+                            dateNear(month, year, taskDate)) {
                         allTasksForCurrentMonth.add(task);
                     }
                 } else {
-                    DateTime endDate = new DateTime().withYear(year).withMonthOfYear(month).withDayOfMonth(1).plusMonths(1);
+                    DateTime endDate = new DateTime().withYear(year).withMonthOfYear(month).withDayOfMonth(1).plusMonths(1).withTimeAtStartOfDay();
                     DateTime fakeDate = new DateTime(task.getDueDate());
                     Log.d("dkfjhdkj", "endDate = " + endDate.toString("dd.MM.yyyy HH:mm:ss"));
                     Log.d("dkfjhdkj", "fakeDate = " + fakeDate.toString("dd.MM.yyyy HH:mm:ss"));
@@ -291,12 +291,13 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
                                             Tasks newTask = Tasks.from(task);
                                             int day = newTask.getWeekAsInt(task.getRepititionSchedule().getSpecificDays().get(i));
                                             newTask.setStartDate(newTask.getDueDate());
-                                            fakeDate = fakeDate.plusWeeks(interval * task.getRepititionSchedule().getEveryNRepeat()).withDayOfWeek(day);
+                                            fakeDate = fakeDate.plusWeeks(i * task.getRepititionSchedule().getEveryNRepeat()).withDayOfWeek(day);
                                             if (!fakeDate.isBefore(new DateTime(newTask.getStartDate()))) {
                                                 newTask.setDueDate(fakeDate.getMillis());
                                                 GetObjectFromResponse.setStatusForTask(newTask);
-                                                if (newTask.getStatus().equalsIgnoreCase("created") && dateNear(month, year, fakeDate))
+                                                if (newTask.getStatus().equalsIgnoreCase("created") && dateNear(month, year, fakeDate)) {
                                                     allTasksForCurrentMonth.add(newTask);
+                                                }
                                             }
                                         }
                                     }
