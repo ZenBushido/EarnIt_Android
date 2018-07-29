@@ -19,18 +19,7 @@ repositories {
 
 android {
     signingConfigs {
-        release {
-            keyAlias 'key0'
-            keyPassword 'abcdefg1987'
-            storeFile file('../keystore/release_key.jks')
-            storePassword 'abcdefg1987'
-        }
-        debug {
-            keyAlias 'key0'
-            keyPassword 'android'
-            storeFile file('../keystore/debug_key.jks')
-            storePassword 'android'
-        }
+
     }
     dataBinding {
         enabled = true
@@ -47,17 +36,6 @@ android {
         renderscriptTargetApi 22
         renderscriptSupportModeEnabled true
 
-    }
-    buildTypes {
-        release {
-            minifyEnabled true
-            debuggable false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-        }
-        debug {
-            signingConfig signingConfigs.debug
-        }
     }
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
