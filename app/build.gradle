@@ -22,13 +22,13 @@ android {
         release {
             keyAlias 'key0'
             keyPassword 'abcdefg1987'
-            storeFile file('D:/Android/Projects/EarnIt/keystore/release_key.jks')
+            storeFile file('../keystore/release_key.jks')
             storePassword 'abcdefg1987'
         }
         debug {
             keyAlias 'key0'
             keyPassword 'android'
-            storeFile file('D:/Android/Projects/EarnIt/keystore/debug_key.jks')
+            storeFile file('../keystore/debug_key.jks')
             storePassword 'android'
         }
     }
