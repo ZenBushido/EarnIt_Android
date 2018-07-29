@@ -5,14 +5,6 @@ apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'key0'
-            keyPassword 'abcdefg1987'
-            storeFile file('D:/Android/keystore/keystore.jks')
-            storePassword 'abcdefg1987'
-        }
-    }
     compileSdkVersion 26
     defaultConfig {
         minSdkVersion 15
