@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +45,7 @@ import com.mobiledi.earnit.utils.Utils;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
@@ -51,15 +53,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * Created by mobile-di on 11/8/17.
@@ -207,6 +214,35 @@ public class GoalActivity extends BaseActivity implements View.OnClickListener, 
         validator = new Validator(goalActivity);
         validator.setValidationListener(goalActivity);
         setCursorPosition();
+
+        updateAvatar(childObject, childAvatar);
+    }
+
+    private void updateAvatar(Child child, ImageView imageView) {
+        String url = AppConstant.BASE_URL + "/" + child.getAvatar();
+        Log.d("fsdfhkj", "list updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .into(imageView);
     }
 
     private void setCursorPosition() {

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.NavigationDrawer;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -35,11 +37,16 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cz.msebera.android.httpclient.extras.Base64;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.ResponseBody;
 import retrofit.ServiceGenerator;
 import retrofit2.Call;
@@ -88,17 +95,38 @@ public class AppUsageStatisticsActivity extends AppCompatActivity implements App
         MyApplication.getInstance().setChildId(childObject.getId());
         Log.d("jdsahdkjh", "AppUsageStatisticsActivity. Child: " + childObject);
 
-
-        if (childObject != null) {
-
-            Glide.with(this).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).into(childAvatar);
-
-
-        }
-
         backbtn.setVisibility(View.GONE);
         NavigationDrawer navigationDrawer = new NavigationDrawer(AppUsageStatisticsActivity.this, parent, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
         add_task_header.setText(parent.getFirstName());
+
+        updateAvatar(childObject, childAvatar);
+    }
+
+    private void updateAvatar(Child child, ImageView imageView) {
+        String url = AppConstant.BASE_URL + "/" + child.getAvatar();
+        Log.d("fsdfhkj", "list updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .into(imageView);
     }
 
     @OnClick(R.id.add_task_avatar)
