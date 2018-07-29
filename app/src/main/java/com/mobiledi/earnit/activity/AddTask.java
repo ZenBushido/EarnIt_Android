@@ -1,12 +1,21 @@
 package com.mobiledi.earnit.activity;
 
+import android.app.AppOpsManager;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -40,6 +49,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
+import com.mobiledi.earnit.activity.applock.SplashActivity;
 import com.mobiledi.earnit.adapter.ItemAdapter;
 import com.mobiledi.earnit.model.AddTaskModel;
 import com.mobiledi.earnit.model.Child;
@@ -102,6 +112,7 @@ import retrofit2.Response;
 
 
 import static com.mobiledi.earnit.R.id.task_name;
+import static com.mobiledi.earnit.activity.applock.SplashActivity.ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE;
 
 
 public class AddTask extends BaseActivity implements View.OnClickListener, NavigationDrawer.OnDrawerToggeled {
@@ -358,6 +369,83 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     }
 
+    public void showDialog() {
+        AlertDialog.Builder alertDialogBuilder;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            alertDialogBuilder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            alertDialogBuilder = new AlertDialog.Builder(this);
+        }
+
+        alertDialogBuilder.setTitle("Confirm Permission")
+                .setMessage("Enable permission for App Usage and Draw Overlay Setting's.")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // This method is used to set permission for App Usage and Draw Overlay Setting.
+                        setAllPermission();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
+
+    }
+
+    private void setAllPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!isAccessGranted()) {
+                Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                startActivity(intent);
+            }
+        }
+
+        checkPermission();
+    }
+
+    public void checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
+            }
+            else{
+                startActivity(new Intent(AddTask.this, SplashActivity.class));
+            }
+        }
+        else{
+            startActivity(new Intent(AddTask.this, SplashActivity.class));
+        }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private boolean isAccessGranted() {
+        try {
+            PackageManager packageManager = getPackageManager();
+
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(getPackageName(), 0);
+            AppOpsManager appOpsManager = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+
+            int mode = 0;
+
+            if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.KITKAT) {
+                mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                        applicationInfo.uid, applicationInfo.packageName);
+            }
+            return (mode == AppOpsManager.MODE_ALLOWED);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
     private void setCursorPosition() {
         Utils.SetCursorPosition(taskName);
         Utils.SetCursorPosition(taskDetails);
@@ -435,23 +523,24 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 break;
             case R.id.newtask_screenlockcheck:
 
+                showDialog();
 
-                Intent screenrule = new Intent(AddTask.this, ScreenRules.class);
-                screenrule.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                screenrule.putExtra(AppConstant.FROM_SCREEN, screen_name);
-                screenrule.putExtra(AppConstant.PARENT_OBJECT, parentObject);
-                screenrule.putExtra(AppConstant.CHILD_OBJECT, childObject);
-                screenrule.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
-                startActivity(screenrule);
-
-
-                if (checkboxStatusLock) {
-                    screenlockBtn.setText("");
-                    checkboxStatusLock = false;
-                } else {
-                    screenlockBtn.setText("✔");
-                    checkboxStatusLock = true;
-                }
+//                Intent screenrule = new Intent(AddTask.this, ScreenRules.class);
+//                screenrule.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                screenrule.putExtra(AppConstant.FROM_SCREEN, screen_name);
+//                screenrule.putExtra(AppConstant.PARENT_OBJECT, parentObject);
+//                screenrule.putExtra(AppConstant.CHILD_OBJECT, childObject);
+//                screenrule.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
+//                startActivity(screenrule);
+//
+//
+//                if (checkboxStatusLock) {
+//                    screenlockBtn.setText("");
+//                    checkboxStatusLock = false;
+//                } else {
+//                    screenlockBtn.setText("✔");
+//                    checkboxStatusLock = true;
+//                }
                 /*   Intent screenrule = new Intent(AddTask.this,ScreenRules.class);
                     screenrule.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(screenrule);
