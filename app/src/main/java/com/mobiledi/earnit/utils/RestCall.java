@@ -92,6 +92,7 @@ public class RestCall {
                         Intent updateToken = new Intent(activity, UpdateFcmToken.class);
                         updateToken.putExtra(AppConstant.IS_LOGOUT, false);
                         if (response.getString(AppConstant.TYPE).equals(AppConstant.PARENT)) {
+                            MyApplication.getInstance().setUserType(AppConstant.PARENT);
                             parent = new GetObjectFromResponse().getParentObject(response);
                             MyApplication.getInstance().setUserType(AppConstant.PARENT);
 
@@ -117,6 +118,7 @@ public class RestCall {
                             }
 
                         } else if (response.getString(AppConstant.TYPE).equals(AppConstant.CHILD)) {
+                            MyApplication.getInstance().setUserType(AppConstant.CHILD);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1 && !isAlreadySentAppUsage()) {
                                 Log.d("sadasd", "http://159.65.239.6:8080/earnit-api/mobileapplicationsdasdasdassdasdasd@@@@@@@@@@@@@@@@@@@@@@@@@");
                                 updateAppsUsage();
@@ -124,6 +126,7 @@ public class RestCall {
                             MyApplication.getInstance().setUserType(AppConstant.CHILD);
 
                             Child child = new GetObjectFromResponse().getChildObject(response);
+                            MyApplication.getInstance().setChildId(child.getId());
                             //TASKS
                             ArrayList<Tasks> taskList = new ArrayList<>();
 
@@ -163,9 +166,8 @@ public class RestCall {
                             }
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     } catch (Exception e) {
+                        Log.e("dkdslfkj", "ErrorAuthenticate: " + e.getLocalizedMessage());
                         e.printStackTrace();
                     }
 
@@ -248,7 +250,7 @@ public class RestCall {
     }
 
     public void clearEdittext(String from, EditText editPassword) {
-        if (from.equalsIgnoreCase(AppConstant.LOGIN_SCREEN)) {
+        if (from.equalsIgnoreCase(AppConstant.LOGIN_SCREEN) && editPassword != null) {
             editPassword.setText("");
         }
         Utils.showToast(activity, activity.getResources().getString(R.string.login_failed));

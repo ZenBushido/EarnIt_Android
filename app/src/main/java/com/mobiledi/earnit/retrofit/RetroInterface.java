@@ -3,6 +3,7 @@ package com.mobiledi.earnit.retrofit;
 
 import com.mobiledi.earnit.model.AppUsage;
 import com.mobiledi.earnit.model.AppUsageResponse;
+import com.mobiledi.earnit.model.BlockingApp;
 import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDay;
 import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDayResponse;
 import com.mobiledi.earnit.model.adjustBalance.AdjustBalanceResponse;
@@ -12,10 +13,13 @@ import com.mobiledi.earnit.model.editTask.EditTaskRequest;
 import com.mobiledi.earnit.model.editTask.EditTaskResponse;
 import com.mobiledi.earnit.model.getChild.GetAllChildResponse;
 import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
+import com.mobiledi.earnit.model.newModels.AppsToBeBlockedOnOverdue;
+import com.mobiledi.earnit.model.newModels.User;
 import com.mobiledi.earnit.model.task.GetAllTaskResponse;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -86,6 +90,12 @@ public interface RetroInterface {
     Call<String>
     getParentPhoto(@Path("PARENT_ID") int id, @Path("IMAGE_NAME") String imageName);
 
+    @GET("/login")
+    Call<User> login();
+
+    @GET("childrens/parents/")
+    Call<Set<String>> getParents();
+
     @Multipart
     @POST("parents/children/{CHILD_ID}/profile/images")
     Call<String>
@@ -100,4 +110,8 @@ public interface RetroInterface {
     @POST("tasks/{TASK_ID}/images")
     Call<String>
     uploadTaskPicture(@Path("TASK_ID") int id, @Part MultipartBody.Part filePart);
+
+    @GET("children/{CHILD_ID}/mobileapplications ")
+    Call<List<AppsToBeBlockedOnOverdue>>
+    getChildrenApps(@Path("CHILD_ID") int id);
 }

@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.activity.applock.SplashActivity;
 import com.mobiledi.earnit.service.applock_service.AppCheckServices;
@@ -35,8 +37,6 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
-
-import butterknife.OnClick;
 
 /**
  * Created by mradul on 7/4/17.
@@ -65,6 +65,11 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_layout);
+
+        /*if (!TextUtils.isEmpty(MyApplication.getInstance().getEmail())
+                && !TextUtils.isEmpty(MyApplication.getInstance().getPassword())
+                && !TextUtils.isEmpty(MyApplication.getInstance().getUserType()))
+            startService(new Intent(LoginScreen.this, AppCheckServices.class));*/
 
         Log.d("ldfgl", "LoginScreen.onCreate()");
 //        startService(new Intent(LoginScreen.this, AppCheckServices.class));

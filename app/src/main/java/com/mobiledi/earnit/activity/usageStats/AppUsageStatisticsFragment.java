@@ -67,6 +67,8 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
     @BindView(R.id.tvListIsEmpty)
     TextView tvListIsEmpty;
 
+    private int mChildId;
+
     public interface OnViewReady{
         void onReady();
     }
@@ -75,12 +77,15 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
 
     private static Context sContext;
 
-    public static AppUsageStatisticsFragment newInstance(OnViewReady onViewReadys) {
+    public static AppUsageStatisticsFragment newInstance(OnViewReady onViewReadys, int childId) {
         onViewReady = onViewReadys;
         if (onViewReadys instanceof AppUsageStatisticsActivity) {
             sContext = (Context) onViewReadys;
         }
         AppUsageStatisticsFragment fragment = new AppUsageStatisticsFragment();
+        Bundle args = new Bundle();
+        args.putInt("childId", childId);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -176,6 +181,9 @@ public class AppUsageStatisticsFragment extends Fragment implements AdapterView.
         ButterKnife.bind(this, rootView);
 
         Log.d("sdlfkjslk", "onViewCreated");
+
+        assert getArguments() != null;
+        mChildId = getArguments().getInt("childId", -1);
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), 0));
         mLayoutManager = mRecyclerView.getLayoutManager();

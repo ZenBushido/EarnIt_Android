@@ -78,19 +78,22 @@ public class AppUsageStatisticsActivity extends AppCompatActivity implements App
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        parent = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
+        childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
+        MyApplication.getInstance().setChildId(childObject.getId());
+
+        Log.d("httpasdasd", "MyApplication child = " + childObject.toString());
         Log.d("sdlfkjslk", "onCreate");
-        appUsageStatisticsFragment = AppUsageStatisticsFragment.newInstance(this);
+        appUsageStatisticsFragment = AppUsageStatisticsFragment.newInstance(this, childObject.getId());
 
         setContentView(R.layout.activity_app_usage_statistics);
         ButterKnife.bind(this);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, AppUsageStatisticsFragment.newInstance(this))
+                    .add(R.id.container, appUsageStatisticsFragment)
                     .commit();
         }
-        Intent intent = getIntent();
-        parent = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
-        childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         if (childObject != null)
         MyApplication.getInstance().setChildId(childObject.getId());
         Log.d("jdsahdkjh", "AppUsageStatisticsActivity. Child: " + childObject);

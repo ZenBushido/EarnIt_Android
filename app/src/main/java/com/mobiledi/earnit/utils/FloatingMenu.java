@@ -482,8 +482,9 @@ public class FloatingMenu {
                 Utils.showToast(activity, "logout");
                 SharedPreferences sharedPreferences = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.commit();
+                editor.remove(AppConstant.EMAIL);
+                editor.remove(AppConstant.PASSWORD);
+                editor.apply();
                 MyApplication.getInstance().clearPassword();
                 updateDeviceFCM();
                 Intent intentLogout = new Intent(activity, LoginScreen.class);

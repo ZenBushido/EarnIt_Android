@@ -134,6 +134,8 @@ public final class AppConstant {
     public final static String ACCOUNT = "account";
     public final static String PHONE = "phone";
     public final static String FCM_TOKEN = "fcmToken";
+    public final static String SHOULD_LOCK_APPS = "shouldLockAppsIfTaskOverdue";
+    public final static String APPS_TO_BE_BLOCKED = "appsToBeBlockedOnOverdue";
 
     public final static String TASK_COMMENTS = "taskComments";
     public final static String READ_STATUS = "readStatus";
@@ -222,6 +224,9 @@ public final class AppConstant {
 
     public static final String TOKEN_BODY = "token_body";
     public static final String TOKEN_DATA = "token_data";
+
+    //SharedPreferences
+    public static final String PARENTS_IDS = "parents_ids";
 
     //NOTIFICATION TAGS
     public static final String NOTIFICATION_TAG = "NOTIFICATION_TAG";

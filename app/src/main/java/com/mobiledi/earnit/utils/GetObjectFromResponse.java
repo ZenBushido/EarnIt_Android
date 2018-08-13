@@ -3,6 +3,7 @@ package com.mobiledi.earnit.utils;
 import android.util.Log;
 
 import com.mobiledi.earnit.model.Account;
+import com.mobiledi.earnit.model.BlockingApp;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
 import com.mobiledi.earnit.model.DayTaskStatus;
@@ -148,6 +149,22 @@ public class GetObjectFromResponse {
 
             }
 
+            task.setShouldLockAppsIfTaskOverdue(taskObject.getBoolean(AppConstant.SHOULD_LOCK_APPS));
+            JSONArray appsToBeBlockedObject = taskObject.getJSONArray(AppConstant.APPS_TO_BE_BLOCKED);
+            List<BlockingApp> appsToBeBlockedList = new ArrayList<>();
+            if (appsToBeBlockedObject != null) {
+                for (int j = 0; j < appsToBeBlockedObject.length(); j++) {
+                    JSONObject blockingAppObject = appsToBeBlockedObject.getJSONObject(j);
+                    BlockingApp blockingApp = new BlockingApp(
+                            blockingAppObject.getLong("id"),
+                            blockingAppObject.getString("name"),
+                            blockingAppObject.getString("createdDate"),
+                            blockingAppObject.getBoolean("ignoredByParent"));
+                    appsToBeBlockedList.add(blockingApp);
+                }
+            }
+            task.setAppsToBeBlockedOnOverdue(appsToBeBlockedList);
+
             JSONArray taskCommentArray = taskObject.getJSONArray(AppConstant.TASK_COMMENTS);
             ArrayList<TaskComment> comments = new ArrayList<>();
             if (taskCommentArray != null && taskCommentArray.length() > 0) {
@@ -282,7 +299,7 @@ public class GetObjectFromResponse {
      * 3. Past Due (fakeDate = new DateTime().withYear(1980).withTimeAtStartOfDay()) This date means that task is past due
      * 4. Future dates in order (dueDate of this Tasks)
      *
-     * @param childObject. This object has all data of the child.
+     * @param /*childObject. This object has all data of the child.
      * @return List for tasks adapter
      */
     public ArrayList<ChildsTaskObject> getChildTaskListObject(Child childObject) {
@@ -529,12 +546,12 @@ public class GetObjectFromResponse {
 
     /**
      * All tasks that should appear in the list should be added to the HashMap. The HashMap makes it easier.
+     *
+     * @param task     - the task that should be added to the HashMap
+     * @param dateTime must be converted to String, and putting to the HashMap as a key.
      * @object map is Map<String, ArrayList<Tasks>> map = new TreeMap<>()
      * <String>This is key(timestamp of the date). We sorted all task by this key. One key can contain a list of tasks.</String>
      * <ArrayList<Tasks>>All tasks of key<ArrayList<Tasks>>
-     *
-     * @param task - the task that should be added to the HashMap
-     * @param dateTime must be converted to String, and putting to the HashMap as a key.
      */
     private void addToMap(Tasks task, DateTime dateTime) {
         String key;

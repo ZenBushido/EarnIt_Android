@@ -1,5 +1,7 @@
 package com.mobiledi.earnit.model;
 
+import com.mobiledi.earnit.model.newModels.Task;
+import com.mobiledi.earnit.model.newModels.User;
 import com.mobiledi.earnit.utils.Utils;
 
 import java.io.Serializable;

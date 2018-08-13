@@ -1,8 +1,12 @@
 package com.mobiledi.earnit.activity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,10 +27,12 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
+import com.mobiledi.earnit.SharedPreference;
 import com.mobiledi.earnit.adapter.ChildrenAdapter;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
+import com.mobiledi.earnit.service.applock_service.AppCheckServices;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.NavigationDrawer;
@@ -42,9 +48,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.Header;
@@ -88,6 +96,10 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Get the Parent Object
+
+        if (isMyServiceRunning(AppCheckServices.class) && imRealParent()){
+            stopServise();
+        }
 
         Intent intent = getIntent();
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
@@ -164,7 +176,7 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Utils.logDebug(TAG, "Child Success response: " + response.toString());
 
-                Log.e(TAG, "Child Respo: " + AppConstant.BASE_URL + AppConstant.CHILDREN_API);
+                Log.e(TAG, "Child Respo: " + AppConstant.BASE_URL + AppConstant.CHILDREN_API + parentObject.getAccount().getId());
 
                 childList.clear();
                 childApprovalList.clear();
@@ -173,7 +185,6 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject childObject = response.getJSONObject(i);
-
                             //child with non-approval task
                             Child child = new GetObjectFromResponse().getChildObject(childObject);
 
@@ -244,6 +255,42 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
                 progressBar.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void stopServise(){
+        Log.d("fsdfksjdhf", "stopService() = "
+        );
+        Intent myService = new Intent(ParentDashboard.this, AppCheckServices.class);
+        stopService(myService);
+    }
+
+    private boolean imRealParent(){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        Set<String> parentsIds = sp.getStringSet(AppConstant.PARENTS_IDS, null);
+        if (parentObject == null){
+            return false;
+        }
+        Log.d("fsdfksjdhf", "parentsIds = " + parentsIds + "; my id = " + parentObject.getId());
+        if (parentsIds != null && parentsIds.size() > 0){
+            for (String parentId : parentsIds){
+                if (parentObject.getId() == Integer.parseInt(parentId)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        if (manager != null) {
+            for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+                if (serviceClass.getName().equals(service.service.getClassName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

@@ -6,26 +6,63 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ParentDashboard" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="sdjhfksjhls" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bdbd186-96f5-4130-9c12-2e5d3c47289c" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/applock_adapter/ChildrenAppsAdapter.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/BlockingApp.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/Account.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/AppsToBeBlockedOnOverdue.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/Task.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/TaskComment.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/User.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/stickyEvent/BlockingApps.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/Repository.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/RestRepository.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/RestRepositoryContract.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/SharedPreferencesRepository.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/SharedPreferencesRepositoryContract.java" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_add_task_layout.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_add_task_layout.xml.flat" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_edit_task_layout.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_edit_task_layout.xml.flat" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" afterPath="$PROJECT_DIR$/app/release/app-release.apk" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyApplication.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/SharedPreference.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/SharedPreference.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildDashboard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildDashboard.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/LoginScreen.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/LoginScreen.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentDashboard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentDashboard.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/MainActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/SplashActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsFragment.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Child.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Child.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Tasks.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Tasks.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/addTask/AddTaskWithSelecteDay.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/addTask/AddTaskWithSelecteDay.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/AlarmReceiver.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/AlarmReceiver.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/BootComplete.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/BootComplete.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/ConnectivityReceiver.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/ConnectivityReceiver.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/NewAppInstalledReceiver.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/NewAppInstalledReceiver.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/stickyEvent/MessageEvent.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/stickyEvent/MessageEvent.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/NavigationDrawer.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/NavigationDrawer.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/RestCall.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/RestCall.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/add_task_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/add_task_layout.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/edit_task_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/edit_task_layout.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,31 +85,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BalanceActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/BalanceActivity.java">
+      <file leaf-file-name="AppCheckServices.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="183" column="5" lean-forward="false" selection-start-line="156" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
+            <state relative-caret-position="17">
+              <caret line="321" column="43" lean-forward="false" selection-start-line="321" selection-start-column="43" selection-end-line="321" selection-end-column="43" />
+              <folding>
+                <element signature="e#15062#15063#0" expanded="true" />
+                <element signature="e#15089#15090#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="833">
+              <caret line="49" column="70" lean-forward="false" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GoalActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/GoalActivity.java">
+      <file leaf-file-name="GetObjectFromResponse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3009">
-              <caret line="245" column="5" lean-forward="false" selection-start-line="215" selection-start-column="28" selection-end-line="245" selection-end-column="5" />
+            <state relative-caret-position="714">
+              <caret line="75" column="50" lean-forward="false" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FloatingMenu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java">
+      <file leaf-file-name="RetroInterface.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4624">
-              <caret line="336" column="33" lean-forward="false" selection-start-line="336" selection-start-column="33" selection-end-line="336" selection-end-column="33" />
+            <state relative-caret-position="1071">
+              <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1343">
+              <caret line="132" column="103" lean-forward="false" selection-start-line="132" selection-start-column="103" selection-end-line="132" selection-end-column="103" />
               <folding />
             </state>
           </provider>
@@ -81,83 +144,48 @@
       <file leaf-file-name="AddTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="647" column="5" lean-forward="false" selection-start-line="620" selection-start-column="5" selection-end-line="647" selection-end-column="5" />
+            <state relative-caret-position="12342">
+              <caret line="840" column="52" lean-forward="false" selection-start-line="840" selection-start-column="45" selection-end-line="840" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_task_layout.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_task_layout.xml">
+      <file leaf-file-name="RestCall.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/RestCall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="290" column="48" lean-forward="false" selection-start-line="290" selection-start-column="48" selection-end-line="290" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EditTask.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="359" column="5" lean-forward="false" selection-start-line="359" selection-start-column="5" selection-end-line="359" selection-end-column="5" />
-              <folding>
-                <element signature="e#9856#10041#0" expanded="true" />
-                <element signature="e#10040#10041#0" expanded="true" />
-                <element signature="e#10545#10596#0" expanded="true" />
-                <element signature="e#12350#12688#0" expanded="true" />
-                <element signature="e#12687#12688#0" expanded="true" />
-                <element signature="e#13032#13702#0" expanded="true" />
-                <element signature="e#13701#13702#0" expanded="true" />
-                <element signature="e#17431#17484#0" expanded="true" />
-                <element signature="e#17540#17597#0" expanded="true" />
-                <element signature="e#18435#18482#0" expanded="true" />
-                <element signature="e#19124#19391#0" expanded="true" />
-                <element signature="e#19390#19391#0" expanded="true" />
-                <element signature="e#19434#19628#0" expanded="true" />
-                <element signature="e#19627#19628#0" expanded="true" />
-                <element signature="e#33352#34537#0" expanded="true" />
-                <element signature="e#34319#34371#0" expanded="true" />
-                <element signature="e#34536#34537#0" expanded="true" />
-                <element signature="e#38283#38438#0" expanded="true" />
-                <element signature="e#38437#38438#0" expanded="true" />
-                <element signature="e#38597#38818#0" expanded="true" />
-                <element signature="e#38817#38818#0" expanded="true" />
-                <element signature="e#39397#40971#0" expanded="true" />
-                <element signature="e#40970#40971#0" expanded="true" />
-                <element signature="e#41108#41298#0" expanded="true" />
-                <element signature="e#41297#41298#0" expanded="true" />
-                <element signature="e#41864#43090#0" expanded="true" />
-                <element signature="e#43089#43090#0" expanded="true" />
-                <element signature="e#43227#43417#0" expanded="true" />
-                <element signature="e#43416#43417#0" expanded="true" />
-                <element signature="e#53876#53929#0" expanded="true" />
-                <element signature="e#54250#54303#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScreenSwitch.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/ScreenSwitch.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6358">
-              <caret line="438" column="62" lean-forward="false" selection-start-line="438" selection-start-column="62" selection-end-line="438" selection-end-column="62" />
+            <state relative-caret-position="1496">
+              <caret line="127" column="81" lean-forward="false" selection-start-line="127" selection-start-column="81" selection-end-line="127" selection-end-column="81" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppUsageStatisticsActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsActivity.java">
+      <file leaf-file-name="Child.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Child.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="87" column="73" lean-forward="false" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
+            <state relative-caret-position="697">
+              <caret line="58" column="130" lean-forward="false" selection-start-line="58" selection-start-column="130" selection-end-line="58" selection-end-column="130" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tasks.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Tasks.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SharedPreference.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/SharedPreference.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="867">
+              <caret line="64" column="10" lean-forward="false" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -165,29 +193,52 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dail</find>
-      <find>Floa</find>
-      <find>Appcons</find>
-      <find>http://159.65.239.6:8080/earnit-api/childrens/</find>
-      <find>list</find>
-      <find>keystore</find>
-      <find>Realtime</find>
-      <find>real_time_money</find>
-      <find>Screen rules</find>
-      <find>Screen Rules</find>
-      <find>Confirm Per</find>
-      <find>rule_check1</find>
-      <find>user_image</find>
-      <find>profileImage</find>
-      <find>newtask_screenlockcheck</find>
-      <find>add_ta</find>
-      <find>add_</find>
-      <find>user_ima</find>
-      <find>goal_ava</find>
-      <find>add_task_ava</find>
+      <find>/tasks</find>
+      <find>plm</find>
+      <find>login-Rquest</find>
+      <find>Weekly</find>
+      <find>Hh</find>
+      <find>Give me image</find>
+      <find>Basic</find>
+      <find>EarnIt</find>
+      <find>ignoredByParent</find>
+      <find>siyamed</find>
+      <find>before</find>
+      <find>conce</find>
+      <find>Block</find>
+      <find>calling succ</find>
+      <find>2TestLock added</find>
+      <find>login-Rquest on</find>
+      <find>Concer</find>
+      <find>task =</find>
+      <find>appsToBeBlocked</find>
+      <find>appsToBeBlocked.size</find>
+      <find>GET_TASKS</find>
+      <find>appsToBeBlocked.size()</find>
+      <find>onDes</find>
+      <find>onDestr</find>
+      <find>package</find>
+      <find>AppCheckServices.class</find>
+      <find>stopSe</find>
+      <find>stopServ</find>
+      <find>startFore</find>
+      <find>launch</find>
     </findStrings>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="D:\Android\keystore\keystore.jks" />
+    <option name="KEY_ALIAS" value="key0" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -3611,19 +3662,55 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentDashboard.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/materialcalendarview/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ScreenRules.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentCheckInChildDashboard.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/BalanceActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/GoalActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/add_task_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/edit_task_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/add_task_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/stickyEvent/MessageEvent.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/stickyEvent/BlockingApps.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/applock_adapter/ApplicationListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/addTask/AddTaskWithSelecteDay.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildDashboard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/Account.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/Task.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/TaskComment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildViewDateAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Child.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/SharedPreferencesRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/RestRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/Repository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/BootComplete.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/ConnectivityReceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/LoginScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/NewAppInstalledReceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/SplashActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/AlarmReceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/NavigationDrawer.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentDashboard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/applock_adapter/ChildrenAppsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/AppsToBeBlockedOnOverdue.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/SharedPreference.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Tasks.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/RestCall.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/BlockingApp.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyApplication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java" />
       </list>
     </option>
   </component>
@@ -3649,6 +3736,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -3690,18 +3779,21 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../keystore/keystore.jks" />
     <property name="device.picker.selection" value="ce031713b4072c9d0d" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
+    <property name="ExportApk.ApkPath" value="D:\Android\Projects\EarnIt\app" />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.BuildType" value="release" />
+    <property name="ExportApk.SignV1" value="true" />
+    <property name="ExportApk.SignV2" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -3912,7 +4004,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532887161292</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="- Hide 'App lock if overdue' item on AddTask and EditTask screens;&#10;- Fix bug with loading child photo on EditTask screen.">
+      <created>1532889511446</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1532889511446</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3920,69 +4019,36 @@
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50567263" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.4943274" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -4000,613 +4066,395 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/RestRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="126" column="51" lean-forward="false" selection-start-line="126" selection-start-column="51" selection-end-line="126" selection-end-column="51" />
+        <state relative-caret-position="68">
+          <caret line="4" column="80" lean-forward="false" selection-start-line="4" selection-start-column="80" selection-end-line="4" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/Repository/Repository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="50" lean-forward="false" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/ConnectivityReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="17" column="54" lean-forward="false" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/NewAppInstalledReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="32" column="60" lean-forward="false" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/BootComplete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="24" column="78" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" column="50" lean-forward="false" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/receiver/AlarmReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetrofitClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sources/android-26/android/content/SharedPreferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="77" column="6" lean-forward="true" selection-start-line="77" selection-start-column="6" selection-end-line="77" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sources/android-26/android/preference/PreferenceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="651" column="33" lean-forward="false" selection-start-line="651" selection-start-column="33" selection-end-line="651" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sources/android-26/android/content/Context.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="766" column="38" lean-forward="false" selection-start-line="766" selection-start-column="38" selection-end-line="766" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sources/android-26/com/android/printspooler/util/ApprovedPrintServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="46" column="44" lean-forward="false" selection-start-line="46" selection-start-column="44" selection-end-line="46" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/android/content/SharedPreferences.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/android/preference/PreferenceManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="67" column="27" lean-forward="false" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/NavigationDrawer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="205" column="68" lean-forward="false" selection-start-line="205" selection-start-column="68" selection-end-line="205" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="69" column="35" lean-forward="false" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
           <folding>
-            <element signature="e#9856#10041#0" expanded="true" />
-            <element signature="e#10040#10041#0" expanded="true" />
-            <element signature="e#10545#10596#0" expanded="true" />
-            <element signature="e#12350#12688#0" expanded="true" />
-            <element signature="e#12687#12688#0" expanded="true" />
-            <element signature="e#13032#13702#0" expanded="true" />
-            <element signature="e#13701#13702#0" expanded="true" />
-            <element signature="e#17431#17484#0" expanded="true" />
-            <element signature="e#17540#17597#0" expanded="true" />
-            <element signature="e#18435#18482#0" expanded="true" />
-            <element signature="e#19124#19391#0" expanded="true" />
-            <element signature="e#19390#19391#0" expanded="true" />
-            <element signature="e#19434#19628#0" expanded="true" />
-            <element signature="e#19627#19628#0" expanded="true" />
-            <element signature="e#33352#34537#0" expanded="true" />
-            <element signature="e#34319#34371#0" expanded="true" />
-            <element signature="e#34536#34537#0" expanded="true" />
-            <element signature="e#38283#38438#0" expanded="true" />
-            <element signature="e#38437#38438#0" expanded="true" />
-            <element signature="e#38597#38818#0" expanded="true" />
-            <element signature="e#38817#38818#0" expanded="true" />
-            <element signature="e#39397#40971#0" expanded="true" />
-            <element signature="e#40970#40971#0" expanded="true" />
-            <element signature="e#41108#41298#0" expanded="true" />
-            <element signature="e#41297#41298#0" expanded="true" />
-            <element signature="e#41864#43090#0" expanded="true" />
-            <element signature="e#43089#43090#0" expanded="true" />
-            <element signature="e#43227#43417#0" expanded="true" />
-            <element signature="e#43416#43417#0" expanded="true" />
-            <element signature="e#53876#53929#0" expanded="true" />
-            <element signature="e#54250#54303#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="184" column="47" lean-forward="false" selection-start-line="184" selection-start-column="47" selection-end-line="184" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4539">
-          <caret line="267" column="28" lean-forward="false" selection-start-line="267" selection-start-column="28" selection-end-line="267" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="81" lean-forward="false" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2295">
-          <caret line="183" column="45" lean-forward="false" selection-start-line="183" selection-start-column="41" selection-end-line="183" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentCheckInChildDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="53" column="25" lean-forward="true" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/ScreenSwitch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="118" column="32" lean-forward="false" selection-start-line="118" selection-start-column="32" selection-end-line="118" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Tasks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="60" column="15" lean-forward="false" selection-start-line="60" selection-start-column="15" selection-end-line="60" selection-end-column="15" />
+        <state relative-caret-position="1054">
+          <caret line="110" column="67" lean-forward="false" selection-start-line="110" selection-start-column="67" selection-end-line="110" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" column="22" lean-forward="false" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+        <state relative-caret-position="3723">
+          <caret line="281" column="5" lean-forward="false" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="126" column="51" lean-forward="false" selection-start-line="126" selection-start-column="51" selection-end-line="126" selection-end-column="51" />
+        <state relative-caret-position="1734">
+          <caret line="153" column="11" lean-forward="false" selection-start-line="128" selection-start-column="8" selection-end-line="153" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/android/app/usage/UsageStatsManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/android/app/usage/UsageStats.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/CustomUsageStats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/AppUsage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppsUsageHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding>
-            <element signature="e#9856#10041#0" expanded="true" />
-            <element signature="e#10040#10041#0" expanded="true" />
-            <element signature="e#10545#10596#0" expanded="true" />
-            <element signature="e#12350#12688#0" expanded="true" />
-            <element signature="e#12687#12688#0" expanded="true" />
-            <element signature="e#13032#13702#0" expanded="true" />
-            <element signature="e#13701#13702#0" expanded="true" />
-            <element signature="e#17431#17484#0" expanded="true" />
-            <element signature="e#17540#17597#0" expanded="true" />
-            <element signature="e#18435#18482#0" expanded="true" />
-            <element signature="e#19124#19391#0" expanded="true" />
-            <element signature="e#19390#19391#0" expanded="true" />
-            <element signature="e#19434#19628#0" expanded="true" />
-            <element signature="e#19627#19628#0" expanded="true" />
-            <element signature="e#33352#34537#0" expanded="true" />
-            <element signature="e#34319#34371#0" expanded="true" />
-            <element signature="e#34536#34537#0" expanded="true" />
-            <element signature="e#38283#38438#0" expanded="true" />
-            <element signature="e#38437#38438#0" expanded="true" />
-            <element signature="e#38597#38818#0" expanded="true" />
-            <element signature="e#38817#38818#0" expanded="true" />
-            <element signature="e#39397#40971#0" expanded="true" />
-            <element signature="e#40970#40971#0" expanded="true" />
-            <element signature="e#41108#41298#0" expanded="true" />
-            <element signature="e#41297#41298#0" expanded="true" />
-            <element signature="e#41864#43090#0" expanded="true" />
-            <element signature="e#43089#43090#0" expanded="true" />
-            <element signature="e#43227#43417#0" expanded="true" />
-            <element signature="e#43416#43417#0" expanded="true" />
-            <element signature="e#53876#53929#0" expanded="true" />
-            <element signature="e#54250#54303#0" expanded="true" />
+            <element signature="e#4626#4627#0" expanded="false" />
+            <element signature="e#4659#4660#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="79" column="62" lean-forward="false" selection-start-line="79" selection-start-column="62" selection-end-line="79" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_task_layout.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/applock_adapter/ChildrenAppsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="54" column="32" lean-forward="false" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/applock_adapter/ApplicationListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="60" column="25" lean-forward="false" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/java/util/ArrayList.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="85" column="19" lean-forward="false" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/newModels/AppsToBeBlockedOnOverdue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="65" column="37" lean-forward="false" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/applock/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="78" column="72" lean-forward="false" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/SharedPreference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="64" column="10" lean-forward="false" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/retrofit/RetroInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3128">
-          <caret line="184" column="47" lean-forward="false" selection-start-line="184" selection-start-column="47" selection-end-line="184" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Tasks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="60" column="15" lean-forward="false" selection-start-line="60" selection-start-column="15" selection-end-line="60" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3536">
-          <caret line="267" column="28" lean-forward="false" selection-start-line="267" selection-start-column="28" selection-end-line="267" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="126" column="51" lean-forward="false" selection-start-line="126" selection-start-column="51" selection-end-line="126" selection-end-column="51" />
-          <folding>
-            <element signature="e#9856#10041#0" expanded="true" />
-            <element signature="e#10040#10041#0" expanded="true" />
-            <element signature="e#10545#10596#0" expanded="true" />
-            <element signature="e#12350#12688#0" expanded="true" />
-            <element signature="e#12687#12688#0" expanded="true" />
-            <element signature="e#13032#13702#0" expanded="true" />
-            <element signature="e#13701#13702#0" expanded="true" />
-            <element signature="e#17431#17484#0" expanded="true" />
-            <element signature="e#17540#17597#0" expanded="true" />
-            <element signature="e#18435#18482#0" expanded="true" />
-            <element signature="e#19124#19391#0" expanded="true" />
-            <element signature="e#19390#19391#0" expanded="true" />
-            <element signature="e#19434#19628#0" expanded="true" />
-            <element signature="e#19627#19628#0" expanded="true" />
-            <element signature="e#33352#34537#0" expanded="true" />
-            <element signature="e#34319#34371#0" expanded="true" />
-            <element signature="e#34536#34537#0" expanded="true" />
-            <element signature="e#38283#38438#0" expanded="true" />
-            <element signature="e#38437#38438#0" expanded="true" />
-            <element signature="e#38597#38818#0" expanded="true" />
-            <element signature="e#38817#38818#0" expanded="true" />
-            <element signature="e#39397#40971#0" expanded="true" />
-            <element signature="e#40970#40971#0" expanded="true" />
-            <element signature="e#41108#41298#0" expanded="true" />
-            <element signature="e#41297#41298#0" expanded="true" />
-            <element signature="e#41864#43090#0" expanded="true" />
-            <element signature="e#43089#43090#0" expanded="true" />
-            <element signature="e#43227#43417#0" expanded="true" />
-            <element signature="e#43416#43417#0" expanded="true" />
-            <element signature="e#53876#53929#0" expanded="true" />
-            <element signature="e#54250#54303#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3128">
-          <caret line="184" column="47" lean-forward="false" selection-start-line="184" selection-start-column="47" selection-end-line="184" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.siyamed/android-shape-imageview/0.9.3/486b943a1ffa8fbbc95ec98e6587bc2ccd9f1e67/android-shape-imageview-0.9.3-sources.jar!/com/github/siyamed/shapeimageview/CircularImageView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildCalendarActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3536">
-          <caret line="267" column="28" lean-forward="false" selection-start-line="267" selection-start-column="28" selection-end-line="267" selection-end-column="28" />
+        <state relative-caret-position="12342">
+          <caret line="840" column="52" lean-forward="false" selection-start-line="840" selection-start-column="45" selection-end-line="840" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="81" lean-forward="false" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="81" />
+        <state relative-caret-position="214">
+          <caret line="137" column="77" lean-forward="false" selection-start-line="137" selection-start-column="77" selection-end-line="137" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/java/util/List.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/RepititionSchedule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        <state relative-caret-position="214">
+          <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/java/util/ArrayList.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Child.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/java/util/LinkedList.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1989">
-          <caret line="168" column="73" lean-forward="false" selection-start-line="168" selection-start-column="73" selection-end-line="168" selection-end-column="73" />
+        <state relative-caret-position="697">
+          <caret line="58" column="130" lean-forward="false" selection-start-line="58" selection-start-column="130" selection-end-line="58" selection-end-column="130" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Tasks.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Goal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="44" column="23" lean-forward="false" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="493" column="23" lean-forward="false" selection-start-line="493" selection-start-column="23" selection-end-line="493" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildViewDateAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="40" column="11" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/materialcalendarview/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="93" column="23" lean-forward="false" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="169" column="68" lean-forward="false" selection-start-line="169" selection-start-column="68" selection-end-line="169" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/screen_rules.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="271" column="52" lean-forward="false" selection-start-line="271" selection-start-column="41" selection-end-line="271" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/dialogfragment/ScreenRuleFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="205" column="89" lean-forward="false" selection-start-line="205" selection-start-column="78" selection-end-line="205" selection-end-column="89" />
-          <folding>
-            <element signature="e#8359#8731#0" expanded="false" />
-            <element signature="e#8730#8731#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/android/content/ContextWrapper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
-          <caret line="388" column="15" lean-forward="false" selection-start-line="388" selection-start-column="15" selection-end-line="388" selection-end-column="15" />
+          <caret line="380" column="18" lean-forward="false" selection-start-line="380" selection-start-column="18" selection-end-line="380" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ScreenRules.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/BlockingApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="533" column="5" lean-forward="false" selection-start-line="513" selection-start-column="5" selection-end-line="533" selection-end-column="5" />
+        <state relative-caret-position="365">
+          <caret line="55" column="37" lean-forward="false" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/model/Tasks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="118" column="29" lean-forward="false" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/parent_child_view.xml">
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/java/util/TreeMap.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
-          <caret line="31" column="39" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/adapter/ChildrenAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="163" column="5" lean-forward="false" selection-start-line="136" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
+          <caret line="53" column="13" lean-forward="false" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/parent_checkin_child_layout.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/LoginScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="46" column="20" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ParentCheckInChildDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="159" column="45" lean-forward="false" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
+        <state relative-caret-position="-2567">
+          <caret line="68" column="57" lean-forward="false" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/balance_screen_layout.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/RestCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="127" column="81" lean-forward="false" selection-start-line="127" selection-start-column="81" selection-end-line="127" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/GetObjectFromResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="75" column="50" lean-forward="false" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/platforms/android-27/android.jar!/android/app/Service.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
-          <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <caret line="22" column="28" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/MyApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="132" column="103" lean-forward="false" selection-start-line="132" selection-start-column="103" selection-end-line="132" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/action_bar_view_goal.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/goal_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="29" column="41" lean-forward="false" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/BalanceActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="183" column="5" lean-forward="false" selection-start-line="156" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
+        <state relative-caret-position="833">
+          <caret line="49" column="70" lean-forward="false" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/FloatingMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4624">
-          <caret line="336" column="33" lean-forward="false" selection-start-line="336" selection-start-column="33" selection-end-line="336" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/ScreenSwitch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6358">
-          <caret line="438" column="62" lean-forward="false" selection-start-line="438" selection-start-column="62" selection-end-line="438" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_app_usage_statistics.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="74" column="16" lean-forward="false" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/GoalActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3009">
-          <caret line="245" column="5" lean-forward="false" selection-start-line="215" selection-start-column="28" selection-end-line="245" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/usageStats/AppUsageStatisticsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="87" column="73" lean-forward="false" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_task_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="290" column="48" lean-forward="false" selection-start-line="290" selection-start-column="48" selection-end-line="290" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/action_bar_view_headeradded.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/edit_task_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="16" column="47" lean-forward="false" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+          <caret line="321" column="43" lean-forward="false" selection-start-line="321" selection-start-column="43" selection-end-line="321" selection-end-column="43" />
           <folding>
-            <element signature="e#2062#2086#0" expanded="false" />
-            <element signature="e#3112#3156#0" expanded="false" />
-            <element signature="e#3274#3295#0" expanded="false" />
-            <element signature="e#3338#3367#0" expanded="false" />
-            <element signature="e#3409#3437#0" expanded="false" />
-            <element signature="e#3856#3883#0" expanded="false" />
-            <element signature="e#4112#4150#0" expanded="false" />
-            <element signature="e#4198#4236#0" expanded="false" />
-            <element signature="e#4597#4635#0" expanded="false" />
-            <element signature="e#4842#4869#0" expanded="false" />
-            <element signature="e#5085#5106#0" expanded="false" />
-            <element signature="e#5149#5178#0" expanded="false" />
-            <element signature="e#5644#5671#0" expanded="false" />
-            <element signature="e#5903#5941#0" expanded="false" />
-            <element signature="e#5989#6027#0" expanded="false" />
-            <element signature="e#6302#6340#0" expanded="false" />
-            <element signature="e#6530#6557#0" expanded="false" />
-            <element signature="e#6706#6727#0" expanded="false" />
-            <element signature="e#6772#6800#0" expanded="false" />
-            <element signature="e#6843#6872#0" expanded="false" />
-            <element signature="e#6914#6942#0" expanded="false" />
-            <element signature="e#7262#7300#0" expanded="false" />
-            <element signature="e#7445#7472#0" expanded="false" />
-            <element signature="e#7713#7751#0" expanded="false" />
-            <element signature="e#7799#7837#0" expanded="false" />
-            <element signature="e#8112#8150#0" expanded="false" />
-            <element signature="e#8340#8367#0" expanded="false" />
-            <element signature="e#8515#8536#0" expanded="false" />
-            <element signature="e#8579#8608#0" expanded="false" />
-            <element signature="e#8650#8678#0" expanded="false" />
-            <element signature="e#9094#9121#0" expanded="false" />
-            <element signature="e#9352#9390#0" expanded="false" />
-            <element signature="e#9438#9476#0" expanded="false" />
-            <element signature="e#9778#9816#0" expanded="false" />
-            <element signature="e#10071#10098#0" expanded="false" />
-            <element signature="e#10365#10394#0" expanded="false" />
-            <element signature="e#10526#10553#0" expanded="false" />
-            <element signature="e#10873#10902#0" expanded="false" />
-            <element signature="e#10946#10984#0" expanded="false" />
-            <element signature="e#11471#11498#0" expanded="false" />
-            <element signature="e#12550#12588#0" expanded="false" />
-            <element signature="e#12811#12838#0" expanded="false" />
-            <element signature="e#13428#13455#0" expanded="false" />
-            <element signature="e#14663#14701#0" expanded="false" />
-            <element signature="e#14932#14970#0" expanded="false" />
-            <element signature="e#15012#15030#0" expanded="false" />
-            <element signature="e#15141#15168#0" expanded="false" />
-            <element signature="e#16620#16658#0" expanded="false" />
-            <element signature="e#16700#16725#0" expanded="false" />
-            <element signature="e#16836#16863#0" expanded="false" />
-            <element signature="e#18023#18061#0" expanded="false" />
-            <element signature="e#18231#18258#0" expanded="false" />
-            <element signature="e#19591#19607#0" expanded="false" />
-            <element signature="e#20074#20101#0" expanded="false" />
-            <element signature="e#20358#20374#0" expanded="false" />
-            <element signature="e#20787#20814#0" expanded="false" />
-            <element signature="e#21070#21086#0" expanded="false" />
-            <element signature="e#21497#21524#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/AddTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="647" column="5" lean-forward="false" selection-start-line="620" selection-start-column="5" selection-end-line="647" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/EditTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="359" column="5" lean-forward="false" selection-start-line="359" selection-start-column="5" selection-end-line="359" selection-end-column="5" />
-          <folding>
-            <element signature="e#9856#10041#0" expanded="true" />
-            <element signature="e#10040#10041#0" expanded="true" />
-            <element signature="e#10545#10596#0" expanded="true" />
-            <element signature="e#12350#12688#0" expanded="true" />
-            <element signature="e#12687#12688#0" expanded="true" />
-            <element signature="e#13032#13702#0" expanded="true" />
-            <element signature="e#13701#13702#0" expanded="true" />
-            <element signature="e#17431#17484#0" expanded="true" />
-            <element signature="e#17540#17597#0" expanded="true" />
-            <element signature="e#18435#18482#0" expanded="true" />
-            <element signature="e#19124#19391#0" expanded="true" />
-            <element signature="e#19390#19391#0" expanded="true" />
-            <element signature="e#19434#19628#0" expanded="true" />
-            <element signature="e#19627#19628#0" expanded="true" />
-            <element signature="e#33352#34537#0" expanded="true" />
-            <element signature="e#34319#34371#0" expanded="true" />
-            <element signature="e#34536#34537#0" expanded="true" />
-            <element signature="e#38283#38438#0" expanded="true" />
-            <element signature="e#38437#38438#0" expanded="true" />
-            <element signature="e#38597#38818#0" expanded="true" />
-            <element signature="e#38817#38818#0" expanded="true" />
-            <element signature="e#39397#40971#0" expanded="true" />
-            <element signature="e#40970#40971#0" expanded="true" />
-            <element signature="e#41108#41298#0" expanded="true" />
-            <element signature="e#41297#41298#0" expanded="true" />
-            <element signature="e#41864#43090#0" expanded="true" />
-            <element signature="e#43089#43090#0" expanded="true" />
-            <element signature="e#43227#43417#0" expanded="true" />
-            <element signature="e#43416#43417#0" expanded="true" />
-            <element signature="e#53876#53929#0" expanded="true" />
-            <element signature="e#54250#54303#0" expanded="true" />
+            <element signature="e#15062#15063#0" expanded="true" />
+            <element signature="e#15089#15090#0" expanded="true" />
           </folding>
         </state>
       </provider>

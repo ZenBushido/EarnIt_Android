@@ -35,14 +35,16 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
     private boolean pictureRequired;
     private String status;
     private long updateDate;
-
+    private boolean shouldLockAppsIfTaskOverdue;
+    private List<BlockingApp> appsToBeBlockedOnOverdue;
     private Goal goal;
-
     private RepititionSchedule repititionSchedule;
-
     private ArrayList<DateTime> datesRepetitions;
 
     public static long fakeDate = new DateTime().withYear(1980).withTimeAtStartOfDay().getMillis();
+
+    public Tasks() {
+    }
 
     public boolean hasFewApprovalTasks() {
         return repititionSchedule != null && repititionSchedule.getDayTaskStatuses() != null &&
@@ -142,9 +144,6 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
             }
         }
         return newTask;
-    }
-
-    public Tasks() {
     }
 
     public static final Creator<Tasks> CREATOR = new Creator<Tasks>() {
@@ -308,25 +307,43 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
         this.childId = childId;
     }
 
+    public boolean isShouldLockAppsIfTaskOverdue() {
+        return shouldLockAppsIfTaskOverdue;
+    }
+
+    public void setShouldLockAppsIfTaskOverdue(boolean shouldLockAppsIfTaskOverdue) {
+        this.shouldLockAppsIfTaskOverdue = shouldLockAppsIfTaskOverdue;
+    }
+
+    public List<BlockingApp> getAppsToBeBlockedOnOverdue() {
+        return appsToBeBlockedOnOverdue;
+    }
+
+    public void setAppsToBeBlockedOnOverdue(List<BlockingApp> appsToBeBlockedOnOverdue) {
+        this.appsToBeBlockedOnOverdue = appsToBeBlockedOnOverdue;
+    }
+
     @Override
     public String toString() {
         return "Tasks{" +
                 "id=" + id +
                 ", childId=" + childId +
                 /*", allowance=" + allowance +*/
-                ", createDate=" + new DateTime(createDate).toString("dd.MM.yyyy HH:mm:ss") +
-                ", dueDate=" + new DateTime(dueDate).toString("dd.MM.yyyy HH:mm:ss") +
-                ", startDate=" + new DateTime(startDate).toString("dd.MM.yyyy HH:mm:ss") +
+                ", createDate=" + createDate +
+                ", dueDate=" + dueDate +
+                ", startDate=" + startDate +
                 ", name='" + name + '\'' +
-                /*", taskComments=" + taskComments +
-                ", details='" + details + '\'' +
-                ", pictureRequired=" + pictureRequired +*/
+                /*", taskComments=" + taskComments +*/
+                /*", details='" + details + '\'' +*/
+                /*", pictureRequired=" + pictureRequired +*/
                 ", status='" + status + '\'' +
-                ", updateDate=" + new DateTime(updateDate).toString("dd.MM.yyyy HH:mm:ss") +
+                ", updateDate=" + updateDate +
+                ", shouldLockAppsIfTaskOverdue=" + shouldLockAppsIfTaskOverdue +
+                ", appsToBeBlockedOnOverdue=" + appsToBeBlockedOnOverdue +
                 /*", goal=" + goal +*/
                 ", repititionSchedule=" + repititionSchedule +
-                /*", datesRepetitions=" + datesRepetitions +
-                ", datenew='" + datenew + '\'' +*/
+                /*", datesRepetitions=" + datesRepetitions +*/
+                /*", datenew='" + datenew + '\'' +*/
                 '}';
     }
 
@@ -447,6 +464,8 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
         newTask.setStatus(task.getStatus());
         newTask.setTaskComments(task.getTaskComments());
         newTask.setUpdateDate(task.getUpdateDate());
+        newTask.setAppsToBeBlockedOnOverdue(task.getAppsToBeBlockedOnOverdue());
+        newTask.setShouldLockAppsIfTaskOverdue(task.isShouldLockAppsIfTaskOverdue());
         return newTask;
     }
 

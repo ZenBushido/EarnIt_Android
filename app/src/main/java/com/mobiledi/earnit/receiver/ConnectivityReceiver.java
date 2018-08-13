@@ -3,7 +3,9 @@ package com.mobiledi.earnit.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.service.applock_service.AppCheckServices;
 
 /**
@@ -12,6 +14,10 @@ import com.mobiledi.earnit.service.applock_service.AppCheckServices;
 public class ConnectivityReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        if (!TextUtils.isEmpty(MyApplication.getInstance().getEmail())
+                && !TextUtils.isEmpty(MyApplication.getInstance().getPassword())
+                && !TextUtils.isEmpty(MyApplication.getInstance().getUserType()))
         context.startService(new Intent(context, AppCheckServices.class));
     }
 }

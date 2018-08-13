@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mobiledi.earnit.App;
 import com.mobiledi.earnit.AppLockConstants;
@@ -26,8 +27,10 @@ import com.mobiledi.earnit.activity.usageStats.AppUsageStatisticsFragment;
 import com.mobiledi.earnit.activity.usageStats.CustomUsageStats;
 import com.mobiledi.earnit.activity.usageStats.UsageListAdapter;
 import com.mobiledi.earnit.adapter.applock_adapter.ApplicationListAdapter;
+import com.mobiledi.earnit.adapter.applock_adapter.ChildrenAppsAdapter;
 import com.mobiledi.earnit.model.AppUsageResponse;
 import com.mobiledi.earnit.model.Data.AppInfo;
+import com.mobiledi.earnit.model.newModels.AppsToBeBlockedOnOverdue;
 import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.utils.AppConstant;
 
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     boolean isRated = false;
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ChildrenAppsAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String requiredTypes;
     private Toolbar toolbar;
@@ -72,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         context = getApplicationContext();
+        new com.mobiledi.earnit.SharedPreference().clearLockApps(this);
+        new com.mobiledi.earnit.SharedPreference().clearLockAppsObjects(this);
         sharedPreferences = getSharedPreferences(AppLockConstants.MyPREFERENCES, MODE_PRIVATE);
         editor = sharedPreferences.edit();
         numOfTimesAppOpened = sharedPreferences.getLong(AppLockConstants.NUM_OF_TIMES_APP_OPENED, 0) + 1;
@@ -96,23 +101,60 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 //        mAdapter = new ApplicationListAdapter(MainActivity.getListOfInstalledApp(this), this, requiredTypes);
 //        mRecyclerView.setAdapter(mAdapter);
-        updateRecyclerView();
+//        updateRecyclerView();
+        updateList();
     }
 
-    private List<AppInfo> convertList(List<CustomUsageStats> customUsageStats){
+    private List<AppInfo> convertList(List<CustomUsageStats> customUsageStats) {
         List<AppInfo> returnList = new ArrayList<>();
-        for (CustomUsageStats cus : customUsageStats){
-            Log.d("dsfsdh","cus: " + cus.toString());
+        for (CustomUsageStats cus : customUsageStats) {
+            Log.d("dsfsdh", "cus: " + cus.toString());
             returnList.add(AppInfo.from(cus));
         }
         return returnList;
     }
 
+    public void updateList(){
+        pb.setVisibility(View.VISIBLE);
+        RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
+        retroInterface.getChildrenApps(MyApplication.getInstance().getChildId()).enqueue(new Callback<List<AppsToBeBlockedOnOverdue>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<AppsToBeBlockedOnOverdue>> call, @NonNull Response<List<AppsToBeBlockedOnOverdue>> response) {
+                pb.setVisibility(View.GONE);
+                if (response.body() != null){
+                    List<AppsToBeBlockedOnOverdue> filterList = new ArrayList<>();
+                    if (response.body().size() > 0) {
+                        for (AppsToBeBlockedOnOverdue app : response.body()) {
+                            if (app.getName().contains("#")){
+                                filterList.add(app);
+                            }
+                        }
+                        if (filterList.size() > 0) {
+                            mAdapter = new ChildrenAppsAdapter(filterList, context);
+                            mRecyclerView.setAdapter(mAdapter);
+                        } else {
+                            tvListIsEmpty.setVisibility(View.VISIBLE);
+                        }
+                    } else {
+                        tvListIsEmpty.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
 
+            @Override
+            public void onFailure(@NonNull Call<List<AppsToBeBlockedOnOverdue>> call, @NonNull Throwable t) {
+                pb.setVisibility(View.GONE);
+                Toast.makeText(context, "Error: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("daskjdl", "Throwable: " + t.getLocalizedMessage());
+            }
+        });
+
+    }
+
+    @Deprecated
     public void updateRecyclerView() {
         pb.setVisibility(View.VISIBLE);
-        SharedPreferences sp = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
-        RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, sp.getString(AppConstant.EMAIL, ""), sp.getString(AppConstant.PASSWORD, ""));
+        RetroInterface retroInterface = ServiceGenerator.createService(RetroInterface.class, MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
         Map<String, Integer> options = new HashMap<>();
         options.put("childid", MyApplication.getInstance().getChildId());
         options.put("days", 7);
@@ -128,7 +170,9 @@ public class MainActivity extends AppCompatActivity {
                     for (AppUsageResponse appUsageResponse : response.body()) {
                         totalTime += appUsageResponse.getTimeUsedMinutes();
                         Log.d("sdlfkjslk", "appUsageResponse: " + appUsageResponse.toString());
-                        appUsages.add(new CustomUsageStats().from(appUsageResponse));
+                        if (!appUsageResponse.getAppName().contains("EarnIt")) {
+                            appUsages.add(new CustomUsageStats().from(appUsageResponse));
+                        }
                     }
                     if (appUsages.isEmpty()) {
                         tvListIsEmpty.setVisibility(View.VISIBLE);
@@ -136,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("sdlfkjslk", "totalTime minutes: " + totalTime);
                         totalTime = TimeUnit.MINUTES.toMillis(totalTime);
                         Log.d("sdlfkjslk", "totalTime millis: " + totalTime);
-                        mAdapter = new ApplicationListAdapter(convertList(AppUsageStatisticsFragment.sortingList(appUsages)), MainActivity.this, requiredTypes);
+//                        mAdapter = new ApplicationListAdapter(convertList(AppUsageStatisticsFragment.sortingList(appUsages)), MainActivity.this, requiredTypes);
                         mRecyclerView.setAdapter(mAdapter);
                     }
                 } else {

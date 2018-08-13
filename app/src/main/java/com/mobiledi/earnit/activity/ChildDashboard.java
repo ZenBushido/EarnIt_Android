@@ -109,7 +109,7 @@ public class ChildDashboard extends BaseActivity {
 
             Log.e(TAG, "Child objcet is not null");
             Log.e(TAG, AppConstant.AMAZON_URL + childObject.getAvatar());
-            Log.e(TAG, AppConstant.AMAZON_URL + childObject);
+            Log.e(TAG, "child = " + childObject);
             Log.e(TAG, childObject.getAvatar());
         } else
             Log.e(TAG, "Child objcet is null.......");

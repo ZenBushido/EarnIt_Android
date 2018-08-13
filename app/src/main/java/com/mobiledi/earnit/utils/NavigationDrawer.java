@@ -202,8 +202,9 @@ public class NavigationDrawer {
                                 SharedPreferences sharedPreferences = context.getSharedPreferences(
                                         AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.clear();
-                                editor.commit();
+                                editor.remove(AppConstant.EMAIL);
+                                editor.remove(AppConstant.PASSWORD);
+                                editor.apply();
                                 MyApplication.getInstance().clearPassword();
                                 logoutParent(parentObject);
                                 Intent intentLogout = new Intent(context, LoginScreen.class);

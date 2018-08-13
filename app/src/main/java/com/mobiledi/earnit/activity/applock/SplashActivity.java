@@ -15,7 +15,6 @@ import android.util.Log;
 
 import com.mobiledi.earnit.AppLockConstants;
 import com.mobiledi.earnit.receiver.AlarmReceiver;
-import com.mobiledi.earnit.service.applock_service.AppCheckServices;
 
 /**
  * Created by amitshekhar on 30/04/15.
@@ -36,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         Log.d("ldfgl", "SplashActivity.onCreate()");
-        startService(new Intent(SplashActivity.this, AppCheckServices.class));
+        //startService(new Intent(SplashActivity.this, AppCheckServices.class));
 
         try {
             Intent alarmIntent = new Intent(context, AlarmReceiver.class);

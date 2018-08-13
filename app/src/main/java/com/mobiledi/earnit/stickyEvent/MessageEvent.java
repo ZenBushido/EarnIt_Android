@@ -14,8 +14,9 @@ public class MessageEvent {
         this.response = response;
     }
 
-    public MessageEvent(AddTaskModel.repititionSchedule response) {
+    public MessageEvent(AddTaskModel.repititionSchedule response/*, List<BlockingApp> blockingApps*/) {
         this.response = response;
+        /*this.blockingApps = blockingApps;*/
     }
 
     @Override

@@ -8,12 +8,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.SharedPreference;
 import com.mobiledi.earnit.service.applock_service.AppCheckServices;
@@ -27,7 +29,11 @@ public class NewAppInstalledReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        context.startService(new Intent(context, AppCheckServices.class));
+
+        if (!TextUtils.isEmpty(MyApplication.getInstance().getEmail())
+                && !TextUtils.isEmpty(MyApplication.getInstance().getPassword())
+                && !TextUtils.isEmpty(MyApplication.getInstance().getUserType()))
+            context.startService(new Intent(context, AppCheckServices.class));
         sharedPreference = new SharedPreference();
         Log.d("ksdjfhk", "install app onReceive");
 

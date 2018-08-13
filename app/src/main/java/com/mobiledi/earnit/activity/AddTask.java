@@ -50,9 +50,11 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
+import com.mobiledi.earnit.SharedPreference;
 import com.mobiledi.earnit.activity.applock.SplashActivity;
 import com.mobiledi.earnit.adapter.ItemAdapter;
 import com.mobiledi.earnit.model.AddTaskModel;
+import com.mobiledi.earnit.model.BlockingApp;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Goal;
 import com.mobiledi.earnit.model.Item;
@@ -62,7 +64,7 @@ import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDay;
 import com.mobiledi.earnit.model.addTask.AddTaskWithSelecteDayResponse;
 import com.mobiledi.earnit.model.addTask.RepititionSchedule;
 import com.mobiledi.earnit.model.getChild.GetAllChildResponse;
-import com.mobiledi.earnit.model.goal.GetAllGoalResponse;
+import com.mobiledi.earnit.model.newModels.AppsToBeBlockedOnOverdue;
 import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.stickyEvent.MessageEvent;
@@ -76,8 +78,6 @@ import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -87,18 +87,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -107,17 +103,13 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
-import io.reactivex.Observable;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-import static com.mobiledi.earnit.R.id.task_name;
 import static com.mobiledi.earnit.activity.applock.SplashActivity.ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE;
 
 
@@ -193,6 +185,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     MessageEvent m;
 
+    SharedPreference sp = new SharedPreference();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -214,6 +208,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
         repititionSchedule = null;
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
+        MyApplication.getInstance().setChildId(childObject.getId());
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         childID = childObject.getId();
         Log.e(TAG, "Child ID: " + childID);
@@ -684,10 +679,22 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
             double value = Double.parseDouble(amountTxt.getText().toString());
 
+            List<String> lockApps = new com.mobiledi.earnit.SharedPreference().getLocked(this);
+            List<BlockingApp> blockingApps = new ArrayList<>();
+            if (lockApps.size() > 0) {
+                for (int i = 0; i < lockApps.size(); i++){
+                    BlockingApp blockingApp = new BlockingApp();
+                    blockingApp.setName(lockApps.get(i));
+                    blockingApp.setId((long) i + 1);
+                    blockingApps.add(blockingApp);
+                }
+
+            }
+
             AddTaskWithSelecteDay addTaskWithSelecteDay = new AddTaskWithSelecteDay(value,
                     dateTime.toString("MMM d, yyyy hh:mm:ss aaa", Locale.US), taskName.getText().toString().trim(), checkboxStatus, child, goal,
                     repititionSchedule, taskDetails.getText().toString(), false,
-                    checkboxStatusLock);
+                    checkboxStatusLock, blockingApps);
 
             Log.e("AddTaskk", "AddTaskWithSelecteDay: " + addTaskWithSelecteDay.toString());
 
@@ -724,6 +731,8 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     private void saveTask() {
 
+
+
         JSONObject addTaskJson = new JSONObject();
         try {
 
@@ -737,6 +746,19 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             addTaskJson.put(AppConstant.DESCRIPTION, taskDetails.getText().toString());
             addTaskJson.put(AppConstant.PICTURE_REQUIRED, checkboxStatus);
 
+            List<AppsToBeBlockedOnOverdue> apps = new com.mobiledi.earnit.SharedPreference().getLockedObjects(this);
+            addTaskJson.put(AppConstant.SHOULD_LOCK_APPS, apps.size() > 0);
+            if (apps.size() > 0) {
+                JSONArray lockAppsArray = new JSONArray();
+                for (AppsToBeBlockedOnOverdue app : apps){
+                    JSONObject lockAppObject = new JSONObject();
+                    lockAppObject.put("name", app.getName());
+                    lockAppObject.put("id", app.getId());
+                    lockAppsArray.put(lockAppObject);
+                }
+                addTaskJson.put(AppConstant.APPS_TO_BE_BLOCKED, lockAppsArray);
+            }
+
             DateTime due = new DateTime();
             DateTimeZone tz = DateTimeZone.getDefault();
             Long instant = DateTime.now().getMillis();
@@ -744,7 +766,6 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             long offsetInMilliseconds = tz.getOffset(instant);
             addTaskJson.put(AppConstant.UPDATE_DATE, due.getMillis() + offsetInMilliseconds);
             addTaskJson.put(AppConstant.TASK_COMMENTS, new JSONArray());
-            addTaskJson.put("shouldLockAppsIfTaskOverdue", checkboxStatusLock);
 
             Log.e(TAG, "Task full= " + addTaskJson);
 

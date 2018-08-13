@@ -2,6 +2,9 @@ package com.mobiledi.earnit.model.addTask;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.mobiledi.earnit.model.BlockingApp;
+
+import java.util.List;
 
 /**
  * Created by mac on 31/03/18.
@@ -39,9 +42,15 @@ public class AddTaskWithSelecteDay {
     @SerializedName("shouldLockAppsIfTaskOverdue")
     @Expose
     private Boolean shouldLockAppsIfTaskOverdue;
+    @SerializedName("appsToBeBlockedOnOverdue")
+    @Expose
+    private List<BlockingApp> appsToBeBlockedOnOverdue;
 
-    public AddTaskWithSelecteDay(Double allowance, String dueDate, String name, Boolean pictureRequired,  Children children, Goal goal, RepititionSchedule repititionSchedule, String description, Boolean isDeleted, Boolean shouldLockAppsIfTaskOverdue) {
-
+    public AddTaskWithSelecteDay(Double allowance, String dueDate, String name,
+                                 Boolean pictureRequired, Children children, Goal goal,
+                                 RepititionSchedule repititionSchedule, String description,
+                                 Boolean isDeleted, Boolean shouldLockAppsIfTaskOverdue,
+                                 List<BlockingApp> appsToBeBlockedOnOverdue) {
         this.allowance = allowance;
         this.dueDate = dueDate;
         this.name = name;
@@ -52,9 +61,8 @@ public class AddTaskWithSelecteDay {
         this.description = description;
         this.isDeleted = isDeleted;
         this.shouldLockAppsIfTaskOverdue = shouldLockAppsIfTaskOverdue;
-
+        this.appsToBeBlockedOnOverdue = appsToBeBlockedOnOverdue;
     }
-
 
     public Double getAllowance() {
         return allowance;
@@ -145,6 +153,14 @@ public class AddTaskWithSelecteDay {
         isDeleted = deleted;
     }
 
+    public List<BlockingApp> getAppsToBeBlockedOnOverdue() {
+        return appsToBeBlockedOnOverdue;
+    }
+
+    public void setAppsToBeBlockedOnOverdue(List<BlockingApp> appsToBeBlockedOnOverdue) {
+        this.appsToBeBlockedOnOverdue = appsToBeBlockedOnOverdue;
+    }
+
     @Override
     public String toString() {
         return "AddTaskWithSelecteDay{" +
@@ -158,6 +174,7 @@ public class AddTaskWithSelecteDay {
                 ", description='" + description + '\'' +
                 ", isDeleted=" + isDeleted +
                 ", shouldLockAppsIfTaskOverdue=" + shouldLockAppsIfTaskOverdue +
+                ", appsToBeBlockedOnOverdue=" + appsToBeBlockedOnOverdue +
                 '}';
     }
 }
