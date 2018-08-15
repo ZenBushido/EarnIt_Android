@@ -8,30 +8,30 @@ package com.github.siyamed.shapeimageview;
 
 public final class R {
     public static final class attr {
-        public static final int siArrowPosition = 0x7f040181;
-        public static final int siBorderAlpha = 0x7f040182;
-        public static final int siBorderColor = 0x7f040183;
-        public static final int siBorderType = 0x7f040184;
-        public static final int siBorderWidth = 0x7f040185;
-        public static final int siForeground = 0x7f040186;
-        public static final int siRadius = 0x7f040187;
-        public static final int siShape = 0x7f040188;
-        public static final int siSquare = 0x7f040189;
-        public static final int siStrokeCap = 0x7f04018a;
-        public static final int siStrokeJoin = 0x7f04018b;
-        public static final int siStrokeMiter = 0x7f04018c;
-        public static final int siTriangleHeight = 0x7f04018d;
+        public static final int siArrowPosition = 0x7f04018b;
+        public static final int siBorderAlpha = 0x7f04018c;
+        public static final int siBorderColor = 0x7f04018d;
+        public static final int siBorderType = 0x7f04018e;
+        public static final int siBorderWidth = 0x7f04018f;
+        public static final int siForeground = 0x7f040190;
+        public static final int siRadius = 0x7f040191;
+        public static final int siShape = 0x7f040192;
+        public static final int siSquare = 0x7f040193;
+        public static final int siStrokeCap = 0x7f040194;
+        public static final int siStrokeJoin = 0x7f040195;
+        public static final int siStrokeMiter = 0x7f040196;
+        public static final int siTriangleHeight = 0x7f040197;
     }
     public static final class id {
-        public static final int bevel = 0x7f090046;
-        public static final int butt = 0x7f09004e;
-        public static final int fill = 0x7f0900e9;
-        public static final int left = 0x7f090117;
-        public static final int miter = 0x7f09017f;
-        public static final int right = 0x7f0901dd;
-        public static final int round = 0x7f0901e2;
-        public static final int square = 0x7f09021d;
-        public static final int stroke = 0x7f090224;
+        public static final int bevel = 0x7f090048;
+        public static final int butt = 0x7f090051;
+        public static final int fill = 0x7f0900ed;
+        public static final int left = 0x7f09011c;
+        public static final int miter = 0x7f090185;
+        public static final int right = 0x7f0901e3;
+        public static final int round = 0x7f0901e8;
+        public static final int square = 0x7f090223;
+        public static final int stroke = 0x7f09022a;
     }
     public static final class raw {
         public static final int imgview_diamond = 0x7f0e0000;
@@ -42,7 +42,7 @@ public final class R {
         public static final int imgview_star = 0x7f0e0005;
     }
     public static final class styleable {
-        public static final int[] ShaderImageView = { 0x7f040181, 0x7f040182, 0x7f040183, 0x7f040184, 0x7f040185, 0x7f040186, 0x7f040187, 0x7f040188, 0x7f040189, 0x7f04018a, 0x7f04018b, 0x7f04018c, 0x7f04018d };
+        public static final int[] ShaderImageView = { 0x7f04018b, 0x7f04018c, 0x7f04018d, 0x7f04018e, 0x7f04018f, 0x7f040190, 0x7f040191, 0x7f040192, 0x7f040193, 0x7f040194, 0x7f040195, 0x7f040196, 0x7f040197 };
         public static final int ShaderImageView_siArrowPosition = 0;
         public static final int ShaderImageView_siBorderAlpha = 1;
         public static final int ShaderImageView_siBorderColor = 2;

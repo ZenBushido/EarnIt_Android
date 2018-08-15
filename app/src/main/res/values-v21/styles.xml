@@ -33,4 +33,8 @@
         <item name="android:headerBackground">@color/check_in</item>
     </style>
 
+    <style name="Button.Pink" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

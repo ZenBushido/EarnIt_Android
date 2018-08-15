@@ -68,6 +68,7 @@ public class MyApplication extends Application {
     private String email;
     private SharedPreferences sp;
     private int childId;
+    private Child child;
 
     @Override
     public void onCreate() {
@@ -129,6 +130,16 @@ public class MyApplication extends Application {
                                 stopService(new Intent(MyApplication.this, AppCheckServices.class));
                             }
                         } else if (response.getString(AppConstant.TYPE).equals(AppConstant.CHILD)) {
+                            child = new GetObjectFromResponse().getChildObject(response);
+                            ArrayList<Tasks> taskList = new ArrayList<>();
+                            JSONArray taskArray = response.getJSONArray(AppConstant.TASKS);
+                            for (int taskIndex = 0; taskIndex < taskArray.length(); taskIndex++) {
+                                JSONObject taskObject = taskArray.getJSONObject(taskIndex);
+                                Tasks task = new GetObjectFromResponse().getTaskObject(taskObject, response.getInt(AppConstant.ID));
+                                taskList.add(task);
+                            }
+                            child.setTasksArrayList(taskList);
+                            Log.d("fjlskdsaj", "Child = " + child);
                             if (!isMyServiceRunning(AppCheckServices.class)){
                                 MyApplication.getInstance().setChildId(response.getInt(AppConstant.ID));
                                 startService(new Intent(MyApplication.this, AppCheckServices.class));
@@ -287,5 +298,13 @@ public class MyApplication extends Application {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public Child getChild() {
+        return child;
+    }
+
+    public void setChild(Child child) {
+        this.child = child;
     }
 }

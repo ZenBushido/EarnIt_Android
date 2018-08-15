@@ -77,6 +77,8 @@ public class ChildDashboard extends BaseActivity {
     private ArrayList<ChildsTaskObject> childTaskObjects;
     private boolean openFromCalendar = false;
 
+    private boolean mShowOnlyExpiredTasks = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,13 +89,18 @@ public class ChildDashboard extends BaseActivity {
         //SERIALIZE OBJECT FROM INTENT OBJECT
         Intent intent = getIntent();
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
+        if(childObject == null){
+            childObject = MyApplication.getInstance().getChild();
+        }
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
         openFromCalendar = intent.getBooleanExtra("openFromCalendar", false);
+        mShowOnlyExpiredTasks = intent.getBooleanExtra(AppConstant.SHOW_EXPIRED_TASKS, false);
+        Log.d("fdsjfhk", "mShowOnlyExpiredTasks = " + mShowOnlyExpiredTasks);
         //SET PROFILE IMAGE
 
         childDashboardHeader.setText(getResources().getString(R.string.my_task));
         Log.e(TAG, "Child objcet getting");
-        Log.e(TAG, "CHILD ID= " + childObject.getId());
+        //Log.e(TAG, "CHILD ID= " + childObject.getId());
 
         if (childObject != null) {
 
@@ -166,7 +173,11 @@ public class ChildDashboard extends BaseActivity {
             childTaskObjects.add(childsTaskObject);
         } else {
             Log.d("fdslfjj", "open NE FromCalendar");
-            childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject);
+            if (mShowOnlyExpiredTasks) {
+                childTaskObjects = new GetObjectFromResponse().getChildExpiredTaskListObject(childObject);
+            } else {
+                childTaskObjects = new GetObjectFromResponse().getChildTaskListObject(childObject);
+            }
         }
         for (ChildsTaskObject childsTaskObject : childTaskObjects) {
             Utils.logDebug("aslkdjlk", "childTaskObjects = " + childsTaskObject.toString());

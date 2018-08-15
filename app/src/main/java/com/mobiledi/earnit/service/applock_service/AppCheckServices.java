@@ -39,6 +39,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.SharedPreference;
+import com.mobiledi.earnit.activity.ChildDashboard;
 import com.mobiledi.earnit.activity.applock.MainActivity;
 import com.mobiledi.earnit.activity.applock.PasswordRecoveryActivity;
 import com.mobiledi.earnit.model.BlockingApp;
@@ -301,33 +302,41 @@ public class AppCheckServices extends Service {
             if (context == null)
                 context = getApplicationContext();
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            View promptsView = layoutInflater.inflate(R.layout.popup_unlock, null);
-            Lock9View lock9View = (Lock9View) promptsView.findViewById(R.id.lock_9_view);
-            Button forgetPassword = (Button) promptsView.findViewById(R.id.forgetPassword);
-            lock9View.setCallBack(new Lock9View.CallBack() {
+            View promptsView = layoutInflater.inflate(R.layout.dialog_blocking_app, null);
+            promptsView.findViewById(R.id.btnShowTasks).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onFinish(String password) {
-                    if (password.matches(sharedPreference.getPassword(context))) {
-                        dialog.dismiss();
-                        dialogIsShowing = false;
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Wrong Pattern Try Again", Toast.LENGTH_SHORT).show();
-                    }
+                public void onClick(View view) {
+                    Intent intent = new Intent (AppCheckServices.this, ChildDashboard.class);
+                    intent.putExtra(AppConstant.SHOW_EXPIRED_TASKS, true);
+                    startActivity(intent);
                 }
             });
+//            Lock9View lock9View = (Lock9View) promptsView.findViewById(R.id.lock_9_view);
+//            Button forgetPassword = (Button) promptsView.findViewById(R.id.forgetPassword);
+//            lock9View.setCallBack(new Lock9View.CallBack() {
+//                @Override
+//                public void onFinish(String password) {
+//                    if (password.matches(sharedPreference.getPassword(context))) {
+//                        dialog.dismiss();
+//                        dialogIsShowing = false;
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Wrong Pattern Try Again", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//
+//            forgetPassword.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dialogIsShowing = false;
+//                    Intent i = new Intent(AppCheckServices.this, PasswordRecoveryActivity.class);
+//                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(i);
+//                    dialog.dismiss();
+//                }
+//            });
 
-            forgetPassword.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialogIsShowing = false;
-                    Intent i = new Intent(AppCheckServices.this, PasswordRecoveryActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(i);
-                    dialog.dismiss();
-                }
-            });
-
-            dialog = new Dialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+            dialog = new Dialog(context/*, android.R.style.Theme_Black_NoTitleBar_Fullscreen*/);
             dialog.setCanceledOnTouchOutside(false);
             dialog.setCancelable(false);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

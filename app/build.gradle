@@ -40,7 +40,7 @@ android {
 }
 
 ext{
-    supportLibraryVersion = "27.0.2"
+    supportLibraryVersion = "27.1.1"
 }
 
 dependencies {
@@ -76,8 +76,9 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.6.18'
     implementation 'com.amazonaws:aws-android-sdk-s3:2.6.18'
     implementation 'jp.wasabeef:blurry:2.1.1'
-    implementation 'com.google.firebase:firebase-messaging:12.0.1'
+    implementation 'com.google.firebase:firebase-messaging:17.1.0'
     implementation 'com.firebase:firebase-jobdispatcher:0.6.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'id.zelory:compressor:2.1.0'
     testImplementation 'junit:junit:4.12'
@@ -110,6 +111,10 @@ dependencies {
     }
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+
+    configurations.all {
+        exclude group: 'com.android.support', module: 'support-v13'
+    }
 }
 apply plugin: 'com.google.gms.google-services'
 
