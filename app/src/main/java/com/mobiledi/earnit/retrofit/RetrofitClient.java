@@ -53,8 +53,9 @@ public class RetrofitClient {
                 .baseUrl(AppConstant.BASE_URL + "/")
                 .client(client)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(new ToStringConverterFactory())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
 

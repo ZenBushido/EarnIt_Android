@@ -929,18 +929,18 @@ public final class R {
         public static final int abc_shareactionprovider_share_with_application = 0x7f0f001b;
         public static final int abc_toolbar_collapse_description = 0x7f0f001c;
         public static final int define_materialize = 0x7f0f006c;
-        public static final int library_materialize_author = 0x7f0f00b0;
-        public static final int library_materialize_authorWebsite = 0x7f0f00b1;
-        public static final int library_materialize_isOpenSource = 0x7f0f00b2;
-        public static final int library_materialize_libraryDescription = 0x7f0f00b3;
-        public static final int library_materialize_libraryName = 0x7f0f00b4;
-        public static final int library_materialize_libraryVersion = 0x7f0f00b5;
-        public static final int library_materialize_libraryWebsite = 0x7f0f00b6;
-        public static final int library_materialize_licenseId = 0x7f0f00b7;
-        public static final int library_materialize_owner = 0x7f0f00b8;
-        public static final int library_materialize_repositoryLink = 0x7f0f00b9;
-        public static final int library_materialize_year = 0x7f0f00ba;
-        public static final int status_bar_notification_info_overflow = 0x7f0f012a;
+        public static final int library_materialize_author = 0x7f0f00b1;
+        public static final int library_materialize_authorWebsite = 0x7f0f00b2;
+        public static final int library_materialize_isOpenSource = 0x7f0f00b3;
+        public static final int library_materialize_libraryDescription = 0x7f0f00b4;
+        public static final int library_materialize_libraryName = 0x7f0f00b5;
+        public static final int library_materialize_libraryVersion = 0x7f0f00b6;
+        public static final int library_materialize_libraryWebsite = 0x7f0f00b7;
+        public static final int library_materialize_licenseId = 0x7f0f00b8;
+        public static final int library_materialize_owner = 0x7f0f00b9;
+        public static final int library_materialize_repositoryLink = 0x7f0f00ba;
+        public static final int library_materialize_year = 0x7f0f00bb;
+        public static final int status_bar_notification_info_overflow = 0x7f0f012b;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat = 0x7f100000;

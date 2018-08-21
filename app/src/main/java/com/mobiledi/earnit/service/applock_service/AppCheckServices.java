@@ -340,7 +340,7 @@ public class AppCheckServices extends Service {
             dialog.setCanceledOnTouchOutside(false);
             dialog.setCancelable(false);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+            dialog.getWindow().setType(getLayoutParamsType());
             dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
             dialog.setContentView(promptsView);
             dialog.getWindow().setGravity(Gravity.CENTER);

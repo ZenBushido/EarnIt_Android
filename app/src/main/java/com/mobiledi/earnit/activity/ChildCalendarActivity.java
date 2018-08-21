@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,12 +37,15 @@ import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
+import com.squareup.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -52,11 +56,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.extras.Base64;
 import io.blackbox_vision.materialcalendarview.view.CalendarView;
 import io.blackbox_vision.materialcalendarview.view.DayView;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -135,14 +144,7 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         Log.e(TAG, "URL= " + "https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar());
 
-
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.override(350, 350);
-        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-        requestOptions.placeholder(R.drawable.default_avatar);
-        requestOptions.error(R.drawable.default_avatar);
-
-        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + childObject.getAvatar()).into(childAvatar);
+        updateAvatar(childObject, childAvatar);
 
 
      /*   try {
@@ -223,6 +225,33 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
             }
         });
         getAllGoals();
+    }
+
+    private void updateAvatar(Child child, ImageView imageView) {
+        String url = AppConstant.BASE_URL + "/" + child.getAvatar();
+        Log.d("fsdfhkj", "list updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .into(imageView);
     }
 
     private boolean isToday(Tasks task, DateTime selectedDay){

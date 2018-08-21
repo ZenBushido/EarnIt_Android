@@ -4,23 +4,23 @@ import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -29,7 +29,6 @@ import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ChildViewDateAdapter;
 import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.ChildsTaskObject;
-import com.mobiledi.earnit.model.DayTaskStatus;
 import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.utils.AppConstant;
@@ -37,21 +36,24 @@ import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.RestCall;
 import com.mobiledi.earnit.utils.Utils;
+import com.squareup.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.extras.Base64;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 
 public class ChildDashboard extends BaseActivity {
@@ -89,7 +91,7 @@ public class ChildDashboard extends BaseActivity {
         //SERIALIZE OBJECT FROM INTENT OBJECT
         Intent intent = getIntent();
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
-        if(childObject == null){
+        if (childObject == null) {
             childObject = MyApplication.getInstance().getChild();
         }
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
@@ -104,15 +106,16 @@ public class ChildDashboard extends BaseActivity {
 
         if (childObject != null) {
 
-            RequestOptions requestOptions = new RequestOptions();
-            requestOptions.override(350, 350);
-            requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-            requestOptions.placeholder(R.drawable.default_avatar);
-            requestOptions.error(R.drawable.default_avatar);
-            Log.e(TAG, AppConstant.AMAZON_URL + childObject.getAvatar());
-
-            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + childObject.getAvatar())
-                    .into(childImage);
+//            RequestOptions requestOptions = new RequestOptions();
+//            requestOptions.override(350, 350);
+//            requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+//            requestOptions.placeholder(R.drawable.default_avatar);
+//            requestOptions.error(R.drawable.default_avatar);
+//            Log.e(TAG, AppConstant.AMAZON_URL + childObject.getAvatar());
+//
+//            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + childObject.getAvatar())
+//                    .into(childImage);
+            updateAvatar(childObject, childImage);
 
             Log.e(TAG, "Child objcet is not null");
             Log.e(TAG, AppConstant.AMAZON_URL + childObject.getAvatar());
@@ -201,18 +204,71 @@ public class ChildDashboard extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            Log.d("sdjfhkj", "onResume(); isAlreadySentAppUsage = " + RestCall.isAlreadySentAppUsage() + "; isPermissionEnabled = " + isPermissionEnabled());
-            if (!isPermissionEnabled()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Log.d("sdjfhkj", "onResume(); isAlreadySentAppUsage = " + RestCall.isAlreadySentAppUsage() + "; isUsageStatsEnabled = " + isUsageStatsEnabled());
+            if (!isUsageStatsEnabled()) {
                 Log.d("sdjfhkj", "showAlertDialog()");
                 showAlertDialog();
+            } else {
+                if (!isOverlayEnabled()){
+                    showOverlayWarningDialog();
+                }
             }
-//            if (!RestCall.isAlreadySentAppUsage() && isPermissionEnabled()) {
+//            if (!RestCall.isAlreadySentAppUsage() && isUsageStatsEnabled()) {
 //                Log.d("sdjfhkj", "dddddd()");
 //                RestCall.updateAppsUsage();
 //            }
             RestCall.updateAppsUsage();
         }
+    }
+
+    private void updateAvatar(Child child, ImageView imageView) {
+        String url = AppConstant.BASE_URL + "/" + child.getAvatar();
+        Log.d("fsdfhkj", "list updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .into(imageView);
+    }
+
+    private void showOverlayWarningDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.enable_overlay_permission);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                openOverlaySettings();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
+
     }
 
     private void showAlertDialog() {
@@ -237,12 +293,23 @@ public class ChildDashboard extends BaseActivity {
 
     }
 
-    private boolean isPermissionEnabled() {
+    private boolean isUsageStatsEnabled() {
         AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
         assert appOps != null;
         int mode = appOps.checkOpNoThrow("android:get_usage_stats",
                 android.os.Process.myUid(), getPackageName());
         return mode == AppOpsManager.MODE_ALLOWED;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean isOverlayEnabled() {
+        return Settings.canDrawOverlays(this);
+    }
+
+    private void openOverlaySettings() {
+        Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+//        myIntent.setData(Uri.parse("package: " + getApplicationContext().getPackageName()));
+        startActivityForResult(myIntent, 101);
     }
 
     @Override

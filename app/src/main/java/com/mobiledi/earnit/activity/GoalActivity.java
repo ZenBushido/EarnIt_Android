@@ -171,22 +171,8 @@ public class GoalActivity extends BaseActivity implements View.OnClickListener, 
         NavigationDrawer navigationDrawer = new NavigationDrawer(goalActivity, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
         navigationDrawer.setOnDrawerToggeled(this);
 
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.override(350,350);
-        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-        requestOptions.placeholder(R.drawable.default_avatar);
-        requestOptions.error(R.drawable.default_avatar);
+        updateAvatar(childObject, childAvatar);
 
-        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar())
-                .into(childAvatar);
-
-
-       /* try {
-            Picasso.with(goalActivity).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
-        } catch (Exception e) {
-            Picasso.with(goalActivity).load(R.drawable.default_avatar).into(childAvatar);
-            e.printStackTrace();
-        }*/
         goalName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

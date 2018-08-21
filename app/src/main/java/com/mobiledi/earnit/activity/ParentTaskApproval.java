@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
 import com.squareup.picasso.Callback;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
@@ -44,16 +46,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit.GetGoalsFromChildInterface;
 import retrofit.ServiceGenerator;
 import retrofit2.Call;
@@ -198,17 +205,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     postedImage.setVisibility(View.GONE);
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
-                    Picasso.get().load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + comment.getPictureUrl()).into(postedImage, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            progressBar.setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    });
+                    loadPhoto(comment.getPictureUrl(), postedImage);
                 }
 
                 if (comment.getComment().isEmpty()) {
@@ -226,18 +223,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
                     postedImage.setVisibility(View.GONE);
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
-                    Picasso.get().load(AppConstant.AMAZON_URL + taskComment.getPictureUrl()).into(postedImage, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            progressBar.setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            progressBar.setVisibility(View.GONE);
-                        }
-
-                    });
+                    loadPhoto(taskComment.getPictureUrl(), postedImage);
                 }
 
                 if (taskComment.getComment().isEmpty()) {
@@ -259,6 +245,42 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         String toPrintDate = fmt.print(dt);
         taskDueDate.setText(toPrintDate);
 
+    }
+
+    private void loadPhoto(String url, ImageView imageView) {
+        Log.d("fsdfhkj", "list updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(AppConstant.BASE_URL + "/" + url)
+//                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+//                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .into(imageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        progressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
     }
 
     @Override

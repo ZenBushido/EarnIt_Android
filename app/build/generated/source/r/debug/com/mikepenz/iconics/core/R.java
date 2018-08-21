@@ -625,18 +625,18 @@ public final class R {
         public static final int abc_toolbar_collapse_description = 0x7f0f001c;
         public static final int app_name = 0x7f0f002f;
         public static final int define_AndroidIconics = 0x7f0f0069;
-        public static final int library_AndroidIconics_author = 0x7f0f008f;
-        public static final int library_AndroidIconics_authorWebsite = 0x7f0f0090;
-        public static final int library_AndroidIconics_isOpenSource = 0x7f0f0091;
-        public static final int library_AndroidIconics_libraryDescription = 0x7f0f0092;
-        public static final int library_AndroidIconics_libraryName = 0x7f0f0093;
-        public static final int library_AndroidIconics_libraryVersion = 0x7f0f0094;
-        public static final int library_AndroidIconics_libraryWebsite = 0x7f0f0095;
-        public static final int library_AndroidIconics_licenseId = 0x7f0f0096;
-        public static final int library_AndroidIconics_owner = 0x7f0f0097;
-        public static final int library_AndroidIconics_repositoryLink = 0x7f0f0098;
-        public static final int library_AndroidIconics_year = 0x7f0f0099;
-        public static final int status_bar_notification_info_overflow = 0x7f0f012a;
+        public static final int library_AndroidIconics_author = 0x7f0f0090;
+        public static final int library_AndroidIconics_authorWebsite = 0x7f0f0091;
+        public static final int library_AndroidIconics_isOpenSource = 0x7f0f0092;
+        public static final int library_AndroidIconics_libraryDescription = 0x7f0f0093;
+        public static final int library_AndroidIconics_libraryName = 0x7f0f0094;
+        public static final int library_AndroidIconics_libraryVersion = 0x7f0f0095;
+        public static final int library_AndroidIconics_libraryWebsite = 0x7f0f0096;
+        public static final int library_AndroidIconics_licenseId = 0x7f0f0097;
+        public static final int library_AndroidIconics_owner = 0x7f0f0098;
+        public static final int library_AndroidIconics_repositoryLink = 0x7f0f0099;
+        public static final int library_AndroidIconics_year = 0x7f0f009a;
+        public static final int status_bar_notification_info_overflow = 0x7f0f012b;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat = 0x7f100000;

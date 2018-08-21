@@ -57,8 +57,8 @@
 
             <com.github.siyamed.shapeimageview.CircularImageView
                 android:id="@+id/add_task_avatar"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="?attr/actionBarSize"
 
                 android:src="@drawable/default_avatar"
                 app:siBorderColor="@android:color/white"

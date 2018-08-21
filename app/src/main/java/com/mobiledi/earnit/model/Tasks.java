@@ -333,7 +333,7 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
                 ", dueDate=" + dueDate +
                 ", startDate=" + startDate +
                 ", name='" + name + '\'' +
-                /*", taskComments=" + taskComments +*/
+                ", taskComments=" + taskComments +
                 /*", details='" + details + '\'' +*/
                 /*", pictureRequired=" + pictureRequired +*/
                 ", status='" + status + '\'' +

@@ -152,6 +152,7 @@
     <string name="no_apps">No apps</string>
     <string name="time_span">Time span:</string>
     <string name="enable_apps_usage_permission">Enable the permission to collect application usage statistics. To control the operation of these applications from the device of the parent.</string>
+    <string name="enable_overlay_permission">Enable permissions to collect application usage statistics and to control the operation of applications from your parent\'s device.</string>
 
     <string-array name="action_list">
         <item>Daily</item>

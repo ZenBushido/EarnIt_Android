@@ -2,6 +2,9 @@ package com.mobiledi.earnit.utils;
 
 import com.mobiledi.earnit.BuildConfig;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by praks on 08/07/17.
  */
@@ -48,7 +51,7 @@ public final class AppConstant {
     public final static String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/";
     public final static String BASE_URL_QA = "http://159.65.239.6:8080/earnit-api";
 //    public final static String BASE_URL_PROD = "https://api.myearnitapp.com:8443/earnit-api";
-    public final static String BASE_URL_PROD = "http://206.189.225.198:8080/earnit-api";
+    public final static String BASE_URL_PROD = "https://api.myearnitapp.com/earnit-api";
     public static final String BASE_URL = BuildConfig.DEBUG ? BASE_URL_QA : BASE_URL_PROD;
 
     public final static String LOGIN_API = "/login";

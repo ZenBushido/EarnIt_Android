@@ -65,4 +65,16 @@ public class TaskComment implements Serializable {
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
     }
+
+    @Override
+    public String toString() {
+        return "TaskComment{" +
+                "id=" + id +
+                ", readStatus=" + readStatus +
+                ", comment='" + comment + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                ", pictureUrl='" + pictureUrl + '\'' +
+                '}';
+    }
 }

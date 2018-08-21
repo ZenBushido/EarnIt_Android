@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mobiledi.earnit.MyApplication;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.adapter.ItemAdapter;
 import com.mobiledi.earnit.dialogfragment.MonthlyDialogFragment;
@@ -48,6 +50,7 @@ import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.NavigationDrawer;
 import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -55,6 +58,7 @@ import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -66,7 +70,11 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.extras.Base64;
 import io.blackbox_vision.materialcalendarview.view.CalendarView;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
@@ -83,6 +91,7 @@ import android.app.DialogFragment;
 import android.app.Dialog;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 import android.widget.TimePicker;
 
@@ -222,14 +231,7 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
 
         if (childObject != null) {
 
-            RequestOptions requestOptions = new RequestOptions();
-            requestOptions.override(350, 350);
-            requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-            requestOptions.placeholder(R.drawable.default_avatar);
-            requestOptions.error(R.drawable.default_avatar);
-
-            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + childObject.getAvatar())
-                    .into(childAvatar);
+            updateAvatar(childObject, childAvatar);
 
 
         }
@@ -261,6 +263,33 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
             repeatTask.setText(NONE);
         }
 
+    }
+
+    private void updateAvatar(Child child, ImageView imageView) {
+        String url = AppConstant.BASE_URL + "/" + child.getAvatar();
+        Log.d("fsdfhkj", "list updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .into(imageView);
     }
 
 

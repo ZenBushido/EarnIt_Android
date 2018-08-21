@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -47,6 +48,8 @@ import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
 import com.mobiledi.earnit.utils.RestCall;
 import com.mobiledi.earnit.utils.Utils;
+import com.squareup.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -55,10 +58,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,9 +74,13 @@ import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import id.zelory.compressor.Compressor;
+import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -140,19 +149,39 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
         task.setRepititionSchedule(repititionSchedule);
         Utils.logDebug(TAG, "Task == " + task);
 
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.override(350, 350);
-        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-        requestOptions.placeholder(R.drawable.default_avatar);
-        requestOptions.error(R.drawable.default_avatar);
-
-        if (child != null)
-            Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL + child.getAvatar()).into(childAvatar);
+        updateAvatar(child, childAvatar);
 
         setViewData();
         requestRequiredApplicationPermission(new String[]{Manifest.permission.CAMERA,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE}, R.string.msg, PERMISSIONS_REQUEST);
+    }
+
+    private void updateAvatar(Child child, ImageView imageView) {
+        String url = AppConstant.BASE_URL + "/" + child.getAvatar();
+        Log.d("fsdfhkj", "list updateAvatar. url = " + url);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        String emailPassword = MyApplication.getInstance().getEmail() + ":" + MyApplication.getInstance().getPassword();
+                        String basic = "Basic " + Base64.encodeToString(emailPassword.getBytes(), Base64.NO_WRAP);
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", basic)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Picasso picasso = new Picasso.Builder(this)
+                .downloader(new OkHttp3Downloader(client))
+                .build();
+        picasso
+                .load(url)
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .into(imageView);
     }
 
     private void setViewData() {
@@ -218,16 +247,21 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 break;
 
             case R.id.request_approval:
+                Log.d(TAG, "click send");
                 if (task.getPictureRequired()) {
-                    if (UrlOfImage != null) {
+                    Log.d(TAG, "getPictureRequired = true");
+                    if (gFileName != null) {
+                        Log.d(TAG, "gFileName != null");
                         progress.setVisibility(View.VISIBLE);
-                        Log.d("ldkfjglkj", "fileName = " + gFileName);
+                        Log.d(TAG, "fileName = " + gFileName);
                         //new ProfileAsyncTask().execute(gFileName);
                         uploadPicture(task.getId());
                     } else {
+                        Log.d(TAG, "gFileName !== null");
                         showToast(getResources().getString(R.string.please_upload_picture));
                     }
                 } else {
+                    Log.d(TAG, "getPictureRequired = false");
                     updateTaskStatus(task, null);
                 }
                 break;
@@ -241,20 +275,26 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
     }
 
     private void uploadPicture(int taskId){
-        Log.d("ldkfjglkj", "uploadPicture()");
+        Log.d("ldkfjglkj", "uploadPicture(). id: " + task.getId());
         File file = new File(gFileName);
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
-        Call<String> call = retroInterface.uploadTaskPicture(taskId, filePart);
-        call.enqueue(new Callback<String>() {
+        Call<ResponseBody> call = retroInterface.uploadTaskPicture(taskId, filePart);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                updateTaskStatus(task, "");
-                Log.d("ldkfjglkj", "response: " + response.body());
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                try {
+                    UrlOfImage = response.body().string();
+                    Log.d(TAG, "uploadPicture response: " + UrlOfImage);
+                    updateTaskStatus(task, UrlOfImage);
+                } catch (Exception e) {
+                    Log.d(TAG, "uploadPicture response Exception: " + e.getLocalizedMessage());
+                }
+//                Log.d("ldkfjglkj", "uploadPicture response: " + response.body());
             }
             @Override
-            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                Log.d("ldkfjglkj", "Throwable: " + t.getLocalizedMessage());
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.d("ldkfjglkj", "T1hrowable: " + t.getLocalizedMessage());
             }
         });
     }
@@ -287,6 +327,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
 
     private void updateTaskStatus(Tasks selectedTask, String uploadedPicture) {
         Utils.logDebug(TAG, "updateTaskStatus() Task == " + selectedTask.toString());
+        Utils.logDebug(TAG, "updateTaskStatus() uploadedPicture == " + uploadedPicture);
         progress.setVisibility(View.GONE);
         JSONObject taskJson = new JSONObject();
         boolean isLastTask = isLastTask(selectedTask);
@@ -353,7 +394,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
             taskCommentObject.put(AppConstant.CREATE_DATE, new DateTime().getMillis() + offsetInMilliseconds);
             taskCommentObject.put(AppConstant.UPDATE_DATE, new DateTime().getMillis() + offsetInMilliseconds);
             taskCommentObject.put(AppConstant.READ_STATUS, 0);
-            taskCommentObject.put(AppConstant.PICTURE_URL, UrlOfImage);
+            taskCommentObject.put(AppConstant.PICTURE_URL, uploadedPicture);
             taskCommentArray.put(taskCommentObject);
             taskJson.put(AppConstant.TASK_COMMENTS, taskCommentArray);
 

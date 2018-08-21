@@ -117,14 +117,9 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
         requestOptions.error(R.drawable.default_avatar);
 
         Log.e(TAG, AppConstant.AMAZON_URL+childObject.getAvatar());
-        Glide.with(this).applyDefaultRequestOptions(requestOptions)
-                .load(AppConstant.AMAZON_URL+childObject.getAvatar()).into(tChildImage);
-      /*  try {
-            Picasso.with(getApplicationContext()).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + childObject.getAvatar()).error(R.drawable.default_avatar).into(tChildImage);
-        } catch (Exception e) {
-            Picasso.with(getApplicationContext()).load(R.drawable.default_avatar).into(tChildImage);
-            e.printStackTrace();
-        }*/
+
+        updateAvatar(childObject, tChildImage);
+
         tHeaderName.setText(childObject.getFirstName().substring(0, 1).toUpperCase() + childObject.getFirstName().substring(1) + "'s Tasks");
 
 
@@ -157,7 +152,6 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
 
         new NavigationDrawer(parentCheckInChildDashboard, parentObject, parentCheckinToolbar, drawerToggle, onScreen, childObject.getId());
         callApi();
-        updateAvatar(childObject, tChildImage);
     }
 
     @Override

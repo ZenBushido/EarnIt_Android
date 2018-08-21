@@ -108,7 +108,7 @@ public interface RetroInterface {
 
     @Multipart
     @POST("tasks/{TASK_ID}/images")
-    Call<String>
+    Call<ResponseBody>
     uploadTaskPicture(@Path("TASK_ID") int id, @Part MultipartBody.Part filePart);
 
     @GET("children/{CHILD_ID}/mobileapplications ")
