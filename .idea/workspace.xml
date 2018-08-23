@@ -11,29 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bdbd186-96f5-4130-9c12-2e5d3c47289c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_multidex_instrumentation_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_multidex_instrumentation_1_0_2.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_2_2_2.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_2_2_2.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_exposed_instrumentation_api_publish_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_exposed_instrumentation_api_publish_0_5.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_rules_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_rules_0_5.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_0_5.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildDashboard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildDashboard.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/activity/ChildRequestTaskApproval.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/UpdateFcmToken.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/UpdateFcmToken.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/service/applock_service/AppCheckServices.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobiledi/earnit/utils/AppConstant.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/child_request_task_approval.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/child_request_task_approval.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/edit_task_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/edit_task_layout.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/sign_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/sign_layout.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -5750,7 +5728,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534995969724</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="- Add on EditScreen checkbox &quot;app lock if overdue&quot;&#10;- Clear EditText with email on LoginScreen&#10;- Fix bug after click &quot;show tasks&quot; on blocking modal">
+      <created>1535005219154</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1535005219154</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
