@@ -22,6 +22,7 @@ import com.mobiledi.earnit.model.Parent;
 import com.mobiledi.earnit.model.Tasks;
 import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.service.UpdateFcmToken;
+import com.mobiledi.earnit.service.applock_service.AppCheckServices;
 
 import org.joda.time.DateTime;
 import org.json.JSONArray;
@@ -92,6 +93,11 @@ public class RestCall {
                         Intent updateToken = new Intent(activity, UpdateFcmToken.class);
                         updateToken.putExtra(AppConstant.IS_LOGOUT, false);
                         if (response.getString(AppConstant.TYPE).equals(AppConstant.PARENT)) {
+                            if (activity != null &&
+                                    MyApplication.getInstance().isMyServiceRunning(AppCheckServices.class) &&
+                                    MyApplication.getInstance().imRealParent(response.getInt(AppConstant.ID))) {
+                                activity.stopService(new Intent(activity, AppCheckServices.class));
+                            }
                             MyApplication.getInstance().setUserType(AppConstant.PARENT);
                             parent = new GetObjectFromResponse().getParentObject(response);
                             MyApplication.getInstance().setUserType(AppConstant.PARENT);
@@ -118,12 +124,16 @@ public class RestCall {
                             }
 
                         } else if (response.getString(AppConstant.TYPE).equals(AppConstant.CHILD)) {
+                            if (!MyApplication.getInstance().isMyServiceRunning(AppCheckServices.class) &&
+                                    activity != null) {
+                                MyApplication.getInstance().setChildId(response.getInt(AppConstant.ID));
+                                activity.startService(new Intent(activity, AppCheckServices.class));
+                            }
                             MyApplication.getInstance().setUserType(AppConstant.CHILD);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1 && !isAlreadySentAppUsage()) {
                                 Log.d("sadasd", "http://159.65.239.6:8080/earnit-api/mobileapplicationsdasdasdassdasdasd@@@@@@@@@@@@@@@@@@@@@@@@@");
                                 updateAppsUsage();
                             }
-                            MyApplication.getInstance().setUserType(AppConstant.CHILD);
 
                             Child child = new GetObjectFromResponse().getChildObject(response);
                             MyApplication.getInstance().setChildId(child.getId());
@@ -233,6 +243,10 @@ public class RestCall {
     }
 
     public static boolean isAlreadySentAppUsage() {
+        if (sp == null) {
+            sp = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
+        }
+        sp = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
         long lastUpdate = sp.getLong(AppConstant.APP_USAGE_LAST_UPDATE, -1);
         Log.d("sdjfhkj", "isAlreadySentAppUsage; lastUpdate = " + lastUpdate + "; isToday = " + isToday(lastUpdate));
         if (lastUpdate == -1)
@@ -358,6 +372,9 @@ public class RestCall {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public static void updateAppsUsage() {
+        if (sp == null) {
+            sp = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
+        }
         Log.d("sdjfhkj", "updateAppsUsage()");
         AppsUsageHelper appsUsageHelper = new AppsUsageHelper(activity);
         List<AppUsage> list = appsUsageHelper.getAppUsages();

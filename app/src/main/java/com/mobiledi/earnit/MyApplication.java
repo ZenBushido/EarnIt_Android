@@ -201,7 +201,7 @@ public class MyApplication extends Application {
         }
     }
 
-    private boolean imRealParent(int id){
+    public boolean imRealParent(int id){
         SharedPreferences sp = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
         Set<String> parentsIds = sp.getStringSet(AppConstant.PARENTS_IDS, null);
         Log.d("fsdfksjdhf", "parentsIds = " + parentsIds + "; my id = " + id);
@@ -215,7 +215,7 @@ public class MyApplication extends Application {
         return false;
     }
 
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
+    public boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         if (manager != null) {
             for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {

@@ -530,7 +530,6 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Utils.logDebug(TAG, "Child error response: " + errorResponse.toString());
                 unLockScreen();
             }
 

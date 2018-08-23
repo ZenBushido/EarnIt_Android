@@ -18,10 +18,8 @@ repositories {
 
 
 android {
-    dataBinding {
-        enabled = true
-    }
     compileSdkVersion 27
+    flavorDimensions "versionCode"
     defaultConfig {
         applicationId "com.mobiledi.earnit"
         minSdkVersion 19
@@ -34,8 +32,82 @@ android {
         renderscriptSupportModeEnabled true
 
     }
+    dataBinding {
+        enabled = true
+    }
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
+    }
+    signingConfigs {
+        debug {
+            keyAlias 'debug'
+            keyPassword 'android'
+            storeFile file('D:/Android/Projects/EarnIt/keystore/debug_key.jks')
+            storePassword 'android'
+        }
+        release {
+
+//            def keystorePropertiesFile = file("keys\\release.properties")
+//            if (keystorePropertiesFile.exists()) {
+//                def keystoreProperties = new Properties()
+//                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//
+//                keyAlias keystoreProperties['keyAlias']
+//                keyPassword keystoreProperties['keyPassword']
+//                storeFile file(keystoreProperties['storeFile'])
+//                storePassword keystoreProperties['storePassword']
+//            } else {
+//                return null
+//            }
+            keyAlias 'release'
+            keyPassword '%bKv~1W6LEu*~xH7HXEcn$Agxt'
+            storeFile file('D:/Android/Projects/uralenergo/keystore/release_key.jks')
+            storePassword 'F0aZjuP9wo25zPgl'
+            v1SigningEnabled true
+            v2SigningEnabled true
+
+
+            keyAlias 'release'
+            keyPassword '&(ssIyTp94Df*d~f$d99SUp0Db'
+            storeFile file('D:/Android/Projects/EarnIt/keystore/release_key.jks')
+            storePassword 'UxzO8d009XzpULgd'
+        }
+    }
+    productFlavors {
+        devServer {
+            minSdkVersion 19
+            signingConfig signingConfigs.debug
+            targetSdkVersion 27
+            versionCode 1
+            versionName '1.0'
+            applicationId 'com.mobiledi.earnit'
+        }
+        prodServer {
+            minSdkVersion 19
+            applicationId 'com.mobiledi.earnit'
+            signingConfig signingConfigs.release
+            versionCode 1
+            versionName '1.0'
+            targetSdkVersion 27
+        }
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            jniDebuggable false
+            signingConfig signingConfigs.debug
+            renderscriptDebuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+        }
+        release {
+            debuggable false
+            jniDebuggable false
+            signingConfig signingConfigs.release
+            renderscriptDebuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+        }
     }
 }
 
@@ -111,7 +183,6 @@ dependencies {
     }
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
-
     configurations.all {
         exclude group: 'com.android.support', module: 'support-v13'
     }

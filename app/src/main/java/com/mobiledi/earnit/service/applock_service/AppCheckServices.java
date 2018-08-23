@@ -174,10 +174,9 @@ public class AppCheckServices extends Service {
                         //TASKS
                         Tasks task = new GetObjectFromResponse().getTaskObject(object, childId);
                         Log.e(TAG, "GetObjectFromResponse task: " + task.toString());
-                        if (isTaskOverdue(task) &&
-                                task.getAppsToBeBlockedOnOverdue() != null &&
-                                task.getStatus().equalsIgnoreCase("created") ||
-                                task.getStatus().equalsIgnoreCase("completed")) {
+                        if (!task.getStatus().equalsIgnoreCase("Closed") &&
+                                isTaskOverdue(task) &&
+                                task.getAppsToBeBlockedOnOverdue() != null) {
                             tasksList.add(task);
                         }
                     } catch (Exception e) {

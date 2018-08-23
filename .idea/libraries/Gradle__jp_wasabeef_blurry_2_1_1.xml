@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: jp.wasabeef:blurry-2.1.1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/blurry-2.1.1.aar/629b53559fecb73491faa4f5dbe284bd/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/blurry-2.1.1.aar/629b53559fecb73491faa4f5dbe284bd/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/blurry-2.1.1.aar/32cddf1819b9afa0fafadb07aefada2a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/blurry-2.1.1.aar/32cddf1819b9afa0fafadb07aefada2a/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
