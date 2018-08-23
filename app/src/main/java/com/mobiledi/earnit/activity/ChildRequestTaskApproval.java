@@ -46,7 +46,9 @@ import com.mobiledi.earnit.retrofit.RetroInterface;
 import com.mobiledi.earnit.retrofit.RetrofitClient;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.FloatingMenu;
+import com.mobiledi.earnit.utils.GetObjectFromResponse;
 import com.mobiledi.earnit.utils.RestCall;
+import com.mobiledi.earnit.utils.ScreenSwitch;
 import com.mobiledi.earnit.utils.Utils;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
@@ -62,6 +64,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -84,6 +87,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.mobiledi.earnit.activity.ParentDashboard.parentObject;
 
 /**
  * Created by mobile-di on 23/8/17.
@@ -412,18 +417,87 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     Utils.logDebug(TAG, " onSuccess : " + response.toString());
-                    new RestCall(requestTaskApproval).authenticateUser(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword(), null, AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+                    new RestCall(requestTaskApproval)
+                            .authenticateUser(MyApplication.getInstance().getEmail(),
+                                    MyApplication.getInstance().getPassword(),
+                                    null,
+                                    AppConstant.CHILD_DASHBOARD_SCREEN, progress);
+
+
+                    Log.d("jdsahdkjh", "click allTask ");
+
+                    progress.setVisibility(View.VISIBLE);
+                    final AsyncHttpClient client = new AsyncHttpClient();
+                    String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
+                    final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
+                    client.addHeader("Authorization", basicAuth);
+                    client.setBasicAuth(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
+                    Log.e(TAG, "URL = " + AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId());
+                    client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + child.getId(), null, new JsonHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                            Log.e(TAG, "resp d = " + response.toString());
+
+
+                            ArrayList<Tasks> taskList = new ArrayList<>();
+
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject object = response.getJSONObject(i);
+                                    //TASKS
+                                    Tasks task = new GetObjectFromResponse().getTaskObject(object, child.getId());
+                                    taskList.add(task);
+
+
+                                } catch (Exception e) {
+
+                                    Log.e(TAG, "Error: " + e.getLocalizedMessage());
+
+                                }
+                                child.setTasksArrayList(taskList);
+
+                            }
+
+                            List<String> listStatus = new ArrayList<>();
+
+                            for (int j = 0; j < taskList.size(); j++) {
+                                if (taskList.get(j).getStatus().equalsIgnoreCase("Created"))
+                                    listStatus.add(taskList.get(j).getStatus());
+
+                            }
+
+
+                            Log.e(TAG, "Task List size= " + taskList.size());
+                            if (listStatus.size() != 0) {
+                                progress.setVisibility(View.GONE);
+                                new ScreenSwitch(ChildRequestTaskApproval.this)
+                                        .moveToAllTaskScreen(
+                                                child,
+                                                child,
+                                                AppConstant.CHILD_REQ_TASK_APPROVAL,
+                                                parentObject,
+                                                AppConstant.CHILD_REQ_TASK_APPROVAL);
+                            } else {
+                                progress.setVisibility(View.GONE);
+                                Utils.showToast(ChildRequestTaskApproval.this, getResources().getString(R.string.no_task_schedule));
+                            }
+
+
+                        }
+                    });
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    Utils.logDebug(TAG, " onFailure : " + errorResponse == null ? "null" : errorResponse.toString());
+                    Utils.logDebug(TAG, " onFailure errorResponse: " + errorResponse);
+                    Utils.logDebug(TAG, " onFailure throwable: " + throwable);
                     unLockScreen();
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                    Utils.logDebug(TAG, " onFailure : " + errorResponse == null ? "null" : errorResponse.toString());
+                    Utils.logDebug(TAG, " onFailure errorResponse: " + errorResponse);
+                    Utils.logDebug(TAG, " onFailure throwable: " + throwable);
                     unLockScreen();
                 }
 

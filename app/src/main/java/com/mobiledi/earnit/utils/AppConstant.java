@@ -52,7 +52,8 @@ public final class AppConstant {
     public final static String BASE_URL_QA = "http://159.65.239.6:8080/earnit-api";
 //    public final static String BASE_URL_PROD = "https://api.myearnitapp.com:8443/earnit-api";
     public final static String BASE_URL_PROD = "https://api.myearnitapp.com/earnit-api";
-    public static final String BASE_URL = BuildConfig.DEBUG ? BASE_URL_QA : BASE_URL_PROD;
+//    public static final String BASE_URL = BuildConfig.DEBUG ? BASE_URL_QA : BASE_URL_PROD;
+    public static final String BASE_URL = BASE_URL_PROD;
 
     public final static String LOGIN_API = "/login";
     public final static String TASKS_API = "/tasks";
@@ -167,6 +168,7 @@ public final class AppConstant {
     public final static String LOGIN_SCREEN = "login_screen";
     public final static String CHILD_DASHBOARD_SCREEN = "child_dashboard_screen";
     public final static String ADD_TASK = "add_task";
+    public final static String CHILD_REQ_TASK_APPROVAL = "child_req_task_approval";
     public final static String SCREENRULE = "screenrule";
     public final static String SIGN_UP_SCREEN = "sign_up_screen";
     public final static String GOAL_SCREEN = "goal_screen";

@@ -159,18 +159,19 @@ public class UpdateFcmToken extends Service {
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        Utils.logDebug(TAG, "success :"+ response.toString());
+                        Utils.logDebug(TAG, "success :"+ response);
                     }
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        Utils.logDebug(TAG, "onSuccess :"+ response.toString());
+                        Utils.logDebug(TAG, "onSuccess :"+ response);
 
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                        Utils.logDebug(TAG, "onFailure :"+ errorResponse.toString());
+                        Utils.logDebug(TAG, "onFailure errorResponse :"+ errorResponse);
+                        Utils.logDebug(TAG, "onFailure throwable:"+ throwable);
 
 
                     }

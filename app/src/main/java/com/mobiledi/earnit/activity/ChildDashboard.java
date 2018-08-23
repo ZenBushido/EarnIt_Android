@@ -140,9 +140,10 @@ public class ChildDashboard extends BaseActivity {
         String namePassword = MyApplication.getInstance().getEmail().trim() + ":" + MyApplication.getInstance().getPassword().trim();
         final String basicAuth = "Basic " + Base64.encodeToString(namePassword.getBytes(), Base64.NO_WRAP);
         client.addHeader("Authorization", basicAuth);
-        client.setBasicAuth(childObject.getEmail(), childObject.getPassword());
-        Log.e(TAG, "API getChildTasks: " + AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId());
-        client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childObject.getId(), null, new JsonHttpResponseHandler() {
+        client.setBasicAuth(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
+        int childId = childObject == null ? MyApplication.getInstance().getChildId() : childObject.getId();
+        Log.e(TAG, "API getChildTasks: " + AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childId);
+        client.get(AppConstant.BASE_URL + AppConstant.TASKS_API + "/" + childId, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Log.d("fksdjhfo", "response = " + response.toString());

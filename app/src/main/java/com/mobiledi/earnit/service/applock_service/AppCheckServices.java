@@ -122,6 +122,12 @@ public class AppCheckServices extends Service {
         timer = new Timer("AppCheckServices");
         timer.schedule(updateTask, 1000L, 1000L);
 
+        initTasksUpdateTimer();
+
+        updateTasks();
+    }
+
+    private void initTasksUpdateTimer(){
         tasksUpdateTimer = new CountDownTimer(UPDATE_TASKS_MILLIS, ON_TICK_MILLIS) {
             @Override
             public void onTick(long l) {
@@ -142,7 +148,6 @@ public class AppCheckServices extends Service {
                 updateTasks();
             }
         };
-        updateTasks();
     }
 
     private void updateTasks() {
@@ -160,6 +165,9 @@ public class AppCheckServices extends Service {
             @Override
             public void onFinish() {
                 super.onFinish();
+                if (tasksUpdateTimer == null){
+                    initTasksUpdateTimer();
+                }
                 tasksUpdateTimer.start();
             }
 
