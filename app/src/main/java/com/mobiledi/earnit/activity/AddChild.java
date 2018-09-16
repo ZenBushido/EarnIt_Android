@@ -80,6 +80,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -605,38 +606,21 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         Log.d("ldsfjjlk", "onSuccess 1");
-                        try {
-                            childId = response.getInt("id");
-//                            ПОЛУЧИТЬ CHILD ИЗ ОТВЕТА
-                            Log.d("ldsfjjlk", "childId 1 = " + childId);
-                        } catch (JSONException e) {
-                            Log.d("ldsfjjlk", "childId 1  e = " + e.getLocalizedMessage());
-                            e.printStackTrace();
-                        }
-                        Child child = new GetObjectFromResponse().getChildObject(response);
-                        sendAvatar(childId, child);
-                        Utils.logDebug(TAG + " onSuccess", response.toString());
-                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
+                        if (gFileName != null) {
+                            Child child = new GetObjectFromResponse().getChildObject(response);
+                            childId = child.getId();
+                            sendAvatar(child);
+                        } else {
+                            progressBar.setVisibility(View.GONE);
                             showToast(firstName.getText() + " updated");
-                        else
-                            showToast(firstName.getText() + " added");
+                        }
+                        Utils.logDebug(TAG + " onSuccess", response.toString());
 
                         screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
                     }
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        Log.d("ldsfjjlk", "onSuccess 2");
-//                        Child child = new GetObjectFromResponse().getChildObject(response);
-                        sendAvatar(childId, null);
-                        Utils.logDebug(TAG + " onSuccess", response.toString());
-
-                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
-                            showToast(firstName.getText() + " updated");
-                        else
-                            showToast(firstName.getText() + " added");
-
-                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
                     }
 
                     @Override
@@ -646,7 +630,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                         Utils.logDebug(TAG + " onFailure", throwable.toString());
                         unLockScreen();
                         josnError(errorResponse);
-
+                        showToast("Error: " + throwable.getLocalizedMessage());
                     }
 
                     @Override
@@ -660,8 +644,10 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     @Override
                     public void onFinish() {
                         Log.d("ldsfjjlk", "onFinish");
-                        progressBar.setVisibility(View.GONE);
-                        unLockScreen();
+                        if (gFileName == null) {
+                            progressBar.setVisibility(View.GONE);
+                            unLockScreen();
+                        }
 
                     }
                 });
@@ -680,14 +666,14 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                         }
                         if (gFileName != null){
                             Child child = new GetObjectFromResponse().getChildObject(response);
-                            sendAvatar(childId, child);
+                            sendAvatar(child);
                         } else {
+                            progressBar.setVisibility(View.GONE);
                             Utils.logDebug(TAG + " onSuccess", response.toString());
                             if (mode.equalsIgnoreCase(AppConstant.UPDATE))
                                 showToast(firstName.getText() + " updated");
                             else
                                 showToast(firstName.getText() + " added");
-
                             screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
                         }
 
@@ -695,27 +681,16 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        Log.d("ldsfjjlk", "2 onSuccess 2");
-                        sendAvatar(childId, null);
-                        Utils.logDebug(TAG + " onSuccess", response.toString());
-
-                        if (mode.equalsIgnoreCase(AppConstant.UPDATE))
-                            showToast(firstName.getText() + " updated");
-                        else
-                            showToast(firstName.getText() + " added");
-
-                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
-
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                         Log.d("ldsfjjlk", "2 onFailure throwable: " + throwable.getLocalizedMessage());
-                        Log.d("ldsfjjlk", "2 onFailure errorResponse: " + errorResponse.toString());
                         Utils.logDebug(TAG + " onFailure", throwable.toString());
                         Toast.makeText(addChild, getResources().getString(R.string.user_already_exists), Toast.LENGTH_LONG).show();
                         unLockScreen();
                         josnError(errorResponse);
+                        progressBar.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -729,7 +704,9 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     @Override
                     public void onFinish() {
                         Log.d("ldsfjjlk", "2 onFinish");
-                        progressBar.setVisibility(View.GONE);
+                        if (gFileName == null){
+                            progressBar.setVisibility(View.GONE);
+                        }
                         unLockScreen();
 
                     }
@@ -742,14 +719,14 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         }
     }
 
-    private void sendAvatar(final int childId, final Child child1) {
+    private void sendAvatar(final Child child1) {
         Log.d("ldsfjjlk", "sendAvatar");
         if (gFileName == null) {
             Log.d("ldsfjjlk", "gFileName == null");
             return;
         }
         Log.d("ldsfjjlk", "gFileName != null");
-        File file = new File(gFileName);
+        File file = Utils.compressImage(this, new File(gFileName));
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
         Call<String> call = retroInterface.uploadChildrenProfilePictureByParent(childId, filePart);
@@ -757,22 +734,25 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.body() != null) {
+                    progressBar.setVisibility(View.GONE);
+                    if (mode.equalsIgnoreCase(AppConstant.UPDATE)) {
+                        showToast(firstName.getText() + " updated");
+                    }
+                    else {
+                        showToast(firstName.getText() + " added");
+                    }
                     Child ch = child1 == null ? child : child1;
                     Log.d("ldsfjjlk", "child: " + ch);
                     updateChildProfile(ch, response.body());
-                    Log.d("ldsfjjlk", "response1: " + response.body());
-                    Log.d("ldsfjjlk", "response2: " + response.body().toString());
-                } else {
-                    Log.d("ldsfjjlk", "response.errorBody(): " + response.errorBody());
-                    Log.d("ldsfjjlk", "response.toString(): " + response.toString());
-                    Log.d("ldsfjjlk", "response.message(): " + response.message());
-                    Log.d("ldsfjjlk", "response.isSuccessful(): " + response.isSuccessful());
-                    Log.d("ldsfjjlk", "response.body(): null");
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(addChild, "Child is added. But We have trouble with loading " +
+                        "photo. Reason: "+ t.getLocalizedMessage() +
+                        ".\nYou can add photo later", Toast.LENGTH_LONG).show();
                 Log.d("ldsfjjlk", "Throwable: " + t.getLocalizedMessage());
             }
         });

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     tools:context=".activity.LoginScreen">
 
@@ -140,14 +141,22 @@
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/sign_up_block_textview_text_size" />
 
-                                <Button
-                                    android:id="@+id/login_remember_checkbox"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:background="@drawable/round_corner"
-                                    android:gravity="center"
-                                    android:textColor="@color/main_font" />
+
+
+                                <android.support.v7.widget.AppCompatCheckBox
+                                    android:id="@+id/chRemember"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:buttonTint="@android:color/white"/>
+
+                                <!--<Button-->
+                                    <!--android:id="@+id/login_remember_checkbox"-->
+                                    <!--android:layout_width="20dp"-->
+                                    <!--android:layout_height="20dp"-->
+                                    <!--android:layout_marginLeft="10dp"-->
+                                    <!--android:background="@drawable/round_corner"-->
+                                    <!--android:gravity="center"-->
+                                    <!--android:textColor="@color/main_font" />-->
 
 
                             </LinearLayout>

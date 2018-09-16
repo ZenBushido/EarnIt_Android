@@ -10,18 +10,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.mobiledi.earnit.R;
 import com.mobiledi.earnit.utils.AppConstant;
 import com.mobiledi.earnit.utils.RestCall;
@@ -38,7 +43,7 @@ import java.util.List;
  * Created by mradul on 7/4/17.
  */
 
-public class LoginScreen extends BaseActivity implements View.OnClickListener, Validator.ValidationListener {
+public class LoginScreen extends BaseActivity implements View.OnClickListener, Validator.ValidationListener, RestCall.OnAuthorizedListener {
 
     @NotEmpty
     @Email
@@ -46,7 +51,8 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
     @Password(min = 6, scheme = Password.Scheme.ANY)
 
     EditText password;
-    Button loginButton, sign_up, loginRemember;
+    Button loginButton, sign_up;
+    CheckBox chRemember;
     LoginScreen loginScreen;
     RelativeLayout progressBar;
     SharedPreferences preferences;
@@ -55,7 +61,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
     Resources resources;
     TextView forgot;
 
-    boolean LoginRememberCheckStatus;
+    private RestCall restCall;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,10 +84,9 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
             }
         }*/
 
+        preferences = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
         loginScreen = this;
-
-        LoginRememberCheckStatus = false;
-        loginRemember = (Button) findViewById(R.id.login_remember_checkbox);
+        chRemember = findViewById(R.id.chRemember);
         forgot = (TextView) findViewById(R.id.sign_forgot);
         username = (EditText) findViewById(R.id.input_email);
         password = (EditText) findViewById(R.id.input_password);
@@ -93,45 +98,41 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         loginButton.setOnClickListener(loginScreen);
         sign_up.setOnClickListener(loginScreen);
         forgot.setOnClickListener(loginScreen);
-        loginRemember.setOnClickListener(loginScreen);
+        chRemember.setOnClickListener(this);
         resources = getResources();
         setCursorPosition();
-        callFirebaseService();
-        preferences = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
-
-        try {
-            if (preferences.getString(AppConstant.EMAIL, null) != null && preferences.getString(AppConstant.PASSWORD, null) != null) {
-                Utils.logDebug(TAG, "AutoLogin: username = " + preferences.getString(AppConstant.EMAIL, null) + "; password = " + preferences.getString(AppConstant.PASSWORD, null));
-                new RestCall(loginScreen).authenticateUser(preferences.getString(AppConstant.EMAIL, null), preferences.getString(AppConstant.PASSWORD, null), password, AppConstant.LOGIN_SCREEN, progressBar);
+        updateToken();
+        
+        restCall = new RestCall(this);
+        restCall.setAuthorizedListener(this);
+        if (preferences.getBoolean(AppConstant.NEED_TO_SAVE_CREDENTIALS, false)){
+            username.setText(preferences.getString(AppConstant.EMAIL, ""));
+            password.setText(preferences.getString(AppConstant.PASSWORD, ""));
+            chRemember.setChecked(true);
+            if (!TextUtils.isEmpty(username.getText().toString().trim()) || !TextUtils.isEmpty(password.getText().toString().trim())) {
+                restCall.authenticateUser(preferences.getString(AppConstant.EMAIL, ""), preferences.getString(AppConstant.PASSWORD, ""), password, AppConstant.LOGIN_SCREEN, progressBar);
             }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         }
+        chRemember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                preferences.edit().putBoolean(AppConstant.NEED_TO_SAVE_CREDENTIALS, b).apply();
+            }
+        });
 
         validator = new Validator(loginScreen);
         validator.setValidationListener(loginScreen);
+
     }
 
-    private void callFirebaseService() {
-        new AsyncTask<Void, Void, String>() {
-            @Override
-            protected String doInBackground(Void... params) {
-                String token = FirebaseInstanceId.getInstance().getToken();
-                while (token == null)//this is used to get firebase token until its null so it will save you from null pointer exeption
-                {
-                    token = FirebaseInstanceId.getInstance().getToken();
-                }
-                return token;
-            }
-
-            @Override
-            protected void onPostExecute(String result) {
-                SharedPreferences shareToken = getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
-                SharedPreferences.Editor editor = shareToken.edit();
-                editor.putString(AppConstant.TOKEN_ID, result);
-                editor.commit();
-            }
-        }.execute();
+    private void updateToken(){
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( new OnSuccessListener<InstanceIdResult>() {
+        @Override
+        public void onSuccess(InstanceIdResult instanceIdResult) {
+            getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE).edit().
+                    putString(AppConstant.TOKEN_ID, instanceIdResult.getToken()).apply();
+        }
+    });
     }
 
     private void setCursorPosition() {
@@ -145,18 +146,14 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
             case R.id.login:
                 validator.validate();
                 break;
-
             case R.id.sign_up:
                 showDialogOnCheckBox();
                 break;
             case R.id.sign_forgot:
                 moveToPasswordReminder();
                 break;
-            case R.id.login_remember_checkbox:
-                if (LoginRememberCheckStatus) {
-                    loginRemember.setText("");
-                    LoginRememberCheckStatus = false;
-                } else {
+            case R.id.chRemember:
+                if (chRemember.isChecked()){
                     showRemeberMeDialog();
                 }
                 break;
@@ -176,14 +173,11 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        loginRemember.setText("✔");
-                        LoginRememberCheckStatus = true;
-
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
+                        chRemember.setChecked(false);
                     }
                 })
                 .show();
@@ -238,7 +232,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
     @Override
     public void onValidationSucceeded() {
         Utils.logDebug(TAG, "onValidationSucceeded: username = " + username.getText().toString().trim() + "; password = " + password.getText().toString().trim());
-        new RestCall(loginScreen).authenticateUser(username.getText().toString().trim(), password.getText().toString().trim(), password, AppConstant.LOGIN_SCREEN, progressBar);
+        restCall.authenticateUser(username.getText().toString().trim(), password.getText().toString().trim(), password, AppConstant.LOGIN_SCREEN, progressBar);
     }
 
     @Override
@@ -261,11 +255,17 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         finish();
     }
 
-    /*@Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == MY_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED) {
-            }
+    @Override
+    public void onAuthorizeSuccessful() {
+        if (preferences.getBoolean(AppConstant.NEED_TO_SAVE_CREDENTIALS, false)){
+            preferences.edit().putString(AppConstant.EMAIL, username.getText().toString())
+                    .putString(AppConstant.PASSWORD, password.getText().toString()).apply();
         }
-    }*/
+    }
+
+    @Override
+    public void onAuthorizeFailed(){
+        preferences.edit().remove(AppConstant.EMAIL).remove(AppConstant.PASSWORD).apply();
+        password.setText("");
+    }
 }

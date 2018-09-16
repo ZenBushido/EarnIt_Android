@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "387625439950-gi77aoatp9c6gpir1uejl3h9gf0m4e79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobiledi.earnit",
+            "certificate_hash": "9c09f427f29f445ec198aa7430c868267672040f"
+          }
+        },
+        {
+          "client_id": "387625439950-iom12f7rpgi95c99e9eu7dl3g39o0mal.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobiledi.earnit",
+            "certificate_hash": "75186221d1e1e23b64d7dab7c97f6aef3d1a1acb"
+          }
+        },
+        {
           "client_id": "387625439950-2qpso59pmbs4amf4uot0g1dc7sondg1f.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "387625439950-2qpso59pmbs4amf4uot0g1dc7sondg1f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "387625439950-l4fs0qfmuo5geuu1f1vranfmhr5l7r3n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobiledi.earnit"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2

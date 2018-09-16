@@ -281,7 +281,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
 
     private void uploadPicture(int taskId){
         Log.d("ldkfjglkj", "uploadPicture(). id: " + task.getId());
-        File file = new File(gFileName);
+        File file = Utils.compressImage(this, new File(gFileName));
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());
         Call<ResponseBody> call = retroInterface.uploadTaskPicture(taskId, filePart);

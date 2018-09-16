@@ -54,6 +54,17 @@ public class RestCall {
     Parent parent;
     private static SharedPreferences sp;
 
+    private OnAuthorizedListener authorizedListener;
+
+    public interface OnAuthorizedListener{
+        void onAuthorizeSuccessful();
+        void onAuthorizeFailed();
+    }
+
+    public void setAuthorizedListener(OnAuthorizedListener authorizedListener) {
+        this.authorizedListener = authorizedListener;
+    }
+
     public RestCall(Activity activity) {
         this.activity = activity;
         screenSwitch = new ScreenSwitch(this.activity);
@@ -61,6 +72,7 @@ public class RestCall {
 
     public void authenticateUser(final String username, final String password, final EditText editPassword, final String from, final RelativeLayout progressBar) {
         Utils.logDebug(TAG, "authenticateUser: username = " + username + "; password = " + password);
+        Log.d("UpdateFCMToken", "authenticateUser");
 
         sp = activity.getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE);
         Utils.logDebug(TAG, " GeneratedTokenI " + sp.getString(AppConstant.TOKEN_ID, null));
@@ -80,8 +92,12 @@ public class RestCall {
             httpClient.get(activity, AppConstant.BASE_URL + AppConstant.LOGIN_API, null, AppConstant.APPLICATION_JSON, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    if (authorizedListener != null){
+                        authorizedListener.onAuthorizeSuccessful();
+                    }
                     try {
                         Utils.logDebug(TAG, " login-Rquest onSuccess" + response.toString());
+                        Log.d("UpdateFCMToken", "authenticateUser onSuccess");
 
                         MyApplication.getInstance().setPassword(password);
                         MyApplication.getInstance().setEmail(username);
@@ -186,6 +202,9 @@ public class RestCall {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    if (authorizedListener != null){
+                        authorizedListener.onAuthorizeFailed();
+                    }
                     Utils.logDebug(TAG, " login-Rquest onFailure. JSONObject errorResponse: " + errorResponse);
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable: " + throwable.getLocalizedMessage());
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.toString(): " + throwable.toString());
@@ -199,6 +218,9 @@ public class RestCall {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                    if (authorizedListener != null){
+                        authorizedListener.onAuthorizeFailed();
+                    }
                     Utils.logDebug(TAG, " login-Rquest onFailureA" + errorResponse.toString());
                     clearEdittext(from, editPassword);
                     Utils.unLockScreen(activity.getWindow());
@@ -207,11 +229,17 @@ public class RestCall {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    if (authorizedListener != null){
+                        authorizedListener.onAuthorizeSuccessful();
+                    }
                     Utils.logDebug(TAG, " login-Rquest onSuccessA" + response.toString());
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    if (authorizedListener != null){
+                        authorizedListener.onAuthorizeFailed();
+                    }
                     Utils.logDebug(TAG, " login-Rquest onFailureS" + responseString);
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable: " + throwable.getLocalizedMessage());
                     Utils.logDebug(TAG, " login-Rquest onFailure. Throwable.toString(): " + throwable.toString());

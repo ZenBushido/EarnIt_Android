@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -50,6 +51,7 @@ public class UpdateFcmToken extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("UpdateFCMToken", "UpdateFcmToken is started");
         updateFcmToken = this;
         child = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         parent = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
@@ -97,21 +99,24 @@ public class UpdateFcmToken extends Service {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    Log.d("UpdateFCMToken", "onSuccess response: " + response.toString());
                 }
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
+                    Log.d("UpdateFCMToken", "onSuccess responseArr: " + response.toString());
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-
+                    Log.d("UpdateFCMToken", "onFailure errorResponse: " + errorResponse.toString());
+                    Log.d("UpdateFCMToken", "onFailure throwable: " + throwable.getLocalizedMessage());
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-
+                    Log.d("UpdateFCMToken", "onFailure errorResponseArr: " + errorResponse.toString());
+                    Log.d("UpdateFCMToken", "onFailure throwable: " + throwable.getLocalizedMessage());
                 }
             });
         } catch (JSONException e) {
@@ -137,9 +142,10 @@ public class UpdateFcmToken extends Service {
             signInJson.put(AppConstant.LAST_NAME, child.getLastName());
             signInJson.put(AppConstant.PASSWORD, child.getPassword());
             signInJson.put(AppConstant.PHONE, child.getPhone());
-            signInJson.put(AppConstant.CREATE_DATE, new DateTime().minus(child.getCreateDate()));
+            signInJson.put(AppConstant.CREATE_DATE, new DateTime().minus(child.getCreateDate()).getMillis());
             signInJson.put(AppConstant.UPDATE_DATE, new DateTime().getMillis());
             signInJson.put(AppConstant.ID,child.getId());
+            signInJson.put(AppConstant.TYPE, child.getUserType());
 
             if (!isLogout)
             signInJson.put(AppConstant.FCM_TOKEN, token);
@@ -159,19 +165,19 @@ public class UpdateFcmToken extends Service {
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        Utils.logDebug(TAG, "success :"+ response);
+                        Log.d("UpdateFCMToken", "onSuccess response: " + response.toString());
                     }
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        Utils.logDebug(TAG, "onSuccess :"+ response);
+                        Log.d("UpdateFCMToken", "onSuccess responseArr: " + response.toString());
 
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                        Utils.logDebug(TAG, "onFailure errorResponse :"+ errorResponse);
-                        Utils.logDebug(TAG, "onFailure throwable:"+ throwable);
+                        Log.d("UpdateFCMToken", "onFailure errorResponse: " + errorResponse.toString());
+                        Log.d("UpdateFCMToken", "onFailure throwable: " + throwable.getLocalizedMessage());
 
 
                     }

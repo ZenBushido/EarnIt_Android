@@ -338,8 +338,20 @@
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
 
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/chAppLock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            app:buttonTint="@android:color/white"
+                            android:scaleX="1.30"
+                            android:scaleY="1.30"/>
+
 
                         <Button
+                            android:visibility="gone"
                             android:layout_marginRight="5dp"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
@@ -401,6 +413,7 @@
 
 
                         <TextView
+                            android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="right"
@@ -409,7 +422,18 @@
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
 
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/chePhotoRequired"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            app:buttonTint="@android:color/white"
+                            android:scaleX="1.30"
+                            android:scaleY="1.30"/>
+
                         <Button
+                            android:visibility="gone"
                             android:layout_marginRight="5dp"
                             android:layout_alignParentRight="true"
                             android:padding="2dp"

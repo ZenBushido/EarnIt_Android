@@ -51,7 +51,7 @@ public final class AppConstant {
     public final static String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/";
     public final static String BASE_URL_QA = "http://159.65.239.6:8080/earnit-api";
 //    public final static String BASE_URL_PROD = "https://api.myearnitapp.com:8443/earnit-api";
-    public final static String BASE_URL_PROD = "https://api.myearnitapp.com/earnit-api";
+        public final static String BASE_URL_PROD = "https://api.myearnitapp.com/earnit-api";
 //    public static final String BASE_URL = BuildConfig.DEBUG ? BASE_URL_QA : BASE_URL_PROD;
     public static final String BASE_URL = BASE_URL_PROD;
 
@@ -123,6 +123,7 @@ public final class AppConstant {
     public final static String EXPIRY_DATE = "expiryDate";
     public final static String EMAIL = "email";
     public final static String PASSWORD = "password";
+    public final static String NEED_TO_SAVE_CREDENTIALS = "need_to_save_credentials";
     public final static String NAME = "name";
     public final static String DUE_DATE = "dueDate";
     public final static String STATUS = "status";

@@ -360,7 +360,7 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
     }
 
     private void uploadParentPhoto(final String email) {
-        File file = new File(gFileName);
+        File file = Utils.compressImage(this, new File(gFileName));
         Log.d("ldsfjjlk", "gFileName: " + gFileName);
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         RetroInterface retroInterface = RetrofitClient.getApiServices(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword());

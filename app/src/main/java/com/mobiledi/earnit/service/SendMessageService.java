@@ -92,6 +92,10 @@ public class SendMessageService extends Service {
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Utils.logDebug(TAG, "onFailure send message throwable: "+ throwable.getLocalizedMessage());
+                        if (errorResponse != null){
+                            Utils.logDebug(TAG, "onFailure send message errorResponse: "+ errorResponse.toString());
+                        }
                         /*Utils.logDebug(TAG, "update-child-json-of : "+throwable.toString());
                         Utils.logDebug(TAG, "update-child-json-of : "+errorResponse.toString());
                         Utils.logDebug(TAG, "update-child-json-of : "+throwable.getMessage());*/
@@ -100,6 +104,7 @@ public class SendMessageService extends Service {
                 });
 
         } catch (JSONException | UnsupportedEncodingException e) {
+            Utils.logDebug(TAG, "catch: "+ e.getLocalizedMessage());
             e.printStackTrace();
         }
     }

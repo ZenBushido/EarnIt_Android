@@ -34,6 +34,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -41,9 +43,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -121,10 +120,10 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     Button save;
     @BindView(R.id.cancel)
     Button cancel;
-    @BindView(R.id.newtask_requirephoto)
-    Button checkbox;
-    @BindView(R.id.newtask_screenlockcheck)
-    Button screenlockBtn;
+    @BindView(R.id.chAppLock)
+    CheckBox chAppLock;
+    @BindView(R.id.chePhotoRequired)
+    CheckBox chePhotoRequired;
     @BindView(R.id.task_name)
     EditText taskName;
     @BindView(R.id.task_detail)
@@ -148,8 +147,6 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     int childID;
     Intent intent;
     final int TASK_NAME_LENGTH = 40;
-    boolean checkboxStatus = false;
-    boolean checkboxStatusLock = false;
 
     boolean IS_EDITING_TASK = false;
     private final String TAG = "AddTask";
@@ -203,6 +200,15 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         addTask = this;
         screenSwitch = new ScreenSwitch(addTask);
 
+        chAppLock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    showDialog();
+                }
+            }
+        });
+
         intent = getIntent();
         screen_name = intent.getStringExtra(AppConstant.FROM_SCREEN);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
@@ -249,13 +255,11 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         save.setOnClickListener(addTask);
         cancel.setOnClickListener(addTask);
         dueDate.setOnClickListener(addTask);
-        checkbox.setOnClickListener(addTask);
         childAvatar.setOnClickListener(addTask);
         assignTo.setOnClickListener(addTask);
         repeatSpinner.setOnClickListener(addTask);
         addTask_help.setOnClickListener(addTask);
         back.setOnClickListener(addTask);
-        screenlockBtn.setOnClickListener(addTask);
         if (isDeviceOnline())
             fetchChildList();
         //fetchAllChildList();
@@ -398,12 +402,10 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                         Uri.parse("package:" + getPackageName()));
                 startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
-            }
-            else{
+            } else {
                 startActivity(new Intent(AddTask.this, SplashActivity.class));
             }
-        }
-        else{
+        } else {
             startActivity(new Intent(AddTask.this, SplashActivity.class));
         }
 
@@ -444,14 +446,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         String toPrintDate = fmt.print(dt);
         date_time_textview.setText(toPrintDate);
 
-        if (currentTask.getPictureRequired()) {
-            checkbox.setText("✔");
-            checkboxStatus = true;
-
-
-        } else {
-            checkboxStatus = false;
-        }
+        chePhotoRequired.setChecked(currentTask.getPictureRequired());
 
     }
 
@@ -493,46 +488,6 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 break;
             case R.id.cancel:
                 onCancelAndBack(childObject, otherChild);
-                break;
-            case R.id.newtask_requirephoto:
-                if (checkboxStatus) {
-                    checkbox.setText("");
-                    checkboxStatus = false;
-                } else {
-                    checkbox.setText("✔");
-                    checkboxStatus = true;
-                    // Intent intent = new Intent(this, UploadTaskImageFragment.class);
-                    //  startActivity(intent);
-                }
-                break;
-            case R.id.newtask_screenlockcheck:
-
-                showDialog();
-
-//                Intent screenrule = new Intent(AddTask.this, ScreenRules.class);
-//                screenrule.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                screenrule.putExtra(AppConstant.FROM_SCREEN, screen_name);
-//                screenrule.putExtra(AppConstant.PARENT_OBJECT, parentObject);
-//                screenrule.putExtra(AppConstant.CHILD_OBJECT, childObject);
-//                screenrule.putExtra(AppConstant.OTHER_CHILD_OBJECT, otherChild);
-//                startActivity(screenrule);
-//
-//
-//                if (checkboxStatusLock) {
-//                    screenlockBtn.setText("");
-//                    checkboxStatusLock = false;
-//                } else {
-//                    screenlockBtn.setText("✔");
-//                    checkboxStatusLock = true;
-//                }
-                /*   Intent screenrule = new Intent(AddTask.this,ScreenRules.class);
-                    screenrule.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(screenrule);
-                }*/
-
-//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                ft.replace(R.id.addtask_framelayout, new ScreenRuleFragment());
-//                ft.commit();
                 break;
             case R.id.assign_to_id:
 
@@ -663,7 +618,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             List<String> lockApps = new com.mobiledi.earnit.SharedPreference().getLocked(this);
             List<BlockingApp> blockingApps = new ArrayList<>();
             if (lockApps.size() > 0) {
-                for (int i = 0; i < lockApps.size(); i++){
+                for (int i = 0; i < lockApps.size(); i++) {
                     BlockingApp blockingApp = new BlockingApp();
                     blockingApp.setName(lockApps.get(i));
                     blockingApp.setId((long) i + 1);
@@ -673,9 +628,9 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             }
 
             AddTaskWithSelecteDay addTaskWithSelecteDay = new AddTaskWithSelecteDay(value,
-                    dateTime.toString("MMM d, yyyy hh:mm:ss aaa", Locale.US), taskName.getText().toString().trim(), checkboxStatus, child, goal,
+                    dateTime.toString("MMM d, yyyy hh:mm:ss aaa", Locale.US), taskName.getText().toString().trim(), chePhotoRequired.isChecked(), child, goal,
                     repititionSchedule, taskDetails.getText().toString(), false,
-                    checkboxStatusLock, blockingApps);
+                    chAppLock.isChecked(), blockingApps);
 
             Log.e("AddTaskk", "AddTaskWithSelecteDay: " + addTaskWithSelecteDay.toString());
 
@@ -713,7 +668,6 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     private void saveTask() {
 
 
-
         JSONObject addTaskJson = new JSONObject();
         try {
 
@@ -725,13 +679,13 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
             addTaskJson.put(AppConstant.NAME, taskName.getText().toString().trim());
             addTaskJson.put(AppConstant.DESCRIPTION, taskDetails.getText().toString());
-            addTaskJson.put(AppConstant.PICTURE_REQUIRED, checkboxStatus);
+            addTaskJson.put(AppConstant.PICTURE_REQUIRED, chePhotoRequired.isChecked());
 
             List<AppsToBeBlockedOnOverdue> apps = new com.mobiledi.earnit.SharedPreference().getLockedObjects(this);
             addTaskJson.put(AppConstant.SHOULD_LOCK_APPS, apps.size() > 0);
             if (apps.size() > 0) {
                 JSONArray lockAppsArray = new JSONArray();
-                for (AppsToBeBlockedOnOverdue app : apps){
+                for (AppsToBeBlockedOnOverdue app : apps) {
                     JSONObject lockAppObject = new JSONObject();
                     lockAppObject.put("name", app.getName());
                     lockAppObject.put("id", app.getId());

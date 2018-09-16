@@ -3,8 +3,12 @@ package com.mobiledi.earnit.utils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,26 +17,28 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobiledi.earnit.BuildConfig;
 import com.mobiledi.earnit.R;
-import com.mobiledi.earnit.activity.InitialParentProfile;
 import com.mobiledi.earnit.adapter.CountryAdapter;
-import com.mobiledi.earnit.model.Child;
 import com.mobiledi.earnit.model.Country;
-import com.mobiledi.earnit.model.Tasks;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.List;
+
+import id.zelory.compressor.Compressor;
 
 /**
  * Created by mobile-di on 27/10/17.
@@ -194,5 +200,21 @@ public class Utils {
             }
         });
         dialog.show();
+    }
+
+    public static File compressImage(Context context, File file) {
+        try {
+            return new Compressor(context)
+                    .setMaxWidth(640)
+                    .setMaxHeight(480)
+                    .setQuality(75)
+                    .setCompressFormat(Bitmap.CompressFormat.WEBP)
+                    .setDestinationDirectoryPath(Environment.getExternalStoragePublicDirectory(
+                            Environment.DIRECTORY_PICTURES).getAbsolutePath())
+                    .compressToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

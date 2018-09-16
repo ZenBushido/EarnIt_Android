@@ -7,29 +7,19 @@ package com.mobiledi.earnit.service;
 import android.content.Intent;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.mobiledi.earnit.utils.Utils;
 
 
-public class CustomFirebaseInstanceIDService extends FirebaseInstanceIdService {
+public class CustomFirebaseInstanceIDService extends FirebaseMessagingService {
 
     private static final String TAG = "CustomFIIDS";
 
-    /**
-     * Called if InstanceID token is updated. This may occur if the security of
-     * the previous token had been compromised. Note that this is called when the InstanceID token
-     * is initially generated so this is where you would retrieve the token.
-     */
-    // [START refresh_token]
     @Override
-    public void onTokenRefresh() {
-        // Get updated InstanceID token.
-        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        // If you want to send messages to this application instance or
-        // manage this apps subscriptions on the server side, send the
-        // Instance ID token to your app server.
-        sendRegistrationToServer(refreshedToken);
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+        sendRegistrationToServer(s);
     }
-    // [END refresh_token]
 
     /**
      * Persist token to third-party servers.
