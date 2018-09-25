@@ -42,7 +42,7 @@ android {
         debug {
             keyAlias 'debug'
             keyPassword 'android'
-            storeFile file('D:/Android/Projects/EarnIt/keystore/debug_key.jks')
+            storeFile file('../keystore/debug_key.jks')
             storePassword 'android'
         }
         release {
@@ -61,7 +61,7 @@ android {
 //            }
             keyAlias 'release'
             keyPassword '%bKv~1W6LEu*~xH7HXEcn$Agxt'
-            storeFile file('D:/Android/Projects/uralenergo/keystore/release_key.jks')
+            storeFile file('$rootDir/keystore/release_key.jks')
             storePassword 'F0aZjuP9wo25zPgl'
             v1SigningEnabled true
             v2SigningEnabled true
@@ -69,7 +69,7 @@ android {
 
             keyAlias 'release'
             keyPassword '&(ssIyTp94Df*d~f$d99SUp0Db'
-            storeFile file('D:/Android/Projects/EarnIt/keystore/release_key.jks')
+            storeFile file('../keystore/release_key.jks')
             storePassword 'UxzO8d009XzpULgd'
         }
     }
