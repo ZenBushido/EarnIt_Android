@@ -37,7 +37,9 @@ import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Created by mradul on 7/4/17.
@@ -67,6 +69,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_layout);
+//        ArrayList
 
         /*if (!TextUtils.isEmpty(MyApplication.getInstance().getEmail())
                 && !TextUtils.isEmpty(MyApplication.getInstance().getPassword())

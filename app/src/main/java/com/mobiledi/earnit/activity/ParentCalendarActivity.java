@@ -307,7 +307,6 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                 Log.e("testing final date", "" + finalDate);
                 //  AppConstant.addTaskModel.setDueDate(finalDate);
                 buttonClicked = true;
-                Log.d("dsiudi", "save click");
                 if (checkValue.equalsIgnoreCase("daily")) {
                     if (dayOfWeek != null) {
                         AddTaskModel.repititionSchedule response = new AddTaskModel.repititionSchedule();
@@ -403,6 +402,9 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                     response.startTime = sdf.format(new Date());
 
                     response.setDate(finalDate);
+                    Log.d("dsiudi", "save click. startTime = " + response.startTime);
+                    Log.d("dsiudi", "save click. endTime = " + response.endTime);
+                    Log.d("dsiudi", "save click. date = " + finalDate);
 
 
                     // AppConstant.addTaskModel.setRepititionSchedule(response);

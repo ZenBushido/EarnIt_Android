@@ -40,7 +40,7 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
 
     public ChildViewDateAdapter(@NonNull List<? extends ParentListItem> groups, Parent parent, Child child, String name) {
         super(groups);
-        Log.d("dasfgrrs", "ChildViewDateAdapter");
+        Log.d("dasfgrrs", "ChildViewDateAdapter, User is " + name);
         this.parent = parent;
         this.child = child;
         screenName = name;
@@ -70,17 +70,17 @@ public class ChildViewDateAdapter extends ExpandableRecyclerAdapter<TaskGroupVie
         DateTime dateTime = new DateTime(childsTaskObject.getDueDate()).withTimeAtStartOfDay();
         Log.d("dasfgrrsdsds", "ChildsTaskObject: " + dateTime.toString());
         if (dateTime.isEqual(new DateTime(Tasks.fakeDate).withTimeAtStartOfDay())) {
-            Log.d("fsdkjhfkj", "NON_COMPLETED_APPROVED: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
+            Log.d("fsdkjhfkj", "NON_COMPLETED_APPROVED: " + dateTime.toString("dd.MM.hh hh:mm:ss"));
             taskGroupViewHolder.setDateHeader(AppConstant.NON_COMPLETED_APPROVED);
         } else if (isToday(dateTime)) {
-            Log.d("fsdkjhfkj", "Today: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
+            Log.d("fsdkjhfkj", "Today: " + dateTime.toString("dd.MM.hh hh:mm:ss"));
             taskGroupViewHolder.setDateHeader("Today");
         } else if (dateTime.isBefore(new DateTime().withTimeAtStartOfDay())) {
-            Log.d("fsdkjhfkj", "PAST_DUE: " + dateTime.toString("dd.MM.hh HH:mm:ss"));
+            Log.d("fsdkjhfkj", "PAST_DUE: " + dateTime.toString("dd.MM.hh hh:mm:ss"));
             taskGroupViewHolder.setDateHeader(AppConstant.PAST_DUE);
         } else {
             String toPrintDate = fmt.print(dateTime);
-            Log.d("fsdkjhfkj", "Today: " + dateTime.toString("dd.MM.hh HH:mm:ss") + " toPrintDate: " + toPrintDate);
+            Log.d("fsdkjhfkj", "Today: " + dateTime.toString("dd.MM.hh hh:mm:ss") + " toPrintDate: " + toPrintDate);
             taskGroupViewHolder.setDateHeader(toPrintDate);
         }
     }

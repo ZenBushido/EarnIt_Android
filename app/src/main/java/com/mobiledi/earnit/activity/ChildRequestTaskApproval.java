@@ -470,13 +470,7 @@ public class ChildRequestTaskApproval extends UploadRuntimePermission implements
                             Log.e(TAG, "Task List size= " + taskList.size());
                             if (listStatus.size() != 0) {
                                 progress.setVisibility(View.GONE);
-                                new ScreenSwitch(ChildRequestTaskApproval.this)
-                                        .moveToAllTaskScreen(
-                                                child,
-                                                child,
-                                                AppConstant.CHILD_REQ_TASK_APPROVAL,
-                                                parentObject,
-                                                AppConstant.CHILD_REQ_TASK_APPROVAL);
+                                new ScreenSwitch(ChildRequestTaskApproval.this).moveTOChildDashboard(child, false);
                             } else {
                                 progress.setVisibility(View.GONE);
                                 Utils.showToast(ChildRequestTaskApproval.this, getResources().getString(R.string.no_task_schedule));

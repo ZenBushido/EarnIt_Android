@@ -125,8 +125,10 @@ public class GetObjectFromResponse {
             task.setChildId(childId);
             task.setName(taskObject.getString(AppConstant.NAME));
 
-            DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM dd, yyyy HH:mm:ss a").withLocale(Locale.US);
-
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM dd, yyyy hh:mm:ss aa").withLocale(Locale.US);
+            Log.e("RestCall", "Due_Date = " + taskObject.getString(AppConstant.DUE_DATE));
+            Log.e("RestCall", "Due_Date Millis= " + formatter.parseDateTime(taskObject.getString(AppConstant.DUE_DATE)));
+            Log.e("RestCall", "Due_Date Millis To Date= " + new DateTime(formatter.parseDateTime(taskObject.getString(AppConstant.DUE_DATE))).toString());
             task.setCreateDate(formatter.parseDateTime(taskObject.getString(AppConstant.CREATE_DATE)).getMillis());
             task.setDueDate(formatter.parseDateTime(taskObject.getString(AppConstant.DUE_DATE)).getMillis());
 

@@ -32,6 +32,10 @@ android {
         renderscriptSupportModeEnabled true
 
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     dataBinding {
         enabled = true
     }
@@ -46,26 +50,12 @@ android {
             storePassword 'android'
         }
         release {
-
-//            def keystorePropertiesFile = file("keys\\release.properties")
-//            if (keystorePropertiesFile.exists()) {
-//                def keystoreProperties = new Properties()
-//                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-//
-//                keyAlias keystoreProperties['keyAlias']
-//                keyPassword keystoreProperties['keyPassword']
-//                storeFile file(keystoreProperties['storeFile'])
-//                storePassword keystoreProperties['storePassword']
-//            } else {
-//                return null
-//            }
             keyAlias 'release'
             keyPassword '%bKv~1W6LEu*~xH7HXEcn$Agxt'
             storeFile file('$rootDir/keystore/release_key.jks')
             storePassword 'F0aZjuP9wo25zPgl'
             v1SigningEnabled true
             v2SigningEnabled true
-
 
             keyAlias 'release'
             keyPassword '&(ssIyTp94Df*d~f$d99SUp0Db'

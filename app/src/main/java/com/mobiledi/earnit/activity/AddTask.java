@@ -710,11 +710,13 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             if (m != null) {
                 repititionSchedule = m.getResponse();
                 EventBus.getDefault().removeAllStickyEvents();
-                DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss a").withLocale(Locale.ENGLISH);
+                DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd/yyyy hh:mm:ss aa").withLocale(Locale.ENGLISH);
                 DateTime dateTime = dtf.parseDateTime(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
-                Log.d("dsjlo", "original date = " + repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
-                Log.d("dsjlo", "joda date = " + dateTime.toString());
-                addTaskJson.put(AppConstant.DUE_DATE, dateTime.getMillis() + offsetInMilliseconds);
+                Log.d("sadakjh", "original date = " + repititionSchedule.getDate() + " " + repititionSchedule.getEndTime());
+                Log.d("sadakjh", "joda date = " + dateTime.toString());
+                Log.d("sadakjh", "DUE_DATE = " + new DateTime(dateTime.getMillis() + offsetInMilliseconds).toString());
+                Log.d("sadakjh", "DUE_DATE millis = " + new DateTime(dateTime.getMillis() + offsetInMilliseconds).getMillis());
+                addTaskJson.put(AppConstant.DUE_DATE, new DateTime(dateTime.getMillis() + offsetInMilliseconds).getMillis());
 
             }
 

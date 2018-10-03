@@ -56,9 +56,9 @@ public class TaskChildViewHolder extends ChildViewHolder {
     }
 
     public void onBind(final Tasks currentTask, final long title, final Parent parent, final Child child, final String isParentChild) {
-        Utils.logDebug(TAG, "!!!! Task == " + currentTask.toString());
+        Utils.logDebug("sadakjh", "!!!! Task == " + currentTask.toString());
         childTaskDetail.setText(currentTask.getName());
-        childTaskDueDate.setText(new DateTime(currentTask.getDueDate()).toString("MM/dd@ h:mm a", Locale.US));
+        childTaskDueDate.setText(new DateTime(currentTask.getDueDate()).toString("MM/dd@ hh:mm aa", Locale.US));
         DateTime currentDate = new DateTime();
         task_description_layout.setOnClickListener(new View.OnClickListener() {
             @Override
