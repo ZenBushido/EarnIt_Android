@@ -21,7 +21,7 @@ android {
     compileSdkVersion 27
     flavorDimensions "versionCode"
     defaultConfig {
-        applicationId "com.mobiledi.earnit"
+        applicationId "com.firepitmedia.earnit"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 57
@@ -70,11 +70,11 @@ android {
             targetSdkVersion 27
             versionCode 1
             versionName '1.0'
-            applicationId 'com.mobiledi.earnit'
+            applicationId 'com.firepitmedia.earnit'
         }
         prodServer {
             minSdkVersion 19
-            applicationId 'com.mobiledi.earnit'
+            applicationId 'com.firepitmedia.earnit'
             signingConfig signingConfigs.release
             versionCode 1
             versionName '1.0'

@@ -4,8 +4,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mobiledi.earnit.retrofit.BasicAuthInterceptor;
-import com.mobiledi.earnit.utils.AppConstant;
+import com.firepitmedia.earnit.utils.AppConstant;
 
 import okhttp3.Credentials;
 import okhttp3.OkHttpClient;

@@ -13,7 +13,7 @@
         android:background="@color/background"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        tools:context="com.mobiledi.earnit.activity.BalanceAdjustment">
+        tools:context="com.firepitmedia.earnit.activity.BalanceAdjustment">
 
         <include
             layout="@layout/action_bar_view_goal"

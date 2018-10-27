@@ -6,13 +6,11 @@ package retrofit;
 
         /*Base url is already defined in service generator class*/
 
-import com.mobiledi.earnit.model.TaskV2Model;
-import com.mobiledi.earnit.model.Tasks;
+import com.firepitmedia.earnit.model.TaskV2Model;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 

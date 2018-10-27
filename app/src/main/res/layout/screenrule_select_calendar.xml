@@ -75,7 +75,7 @@
         android:layout_below="@+id/gray_line_main"
         android:orientation="horizontal">
 
-        <com.mobiledi.earnit.screenruletimepicker.CustomNumberPicker
+        <com.firepitmedia.earnit.screenruletimepicker.CustomNumberPicker
             android:id="@+id/datepicker"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_weight="1"
             android:background="@null"/>
 
-        <com.mobiledi.earnit.screenruletimepicker.CustomNumberPicker
+        <com.firepitmedia.earnit.screenruletimepicker.CustomNumberPicker
             android:id="@+id/hourpicker"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:layout_weight="1"
             android:background="@null"/>
 
-        <com.mobiledi.earnit.screenruletimepicker.CustomNumberPicker
+        <com.firepitmedia.earnit.screenruletimepicker.CustomNumberPicker
             android:id="@+id/minuteicker"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

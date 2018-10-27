@@ -73,7 +73,7 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/task_date_header" />
 
-        <com.mobiledi.earnit.customcontrol.ExpandableHeightListView
+        <com.firepitmedia.earnit.customcontrol.ExpandableHeightListView
             android:id="@+id/task_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

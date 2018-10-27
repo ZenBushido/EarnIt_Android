@@ -7,7 +7,7 @@
     android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.mobiledi.earnit.activity.ChildRequestTaskApproval">
+    tools:context="com.firepitmedia.earnit.activity.ChildRequestTaskApproval">
 
     <RelativeLayout
         android:layout_width="match_parent"

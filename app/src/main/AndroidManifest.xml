@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.mobiledi.earnit">
+    package="com.firepitmedia.earnit">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -28,20 +28,20 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.firepitmedia.earnit.MyApplication"
         android:allowBackup="true"
         android:configChanges="orientation|screenSize"
         android:hardwareAccelerated="false"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:manageSpaceActivity=".activity.applock.ManageSpaceActivity"
+        android:manageSpaceActivity="com.firepitmedia.earnit.activity.applock.ManageSpaceActivity"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".activity.LoginScreen"
+            android:name="com.firepitmedia.earnit.activity.LoginScreen"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
@@ -51,94 +51,94 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ParentDashboard"
+            android:name="com.firepitmedia.earnit.activity.ParentDashboard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SignUp"
+            android:name="com.firepitmedia.earnit.activity.SignUp"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".activity.AddTask"
+            android:name="com.firepitmedia.earnit.activity.AddTask"
             android:screenOrientation="portrait"
 
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".activity.EditTask"
+            android:name="com.firepitmedia.earnit.activity.EditTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".activity.ParentProfile"
+            android:name="com.firepitmedia.earnit.activity.ParentProfile"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".dialogfragment.UploadTaskImageFragment"
+            android:name="com.firepitmedia.earnit.dialogfragment.UploadTaskImageFragment"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".activity.AddChild"
+            android:name="com.firepitmedia.earnit.activity.AddChild"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".activity.ChildDashboard"
+            android:name="com.firepitmedia.earnit.activity.ChildDashboard"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_child_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.ParentCheckInChildDashboard" />
+        <activity android:name="com.firepitmedia.earnit.activity.ParentCheckInChildDashboard" />
         <activity
-            android:name=".activity.GoalActivity"
+            android:name="com.firepitmedia.earnit.activity.GoalActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".activity.EditGoalActivity"
+            android:name="com.firepitmedia.earnit.activity.EditGoalActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".activity.ChildRequestTaskApproval"
+            android:name="com.firepitmedia.earnit.activity.ChildRequestTaskApproval"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".activity.ChildMessage"
+            android:name="com.firepitmedia.earnit.activity.ChildMessage"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.BalanceAdjustment"
+            android:name="com.firepitmedia.earnit.activity.BalanceAdjustment"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.BalanceActivity"
+            android:name="com.firepitmedia.earnit.activity.BalanceActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.InitialParentProfile"
+            android:name="com.firepitmedia.earnit.activity.InitialParentProfile"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ParentTaskApproval"
+            android:name="com.firepitmedia.earnit.activity.ParentTaskApproval"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.PasswordReminder"
+            android:name="com.firepitmedia.earnit.activity.PasswordReminder"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ParentCalendarActivity"
+            android:name="com.firepitmedia.earnit.activity.ParentCalendarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChildCalendarActivity"
+            android:name="com.firepitmedia.earnit.activity.ChildCalendarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ScreenRules"
+            android:name="com.firepitmedia.earnit.activity.ScreenRules"
             android:screenOrientation="portrait" />
 
         <!-- [START firebase_service] -->
         <service
-            android:name=".service.CustomFirebaseMessagingService"
+            android:name="com.firepitmedia.earnit.service.CustomFirebaseMessagingService"
             android:permission="signature">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -147,7 +147,7 @@
         <!-- [END firebase_service] -->
         <!-- [START firebase_iid_service] -->
         <service
-            android:name=".service.CustomFirebaseInstanceIDService"
+            android:name="com.firepitmedia.earnit.service.CustomFirebaseInstanceIDService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -155,18 +155,18 @@
         </service>
         <!-- [END firebase_iid_service] -->
         <service
-            android:name=".service.FCMJobService"
+            android:name="com.firepitmedia.earnit.service.FCMJobService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
-        <service android:name=".service.UpdateFcmToken" />
-        <service android:name=".service.SendMessageService" />
+        <service android:name="com.firepitmedia.earnit.service.UpdateFcmToken" />
+        <service android:name="com.firepitmedia.earnit.service.SendMessageService" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.mobiledi.earnit.fileprovider"
+            android:authorities="com.firepitmedia.earnit.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -175,10 +175,10 @@
         </provider>
 
         <service
-            android:name=".service.applock_service.AppCheckServices"
+            android:name="com.firepitmedia.earnit.service.applock_service.AppCheckServices"
             android:exported="false" />
 
-        <receiver android:name=".receiver.NewAppInstalledReceiver">
+        <receiver android:name="com.firepitmedia.earnit.receiver.NewAppInstalledReceiver">
             <intent-filter android:priority="100">
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
@@ -188,7 +188,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".receiver.BootComplete"
+            android:name="com.firepitmedia.earnit.receiver.BootComplete"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -197,57 +197,57 @@
                 <action android:name="android.intent.action.PACKAGE_RESTARTED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".receiver.ConnectivityReceiver">
+        <receiver android:name="com.firepitmedia.earnit.receiver.ConnectivityReceiver">
             <intent-filter>
                 <action
                     android:name="android.net.conn.CONNECTIVITY_CHANGE"
                     tools:ignore="BatteryLife" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".receiver.AlarmReceiver" />
+        <receiver android:name="com.firepitmedia.earnit.receiver.AlarmReceiver" />
 
         <activity
-            android:name=".activity.applock.SplashActivity"
+            android:name="com.firepitmedia.earnit.activity.applock.SplashActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.applock.MainActivity"
+            android:name="com.firepitmedia.earnit.activity.applock.MainActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.applock.PasswordActivity"
+            android:name="com.firepitmedia.earnit.activity.applock.PasswordActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.applock.PasswordSetActivity"
+            android:name="com.firepitmedia.earnit.activity.applock.PasswordSetActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.applock.PasswordRecoveryActivity"
+            android:name="com.firepitmedia.earnit.activity.applock.PasswordRecoveryActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.applock.PasswordRecoverSetActivity"
+            android:name="com.firepitmedia.earnit.activity.applock.PasswordRecoverSetActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.applock.ManageSpaceActivity"
+            android:name="com.firepitmedia.earnit.activity.applock.ManageSpaceActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.applock.LoadingActivity"
+            android:name="com.firepitmedia.earnit.activity.applock.LoadingActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.usageStats.AppUsageStatisticsActivity" />
-        <activity android:name=".activity.RequestTransfer"
+        <activity android:name="com.firepitmedia.earnit.activity.usageStats.AppUsageStatisticsActivity" />
+        <activity android:name="com.firepitmedia.earnit.activity.RequestTransfer"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
         <meta-data
