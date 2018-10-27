@@ -8,26 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:387625439950:android:1c588ba3129072b7",
+        "mobilesdk_app_id": "1:387625439950:android:f1d2fde88735ac1f",
         "android_client_info": {
-          "package_name": "com.mobiledi.earnit"
+          "package_name": "com.firepitmedia.earnit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "387625439950-gi77aoatp9c6gpir1uejl3h9gf0m4e79.apps.googleusercontent.com",
+          "client_id": "387625439950-h2iol7oqt22ojq1bf1lslk2fp6m9m2oa.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mobiledi.earnit",
-            "certificate_hash": "9c09f427f29f445ec198aa7430c868267672040f"
-          }
-        },
-        {
-          "client_id": "387625439950-iom12f7rpgi95c99e9eu7dl3g39o0mal.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mobiledi.earnit",
-            "certificate_hash": "75186221d1e1e23b64d7dab7c97f6aef3d1a1acb"
+            "package_name": "com.firepitmedia.earnit",
+            "certificate_hash": "09dbeb185697ac5be6ada9a58995298bd3ecd695"
           }
         },
         {
