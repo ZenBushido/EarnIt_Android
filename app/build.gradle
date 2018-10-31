@@ -46,12 +46,12 @@ android {
         debug {
             keyAlias 'debug'
             keyPassword 'android'
-            storeFile file('../keystore/debug_key.jks')
+            storeFile file('..\\keystore\\debug_key.jks')
             storePassword 'android'
         }
         release {
             def keystorePropertiesFile = file("..\\keystore\\release.properties")
-            if (keystorePropertiesFile.exists()) {
+//            if (keystorePropertiesFile.exists()) {
                 def keystoreProperties = new Properties()
                 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
@@ -61,9 +61,9 @@ android {
                 storePassword keystoreProperties['storePassword']
                 v1SigningEnabled true
                 v2SigningEnabled true
-            } else {
-                return null
-            }
+//            } else {
+//                return null
+//            }
         }
     }
     productFlavors {
