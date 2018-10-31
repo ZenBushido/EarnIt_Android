@@ -12,5 +12,5 @@ Build Application in Debug Mode
 		
 # On Mac OS and Linux platforms, type these commands:
 
-			../EarnIt$ chmod +x gradlew
+			../EarnIt$ chmod +x gradlew s
 			../EarnIt$ ./gradlew assembleDebug
