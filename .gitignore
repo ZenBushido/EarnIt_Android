@@ -1,2 +1,4 @@
 /files/*
-/keystore/*
+/target
+/app/devServer
+/app/prodServer
