@@ -1,4 +1,4 @@
-/files/*
+/.idea
 /target
 /app/devServer
 /app/prodServer
