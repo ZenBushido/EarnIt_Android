@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.arcadefire:nice-spinner-1.2">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/cabdedd341a8b6b12af7402265945284/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/cabdedd341a8b6b12af7402265945284/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/1afe59ab0799cd71613ba6ccf2608696/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/nice-spinner-1.2.aar/1afe59ab0799cd71613ba6ccf2608696/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
