@@ -18,13 +18,13 @@ repositories {
 
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     flavorDimensions "versionCode"
     defaultConfig {
         applicationId "com.firepitmedia.earnit"
         minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 57
+        targetSdkVersion 28
+        versionCode 2
         versionName "1.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -50,25 +50,28 @@ android {
             storePassword 'android'
         }
         release {
-            keyAlias 'release'
-            keyPassword '%bKv~1W6LEu*~xH7HXEcn$Agxt'
-            storeFile file('$rootDir/keystore/release_key.jks')
-            storePassword 'F0aZjuP9wo25zPgl'
-            v1SigningEnabled true
-            v2SigningEnabled true
+            def keystorePropertiesFile = file("..\\keystore\\release.properties")
+            if (keystorePropertiesFile.exists()) {
+                def keystoreProperties = new Properties()
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
-            keyAlias 'release'
-            keyPassword '&(ssIyTp94Df*d~f$d99SUp0Db'
-            storeFile file('../keystore/release_key.jks')
-            storePassword 'UxzO8d009XzpULgd'
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                v1SigningEnabled true
+                v2SigningEnabled true
+            } else {
+                return null
+            }
         }
     }
     productFlavors {
         devServer {
             minSdkVersion 19
             signingConfig signingConfigs.debug
-            targetSdkVersion 27
-            versionCode 1
+            targetSdkVersion 28
+            versionCode 2
             versionName '1.0'
             applicationId 'com.firepitmedia.earnit'
         }
@@ -76,9 +79,9 @@ android {
             minSdkVersion 19
             applicationId 'com.firepitmedia.earnit'
             signingConfig signingConfigs.release
-            versionCode 1
+            versionCode 2
             versionName '1.0'
-            targetSdkVersion 27
+            targetSdkVersion 28
         }
     }
     buildTypes {
@@ -102,7 +105,7 @@ android {
 }
 
 ext{
-    supportLibraryVersion = "27.1.1"
+    supportLibraryVersion = "28.0.0"
 }
 
 dependencies {
