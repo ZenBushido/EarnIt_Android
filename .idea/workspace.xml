@@ -15,7 +15,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eaed157a-e9fd-4cb6-8848-18cc3d34bdda" name="Default" comment="" />
+    <list default="true" id="eaed157a-e9fd-4cb6-8848-18cc3d34bdda" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/keystore/debug_key.jks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keystore/git.ignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keystore/old_passwords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keystore/release.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keystore/release_key.jks" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
