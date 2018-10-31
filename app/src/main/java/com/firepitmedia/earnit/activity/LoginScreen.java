@@ -105,7 +105,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         
         restCall = new RestCall(this);
         restCall.setAuthorizedListener(this);
-        if (preferences.getBoolean(AppConstant.NEED_TO_SAVE_CREDENTIALS, false)){
+        if (!preferences.getBoolean(AppConstant.NEED_TO_SAVE_CREDENTIALS, false)){
             username.setText(preferences.getString(AppConstant.EMAIL, ""));
             password.setText(preferences.getString(AppConstant.PASSWORD, ""));
             chRemember.setChecked(true);
@@ -113,12 +113,8 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
                 restCall.authenticateUser(preferences.getString(AppConstant.EMAIL, ""), preferences.getString(AppConstant.PASSWORD, ""), password, AppConstant.LOGIN_SCREEN, progressBar);
             }
         }
-        chRemember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                preferences.edit().putBoolean(AppConstant.NEED_TO_SAVE_CREDENTIALS, b).apply();
-            }
-        });
+        chRemember.setOnCheckedChangeListener((compoundButton, b) ->
+                preferences.edit().putBoolean(AppConstant.NEED_TO_SAVE_CREDENTIALS, b).apply());
 
         validator = new Validator(loginScreen);
         validator.setValidationListener(loginScreen);
@@ -126,13 +122,9 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
     }
 
     private void updateToken(){
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( new OnSuccessListener<InstanceIdResult>() {
-        @Override
-        public void onSuccess(InstanceIdResult instanceIdResult) {
-            getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE).edit().
-                    putString(AppConstant.TOKEN_ID, instanceIdResult.getToken()).apply();
-        }
-    });
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(instanceIdResult ->
+                getSharedPreferences(AppConstant.FIREBASE_PREFERENCE, MODE_PRIVATE).edit().
+                putString(AppConstant.TOKEN_ID, instanceIdResult.getToken()).apply());
     }
 
     private void setCursorPosition() {

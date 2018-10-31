@@ -115,7 +115,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getData().size() > 0) {
             Utils.logDebug(TAG, "Message data payload: " + remoteMessage.getData());
             editor.putString(AppConstant.TOKEN_DATA, remoteMessage.getData().toString());
-            editor.commit();
+            editor.apply();
 
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
