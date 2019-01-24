@@ -50,7 +50,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
     @Password(min = 6, scheme = Password.Scheme.ANY)
 
     EditText password;
-    Button loginButton, sign_up;
+    Button loginButton; TextView sign_up;
     CheckBox chRemember;
     LoginScreen loginScreen;
     RelativeLayout progressBar;
@@ -91,7 +91,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         username = (EditText) findViewById(R.id.input_email);
         password = (EditText) findViewById(R.id.input_password);
         loginButton = (Button) findViewById(R.id.login);
-        sign_up = (Button) findViewById(R.id.sign_up);
+        sign_up = (TextView) findViewById(R.id.sign_up);
         progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
         username.setOnClickListener(loginScreen);
         password.setOnClickListener(loginScreen);
@@ -201,7 +201,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
         dialog.setCancelable(false);
         final TextView message = (TextView) dialog.findViewById(R.id.dialog_message);
         message.setText(resources.getString(R.string.ask_user_type));
-        Button declineButton = (Button) dialog.findViewById(R.id.cancel);
+        TextView declineButton = (TextView) dialog.findViewById(R.id.cancel);
         declineButton.setText(AppConstant.NO);
         declineButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,7 +210,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener, V
                 dialog.dismiss();
             }
         });
-        Button acceptButton = dialog.findViewById(R.id.ok);
+        TextView acceptButton = dialog.findViewById(R.id.ok);
         acceptButton.setText(AppConstant.YES);
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override

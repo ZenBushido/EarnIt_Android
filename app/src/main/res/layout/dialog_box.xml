@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/message_dialog_width"
     android:layout_height="wrap_content"
-    android:background="@drawable/edittext_background"
+    android:background="@drawable/diologbox_bg"
     android:orientation="vertical"
-    android:padding="@dimen/username_password_top_bottom_margin">
+    >
 
     <TextView
         android:id="@+id/dialog_message"
@@ -12,42 +12,59 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/username_password_top_bottom_margin"
+        android:textStyle="bold"
         android:text="Are you sure you want to mark it as completed? "
-        android:textColor="@color/main_font"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:textSize="@dimen/check_in_text_size" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:alpha="0.5"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".5"
+        android:layout_height="60dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="@dimen/username_password_top_bottom_margin">
+        >
 
-        <Button
+        <TextView
             android:id="@+id/cancel"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/views_height"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/sign_in_round"
-            android:text="Cancel"
-            android:textAllCaps="false"
-            android:textColor="@color/main_font"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="No"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_dark"
             android:textSize="@dimen/check_in_text_size" />
 
-        <Button
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:alpha="0.5"/>
+
+        <TextView
             android:id="@+id/ok"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/views_height"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="@dimen/username_password_top_bottom_margin"
-            android:layout_weight="1"
-            android:background="@drawable/sign_in_round"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:text="Yes"
-            android:textAllCaps="false"
-            android:textColor="@color/main_font"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_dark"
             android:textSize="@dimen/check_in_text_size" />
 
     </LinearLayout>

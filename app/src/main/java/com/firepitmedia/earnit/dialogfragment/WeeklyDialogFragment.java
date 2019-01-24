@@ -59,27 +59,26 @@ WeeklyDialogListener weeklyDialogListener;
 weekList= new ArrayList<>();
         View dialogView = inflater.inflate(R.layout.repeat_weekly, container, false);
 
-        TextView repeat_daily_text = (TextView) dialogView.findViewById(R.id.repeat_weekly_frequency);
-        repeat_daily_text.setText("Weekly");
+
 
         final EditText repeat_daily_check = (EditText) dialogView.findViewById(R.id.repeat_weekly_checkbox);
         repeat_daily_check.setText("");
         // "Got it" button
 
         daybutton1 = (Button) dialogView.findViewById(R.id.repeat_weekly_san);
-        daybutton1.setText("S");
+        daybutton1.setText("SUN");
         daybutton2 = (Button) dialogView.findViewById(R.id.repeat_weekly_mon);
-        daybutton2.setText("M");
+        daybutton2.setText("MON");
         daybutton3 = (Button) dialogView.findViewById(R.id.repeat_weekly_tue);
-        daybutton3.setText("T");
+        daybutton3.setText("TUE");
         daybutton4 = (Button) dialogView.findViewById(R.id.repeat_weekly_wen);
-        daybutton4.setText("W");
+        daybutton4.setText("WED");
         daybutton5 = (Button) dialogView.findViewById(R.id.repeat_weekly_thu);
-        daybutton5.setText("T");
+        daybutton5.setText("THU");
         daybutton6 = (Button) dialogView.findViewById(R.id.repeat_weekly_fri);
-        daybutton6.setText("F");
+        daybutton6.setText("FRI");
         daybutton7 = (Button) dialogView.findViewById(R.id.repeat_weekly_sat);
-        daybutton7.setText("S");
+        daybutton7.setText("SAT");
 
         daybutton1.setOnClickListener(new View.OnClickListener() {
             @Override

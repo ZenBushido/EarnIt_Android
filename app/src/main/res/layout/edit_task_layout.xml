@@ -1,508 +1,386 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/addtask_framelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@drawable/back_ground"
+    android:fillViewport="true"
     android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/action_bar_view_headeradded"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <ScrollView
-
-            android:fillViewport="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
         <LinearLayout
-            android:id="@+id/header_task_layout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/child_view_layput_bg"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/add_task_header1"
+            <include
+                layout="@layout/action_bar_view_headeradded_new"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:gravity="center_horizontal" />
+                android:layout_height="wrap_content" />
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/add_task_header2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="@string/take_out_trash"
-                    android:textColor="@color/check_in"
-                    android:textSize="20sp" />
+                    android:text="Bddd"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
                 <ImageButton
                     android:id="@+id/btnApprove"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center|right"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/approve" />
 
 
-            </LinearLayout>
+            </FrameLayout>
 
-            <TextView
-                android:id="@+id/add_task_header3"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:gravity="center_horizontal" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_below="@+id/header_task_layout"
-            android:id="@+id/ll_edittask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/username_password_top_bottom_margin">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/views_height"
-                android:layout_marginLeft="@dimen/add_task_left_margin"
-                android:layout_marginTop="@dimen/add_task_top_margin"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".8"
-                    android:gravity="center|left"
-                    android:text="Task Name:"
-                    android:textColor="@color/main_font"
-                    android:textSize="@dimen/check_in_text_size" />
-
-                <EditText
-                    android:id="@+id/task_name"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/add_task_textview_left_margin"
-                    android:layout_marginRight="@dimen/add_task_textview_left_margin"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/amount_edittext_border"
-                    android:gravity="center"
-                    android:hint="New Task"
-                    android:imeOptions="actionNext"
-                    android:inputType="textCapSentences"
-                    android:paddingLeft="@dimen/add_task_textview_left_margin"
-                    android:singleLine="true"
-                    android:textColor="@color/main_font"
-                    android:textColorHint="@color/edit_text_hint"
-                    android:textSize="@dimen/check_in_text_size">
-
-                    <requestFocus />
-
-                </EditText>
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/views_height"
-                android:layout_marginLeft="@dimen/add_task_left_margin"
-                android:layout_marginTop="2dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".8"
-                    android:gravity="center|left"
-                    android:text="Assign to:"
-                    android:textColor="@color/main_font"
-                    android:textSize="@dimen/check_in_text_size" />
-
-                <TextView
-                    android:id="@+id/assign_to_id"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/add_task_textview_left_margin"
-                    android:layout_marginRight="@dimen/add_task_textview_left_margin"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/round_corner"
-                    android:drawableEnd="@android:drawable/arrow_down_float"
-                    android:gravity="center"
-                    android:paddingLeft="@dimen/add_task_textview_left_margin"
-                    android:paddingRight="5dp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/main_font"
-                    android:textSize="@dimen/check_in_text_size" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/views_height"
-                android:layout_marginBottom="@dimen/add_task_top_margin"
-                android:layout_marginLeft="@dimen/add_task_left_margin"
-                android:layout_marginTop="@dimen/add_task_top_margin"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".8"
-                    android:gravity="center|left"
-                    android:paddingRight="@dimen/add_task_textview_left_margin"
-                    android:text="Apply to goal:"
-                    android:textColor="@color/main_font"
-                    android:textSize="@dimen/check_in_text_size" />
-
-                <TextView
-                    android:id="@+id/apply_to_goal_spinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/add_task_textview_left_margin"
-                    android:layout_marginRight="@dimen/add_task_textview_left_margin"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/round_corner"
-                    android:drawableEnd="@android:drawable/arrow_down_float"
-                    android:gravity="center"
-                    android:paddingLeft="@dimen/add_task_textview_left_margin"
-                    android:paddingRight="5dp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/main_font"
-                    android:textSize="@dimen/check_in_text_size" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/views_height"
-                android:layout_marginLeft="@dimen/add_task_left_margin"
-                android:layout_marginTop="@dimen/add_task_top_margin"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".8"
-                    android:gravity="center|left"
-                    android:text="Amount:"
-                    android:textColor="@color/main_font"
-                    android:textSize="@dimen/check_in_text_size" />
-
-                <EditText
-                    android:id="@+id/task_amount"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/add_task_textview_left_margin"
-                    android:layout_marginRight="@dimen/add_task_textview_left_margin"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/amount_edittext_border"
-                    android:gravity="center"
-                    android:hint="Amount"
-                    android:imeOptions="actionNext"
-                    android:paddingLeft="@dimen/add_task_textview_left_margin"
-                    android:singleLine="true"
-                    android:inputType="number"
-
-                    android:textColor="@color/main_font"
-                    android:textColorHint="@color/edit_text_hint"
-                    android:textSize="@dimen/check_in_text_size">
-
-                    <requestFocus />
-
-                </EditText>
-
-            </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/add_task_left_margin"
-                android:text="Task Details:"
-                android:textColor="@color/main_font"
-                android:textSize="@dimen/check_in_text_size" />
-
-            <EditText
-                android:id="@+id/task_detail"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/add_task_left_margin"
-                android:layout_marginRight="@dimen/add_task_textview_left_margin"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edittext_background"
-                android:ems="10"
-                android:gravity="start"
-                android:hint="Task details"
-                android:nextFocusDown="@+id/login_remember_checkbox"
-                android:padding="8dp"
-                android:textColor="@color/main_font"
-                android:textColorHint="@color/edit_text_hint"
-                android:textSize="@dimen/check_in_text_size" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="15dp">
 
-                <LinearLayout
-                    android:layout_marginRight="20dp"
+
+                <EditText
+                    android:id="@+id/task_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/new_edittext_back"
+                    android:drawableRight="@drawable/user_icon_new"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="New Task"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/check_in_text_size">
+
+                    <requestFocus />
+
+                </EditText>
+
+                <TextView
+                    android:id="@+id/apply_to_goal_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/new_edittext_back"
+                    android:drawableRight="@drawable/download_arrow_white"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="Apply Goal"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/check_in_text_size">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/assign_to_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/new_edittext_back"
+                    android:drawableRight="@drawable/assign_wh"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:textColor="@color/new_text_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/check_in_text_size">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/task_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/new_edittext_back"
+                    android:drawableRight="@drawable/doller"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="Amount"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/check_in_text_size">
+
+                </EditText>
+
+                <EditText
+                    android:id="@+id/task_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/new_edittext_back"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="top"
+                    android:hint="Task Details"
+                    android:imeOptions="actionDone"
+                    android:padding="12dp"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/check_in_text_size">
+
+                </EditText>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="12dp"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/due_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/calender_white" />
 
 
                         <TextView
-                            android:layout_centerVertical="true"
-                            android:layout_marginTop="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/add_task_textview_left_margin"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
                             android:gravity="right|center"
                             android:text="Due Date:"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
 
                         <TextView
-                            android:layout_marginRight="15dp"
-                            android:layout_toLeftOf="@+id/due_date"
-
-                            android:layout_centerVertical="true"
                             android:id="@+id/date_time_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:textColor="@color/main_font"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/new_text_clr"
                             android:textSize="@dimen/check_in_text_size" />
 
-                        <ImageView
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:padding="2dp"
-                            android:id="@+id/due_date"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:background="@android:color/transparent"
-                            android:src="@drawable/calender" />
+
+                    </LinearLayout>
 
 
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/new_edittext_back"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="Repeats:"
+                            android:textColor="@color/new_text_clr"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/repit_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="5dp"
+                            android:text="None"
+                            android:textColor="@color/new_text_clr"
+                            android:textSize="16sp" />
 
 
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="right"
+                        android:orientation="horizontal">
 
 
                         <TextView
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/add_task_textview_left_margin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:paddingRight="@dimen/add_task_textview_left_margin"
-                            android:text="@string/app_lock"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="25dp"
+                            android:text="Requires Photo:"
                             android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
+                            android:textSize="16sp" />
+
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/chePhotoRequired"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:scaleX="1.30"
+                            android:scaleY="1.30"
+                            app:buttonTint="@android:color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="25dp"
+                            android:text="@string/app_lock"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
 
                         <android.support.v7.widget.AppCompatCheckBox
                             android:id="@+id/chAppLock"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
                             android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            app:buttonTint="@android:color/white"
                             android:scaleX="1.30"
-                            android:scaleY="1.30"/>
+                            android:scaleY="1.30"
+                            app:buttonTint="@android:color/white" />
 
 
-                        <Button
-                            android:visibility="gone"
-                            android:layout_marginRight="5dp"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="10dp"
-                            android:padding="2dp"
-                            android:id="@+id/newtask_screenlockcheck"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/round_corner"
-                            android:textColor="@color/main_font" />
+                    </LinearLayout>
 
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:visibility="gone"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
+                    <Button
+                        android:id="@+id/save"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/new_btn_back"
+                        android:text="Save"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/check_in_text_size" />
 
 
-
-
-                        <TextView
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:paddingRight="@dimen/add_task_textview_left_margin"
-                            android:text="@string/real_time_money"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
-
-                        <Button
-                            android:layout_marginRight="5dp"
-                            android:layout_alignParentRight="true"
-                            android:padding="2dp"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/round_corner"
-                            android:gravity="center"
-                            android:textColor="@color/main_font" />
-
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-
+                    <Button
+                        android:id="@+id/cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/new_btn_back"
+                        android:text="Cancel"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/check_in_text_size" />
+
+
+                    <Button
+                        android:id="@+id/btnDelete"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-
-
-                        <TextView
-                            android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:paddingRight="@dimen/add_task_textview_left_margin"
-                            android:text="Requires Photo:"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
-
-                        <android.support.v7.widget.AppCompatCheckBox
-                            android:layout_alignParentEnd="true"
-                            android:id="@+id/chePhotoRequired"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            app:buttonTint="@android:color/white"
-                            android:scaleX="1.30"
-                            android:scaleY="1.30"/>
-
-                        <Button
-                            android:visibility="gone"
-                            android:layout_marginRight="5dp"
-                            android:layout_alignParentRight="true"
-                            android:padding="2dp"
-                            android:id="@+id/newtask_requirephoto"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/round_corner"
-                            android:gravity="center"
-                            android:textColor="@color/main_font" />
-
-                    </RelativeLayout>
-
-
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/new_btn_back"
+                        android:text="Delete"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/check_in_text_size" />
 
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-
-
-                    <LinearLayout
+                    <Button
+                        android:id="@+id/newtask_screenlockcheck"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/round_corner"
+                        android:padding="2dp"
+                        android:textColor="@color/main_font"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/newtask_requirephoto"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/round_corner"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:textColor="@color/main_font"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@+id/addtask_helpicon"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btnDelete"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_38size"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/sign_in_round"
-                            android:text="Delete"
-                            android:textAllCaps="false"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
-                        <Button
-                            android:layout_weight="1"
-                            android:id="@+id/cancel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_38size"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/sign_in_round"
-                            android:text="Cancel"
-                            android:textAllCaps="false"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
-
-                        <Button
-                            android:layout_weight="1"
-                            android:id="@+id/save"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_38size"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/sign_in_round"
-                            android:text="Save"
-                            android:textAllCaps="false"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
-                    </LinearLayout>
-
-
+                        android:layout_below="@+id/ll_edittask"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/background"
+                        android:src="@drawable/ic_help_white_24dp"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -510,34 +388,22 @@
 
         </LinearLayout>
 
-                <ImageButton
-                    android:layout_below="@+id/ll_edittask"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:id="@+id/addtask_helpicon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/background"
-                    android:src="@drawable/ic_help_white_24dp" />
-            </RelativeLayout>
-        </ScrollView>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/loadingPanel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone">
-
-        <ProgressBar
+        <RelativeLayout
+            android:id="@+id/loadingPanel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/pink"
-            android:indeterminateTintMode="src_atop" />
+            android:layout_gravity="center"
+            android:visibility="gone">
 
-    </RelativeLayout>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/pink"
+                android:indeterminateTintMode="src_atop" />
 
-</FrameLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

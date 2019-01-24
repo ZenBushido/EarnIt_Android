@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
@@ -91,17 +92,31 @@ public class FloatingMenu {
         return location;
     }
 
-    public void fetchAvatarDimension(CircularImageView view, Child child, Child childWithAllTask, Parent parent, String fromScreen, RelativeLayout progressBar, Tasks tasks) {
+//    public void fetchAvatarDimension(CircularImageView view, Child child, Child childWithAllTask, Parent parent, String fromScreen, RelativeLayout progressBar, Tasks tasks) {
+//
+//        int[] location = new int[2];
+//        view.getLocationOnScreen(location);
+//        Point p = new Point();
+//        p.x = location[0];
+//        p.y = location[1] - 25;
+//        showPopup(activity, p, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
+//        //   Rect loation = locateView(view);
+//        //  popupShow(activity, loation, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
+//    }
+
+    public void fetchAvatarDimension(ImageView view, Child child, Child childWithAllTask, Parent parent, String fromScreen, RelativeLayout progressBar, Tasks tasks) {
 
         int[] location = new int[2];
         view.getLocationOnScreen(location);
         Point p = new Point();
-        p.x = location[0];
-        p.y = location[1] - 25;
+        p.x = location[0] +50;
+        p.y = location[1] -40;
         showPopup(activity, p, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
         //   Rect loation = locateView(view);
         //  popupShow(activity, loation, child, childWithAllTask, parent, fromScreen, progressBar, tasks);
     }
+
+
 
     private void showPopup(Activity view, Point p, final Child child, final Child childWithAllTask, final Parent parent, final String fromScreen, final RelativeLayout progressBar, final Tasks tasks) {
         Log.d("jdsahdkjh", "showPopup 1");

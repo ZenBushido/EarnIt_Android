@@ -92,8 +92,8 @@ public class GoalActivity extends BaseActivity implements View.OnClickListener, 
     String goalMode, fromScreen;
     private final String TAG = GoalActivity.class.getSimpleName();
     ScreenSwitch screenSwitch;
-    private Toolbar goalToolbar;
-    private ImageButton drawerToggle;
+   /* private Toolbar goalToolbar;
+    private ImageButton drawerToggle;*/
     ImageView back;
     ImageButton goalHelp;
 
@@ -107,14 +107,14 @@ public class GoalActivity extends BaseActivity implements View.OnClickListener, 
         setContentView(R.layout.goal_layout);
 
         goalHelp = (ImageButton) findViewById(R.id.goal_helpicon);
-        goalToolbar = (Toolbar) findViewById(R.id.toolbar_goal);
+      /*  goalToolbar = (Toolbar) findViewById(R.id.toolbar_goal);
         drawerToggle = (ImageButton) findViewById(R.id.drawerBtn);
-
+*/
         rvGoalList = (RecyclerView) findViewById(R.id.rvGoalList);
 
         progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
-        setSupportActionBar(goalToolbar);
-        getSupportActionBar().setTitle(null);
+      /*  setSupportActionBar(goalToolbar);
+        getSupportActionBar().setTitle(null);*/
 
         back = (ImageView) findViewById(R.id.addtask_back_arrow);
         back.setOnClickListener(new View.OnClickListener() {
@@ -166,8 +166,8 @@ public class GoalActivity extends BaseActivity implements View.OnClickListener, 
         }
 
 
-        NavigationDrawer navigationDrawer = new NavigationDrawer(goalActivity, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
-        navigationDrawer.setOnDrawerToggeled(this);
+      /*  NavigationDrawer navigationDrawer = new NavigationDrawer(goalActivity, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
+        navigationDrawer.setOnDrawerToggeled(this);*/
 
         updateAvatar(childObject, childAvatar);
 

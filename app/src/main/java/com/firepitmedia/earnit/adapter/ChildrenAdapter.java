@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.firepitmedia.earnit.model.DayTaskStatus;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.firepitmedia.earnit.MyApplication;
 import com.firepitmedia.earnit.R;
@@ -61,10 +62,11 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
     private final String TAG = "ChildrenAdapter";
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView firstName;
+        public TextView firstName,pastdue_txt,pending_approvel_txt;
         public CircularImageView profileImage;
         public ExpandableHeightListView taskListView;
-        public LinearLayout rootLayout;
+        public LinearLayout rootLayout,tasklist_lyt;
+        ImageView dot_img;
 
 
         public MyViewHolder(View view) {
@@ -73,6 +75,10 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
             profileImage =  view.findViewById(R.id.user_image);
             taskListView = view.findViewById(R.id.task_list);
             rootLayout =  view.findViewById(R.id.parent_child_single_view);
+            tasklist_lyt= view.findViewById(R.id.tasklist_lyt);
+            dot_img= view.findViewById(R.id.dot_img);
+            pastdue_txt= view.findViewById(R.id.pastdue_txt);
+            pending_approvel_txt= view.findViewById(R.id.pending_approvel_txt);
         }
     }
 
@@ -89,7 +95,7 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.parent_child_view, parent, false);
+                .inflate(R.layout.parent_child_view_new, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -108,8 +114,8 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.override(350,350);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-            requestOptions.placeholder(R.drawable.default_avatar);
-            requestOptions.error(R.drawable.default_avatar);
+            requestOptions.placeholder(R.drawable.icon);
+            requestOptions.error(R.drawable.icon);
 
 //            Glide.with(activity).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar())
 //                    .into(holder.profileImage);
@@ -121,8 +127,19 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
             }*/
             holder.firstName.setText(child.getFirstName());
             holder.firstName.setOnClickListener(onChildClick(holder, child));
-            holder.profileImage.setOnClickListener(onChildClick(holder, child));
+            holder.dot_img.setOnClickListener(onChildClick(holder, child));
             //TaskLIST
+        if(child.getTasksArrayList().size()>0) {
+            holder.tasklist_lyt.setVisibility(View.GONE);
+            holder.pastdue_txt.setText(""+child.getTasksArrayList().size());
+        }
+        else {
+            holder.tasklist_lyt.setVisibility(View.GONE);
+            holder.pastdue_txt.setText("None");
+        }
+
+        getApprovalCount(holder.pending_approvel_txt, child);
+
             taskAdapter = new TaskAdapter(activity, sortingTasks(child.getTasksArrayList()), child, child, parent);
             holder.taskListView.setAdapter(taskAdapter);
             holder.taskListView.setDivider(null);
@@ -150,8 +167,8 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
                 .build();
         picasso
                 .load(url)
-                .error(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.default_avatar)))
-                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.default_avatar)))
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.icon)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.icon)))
                 .into(imageView);
     }
 
@@ -174,7 +191,7 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
             @Override
             public void onClick(View view) {
                 Log.d("jdsahdkjh", "Open FloatingMenu. Child: " + child);
-                new FloatingMenu(activity).fetchAvatarDimension(holder.profileImage, child, child, parent, AppConstant.PARENT_DASHBOARD, progressBar,null);
+                new FloatingMenu(activity).fetchAvatarDimension(holder.dot_img, child, child, parent, AppConstant.PARENT_DASHBOARD, progressBar,null);
             }
         };
     }
@@ -235,6 +252,30 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.MyView
                 Utils.logDebug(TAG, "dpi : 560dpi");
                 break;
         }
+    }
+
+    private void getApprovalCount(TextView txt, Child child){
+        int i = 0;
+        for (Tasks tasks1 : child.getTasksArrayList()) {
+            Utils.logDebug(TAG, "taskl: " + tasks1.toString());
+            if  (tasks1.getRepititionSchedule() != null && tasks1.getRepititionSchedule().getDayTaskStatuses() != null){
+                List<DayTaskStatus> dayTaskStatuses = tasks1.getRepititionSchedule().getDayTaskStatuses();
+                for (DayTaskStatus dayTaskStatus : dayTaskStatuses){
+                    if (dayTaskStatus.getStatus().equalsIgnoreCase(AppConstant.COMPLETED)){
+                        i ++;
+                    }
+                }
+            } else if (tasks1.getStatus().equalsIgnoreCase("Completed")) {
+                i++;
+            }
+
+
+        }
+        if(i==0)
+            txt.setText("None");
+        else
+        txt.setText(""+i);
+
     }
 
 

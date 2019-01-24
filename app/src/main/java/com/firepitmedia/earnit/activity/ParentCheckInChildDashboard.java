@@ -65,7 +65,7 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
     @BindView(R.id.textView_child) TextView tHeaderName;
     @BindView(R.id.add_task) TextView addTask;
     @BindView(R.id.approval_label) TextView readyLabel;
-    @BindView(R.id.toolbar_child) Toolbar parentCheckinToolbar;
+   /* @BindView(R.id.toolbar_child) Toolbar parentCheckinToolbar;*/
     public Child childObject;
     Child otherChild;
     Parent parentObject;
@@ -73,7 +73,7 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
     ChildViewDateAdapter parentCheckInTaskAdapter;
     ParentCheckInChildDashboard parentCheckInChildDashboard;
     Button notifyChildButton;
-    @BindView(R.id.calendarBtn_child) ImageButton drawerToggle;
+   /* @BindView(R.id.calendarBtn_child) ImageButton drawerToggle;*/
     @BindView(R.id.loadingPanel) RelativeLayout progressBar;
     Handler handler;
     Runnable runnable;
@@ -91,12 +91,12 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parent_checkin_child_layout);
         ButterKnife.bind(this);
-        setSupportActionBar(parentCheckinToolbar);
-        getSupportActionBar().setTitle(null);
+       /* setSupportActionBar(parentCheckinToolbar);
+        getSupportActionBar().setTitle(null);*/
 
         parentCheckInChildDashboard = this;
         screenSwitch = new ScreenSwitch(parentCheckInChildDashboard);
-        drawerToggle.setImageResource(R.drawable.ic_menu_pink_36dp);
+        /*drawerToggle.setImageResource(R.drawable.ic_menu_pink_36dp);*/
 
         ivBackArrow.setOnClickListener(this);
         //SERIALIZE OBJECT FROM INTENT OBJECT
@@ -149,7 +149,7 @@ public class ParentCheckInChildDashboard extends BaseActivity implements View.On
         showAllTextView.setOnClickListener(parentCheckInChildDashboard);
         tChildImage.setOnClickListener(parentCheckInChildDashboard);
 
-        new NavigationDrawer(parentCheckInChildDashboard, parentObject, parentCheckinToolbar, drawerToggle, onScreen, childObject.getId());
+      /*  new NavigationDrawer(parentCheckInChildDashboard, parentObject, parentCheckinToolbar, drawerToggle, onScreen, childObject.getId());*/
         callApi();
     }
 

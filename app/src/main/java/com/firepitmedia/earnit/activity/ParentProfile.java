@@ -18,6 +18,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -146,7 +147,7 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.parent_profile_layout);
+        setContentView(R.layout.parent_profile_layout_new);
         ButterKnife.bind(this);
         profile = this;
         screenSwitch = new ScreenSwitch(profile);
@@ -237,8 +238,8 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
                 .build();
         picasso
                 .load(url)
-                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
-                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.icon)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.icon)))
                 .into(parentAvatar);
     }
 
@@ -281,6 +282,7 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
     void userImage() {
         vRuntimePermission(parentAvatar);
         selectImage();
+        //fromCamera();
     }
 
     @OnClick(R.id.ivBackArrow)
@@ -302,6 +304,14 @@ public class ParentProfile extends UploadRuntimePermission implements Validator.
         confirmPassword = (EditText) dialog.findViewById(R.id.confirm_password);
 
         Button declineButton = (Button) dialog.findViewById(R.id.cancel);
+        ImageView close_img= (ImageView) dialog.findViewById(R.id.close_img);
+        close_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
         declineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

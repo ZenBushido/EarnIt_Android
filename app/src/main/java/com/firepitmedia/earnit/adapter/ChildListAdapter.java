@@ -82,8 +82,8 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Chil
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.override(350,350);
         requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-        requestOptions.placeholder(R.drawable.default_avatar);
-        requestOptions.error(R.drawable.default_avatar);
+        requestOptions.placeholder(R.drawable.icon);
+        requestOptions.error(R.drawable.icon);
 
 //        Glide.with(activity).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+child.getAvatar())
 //                .into(holder.childImage);
@@ -134,8 +134,8 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Chil
                 .build();
         picasso
                 .load(url)
-                .error(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.default_avatar)))
-                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.default_avatar)))
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.icon)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.icon)))
                 .into(imageView);
     }
 

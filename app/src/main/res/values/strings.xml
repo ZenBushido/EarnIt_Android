@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">EarnIt</string>
     <string name="app_version">Version 1.2.0</string>
-    <string name="username_placeholder">Email</string>
-    <string name="password_placeholder">Password</string>
+    <string name="username_placeholder">Email Address</string>
+    <string name="password_placeholder">Enter Password</string>
     <string name="password_placeholderc">Password:</string>
     <string name="confirm_password_placeholder">Confirm password</string>
     <string name="confirm_password_placeholderc">Confirm password:</string>
@@ -23,8 +23,8 @@
     <string name="ok">OK</string>
 
     <string name="app_tag_line">Responsibility Made EASY!</string>
-    <string name="sign_in">Sign in</string>
-    <string name="sign_up">Sign up</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
     <string name="sign_up_text">Don\'t have an account ?</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
@@ -74,7 +74,7 @@
     <string name="other_message">Something went wrong</string>
     <string name="select_due_date">Please select a due date for the task</string>
     <string name="welcome_text1">We need to know your name and mobile number before you can add kids.</string>
-    <string name="welcome_text2">You can be creative with your name, but we require your actual mobile number!</string>
+    <string name="welcome_text2">You can be creative with your name, but we need your real number!</string>
     <string name="country_list">Select Country</string>
     <string name="dialog_tag">dialog</string>
     <string name="accountemail">Account email:</string>
@@ -91,7 +91,7 @@
     <string name="init_help">This is Initsetup Page!</string>
     <string name="remember">Remember Me</string>
     <string name="parentcalendar">This is ParentCalendar Page!</string>
-    <string name="forgot">Forgot password?</string>
+    <string name="forgot">Forgot password!</string>
     <!--FLOATING MENUS-->
     <string name="add_task">\u0020Add Tasks</string>
     <string name="all_taskall_task">\u0020All Tasks</string>
@@ -140,7 +140,7 @@
     <string name="create_new_allowance">Create New Allowance Task</string>
     <string name="keep_bathroom">Keep your bathroom clean</string>
     <string name="walk_sonny">Walk Sonny</string>
-    <string name="after_adding_child">After adding your child\'s information, they will receive a text with a download link, and the login information you add below.</string>
+    <string name="after_adding_child">After adding your child\'s information, they will receive a text with a download link, and the login information you enter below.</string>
     <string name="child_profile">Child\'s profile pic</string>
     <string name="cash">Cash:</string>
     <string name="allowance">Allowance:</string>

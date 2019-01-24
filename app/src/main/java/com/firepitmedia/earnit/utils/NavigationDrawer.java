@@ -79,7 +79,8 @@ public class NavigationDrawer {
         });
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(context)
-                .withHeaderBackground(R.drawable.drawer_background)
+                .withHeaderBackground(R.color.new_text_clr)
+               // .withHeaderBackground(R.drawable.drawer_background)
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
@@ -142,7 +143,7 @@ public class NavigationDrawer {
         TextView view = new TextView(context);
         view.setText(context.getResources().getString(R.string.app_version));
         view.setTextColor(context.getResources().getColor(R.color.main_font));
-        view.setGravity(Gravity.CENTER);
+        view.setGravity(Gravity.CENTER | Gravity.BOTTOM);
 
         navigationDrawer = new DrawerBuilder()
                 .withActivity(context)
@@ -150,7 +151,7 @@ public class NavigationDrawer {
                 .withToolbar(toolbar)
                 .withActionBarDrawerToggle(false)
                 .withDrawerGravity(Gravity.LEFT)
-                .withSliderBackgroundColorRes(R.color.background)
+                .withSliderBackgroundColorRes(R.color.drawar_colorc)
                 .addDrawerItems(item1, item2, item3)
                 .withFooter(view)
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {

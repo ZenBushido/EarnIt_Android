@@ -81,6 +81,7 @@ public class TaskAdapter extends BaseAdapter {
         }
         if(isNone){
             mViewHolder.taskName.setText("None");
+           // mViewHolder.taskName.setVisibility(View.GONE);
         }else if(position == 3){
             mViewHolder.taskName.setText("More..");
         }else{

@@ -132,15 +132,15 @@ public class PasswordReminder extends BaseActivity implements View.OnClickListen
             public void onSuccess(int statusCode, Header[] header, JSONObject response) {
                 Log.d("Success Code", String.valueOf(statusCode));
                 Log.d("Success Response", response.toString());
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                PasswordReminderResultFragment passwordReminderResultFragment = new PasswordReminderResultFragment().getInstance(emailAddress);
-                ft.replace(R.id.password_reminderid_sign, passwordReminderResultFragment);
-                ft.commit();
+               // FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+               // PasswordReminderResultFragment passwordReminderResultFragment = new PasswordReminderResultFragment().getInstance(emailAddress);
+               // ft.replace(R.id.password_reminderid_sign, passwordReminderResultFragment);
+                //ft.commit();
                 try {
                     String passowrdFinal = response.getString("message");
                     String finalPasswordFinal = passowrdFinal.substring(2, passowrdFinal.length() - 2);
 
-                    Toast.makeText(PasswordReminder.this, finalPasswordFinal + "successfully.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PasswordReminder.this, passowrdFinal, Toast.LENGTH_SHORT).show();
 
 
 

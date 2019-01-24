@@ -85,7 +85,7 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
 
     EditText phone;
 
-    Button home, cancelBtn;
+    Button home ;
     CircularImageView avatar;
     InitialParentProfile profile;
     private final String TAG = "InitialParentProfile";
@@ -100,12 +100,12 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
     Validator validator;
     ArrayList<Country> countries;
     //   TextView countryName, countryDial;
-    ImageButton initSteuphelpBtn, initSteupmenuBtn, ivBackButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.initial_parent_profile);
+        setContentView(R.layout.initial_parent_profile_new);
 
 
         profile = this;
@@ -127,12 +127,12 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
     private void setView() {
         firstName = (EditText) findViewById(R.id.f_name);
         //lastName = (EditText) findViewById(R.id.l_name);
-        initSteuphelpBtn = (ImageButton) findViewById(R.id.initsetup_helpicon);
-        initSteupmenuBtn = (ImageButton) findViewById(R.id.initsetupMenu);
-        ivBackButton = (ImageButton) findViewById(R.id.ivBackArrow);
+
+
+
         phone = (EditText) findViewById(R.id.p_phone);
         home = (Button) findViewById(R.id.home);
-        cancelBtn = (Button) findViewById(R.id.setupcancel);
+
         avatar = (CircularImageView) findViewById(R.id.p_avatar);
         progressBar = (RelativeLayout) findViewById(R.id.loadingPanel);
         //    countryName = (TextView) findViewById(R.id.countryCode);
@@ -141,10 +141,10 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
 //                .colorRes(R.color.edit_text_hint).sizeDp(AppConstant.FEB_ICON_SIZE)), null);
         avatar.setOnClickListener(profile);
         home.setOnClickListener(profile);
-        cancelBtn.setOnClickListener(profile);
-        initSteuphelpBtn.setOnClickListener(profile);
-        initSteupmenuBtn.setOnClickListener(profile);
-        ivBackButton.setOnClickListener(profile);
+
+
+
+
 //        countryName.setOnClickListener(profile);
     }
 
@@ -175,21 +175,8 @@ public class InitialParentProfile extends UploadRuntimePermission implements Val
                 selectImage();
                 break;
 
-            case R.id.initsetup_helpicon:
-                showToast(getResources().getString(R.string.init_help));
-                break;
 
-            case R.id.initsetupMenu:
-                showToast(getResources().getString(R.string.init_help));
-                break;
 
-            case R.id.setupcancel:
-                finish();
-                break;
-
-            case R.id.ivBackArrow:
-                onBackPressed();
-                break;
 
 //          case R.id.countryCode:
 //                Utils.showCountryDialog(countries, InitialParentProfile.this, countryDial, countryName);

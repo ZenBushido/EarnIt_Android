@@ -136,8 +136,7 @@ public class MonthlyDialogFragment extends DialogFragment implements AdapterView
 
         final View dialogView = inflater.inflate(R.layout.repeat_monthly, container, false);
 
-        TextView repeat_daily_text = (TextView) dialogView.findViewById(R.id.repeat_monthly_frequency);
-        repeat_daily_text.setText("Monthly");
+
         final Spinner repeat_monthly_first = (Spinner) dialogView.findViewById(R.id.repeat_monthly_first);
         repeat_monthly_first.setOnItemSelectedListener(this);
 

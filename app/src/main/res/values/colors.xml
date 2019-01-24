@@ -6,7 +6,7 @@
 
 
     <color name="edit_text_hint">#b7b7b7</color>
-    <color name="main_font">#e4e2e2</color>
+    <color name="main_font">#ffffff</color>
     <color name="background">#2f2746</color>
     <color name="list_header_bd">#22132e</color>
     <color name="aquamarine">#1eb694</color>
@@ -49,4 +49,8 @@
     <color name="fbutton_color_concrete">#95a5a6</color>
     <color name="fbutton_color_asbestos">#7f8c8d</color>
     <color name="fbutton_color_transparent">@android:color/transparent</color>
+    <color name="new_dark_blue">#03264f</color>
+    <color name="new_text_clr">#24479c</color>
+    <color name="new_hint_edt_clr">#84a1c4</color>
+    <color name="drawar_colorc">#5d7df6</color>
 </resources>

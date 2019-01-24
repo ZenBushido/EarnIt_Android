@@ -29,6 +29,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -86,6 +87,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -150,7 +153,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
 
     boolean IS_EDITING_TASK = false;
     private final String TAG = "AddTask";
-    TextView repeatSpinner, assignSpinner;
+    TextView repeatSpinner, assignSpinner,top_headers_txt;
     @BindView(R.id.loadingPanel)
     RelativeLayout progressBar;
     String screen_name;
@@ -166,31 +169,31 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
     ArrayList<Item> repeatList, goalsList;
     private BottomSheetDialog mBottomSheetDialog;
     int fetchGoalId = 0;
-    @BindView(R.id.toolbar_add)
-    Toolbar goalToolbar;
-    @BindView(R.id.drawerBtn)
-    ImageButton drawerToggle;
+  /*  @BindView(R.id.toolbar_add)
+    Toolbar goalToolbar;*/
+   /* @BindView(R.id.drawerBtn)
+    ImageButton drawerToggle;*/
     List<Child> childList = new ArrayList<>();
     int childsCounter = 0;
     AddTaskModel.repititionSchedule repititionSchedule;
     @BindView(R.id.addtask_back_arrow)
     ImageButton back;
-    @BindView(R.id.addtask_helpicon)
-    ImageButton addTask_help;
+   /* @BindView(R.id.addtask_helpicon)
+    ImageButton addTask_help;*/
     private Calendar c;
     Integer retry = 0;
 
     MessageEvent m;
+    TextView repit_txt;
 
     SharedPreference sp = new SharedPreference();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_task_layout);
+        setContentView(R.layout.add_task_layout_new);
         ButterKnife.bind(this);
-        setSupportActionBar(goalToolbar);
-        //getSupportActionBar().setTitle(null);
+        /*setSupportActionBar(goalToolbar);*/
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -209,9 +212,19 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
             }
         });
 
+        top_headers_txt=(TextView) findViewById(R.id.top_headers_txt);
+        repit_txt= (TextView) findViewById(R.id.repit_txt);
         intent = getIntent();
         screen_name = intent.getStringExtra(AppConstant.FROM_SCREEN);
         parentObject = (Parent) intent.getSerializableExtra(AppConstant.PARENT_OBJECT);
+
+        if (parentObject.getFirstName() != null) {
+            if (parentObject.getFirstName().isEmpty())
+                top_headers_txt.setText("Hi");
+            else
+                top_headers_txt.setText("Hi " + parentObject.getFirstName());
+        }
+
         repititionSchedule = null;
         childObject = (Child) intent.getSerializableExtra(AppConstant.CHILD_OBJECT);
         MyApplication.getInstance().setChildId(childObject.getId());
@@ -228,8 +241,25 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 }
             }
         });
-        NavigationDrawer navigationDrawer = new NavigationDrawer(addTask, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
-        navigationDrawer.setOnDrawerToggeled(this);
+       /* NavigationDrawer navigationDrawer = new NavigationDrawer(addTask, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
+        navigationDrawer.setOnDrawerToggeled(this);*/
+
+        taskDetails.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                if (taskDetails.hasFocus()) {
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    switch (event.getAction() & MotionEvent.ACTION_MASK){
+                        case MotionEvent.ACTION_SCROLL:
+                            v.getParent().requestDisallowInterceptTouchEvent(false);
+                            return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+
         fmt = DateTimeFormat.forPattern(AppConstant.DATE_FORMAT);
         list = new ArrayList<>();
         list.add(NONE);
@@ -258,7 +288,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         childAvatar.setOnClickListener(addTask);
         assignTo.setOnClickListener(addTask);
         repeatSpinner.setOnClickListener(addTask);
-        addTask_help.setOnClickListener(addTask);
+       /* addTask_help.setOnClickListener(addTask);*/
         back.setOnClickListener(addTask);
         if (isDeviceOnline())
             fetchChildList();
@@ -545,9 +575,9 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 onCancelAndBack(childObject, otherChild);
                 break;
 
-            case R.id.addtask_helpicon:
+           /* case R.id.addtask_helpicon:
                 Toast.makeText(addTask, getResources().getString(R.string.addtask_help), Toast.LENGTH_LONG).show();
-                break;
+                break;*/
         }
     }
 
@@ -983,7 +1013,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
         dialog.setCancelable(false);
         final TextView message = (TextView) dialog.findViewById(R.id.dialog_message);
         message.setText(getResources().getString(R.string.add_another_task));
-        Button declineButton = (Button) dialog.findViewById(R.id.cancel);
+        TextView declineButton = (TextView) dialog.findViewById(R.id.cancel);
         declineButton.setText(AppConstant.NO);
         declineButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -992,7 +1022,7 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 chechUserTasks();
             }
         });
-        Button acceptButton = (Button) dialog.findViewById(R.id.ok);
+        TextView acceptButton = (TextView) dialog.findViewById(R.id.ok);
         acceptButton.setText(AppConstant.YES);
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1181,5 +1211,28 @@ public class AddTask extends BaseActivity implements View.OnClickListener, Navig
                 }
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        try {
+            AddTaskModel.repititionSchedule   repititionSchedule = null;
+            MessageEvent   mm = (MessageEvent) EventBus.getDefault().getStickyEvent(MessageEvent.class);
+            if (mm != null) {
+                    repititionSchedule = mm.getResponse();
+            }
+            if (repititionSchedule != null) {
+                SimpleDateFormat inFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+                SimpleDateFormat outFormat = new SimpleDateFormat("MM/dd@ hh:mm aa");
+                date_time_textview.setText(outFormat.format(inFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime())));
+                String repetType= repititionSchedule.getRepeat() == null ? "None" : repititionSchedule.getRepeat();
+                repit_txt.setText(repetType);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            repit_txt.setText("None");
+        }
+
     }
 }

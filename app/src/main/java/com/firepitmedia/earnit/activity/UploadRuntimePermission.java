@@ -3,10 +3,13 @@ package com.firepitmedia.earnit.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,9 +17,11 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.ExifInterface;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -41,6 +46,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by mobile-di on 12/8/17.
@@ -156,70 +164,87 @@ public class UploadRuntimePermission extends Activity {
     }
 
     public void selectImage() {
-        final CharSequence[] items = {AppConstant.GALLERY, AppConstant.LIBRARY, AppConstant.EXIT};
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        SpannableStringBuilder dTitle = new SpannableStringBuilder();
-        dTitle.append(AppConstant.VIA);
-        dTitle.setSpan(new ForegroundColorSpan(ContextCompat.getColor(runtimePermission, R.color.pink)), 0, 9, 0);
-        builder.setTitle(dTitle);
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                if (items[item].equals(AppConstant.GALLERY)) {
-                    if (cameraStatus && rLibraryStatus && wLibraryStatus)
-                        fromCamera();
-                    else {
-                        showToast("Camera permission required");
-                    }
-
-                } else if (items[item].equals(AppConstant.LIBRARY)) {
-                    if (rLibraryStatus && wLibraryStatus)
-                        fromGallery();
-                    else {
-                        showToast("Storage permission required");
-                    }
-
-                } else if (items[item].equals(AppConstant.EXIT)) {
-                    dialog.dismiss();
-                }
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        Window window = dialog.getWindow();
-        window.getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.show();
-
+        fromCamera();
     }
 
     public void fromCamera() {
-        values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "New Picture");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
-        imageUri = getContentResolver().insert(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-        Intent intentPhoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intentPhoto.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intentPhoto, 1);
+
+        final File root = new File(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + File.separator + "earnIt" + File.separator);
+        root.mkdirs();
+       String fname = "img_" + System.currentTimeMillis() + ".jpg";
+        final File sdImageMainDirectory = new File(root, fname);
+        imageUri = Uri.fromFile(sdImageMainDirectory);
+
+
+          List<Intent> cameraIntents = new ArrayList<Intent>();
+        final Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        final PackageManager packageManager = this.getPackageManager();
+        final List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
+        for (ResolveInfo res : listCam) {
+            final String packageName = res.activityInfo.packageName;
+            final Intent intent = new Intent(captureIntent);
+            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
+            intent.setPackage(packageName);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            cameraIntents.add(intent);
+
+        }
+
+        final Intent galleryIntent = new Intent(
+                Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        final Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Source");
+
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[]{}));
+
+         startActivityForResult(chooserIntent, 6);
+
     }
 
-    public void fromGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, SELECTED_PICTURE);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {
+
+        if (requestCode == 6
+                && resultCode == RESULT_OK) {
+            final boolean isCamera;
+            if (data == null) {
+                isCamera = true;
+            } else {
+                final String action = data.getAction();
+                if (action == null) {
+                    isCamera = false;
+                } else {
+                    isCamera = MediaStore.ACTION_IMAGE_CAPTURE.equals(data
+                            .getAction());
+
+                }
+            }
+
+            Uri selectedImageUri;
+            if (isCamera) {
+                selectedImageUri = imageUri;
                 setImage(uploadView, imageUri);
-                gFileName = getRealPathFromURI(imageUri);
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    gFileName = getRealPathFromURI(imageUri,bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+               
                 Log.e(TAG, "camera gFileName = " + gFileName);
                 Log.e(TAG, "camera imageUri = " + imageUri);
-            } else if (requestCode == 2) {
+            } else {
+                selectedImageUri = data == null ? null : data.getData();
+
+            }
+
+            try {
+              Uri  uri1 = selectedImageUri;//Utils.getImageContentUri(MyAccount.this, f);
+
                 Uri selectedImage = data.getData();
                 String[] filePath = {MediaStore.Images.Media.DATA};
                 Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
@@ -231,8 +256,14 @@ public class UploadRuntimePermission extends Activity {
                 uploadView.setImageBitmap(thumbnail);
                 Log.e(TAG, "gallery gFileName = " + gFileName);
                 Log.e(TAG, "gallery thumbnail = " + thumbnail);
+
+                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri1);
+
+            } catch (Exception e) {
             }
+
         }
+
     }
 
     public void setImage(ImageView imageView, Uri path) {
@@ -248,8 +279,14 @@ public class UploadRuntimePermission extends Activity {
     }
 
     private String compressImage(Uri imageUri) {
-
-        String filePath = getRealPathFromURI(imageUri);
+        String filePath = "";
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+            filePath = getRealPathFromURI(imageUri,bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+          
         Bitmap scaledBitmap = null;
 
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -398,13 +435,10 @@ public class UploadRuntimePermission extends Activity {
 
     }
 
-    public String getRealPathFromURI(Uri contentUri) {
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-        int column_index = cursor
-                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
+    public String getRealPathFromURI(Uri contentUri, Bitmap bitmap) {
+
+        return SaveImage(UploadRuntimePermission.this, bitmap);
+
     }
 
     public void ImageCropFunction() {
@@ -503,6 +537,51 @@ public class UploadRuntimePermission extends Activity {
             return cursor.getString(index);
         }
 
+    }
+
+
+    public static String SaveImage(Context context, Bitmap finalBitmap) {
+
+        String path= Environment.getExternalStorageDirectory() + File.separator + "earnIt"+ File.separator + "temp";
+
+        File myDir = new File(path);
+        // boolean isSaved = false;
+        myDir.mkdirs();
+        Random generator = new Random();
+        int n = 10000;
+        n = generator.nextInt(n);
+        String fname = "Image-" + n + ".jpg";
+        File file = new File(myDir, fname);
+        if (file.exists()) file.delete();
+        String pathString = file.getPath();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+
+        } catch (Exception e) {
+            pathString = "";
+            e.printStackTrace();
+        }
+
+        // Tell the media scanner about the new file so that it is
+        // immediately available to the user.
+        MediaScannerConnection.scanFile(context, new String[] { file.toString() }, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+                    public void onScanCompleted(String path, Uri uri) {
+//                        Log.i("ExternalStorage", "Scanned " + path + ":");
+//                        Log.i("ExternalStorage", "-> uri=" + uri);
+                    }
+                });
+
+
+
+
+
+
+
+        return pathString;
     }
 }
 

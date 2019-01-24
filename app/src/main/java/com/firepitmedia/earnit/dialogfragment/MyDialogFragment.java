@@ -25,7 +25,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public class MyDialogFragment extends DialogFragment {
 
     private final String LOG_TAG = MyDialogFragment.class.getSimpleName();
-    TextView repeat_daily_text;
+
     EditText textEdit;
     // onCreate --> (onCreateDialog) --> onCreateView --> onActivityCreated
 DailyDialogListener dailyDialogListener;
@@ -41,8 +41,7 @@ DailyDialogListener dailyDialogListener;
 
         View dialogView = inflater.inflate(R.layout.repeat_daily, container, false);
 
-        repeat_daily_text= (TextView) dialogView.findViewById(R.id.repeat_daily_frequency);
-        repeat_daily_text.setText("Daily");
+
         textEdit = (EditText) dialogView.findViewById(R.id.repeat_daily_checkbox);
         final EditText repeat_daily_check = (EditText) dialogView.findViewById(R.id.repeat_daily_checkbox);
         repeat_daily_check.setText("");

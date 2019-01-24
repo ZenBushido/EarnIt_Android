@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    tools:context=".activity.AddChild">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingRight="12dp"
+            android:paddingLeft="12dp"
+            android:paddingBottom="15dp"
+            android:background="#24479b">
+
+
+            <ImageButton
+                android:id="@+id/ivBackArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="@android:color/transparent"
+                android:src="@drawable/back_icon_new" />
+
+
+            <TextView
+                android:id="@+id/add_child_header_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Add Your Child to EarnIt!"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+        </FrameLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+
+
+
+                <TextView
+                    android:id="@+id/addchild_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/username_password_top_bottom_margin"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/after_adding_child"
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/check_in_text_size" />
+
+
+                <com.github.siyamed.shapeimageview.CircularImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/select_icon_new"
+                    app:siBorderColor="@android:color/white"
+                    app:siBorderWidth="0dp"
+                    app:siRadius="0dp"
+                    app:siBorderAlpha="0.0"
+                    app:siSquare="false"
+                    android:id="@+id/child_user_image"/>
+
+
+                <EditText
+                    android:id="@+id/child_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/new_edittext_back"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="Child's Name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailSubject"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:drawableRight="@drawable/user_icon_new"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:layout_marginTop="20dp"
+                    android:textSize="@dimen/check_in_text_size">
+
+                    <requestFocus />
+
+                </EditText>
+
+
+
+                <EditText
+                    android:id="@+id/child_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/new_edittext_back"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="Child's Email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:drawableRight="@drawable/email_icon_new"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:layout_marginTop="20dp"
+                    android:textSize="@dimen/check_in_text_size">
+
+                </EditText>
+
+
+
+                <EditText
+                    android:id="@+id/child_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/new_edittext_back"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="Child's Phone"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:drawableRight="@drawable/mobile_icon_new"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:layout_marginTop="20dp"
+                    android:textSize="@dimen/check_in_text_size">
+
+                </EditText>
+
+
+                <EditText
+                    android:id="@+id/child_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/new_edittext_back"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:drawableRight="@drawable/lock_icon_new"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/check_in_text_size" />
+
+
+                <EditText
+                    android:id="@+id/child_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/new_edittext_back"
+                    android:ems="10"
+                    android:hint="Confirm password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:drawableRight="@drawable/lock_icon_new"
+                    android:textColor="@color/new_text_clr"
+                    android:textColorHint="@color/new_hint_edt_clr"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/check_in_text_size" />
+
+
+                <Button
+                    android:id="@+id/save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/new_btn_back"
+                    android:text="Save"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/check_in_text_size" />
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/pink"
+            android:indeterminateTintMode="src_atop" />
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -44,23 +44,23 @@ android {
     }
     signingConfigs {
         debug {
-            keyAlias 'debug'
-            keyPassword 'android'
-            storeFile file('..\\keystore\\debug_key.jks')
-            storePassword 'android'
+           // keyAlias 'debug'
+           // keyPassword 'android'
+           // storeFile file('..\\keystore\\debug_key.jks')
+           // storePassword 'android'
         }
         release {
             def keystorePropertiesFile = file("..\\keystore\\release.properties")
 //            if (keystorePropertiesFile.exists()) {
                 def keystoreProperties = new Properties()
-                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
-                storeFile file(keystoreProperties['storeFile'])
-                storePassword keystoreProperties['storePassword']
-                v1SigningEnabled true
-                v2SigningEnabled true
+  //              keyAlias keystoreProperties['keyAlias']
+  //              keyPassword keystoreProperties['keyPassword']
+   //             storeFile file(keystoreProperties['storeFile'])
+   //             storePassword keystoreProperties['storePassword']
+   //             v1SigningEnabled true
+    //            v2SigningEnabled true
 //            } else {
 //                return null
 //            }

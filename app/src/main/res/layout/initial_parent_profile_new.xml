@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingRight="12dp"
+            android:paddingLeft="12dp"
+            android:paddingBottom="15dp"
+            android:background="#24479b">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Welcome To EarnIt!"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+        </FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/username_password_top_bottom_margin"
+                    android:layout_marginLeft="@dimen/username_password_top_bottom_margin"
+                    android:layout_marginRight="@dimen/username_password_top_bottom_margin"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/username_password_top_bottom_margin"
+                    android:text="@string/welcome_text1"
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/check_in_text_size" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/username_password_top_bottom_margin"
+                    android:layout_marginRight="@dimen/username_password_top_bottom_margin"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/username_password_top_bottom_margin"
+                    android:text="@string/welcome_text2"
+                    android:textColor="@color/main_font"
+                    android:textSize="@dimen/check_in_text_size" />
+
+
+            <com.github.siyamed.shapeimageview.CircularImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/select_icon_new"
+                app:siBorderColor="@android:color/white"
+                app:siBorderWidth="0dp"
+                app:siRadius="0dp"
+                app:siBorderAlpha="0.0"
+                app:siSquare="false"
+                android:id="@+id/p_avatar"/>
+
+
+
+            <EditText
+                android:id="@+id/f_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_edittext_back"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="First Name"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailSubject"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:drawableRight="@drawable/user_icon_new"
+                android:textColor="@color/new_text_clr"
+                android:textColorHint="@color/new_hint_edt_clr"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/check_in_text_size">
+
+                <requestFocus />
+
+            </EditText>
+
+
+
+            <EditText
+                android:id="@+id/sec_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_edittext_back"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Last Name"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailSubject"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:drawableRight="@drawable/user_icon_new"
+                android:textColor="@color/new_text_clr"
+                android:textColorHint="@color/new_hint_edt_clr"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/check_in_text_size">
+
+            </EditText>
+
+
+
+            <EditText
+                android:id="@+id/p_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_edittext_back"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Phone"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:drawableRight="@drawable/mobile_icon_new"
+                android:textColor="@color/new_text_clr"
+                android:textColorHint="@color/new_hint_edt_clr"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/check_in_text_size">
+
+            </EditText>
+
+
+
+            <Button
+                android:id="@+id/home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/new_btn_back"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/check_in_text_size" />
+
+
+        </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/pink"
+            android:indeterminateTintMode="src_atop" />
+
+    </RelativeLayout>
+
+</FrameLayout>

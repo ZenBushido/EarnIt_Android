@@ -5,12 +5,12 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/back_ground"
         android:layout_gravity="center">
 
         <ScrollView
@@ -22,140 +22,111 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#24479b"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="15dp"
                     android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/back_arrow"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="start"
-                        android:layout_weight=".5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
                         android:background="@android:color/transparent"
-                        android:paddingRight="5dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/arrow_left" />
+                        android:src="@drawable/back_icon_new" />
 
                     <TextView
                         android:id="@+id/task_name"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2.2"
-                        android:gravity="center"
-                        android:maxLines="2"
-                        android:textColor="@color/main_font"
-                        android:textSize="@dimen/toolbar_header_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
 
-                    <com.github.siyamed.shapeimageview.CircularImageView
-                        android:id="@+id/child_avatar"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/default_avatar"
-                        android:visibility="invisible"
-                        app:siBorderColor="@android:color/white"
-                        app:siBorderWidth="1.5dp"
-                        app:siRadius="1dp"
-                        app:siSquare="true" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="0dp"
-                        android:layout_marginLeft="-30dp"
-                        android:layout_weight=".3"
-                        android:gravity="bottom"
-                        android:text="..."
-                        android:textColor="@android:color/white"
-                        android:textSize="@dimen/sign_in_text_size"
-                        android:textStyle="bold"
-                        android:visibility="invisible" />
-
-                </LinearLayout>
+                </FrameLayout>
 
                 <View
-                    android:id="@+id/vertical_line"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/username_password_top_bottom_margin"
-                    android:layout_marginTop="@dimen/username_password_top_bottom_margin"
-                    android:background="@color/background"
-                    android:orientation="vertical"
-                    android:padding="2.5dp">
+                    android:padding="15dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/task_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/task_description_left_right_margin"
-                        android:layout_marginRight="@dimen/task_description_left_right_margin"
-                        android:layout_marginTop="@dimen/username_password_top_bottom_margin"
-                        android:textAlignment="center"
+                        android:gravity="center"
                         android:textColor="@color/main_font"
                         android:textSize="@dimen/check_in_text_size" />
 
                     <LinearLayout
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/username_password_top_bottom_margin"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight=".8"
-                            android:text="Due date:"
-                            android:textAlignment="textEnd"
+                            android:layout_weight=".5"
+                            android:text="Due date :"
+                             android:gravity="right"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size"
+                            android:layout_marginRight="5dp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/task_due_date"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.2"
-                            android:paddingLeft="@dimen/task_due_Date_left_padding"
-                            android:textAlignment="textStart"
+                            android:layout_weight="0.5"
+                            android:gravity="left"
                             android:textAllCaps="false"
+                            android:layout_marginLeft="5dp"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/username_password_top_bottom_margin"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight=".8"
+                            android:layout_weight="0.5"
                             android:text="Allowance:"
-                            android:textAlignment="textEnd"
+                           android:gravity="right"
+                            android:layout_marginRight="5dp"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/task_allowance"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.2"
-                            android:paddingLeft="@dimen/task_due_Date_left_padding"
-                            android:textAlignment="textStart"
+                            android:layout_weight="0.5"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left"
                             android:textAllCaps="false"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
@@ -163,28 +134,29 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/username_password_top_bottom_margin"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight=".8"
+                            android:layout_weight="0.5"
                             android:text="Photo Required:"
-                            android:textAlignment="textEnd"
+                            android:gravity="right"
+                            android:layout_marginRight="5dp"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/task_photo_required"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.2"
-                            android:paddingLeft="@dimen/task_due_Date_left_padding"
-                            android:textAlignment="textStart"
+                            android:layout_weight="0.5"
+                            android:gravity="left"
+                            android:layout_marginLeft="5dp"
                             android:textAllCaps="false"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
@@ -192,29 +164,30 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/username_password_top_bottom_margin"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight=".8"
+                            android:layout_weight="0.5"
                             android:text="Repeats:"
-                            android:textAlignment="textEnd"
+                            android:gravity="right"
+                            android:layout_marginRight="5dp"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/task_repeat"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.2"
-                            android:paddingLeft="@dimen/task_due_Date_left_padding"
-                            android:textAlignment="textStart"
+                            android:layout_weight="0.5"
+                            android:gravity="left"
                             android:textAllCaps="false"
+                            android:layout_marginLeft="5dp"
                             android:textColor="@color/main_font"
                             android:textSize="@dimen/check_in_text_size" />
 
@@ -240,30 +213,28 @@
                         android:background="@drawable/image_border"
                         android:scaleType="fitXY" />
 
-                    <TextView
-                        android:id="@+id/comment_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/comment_text_left_margin"
-                        android:layout_marginTop="@dimen/username_password_top_bottom_margin"
-                        android:text="Comments :"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/main_font"
-                        android:textSize="@dimen/check_in_text_size" />
-
                     <EditText
                         android:id="@+id/comment_box"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/comment_edittext_margin"
-                        android:background="@drawable/edittext_background"
-                        android:gravity="start"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/new_edittext_back"
+                        android:ems="10"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="Comments"
                         android:imeOptions="actionDone"
-                        android:padding="@dimen/comment_edittext_padding"
-                        android:textColor="@color/main_font"
-                        android:textSize="@dimen/check_in_text_size" />
+                        android:maxLines="1"
+                        android:padding="12dp"
+                        android:textColor="@color/new_text_clr"
+                        android:textColorHint="@color/new_hint_edt_clr"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="@dimen/check_in_text_size">
+
+                    </EditText>
+
+
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -279,7 +250,7 @@
                             android:layout_marginLeft="@dimen/button_layout_left_right_margin"
                             android:layout_marginRight="@dimen/button_layout_right_left_margin"
                             android:layout_weight="1"
-                            android:background="@drawable/sign_in_round"
+                            android:background="@drawable/new_btn_back"
                             android:text="Decline"
                             android:textAllCaps="false"
                             android:textColor="@color/main_font"
@@ -292,7 +263,7 @@
                             android:layout_marginLeft="@dimen/button_layout_right_left_margin"
                             android:layout_marginRight="@dimen/button_layout_left_right_margin"
                             android:layout_weight="1"
-                            android:background="@drawable/sign_in_round"
+                            android:background="@drawable/new_btn_back"
                             android:text="Approve"
                             android:textAllCaps="false"
                             android:textColor="@color/main_font"

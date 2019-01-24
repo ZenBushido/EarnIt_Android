@@ -67,9 +67,9 @@ public class Tasks implements Serializable, Parcelable, Cloneable {
                 case "Sunday":
                     week = DateTimeConstants.SUNDAY;
                     break;
-                case "sunday":
+             /*   case "sunday":
                     week = DateTimeConstants.SUNDAY;
-                    break;
+                    break;*/
                 case "monday":
                     week = DateTimeConstants.MONDAY;
                     break;

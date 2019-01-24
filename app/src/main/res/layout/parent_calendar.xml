@@ -1,18 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addtask_framelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:fitsSystemWindows="true">
+    android:background="@drawable/back_ground"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <include
-        layout="@layout/action_bar_view_add"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#24479b"
+        android:paddingLeft="12dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="15dp">
+
+
+        <ImageButton
+            android:id="@+id/addtask_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:background="@android:color/transparent"
+            android:src="@drawable/back_icon_new" />
+
+
+        <TextView
+            android:id="@+id/add_task_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.github.siyamed.shapeimageview.CircularImageView
+                android:id="@+id/add_task_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/icon"
+                app:siBorderAlpha="0.0"
+                app:siBorderColor="@android:color/white"
+                app:siBorderWidth="0dp"
+                app:siRadius="0dp"
+                app:siSquare="false" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                android:src="@drawable/dots_menu1" />
+        </LinearLayout>
+
+
+    </FrameLayout>
+
 
     <RelativeLayout
         android:id="@+id/loadingPanel"
@@ -31,256 +86,253 @@
     </RelativeLayout>
 
     <ScrollView
-        android:fillViewport="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/child_view_layput_bg"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/add_task_header1"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:gravity="center_horizontal" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <TextView
-                android:padding="5dp"
-                android:id="@+id/add_task_header2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top|center"
-                android:text="Clean Your Room Due Date"
-                android:textColor="@color/check_in"
-                android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/add_task_header1"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone" />
 
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/add_task_header3"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:gravity="center_horizontal" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-
-            android:id="@+id/drawer_layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.41"
-            android:fitsSystemWindows="true">
-
-            <android.support.design.widget.AppBarLayout
-                android:id="@+id/app_bar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:theme="@style/AppTheme.AppBarOverlay">
-
-                <io.blackbox_vision.materialcalendarview.view.CalendarView
-                    android:id="@+id/calendar_view"
+                <TextView
+                    android:id="@+id/add_task_header2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:calendarBackgroundColor="@color/colorPrimary"
-                    app:calendarButtonBackgroundColor="@color/pink"
-                    app:calendarCurrentDayBackgroundColor="@color/pink"
-                    app:calendarCurrentDayTextColor="@color/white"
-                    app:calendarDayOfWeekTextColor="@android:color/white"
-                    app:calendarDisabledDayBackgroundColor="@color/colorPrimary"
-                    app:calendarDisabledDayTextColor="@android:color/darker_gray"
-                    app:calendarIsMultiSelectDayEnabled="false"
-                    app:calendarIsOverflowDatesVisible="true"
-                    app:calendarSelectedDayBackgroundColor="@color/pink"
-                    app:calendarTitleBackgroundColor="@color/colorPrimary"
-                    app:calendarTitleTextColor="@color/pink"
-                    app:calendarWeekBackgroundColor="@color/colorPrimary"
-                    app:calendarWeekendDays="saturday|sunday"
-                    app:calendarWeekendTextColor="@color/pink" />
+                    android:gravity="top|center"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
 
-            </android.support.design.widget.AppBarLayout>
+                <TextView
+                    android:id="@+id/add_task_header3"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone" />
 
-        </RelativeLayout>
-
-        <View
-            android:id="@+id/vertical_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background"
-            android:orientation="vertical">
+            </LinearLayout>
 
             <RelativeLayout
 
+                android:id="@+id/drawer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.41"
+                android:fitsSystemWindows="true">
+
+                <android.support.design.widget.AppBarLayout
+                    android:id="@+id/app_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:theme="@style/AppTheme.AppBarOverlay">
+
+                    <io.blackbox_vision.materialcalendarview.view.CalendarView
+                        android:id="@+id/calendar_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#5d82da"
+                        app:calendarBackgroundColor="#5d82da"
+                        app:calendarButtonBackgroundColor="@color/md_green_A400"
+                        app:calendarCurrentDayBackgroundColor="@color/md_green_A400"
+                        app:calendarCurrentDayTextColor="@color/white"
+                        app:calendarDayOfWeekTextColor="@android:color/white"
+                        app:calendarDisabledDayBackgroundColor="#5d82da"
+                        app:calendarDisabledDayTextColor="@android:color/darker_gray"
+                        app:calendarIsMultiSelectDayEnabled="false"
+                        app:calendarIsOverflowDatesVisible="true"
+                        app:calendarSelectedDayBackgroundColor="@color/md_green_A400"
+                        app:calendarTitleBackgroundColor="#5d82da"
+                        app:calendarTitleTextColor="@color/white"
+                        app:calendarWeekBackgroundColor="#5d82da"
+                        app:calendarWeekendDays="saturday|sunday"
+                        app:calendarWeekendTextColor="@color/white" />
+
+                </android.support.design.widget.AppBarLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/vertical_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/add_task_top_margin"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_size10"
-                    android:weightSum="2"
+                <RelativeLayout
+
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/add_task_top_margin"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:gravity="right"
-                        android:layout_gravity="right"
-                        android:layout_weight="1.3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_size10"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:weightSum="2">
 
-                        <TextView
-                            android:layout_marginTop="2dp"
-                            android:paddingRight="@dimen/add_task_textview_left_margin"
-
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="right"
-                            android:text="Due time:"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:layout_marginTop="16dp"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:gravity="right"
+                                android:paddingRight="@dimen/add_task_textview_left_margin"
+                                android:text="Due time:"
+                                android:textColor="@color/main_font"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:paddingRight="@dimen/add_task_textview_left_margin"
+                                android:text="Repeats:"
+                                android:textAlignment="center"
+                                android:textColor="@color/main_font"
+                                android:textSize="18sp"
+                                android:visibility="visible" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:orientation="vertical">
 
-                            android:paddingRight="@dimen/add_task_textview_left_margin"
-                            android:text="Repeats:"
-                            android:textAlignment="center"
-                            android:textColor="@color/main_font"
-                            android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/rule_apply_from"
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/new_edittext_back"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/add_task_textview_left_margin"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/new_text_clr"
+                                android:textColorHint="@color/new_text_clr"
+                                android:textSize="@dimen/check_in_text_size" />
 
+                            <TextView
 
-                    </LinearLayout>
+                                android:id="@+id/parentrepeat_frequency"
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_size10"
+                                android:background="@drawable/new_edittext_back"
+                                android:drawableEnd="@android:drawable/arrow_down_float"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/add_task_textview_left_margin"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp"
+                                android:paddingRight="5dp"
+                                android:textAllCaps="false"
+                                android:visibility="visible"
+                                android:textColor="@color/new_text_clr"
+                                android:textSize="@dimen/check_in_text_size" />
 
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="0.7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_marginLeft="@dimen/_size10"
-                            android:layout_marginRight="@dimen/_size10"
-                            android:id="@+id/rule_apply_from"
-                            android:layout_width="130dp"
-                            android:layout_height="28dp"
-                            android:background="@drawable/amount_edittext_border"
-                            android:gravity="center"
-                            android:paddingLeft="@dimen/add_task_textview_left_margin"
-                            android:singleLine="true"
-                            android:textAlignment="center"
-                            android:textColor="@color/main_font"
-                            android:textColorHint="@color/edit_text_hint"
-                            android:textSize="@dimen/check_in_text_size" />
-
-                        <TextView
-
-                            android:layout_marginLeft="@dimen/_size10"
-                            android:layout_marginRight="@dimen/_size10"
-                            android:layout_marginTop="@dimen/_size10"
-                            android:id="@+id/parentrepeat_frequency"
-                            android:layout_width="130dp"
-                            android:layout_height="28dp"
-                            android:background="@drawable/round_corner"
-                            android:drawableEnd="@android:drawable/arrow_down_float"
-                            android:gravity="center"
-                            android:paddingLeft="@dimen/add_task_textview_left_margin"
-                            android:paddingRight="5dp"
-                            android:textAllCaps="false"
-                            android:textColor="@color/main_font"
-                            android:textSize="@dimen/check_in_text_size" />
 
                     </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <Button
+                        android:id="@+id/save"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/new_btn_back"
+                        android:text="Save"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/check_in_text_size" />
+
+
+                    <Button
+                        android:id="@+id/cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/new_btn_back"
+                        android:text="Cancel"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/check_in_text_size" />
+
 
 
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:visibility="visible"
+                    android:layout_weight="0.15">
 
+                </LinearLayout>
 
-
-
-            </RelativeLayout>
-
-
-
-
-
-            <LinearLayout
-
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/cancel"
+                <ImageButton
+                    android:id="@+id/addtask_helpicon"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/sign_in_round"
-                    android:text="Cancel"
-                    android:textAllCaps="false"
-                    android:textColor="@color/main_font"
-                    android:textSize="@dimen/check_in_text_size" />
-
-                <Button
-                    android:id="@+id/save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="50dp"
-
-                    android:background="@drawable/sign_in_round"
-                    android:text="Save"
-                    android:textAllCaps="false"
-                    android:textColor="@color/main_font"
-                    android:textSize="@dimen/check_in_text_size" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:background="@color/background"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_help_white_24dp" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.15">
-
-            </LinearLayout>
-
-            <ImageButton
-                android:layout_margin="10dp"
-                android:padding="5dp"
-                android:layout_gravity="bottom"
-                android:id="@+id/addtask_helpicon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:src="@drawable/ic_help_white_24dp" />
 
         </LinearLayout>
-
-    </LinearLayout>
 
     </ScrollView>
 </LinearLayout>

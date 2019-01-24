@@ -66,7 +66,7 @@ import retrofit2.Response;
 public class ParentTaskApproval extends BaseActivity implements View.OnClickListener {
 
 
-    TextView tTaskName, taskDetails, taskDueDate, taskAllowance, taskRepeat, taskPicture, commentLabel;
+    TextView tTaskName, taskDetails, taskDueDate, taskAllowance, taskRepeat, taskPicture;
     Child childObject, otherChildObject;
     @NonNull
     Tasks taskObject;
@@ -156,7 +156,6 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
         taskAllowance = (TextView) findViewById(R.id.task_allowance);
         taskPicture = (TextView) findViewById(R.id.task_photo_required);
         taskRepeat = (TextView) findViewById(R.id.task_repeat);
-        commentLabel = (TextView) findViewById(R.id.comment_label);
         declined.setOnClickListener(parentTaskApproval);
         approval.setOnClickListener(parentTaskApproval);
         cancel.setOnClickListener(parentTaskApproval);
@@ -207,7 +206,7 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
                 if (comment.getComment().isEmpty()) {
                     commentBox.setVisibility(View.GONE);
-                    commentLabel.setVisibility(View.GONE);
+
                 } else {
                     commentBox.setText(comment.getComment());
                     commentBox.setKeyListener(null);
@@ -225,7 +224,6 @@ public class ParentTaskApproval extends BaseActivity implements View.OnClickList
 
                 if (taskComment.getComment().isEmpty()) {
                     commentBox.setVisibility(View.GONE);
-                    commentLabel.setVisibility(View.GONE);
                 } else {
                     commentBox.setText(taskComment.getComment());
                     commentBox.setKeyListener(null);

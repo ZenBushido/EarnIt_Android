@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -73,6 +74,7 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
     private List<Child> childApprovalList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ChildrenAdapter mAdapter;
+
     //    public static Map<Integer, String> childs;
     int bCount = 0;
     long time;
@@ -123,6 +125,8 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         headerText = (TextView) toolbar.findViewById(R.id.textView);
+
+
 
         if (parentObject.getFirstName() != null) {
             if (parentObject.getFirstName().isEmpty())
@@ -183,6 +187,8 @@ public class ParentDashboard extends BaseActivity implements NavigationDrawer.On
                             ArrayList<Tasks> taskApprovalList = new ArrayList<>();
 
                             JSONArray taskArray = response.getJSONObject(i).getJSONArray(AppConstant.TASKS);
+
+
                             for (int taskIndex = 0; taskIndex < taskArray.length(); taskIndex++) {
                                 JSONObject taskObject = taskArray.getJSONObject(taskIndex);
                                 if (!taskObject.getString(AppConstant.STATUS).equals(AppConstant.APPROVED)) {

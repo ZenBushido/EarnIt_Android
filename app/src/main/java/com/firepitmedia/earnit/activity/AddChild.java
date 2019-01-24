@@ -42,6 +42,7 @@ import com.firepitmedia.earnit.utils.ScreenSwitch;
 import com.firepitmedia.earnit.utils.Utils;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -107,14 +108,13 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
     @BindView(R.id.child_password)
     EditText password;
 
-  /*  @ConfirmPassword
+    @ConfirmPassword
     @BindView(R.id.child_confirm_password)
-    EditText confirmPassword;*/
+    EditText confirmPassword;
 
     @BindView(R.id.save_button)
     Button save;
-    @BindView(R.id.cancel_button)
-    Button cancel;
+
     AddChild addChild;
     Parent parentObject;
     Child child;
@@ -136,10 +136,11 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
     ImageButton ivBackButton;
 
 
+    TextView addchild_text;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_child_layout);
+        setContentView(R.layout.add_child_layout_new);
         ButterKnife.bind(this);
         addChild = this;
         setViewId();
@@ -153,20 +154,21 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
         Log.d("sdfksjdh", "child = " + child);
         mode = getIntent().getStringExtra(AppConstant.MODE);
         switchFrom = getIntent().getStringExtra(AppConstant.SCREEN);
-
+        addchild_text=(TextView) findViewById(R.id.addchild_text) ;
 
         countries = new ArrayList<>();
         countries = Utils.loadCountryData(TAG);
         if (mode.equalsIgnoreCase(AppConstant.UPDATE)) {
             addChildHeader.setText(AppConstant.EDIT + " Child");
+            addchild_text.setVisibility(View.GONE);
             save.setText(AppConstant.UPDATE);
 
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.override(350, 350);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-            requestOptions.placeholder(R.drawable.default_avatar);
-            requestOptions.error(R.drawable.default_avatar);
+            requestOptions.placeholder(R.drawable.select_icon_new);
+            requestOptions.error(R.drawable.select_icon_new);
 
             /*try {
                 Picasso.with(addChild).load("https://s3-us-west-2.amazonaws.com/earnitapp-dev/new/" + child.getAvatar()).error(R.drawable.default_avatar).into(childAvatar);
@@ -176,7 +178,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
             }*/
             email.setText(child.getEmail());
             firstName.setText(child.getFirstName().substring(0, 1) + child.getFirstName().substring(1));
-            password.setText(child.getPassword());
+           // password.setText(child.getPassword());
             // confirmPassword.setText(child.getPassword());
 
             if (!child.getPhone().isEmpty()) {
@@ -243,8 +245,8 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                 .build();
         picasso
                 .load(url)
-                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
-                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.select_icon_new)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.select_icon_new)))
                 .into(childAvatar);
     }
 
@@ -268,7 +270,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
 //        countryName.setCompoundDrawablesWithIntrinsicBounds(null, null, (new IconDrawable(addChild, FontAwesomeIcons.fa_caret_down)
 //                .colorRes(R.color.edit_text_hint).sizeDp(AppConstant.FEB_ICON_SIZE)), null);
         save.setOnClickListener(addChild);
-        cancel.setOnClickListener(addChild);
+
         childAvatar.setOnClickListener(addChild);
         ivBackButton.setOnClickListener(addChild);
         //countryName.setOnClickListener(addChild);
@@ -286,12 +288,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
     public void onClick(View view) {
 
         switch (view.getId()) {
-            case R.id.cancel_button:
 
-                Log.e(TAG, "Switchfrom: " + switchFrom);
-                screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
-
-                break;
 
             case R.id.save_button:
                 validator.validate();
@@ -489,7 +486,7 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                 signInJson.put(AppConstant.ACCOUNT, child.getAccount().getId());
             }
             signInJson.put(AppConstant.EMAIL, child.getEmail());
-            signInJson.put(AppConstant.FIRST_NAME, child.getEmail());
+            signInJson.put(AppConstant.FIRST_NAME, child.getFirstName());
             signInJson.put(AppConstant.LAST_NAME, child.getLastName());
             signInJson.put(AppConstant.PASSWORD, child.getPassword());
             signInJson.put(AppConstant.PHONE, child.getPhone());
@@ -610,10 +607,11 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                         } else {
                             progressBar.setVisibility(View.GONE);
                             showToast(firstName.getText() + " updated");
+                            screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
                         }
                         Utils.logDebug(TAG + " onSuccess", response.toString());
 
-                        screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
+
                     }
 
                     @Override
@@ -738,9 +736,10 @@ public class AddChild extends UploadRuntimePermission implements View.OnClickLis
                     else {
                         showToast(firstName.getText() + " added");
                     }
-                    Child ch = child1 == null ? child : child1;
-                    Log.d("ldsfjjlk", "child: " + ch);
-                    updateChildProfile(ch, response.body());
+                    screenSwitch.moveToParentProfile(childId, parentObject, switchFrom);
+                   // Child ch = child1 == null ? child : child1;
+                   // Log.d("ldsfjjlk", "child: " + ch);
+                   // updateChildProfile(ch, response.body());
                 }
             }
 

@@ -19,6 +19,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -118,7 +119,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
     //    EditText amount;
     @BindView(R.id.date_time_textview) TextView date_time_textview;
-    @BindView(R.id.add_task_header) TextView childName;
+   /* @BindView(R.id.add_task_header) TextView childName;*/
     @BindView(R.id.assign_to_id) TextView assignTo;
     @BindView(R.id.add_task_avatar) CircularImageView childAvatar;
 
@@ -154,8 +155,8 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     ArrayList<Item> repeatList, goalsList;
     private BottomSheetDialog mBottomSheetDialog;
     int fetchGoalId = 0;
-    @BindView(R.id.toolbar_add) Toolbar goalToolbar;
-    @BindView(R.id.drawerBtn) ImageButton drawerToggle;
+    /*@BindView(R.id.toolbar_add) Toolbar goalToolbar;
+    @BindView(R.id.drawerBtn) ImageButton drawerToggle;*/
     List<Child> childList = new ArrayList<>();
 
 
@@ -169,6 +170,8 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
     ImageButton approveButton;
     @BindView(R.id.add_task_header2)
     TextView textView;
+    TextView childName;
+    TextView repit_txt;
 
     private long dueDate;
 
@@ -180,10 +183,12 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
         Intent intent = getIntent();
         textView.setText(intent.getStringExtra("title"));
+        childName= (TextView) findViewById(R.id.top_headers_txt) ;
+        repit_txt= (TextView) findViewById(R.id.repit_txt);
 
 
-        setSupportActionBar(goalToolbar);
-        getSupportActionBar().setTitle(null);
+       /* setSupportActionBar(goalToolbar);
+        getSupportActionBar().setTitle(null);*/
 
         addTask = this;
         screenSwitch = new ScreenSwitch(addTask);
@@ -198,8 +203,11 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         otherChild = (Child) intent.getSerializableExtra(AppConstant.OTHER_CHILD_OBJECT);
         goalObject = (Goal) intent.getSerializableExtra(AppConstant.GOAL_OBJECT);
         fetchCHildId = childObject.getId();
-        NavigationDrawer navigationDrawer = new NavigationDrawer(addTask, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
-        navigationDrawer.setOnDrawerToggeled(this);
+       /* NavigationDrawer navigationDrawer = new NavigationDrawer(addTask, parentObject, goalToolbar, drawerToggle, AppConstant.PARENT_DASHBOARD, 0);
+        navigationDrawer.setOnDrawerToggeled(this);*/
+        if (childObject != null)
+            childName.setText("Hi "+childObject.getFirstName());
+
         fmt = DateTimeFormat.forPattern(AppConstant.DATE_FORMAT);
         list = new ArrayList<>();
         childID = childObject.getId();
@@ -208,6 +216,24 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         repeatList = new ArrayList<>();
         goalsList = new ArrayList<>();
         goalsList.add(new Item(0, NONE));
+
+
+
+        taskDetails.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                if (taskDetails.hasFocus()) {
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    switch (event.getAction() & MotionEvent.ACTION_MASK){
+                        case MotionEvent.ACTION_SCROLL:
+                            v.getParent().requestDisallowInterceptTouchEvent(false);
+                            return true;
+                    }
+                }
+                return false;
+            }
+        });
+
 
         if(isDeviceOnline())
         callGoalService(MyApplication.getInstance().getEmail(), MyApplication.getInstance().getPassword(), childID);
@@ -219,8 +245,10 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         requestOptions.placeholder(R.drawable.default_avatar);
         requestOptions.error(R.drawable.default_avatar);
 
-        Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar()).
-                into(childAvatar);
+     /*   Glide.with(this).applyDefaultRequestOptions(requestOptions).load(AppConstant.AMAZON_URL+childObject.getAvatar()).
+                into(childAvatar);*/
+
+
 
 
       /*  try {
@@ -355,7 +383,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
     private void autoFill(Tasks currentTask) {
 
-        childName.setText(currentTask.getName());
+        //childName.setText(currentTask.getName());
         taskDetails.setText(currentTask.getDetails());
         taskName.setText(currentTask.getName());
         DateTime dt = new DateTime(currentTask.getDueDate());
@@ -367,6 +395,12 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
             checkboxStatus = true;
         } else {
             checkboxStatus = false;
+        }
+
+        try {
+            repit_txt.setText(currentTask.getRepititionSchedule().getRepeat());
+        }catch (Exception e){
+            repit_txt.setText("None");
         }
 
     }
@@ -602,7 +636,6 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
             if (m != null) {
                 repititionSchedule = m.getResponse();
                 EventBus.getDefault().removeAllStickyEvents();
-
 
             }
             if (repititionSchedule != null) {
@@ -889,7 +922,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
         dialog.setCancelable(false);
         final TextView message = (TextView) dialog.findViewById(R.id.dialog_message);
         message.setText("Are you sure you want to approve this task? Any credit toward this task will be applied");
-        Button declineButton = (Button) dialog.findViewById(R.id.cancel);
+        TextView declineButton = (TextView) dialog.findViewById(R.id.cancel);
         declineButton.setText(AppConstant.NO);
         declineButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -899,7 +932,7 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 
             }
         });
-        Button acceptButton = (Button) dialog.findViewById(R.id.ok);
+        TextView acceptButton = (TextView) dialog.findViewById(R.id.ok);
         acceptButton.setText(AppConstant.YES);
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1435,4 +1468,29 @@ public class EditTask extends BaseActivity implements View.OnClickListener, Navi
 //            e.printStackTrace();
 //        }
 //    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        try {
+            AddTaskModel.repititionSchedule   repititionSchedule = null;
+            MessageEvent   mm = (MessageEvent) EventBus.getDefault().getStickyEvent(MessageEvent.class);
+            if (mm != null) {
+                repititionSchedule = mm.getResponse();
+            }
+            if (repititionSchedule != null) {
+                SimpleDateFormat inFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+                SimpleDateFormat outFormat = new SimpleDateFormat("MM/dd@ hh:mm aa");
+                date_time_textview.setText(outFormat.format(inFormat.parse(repititionSchedule.getDate() + " " + repititionSchedule.getEndTime())));
+                String repetType= repititionSchedule.getRepeat() == null ? "None" : repititionSchedule.getRepeat();
+                repit_txt.setText(repetType);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            repit_txt.setText("None");
+        }
+
+    }
 }

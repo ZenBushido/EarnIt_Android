@@ -460,9 +460,9 @@ public class ChildCalendarActivity extends AppCompatActivity implements View.OnC
         dialog.setCancelable(false);
         final TextView message = (TextView) dialog.findViewById(R.id.dialog_message);
         message.setText(getResources().getString(R.string.no_tasks, date.toString("MM/dd")));
-        Button declineButton = (Button) dialog.findViewById(R.id.cancel);
+        TextView declineButton = (TextView) dialog.findViewById(R.id.cancel);
         declineButton.setVisibility(View.GONE);
-        Button acceptButton = (Button) dialog.findViewById(R.id.ok);
+        TextView acceptButton = (TextView) dialog.findViewById(R.id.ok);
         acceptButton.setText(getString(R.string.ok));
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override

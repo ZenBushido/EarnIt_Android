@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -51,10 +52,10 @@ public class SignUp extends BaseActivity implements OnClickListener, Validator.V
     EditText password;
     @ConfirmPassword
     EditText confirmPassword;
-    Button cancelButton, signUpButton;
+    Button   signUpButton;
     RelativeLayout progress;
     ScreenSwitch screenSwitch;
-    ImageButton ivBackArrow;
+    TextView ivBackArrow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,14 +68,14 @@ public class SignUp extends BaseActivity implements OnClickListener, Validator.V
         password = (EditText) findViewById(R.id.input_password);
         confirmPassword = (EditText) findViewById(R.id.input_re_password);
 
-        cancelButton = (Button) findViewById(R.id.cancel_button);
+
         signUpButton = (Button) findViewById(R.id.sign_up_button);
 
-        ivBackArrow = (ImageButton) findViewById(R.id.ivBackArrow);
+        ivBackArrow = (TextView) findViewById(R.id.ivBackArrow);
 
         progress = (RelativeLayout) findViewById(R.id.loadingPanel);
 
-        cancelButton.setOnClickListener(signUp);
+
         signUpButton.setOnClickListener(signUp);
 
         ivBackArrow.setOnClickListener(signUp);
@@ -87,10 +88,6 @@ public class SignUp extends BaseActivity implements OnClickListener, Validator.V
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.cancel_button:
-                screenSwitch.moveToLogin();
-                break;
-
             case R.id.sign_up_button:
                 validator.validate();
                 break;

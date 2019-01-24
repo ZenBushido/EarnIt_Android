@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background"
+    android:background="@android:color/transparent"
+    android:padding="7dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,10 +18,10 @@
 
         <Button
             android:id="@+id/child_task_staus"
-            android:layout_width="27dp"
-            android:layout_height="27dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-            android:background="@drawable/gray_status"
+            android:background="@drawable/globe_ic"
             android:padding="3dp" />
 
         <LinearLayout
@@ -37,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|left|bottom"
-                android:textColor="@color/main_font"
+                android:textColor="@color/white"
                 android:textSize="@dimen/check_in_text_size" />
 
             <TextView
@@ -46,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|left|top"
-                android:textColor="@color/main_font"
+                android:textColor="@color/white"
                 android:textSize="@dimen/check_in_text_size" />
 
         </LinearLayout>

@@ -125,7 +125,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.firepitmedia.earnit.activity.PasswordReminder"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:name="com.firepitmedia.earnit.activity.ParentCalendarActivity"
             android:screenOrientation="portrait" />

@@ -104,8 +104,8 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
     ArrayList<String> list;
     String NONE = "None";
     Map<Integer, String> childs;
-    @BindView(R.id.toolbar_add)
-    Toolbar goalToolbar;
+   /* @BindView(R.id.toolbar_add)
+    Toolbar goalToolbar;*/
     String onFirst, onDay;
     private final String TAG = "ParentCalendarActivity";
     ScreenSwitch screenSwitch;
@@ -135,8 +135,8 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
         parentCalendarActivity = this;
         screenSwitch = new ScreenSwitch(parentCalendarActivity);
 
-        setSupportActionBar(goalToolbar);
-        getSupportActionBar().setTitle(null);
+        //setSupportActionBar(goalToolbar);
+        //getSupportActionBar().setTitle(null);
 
         finalDate = new DateTime().toString("MM/dd/yyyy", Locale.US);
         Log.e("AddTaskk", "1 final date = " + finalDate);
@@ -260,8 +260,8 @@ public class ParentCalendarActivity extends BaseActivity implements View.OnClick
                 .build();
         picasso
                 .load(url)
-                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
-                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.default_avatar)))
+                .error(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.icon)))
+                .placeholder(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.icon)))
                 .into(imageView);
     }
 

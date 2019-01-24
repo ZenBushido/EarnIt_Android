@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/feb_menu_layout"
-    android:layout_width="270dp"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -15,9 +15,6 @@
             android:id="@+id/login_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="10dp"
             android:background="@drawable/feb_menu_bg"
             android:fitsSystemWindows="true"
             android:orientation="vertical">
@@ -28,10 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:padding="10dp"
-
-
                 android:text="@string/add_task"
-                android:textColor="@color/pink"
+                android:textColor="#00ff07"
                 android:textSize="@dimen/floating_menu_list_size" />
 
             <TextView
@@ -39,11 +34,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
-
                 android:padding="10dp"
-
                 android:text="@string/all_tasks"
-                android:textColor="@color/pink"
+                android:textColor="#00ff07"
                 android:textSize="@dimen/floating_menu_list_size" />
 
             <TextView
@@ -53,17 +46,16 @@
                 android:layout_gravity="center|left"
                 android:padding="@dimen/feb_list_padding"
                 android:text="@string/approve_task"
-                android:textColor="@color/pink"
+                android:textColor="#00ff07"
                 android:textSize="@dimen/floating_menu_list_size" />
 
             <TextView
                 android:id="@+id/fb_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:padding="@dimen/feb_list_padding"
                 android:text="@string/balance"
-                android:textColor="@color/pink"
+                android:textColor="#00ff07"
                 android:textSize="@dimen/floating_menu_list_size" />
 
             <TextView
@@ -72,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/feb_list_padding"
                 android:text="@string/goal"
-                android:textColor="@color/pink"
+                android:textColor="#00ff07"
                 android:textSize="@dimen/floating_menu_list_size" />
 
             <TextView
@@ -81,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/feb_list_padding"
                 android:text="@string/message"
-                android:textColor="@color/pink"
+                android:textColor="#00ff07"
                 android:textSize="@dimen/floating_menu_list_size" />
 
             <TextView
@@ -90,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/feb_list_padding"
-                android:textColor="@color/pink"
+                android:textColor="#00ff07"
                 android:textSize="@dimen/floating_menu_list_size" />
 
 
